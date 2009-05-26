@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE search  [
+<!--
+Compass base DTD
+
+Created: 2008-11-10
+Updated: 2009-02-04
+Barnabas Davoti - Ovitas AS
+Christopher Kolstad - Ovitas AS
+
+PUBLIC "-//Ovitas//DTD Compass Base//NO"
+
+Root element-->
+<!ELEMENT search  (relationtype*,relation*) >
+
+<!--Relation types-->
+<!ELEMENT relationtype   EMPTY  >
+
+<!ATTLIST relationtype
+               weight  CDATA    #REQUIRED 
+               name  CDATA    #REQUIRED 
+               id  ID    #REQUIRED  >
+
+<!--Topic-->
+<!ELEMENT topic (name,name*) >
+
+<!--Search expansion-->
+<!ELEMENT relation  (topic,topic) >
+
+<!ATTLIST relation
+               type  IDREF    #REQUIRED  >
+
+<!ELEMENT name  (CDATA) >
+
+]>
+<search>
+    <relationtype id="synonym" name="Synonym" weight="1.0" />
+    
+    <relation type="synonym">
+        <topic>
+            <name>Stomach</name>
+        </topic>
+        <topic>
+            <name>Abdomen</name>
+        </topic>
+    </relation>
+    <relation type="synonym">
+        <topic>
+            <name>Happy</name>
+        </topic>
+        <topic>
+            <name>Satisfied</name>
+        </topic>
+    </relation>
+</search>
