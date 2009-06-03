@@ -53,7 +53,6 @@ public class KnowledgeBaseHolder implements Serializable {
 		this.relations.add(rel);
 	}
 	
-	
 	public void addTopic(Topic t){
 		topics.put(t.getName(), t);
 	}

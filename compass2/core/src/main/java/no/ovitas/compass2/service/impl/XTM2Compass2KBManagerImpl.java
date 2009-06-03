@@ -20,7 +20,7 @@ public class XTM2Compass2KBManagerImpl extends DefaultKBManagerImpl implements
 		KnowledgeBaseManager {
 
 	public XTM2Compass2KBManagerImpl() {
-		super();
+		super("kbBuilderXtmDao");
 		
 	}
 	

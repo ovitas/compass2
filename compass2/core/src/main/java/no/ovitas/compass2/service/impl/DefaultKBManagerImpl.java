@@ -28,10 +28,12 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	protected KnowledgeBaseHolder knowledgeBase;
 	
 	public DefaultKBManagerImpl(){
+		this("kbBuilderDao");
+	}
 
+	protected DefaultKBManagerImpl(String daoName) {
 		ApplicationContext context = CompassUtil.getApplicationContext();
-		builderDao = (KBBuilderDao)context.getBean("kbBuilderDao");
-		
+		builderDao = (KBBuilderDao)context.getBean(daoName);
 	}
 
 	protected ConfigurationManager configManager;
