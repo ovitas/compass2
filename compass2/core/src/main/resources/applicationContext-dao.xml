@@ -3,9 +3,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
        default-lazy-init="true">
 
-     <bean id="kbBuilderDao" class="no.ovitas.compass2.dao.xml.KBBuilderDaoXml">
+	<bean id="kbBuilderDao" class="no.ovitas.compass2.dao.xml.KBBuilderDaoXml">
     </bean>
  
-
+	<bean id="kbBuilderXtmDao" class="no.ovitas.compass2.dao.xml.KBBuilderXtmDaoXml">
+    </bean>
+ 
     <!-- Add new DAOs here -->
 </beans>
