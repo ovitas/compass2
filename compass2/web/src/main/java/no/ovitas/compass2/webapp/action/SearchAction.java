@@ -42,6 +42,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	private boolean fuzzyMatch;
 	private String treeJson;
 	private int jsonNodeId = 0;
+	private int maxTopicNumberToExpand=0;
 
 	private List<Hit> result;
 	protected CompassManager compassManager;
@@ -148,16 +149,16 @@ public class SearchAction extends BaseAction implements Preparable {
 		log.info("lucene.spellchecker.index.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.index.dir"));
 		log.info("lucene.fts.index.dir: "+configurationManager.getConfigParameter("lucene.fts.index.dir"));
 		log.info("knowledge.base.file: "+configurationManager.getConfigParameter("knowledge.base.file"));
-		String search = getSearch(); 
+		//String search = getSearch(); 
 		if(search==null ||  search.equals("")){
 			return SUCCESS;
 		}
 		
-		int hopCount = getHopCount();
+/*		int hopCount = getHopCount();
 		double thresholdWeight = getThresholdWeight(); 
 		boolean prefixMatch = isPrefixMatch();
 		boolean fuzzyMatch = isFuzzyMatch();
-		
+*/		
 		try{
 			log.info("compassManager: "+compassManager.toString());
 		}catch(Exception e){
@@ -169,7 +170,8 @@ public class SearchAction extends BaseAction implements Preparable {
 			hopCount, 
 			thresholdWeight, 
 			prefixMatch, 
-			fuzzyMatch
+			fuzzyMatch,
+			new Integer(this.maxTopicNumberToExpand)
 		);
 		
 		List<Hit> hits = resultObj.getHits();
@@ -221,19 +223,6 @@ public class SearchAction extends BaseAction implements Preparable {
 		String json = "";
 		
 		List<String> children = new ArrayList<String>();
-		/*
-		//Tree Example
-		children.add(createJsonNode("kettő", null));
-		children.add(createJsonNode("három", null));
-		String egy = createJsonNode("egy", children);
-		children = new ArrayList<String>();
-		children.add(createJsonNode("öt", null));
-		children.add(egy);
-		children.add(createJsonNode("hat", null));
-		children.add(createJsonNode("hét", null));
-		String negy = createJsonNode("négy", children);
-		json = "["+negy+"]";
-		*/
 		
 		children = new ArrayList<String>();
 		if(expansions != null && expansions.size()>0){
@@ -305,5 +294,13 @@ public class SearchAction extends BaseAction implements Preparable {
 					"}";
 		}
 		return node;
+	}
+
+	public int getMaxTopicNumberToExpand() {
+		return maxTopicNumberToExpand;
+	}
+
+	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand) {
+		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
 	}
 }

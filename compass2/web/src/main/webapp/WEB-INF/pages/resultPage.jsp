@@ -7,6 +7,8 @@
     <h3>Results</h3>
     <s:label name="search" label="Search" />
     <s:label name="hopCount" label="Hop Count" />
+	<s:textfield key="maxTopicNumberToExpand" />
+    
     <s:label name="thresholdWeight" label="Threshold Weight" />
     <s:label name="prefixMatch" label="Prefix Match" />
     <s:label name="fuzzyMatch" label="Fuzzy Match" />
