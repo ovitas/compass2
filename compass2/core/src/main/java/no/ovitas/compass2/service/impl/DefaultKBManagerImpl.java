@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
@@ -26,7 +27,10 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 
 	protected KBBuilderDao builderDao;
 	protected KnowledgeBaseHolder knowledgeBase;
+
+	protected int maxTopicNumberToExpand;
 	
+
 	public DefaultKBManagerImpl(){
 		this("kbBuilderDao");
 	}
@@ -41,6 +45,14 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	
 	public void setConfiguration(ConfigurationManager manager){
 		configManager = manager;
+		
+		String sMaxTopicNumberToExpand = configManager.getConfigParameter(Constants.MAX_TOPIC_NUMBER_TO_EXPAND);
+		maxTopicNumberToExpand = 100;
+		if (sMaxTopicNumberToExpand != null){
+			try {
+				maxTopicNumberToExpand = Integer.parseInt(sMaxTopicNumberToExpand);
+			} catch (Exception e) {}
+		}
 	}
 	
 	public void finalize() throws Throwable {
@@ -78,10 +90,18 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		
 		Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
 		for (Topic topic : topicSet) {
-			TopicTreeNode node1 = TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight);
-			TopicTreeNode node2 = TopicUtil.expandTopicsForMinHopCount(topic, hopCount);
-			node1.intersect(node2);
-			topicTreeNodeSet.add(node1);
+			TopicTreeNode node1 = thresholdWeight < 0 ? null : 
+				TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, maxTopicNumberToExpand);
+			TopicTreeNode node2 = hopCount < 0 ? null : 
+				TopicUtil.expandTopicsForMinHopCount(topic, hopCount, maxTopicNumberToExpand);
+			if (node1 == null) {
+				node1 = node2;
+			} else if (node2 != null) {
+				node1.intersect(node2);					
+			}
+			if (node1 != null) {
+				topicTreeNodeSet.add(node1);
+			}
 		}
 		return topicTreeNodeSet;
 	}
@@ -120,9 +140,9 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
 			for (Topic topic : topicSet) {
 				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
-					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight);
+					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, maxTopicNumberToExpand);
 				TopicTreeNode node2 = hopCount < 0 ? null : 
-					TopicUtil.expandTopicsForMinHopCount(topic, hopCount);
+					TopicUtil.expandTopicsForMinHopCount(topic, hopCount, maxTopicNumberToExpand);
 				if (node1 == null) {
 					node1 = node2;
 				} else if (node2 != null) {

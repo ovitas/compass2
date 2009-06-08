@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -73,15 +74,17 @@ public class TopicUtil {
         }
     };
 	
-	public static TopicTreeNode dijkstra(Topic rootTopic, TopicExpander expander, double limit) {
+	public static TopicTreeNode dijkstra(Topic rootTopic, TopicExpander expander, double limit, int maxTopicNumberToExpand) {
 		PriorityQueue<TopicNode> queue = new PriorityQueue<TopicNode>(10, comparator);
 		HashMap<Topic, TopicNode> topicNodes = new HashMap<Topic, TopicNode>();
+		List<TopicNode> finalTopicNodes = new LinkedList<TopicNode>();
 		
 		TopicNode rootTopicNode = new TopicNode(rootTopic, null, 0);
 		topicNodes.put(rootTopicNode.topic, rootTopicNode);
 		queue.add(rootTopicNode);
 		
-		while (queue.size() > 0) {
+		int idx = 0;
+		while (queue.size() > 0 && idx++ < maxTopicNumberToExpand) {
 			TopicNode topicNode = queue.poll();
 			List<TopicLinkNode> topicLinkNodes = expander.expand(topicNode.topic);
 			for (TopicLinkNode topicLinkNode : topicLinkNodes) {
@@ -100,25 +103,28 @@ public class TopicUtil {
 					queue.add(aTopicNode);
 				}
 			}
+			finalTopicNodes.add(topicNode);
 		}
 		
 		Map<Topic, TopicTreeNode> ret = new HashMap<Topic, TopicTreeNode>();
-		for (TopicNode topicNode: topicNodes.values()) {
+		for (TopicNode topicNode: finalTopicNodes) {
 			if (topicNode.distance <= limit)
 				ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic));
 		}
-		for (TopicNode topicNode: topicNodes.values()) {
+		
+		for (TopicNode topicNode: finalTopicNodes) {
 			if (topicNode.distance <= limit) 
 				ret.get(topicNode.topic).setParent(ret.get(topicNode.parent));
 		}
+		
 		return ret.get(rootTopic);
 	}
 	
-	public static TopicTreeNode expandTopicsForMinHopCount(Topic topic, int maxHopCount) {
-		return dijkstra(topic, new TopicExpanderForMinHopCount(), maxHopCount);
+	public static TopicTreeNode expandTopicsForMinHopCount(Topic topic, int maxHopCount, int maxTopicNumberToExpand) {
+		return dijkstra(topic, new TopicExpanderForMinHopCount(), maxHopCount, maxTopicNumberToExpand);
 	}
 
-	public static TopicTreeNode expandTopicsForMaxWeight(Topic topic, double minWeight) {
-		return dijkstra(topic, new TopicExpanderForMaxWeight(), -Math.log(minWeight));
+	public static TopicTreeNode expandTopicsForMaxWeight(Topic topic, double minWeight, int maxTopicNumberToExpand) {
+		return dijkstra(topic, new TopicExpanderForMaxWeight(), -Math.log(minWeight), maxTopicNumberToExpand);
 	}
 }

@@ -12,11 +12,16 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.springframework.context.ApplicationContext;
+
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.RelationType;
 import no.ovitas.compass2.model.Topic;
+import no.ovitas.compass2.service.ConfigurationManager;
+import no.ovitas.compass2.util.CompassUtil;
 
 public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
@@ -42,6 +47,17 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
 	public KnowledgeBaseHolder buildKB(String kbAccessString) {
+		
+		ApplicationContext context = CompassUtil.getApplicationContext();
+		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
+		String sUseRandomWeight = configManager.getConfigParameter(Constants.USE_RANDOM_WEIGHT);
+		boolean useRandomWeight = false;
+		if (sUseRandomWeight != null){
+			if (sUseRandomWeight.trim().equals("true")) {
+				useRandomWeight = true;
+			}
+		}
+		
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
 		
 		Map<String, Topic> topicMap = new HashMap<String, Topic>();
@@ -169,7 +185,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 				if (topic != null) {
 					RelationType relationType = entry.getValue();
 					relationType.setRelationName(topic.getName());
-					relationType.setWeight(.5);
+					relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
 				}
 			}
 			
