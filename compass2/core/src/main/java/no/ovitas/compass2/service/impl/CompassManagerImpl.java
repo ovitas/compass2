@@ -221,5 +221,21 @@ public class CompassManagerImpl implements CompassManager {
 		
 		return new ResultObject(topics, retList);
 	}
+
+
+	public ResultObject search(String search, int hopCount,
+			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
+			Integer maxTopicNumberToExpand) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ResultObject search(String search, int hopCount,
+			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
+			int pageNum, Integer maxTopicNumberToExpand) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

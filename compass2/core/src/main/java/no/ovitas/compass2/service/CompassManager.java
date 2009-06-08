@@ -17,6 +17,9 @@ public interface CompassManager {
 	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch);
 	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, int pageNum);
 	
+	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, Integer maxTopicNumberToExpand);
+	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, int pageNum, Integer maxTopicNumberToExpand);
+
 	public void setUseStemmingEnabled(boolean useStemming);
 	public void setPrefixMatchingEnabled(boolean prefixMatching);
 	public void setHitThreshold(int hitThreshold);
