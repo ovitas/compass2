@@ -183,7 +183,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			for (String item : itemSet) {
 				if (firstItem) firstItem = false;
 				else queryString.append(" OR ");
-				queryString.append(item);
+				queryString.append("\"" + item + "\"");
 			}
 			if (itemSet.size() > 0) queryString.append(")");
 		}

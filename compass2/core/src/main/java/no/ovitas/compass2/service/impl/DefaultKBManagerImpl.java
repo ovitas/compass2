@@ -119,10 +119,18 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			
 			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
 			for (Topic topic : topicSet) {
-				TopicTreeNode node1 = TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight);
-				TopicTreeNode node2 = TopicUtil.expandTopicsForMinHopCount(topic, hopCount);
-				node1.intersect(node2);
-				topicTreeNodeSet.add(node1);
+				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
+					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight);
+				TopicTreeNode node2 = hopCount < 0 ? null : 
+					TopicUtil.expandTopicsForMinHopCount(topic, hopCount);
+				if (node1 == null) {
+					node1 = node2;
+				} else if (node2 != null) {
+					node1.intersect(node2);					
+				}
+				if (node1 != null) {
+					topicTreeNodeSet.add(node1);
+				}
 			}
 			ret.add(topicTreeNodeSet);
 		}

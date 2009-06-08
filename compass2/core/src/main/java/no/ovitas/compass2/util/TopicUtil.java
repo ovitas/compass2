@@ -83,18 +83,19 @@ public class TopicUtil {
 		
 		while (queue.size() > 0) {
 			TopicNode topicNode = queue.poll();
-			if (topicNode.distance > limit) break;
 			List<TopicLinkNode> topicLinkNodes = expander.expand(topicNode.topic);
 			for (TopicLinkNode topicLinkNode : topicLinkNodes) {
 				Topic aTopic = topicLinkNode.topic;
 				TopicNode aTopicNode = topicNodes.get(aTopic);
 				double dist = topicNode.distance + topicLinkNode.cost;
+				if (dist > limit) continue;
 				if (aTopicNode == null) {
 					aTopicNode = new TopicNode(aTopic, topicNode.topic, dist);
 					topicNodes.put(aTopic, aTopicNode);
 					queue.add(aTopicNode);
 				} else if (queue.contains(aTopicNode) && aTopicNode.distance > dist) {
 					queue.remove(aTopicNode);
+					aTopicNode.parent = topicNode.topic;
 					aTopicNode.distance = dist;
 					queue.add(aTopicNode);
 				}
@@ -103,11 +104,11 @@ public class TopicUtil {
 		
 		Map<Topic, TopicTreeNode> ret = new HashMap<Topic, TopicTreeNode>();
 		for (TopicNode topicNode: topicNodes.values()) {
-			if (topicNode.distance < limit)
+			if (topicNode.distance <= limit)
 				ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic));
 		}
 		for (TopicNode topicNode: topicNodes.values()) {
-			if (topicNode.distance < limit) 
+			if (topicNode.distance <= limit) 
 				ret.get(topicNode.topic).setParent(ret.get(topicNode.parent));
 		}
 		return ret.get(rootTopic);

@@ -94,6 +94,9 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					else if (name.equals(BASENAME_NODE)){
 						goodScope = false;
 					}
+					else if (name.equals(MEMBER_NODE)){
+						href = null;
+					}
 				}
 
 				if (event.getEventType() == XMLEvent.CDATA || 
@@ -115,11 +118,13 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 						actTopic = null;
 					}
 					else if (name.equals(ASSOCIATION_NODE)) {
-						if (actRelation.getSource() != null) 
+						if (actRelation.getSource() == null || actRelation.getTarget() == null) {
+							// do not use this
+						} else {
 							actRelation.getSource().addRelation(actRelation);
-						if (actRelation.getTarget() != null)
 							actRelation.getTarget().addRelation(actRelation);
-						kbh.addRelation(actRelation);
+							kbh.addRelation(actRelation);
+						}
 						actRelation = null;
 					}
 					else if (name.equals(BASENAMESTING_NODE)) {
@@ -158,15 +163,22 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 				}
 			}
 			
+			// gathering relation types
 			for (Map.Entry<String, RelationType> entry : kbh.getRelationTypes().entrySet()) {
 				Topic topic = topicMap.get(entry.getKey());
 				if (topic != null) {
 					RelationType relationType = entry.getValue();
 					relationType.setRelationName(topic.getName());
-					relationType.setWeight(1);
+					relationType.setWeight(.5);
 				}
 			}
 			
+			// set id as names for unknown topics 
+			for (Map.Entry<String, Topic> entry : topicMap.entrySet()) {
+				Topic topic = entry.getValue();
+				if (topic.getName() == null) topic.setName(entry.getKey());
+			}
+
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
