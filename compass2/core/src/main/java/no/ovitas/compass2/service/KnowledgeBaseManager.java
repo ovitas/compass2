@@ -22,7 +22,7 @@ public interface KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, String search);
+	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, String search, Integer maxTopicNumberToExpand);
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public interface KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public List<Set<TopicTreeNode>> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, List<String> search);
+	public List<Set<TopicTreeNode>> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, List<String> search, Integer maxTopicNumberToExpand);
 
 	/**
 	 * 

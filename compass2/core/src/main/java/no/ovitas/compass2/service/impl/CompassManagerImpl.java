@@ -46,15 +46,29 @@ public class CompassManagerImpl implements CompassManager {
 	private Log log = LogFactory.getLog(getClass());
 	
 
+
 	public ResultObject search(String search, int hopCount,
 			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch) {
+		return search(search, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, null);
+	}
+
+
+	public ResultObject search(String search, int hopCount,
+			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
+			int pageNum) {
+		return search(search, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, pageNum, null);
+	}
+	
+	public ResultObject search(String search, int hopCount,
+			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, 
+			Integer maxTopicNumberToExpand) {
 		
 		List<Hit> hits = null;
 		if(search!=null && !search.isEmpty()){
 		 	if(search.trim().startsWith("lucene:")){
 		 		return this.directLuceneSearch(search, 1);
 		 	}else{
-		 		return indirectSearch(search, 1, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, 1);
+		 		return indirectSearch(search, 1, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, 1, maxTopicNumberToExpand);
 		 	}
 		}
 		return null;
@@ -62,14 +76,15 @@ public class CompassManagerImpl implements CompassManager {
 
 
 	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, int pageNum) {
+			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, 
+			int pageNum, Integer maxTopicNumberToExpand) {
 		
 		List<Hit> hits = null;
 		if(search!=null && !search.isEmpty()){
 		 	if(search.trim().startsWith("lucene:")){
 		 		return this.directLuceneSearch(search, pageNum);
 		 	}else{
-		 		return indirectSearch(search, pageNum, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, pageNum);
+		 		return indirectSearch(search, pageNum, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, pageNum, maxTopicNumberToExpand);
 		 	}
 		}
 		return null;
@@ -187,7 +202,8 @@ public class CompassManagerImpl implements CompassManager {
 	}
 	
 	protected ResultObject indirectSearch(String search, int i, int hopCount,
-			double thresholdWeight, boolean prefixMatching, boolean fuzzyMatch, int pageNum) {
+			double thresholdWeight, boolean prefixMatching, boolean fuzzyMatch, 
+			int pageNum, Integer maxTopicNumberToExpand) {
 		List<Hit> retList = null;
 		List<String> words = this.parseSearchString(search);
 		List<Set<TopicTreeNode>> topics = null;
@@ -195,7 +211,8 @@ public class CompassManagerImpl implements CompassManager {
 			words = this.ltManager.getStems(words);
 		}
 		if (words != null && !words.isEmpty()){
-			topics = this.kbManager.getExpansion(fuzzyMatch, prefixMatching, hopCount, thresholdWeight, words);
+			topics = this.kbManager.getExpansion(fuzzyMatch, prefixMatching, 
+					hopCount, thresholdWeight, words, maxTopicNumberToExpand);
 			retList = ftSearch(topics, words, pageNum);
 			
 			if (retList == null || retList.size() < hitThreshold) {
@@ -207,7 +224,8 @@ public class CompassManagerImpl implements CompassManager {
 							spellingSuggestedWords.add(spelligSuggestedWord);
 					}
 					
-					topics = kbManager.getExpansion(fuzzyMatch, prefixMatching, hopCount, thresholdWeight, spellingSuggestedWords);
+					topics = kbManager.getExpansion(fuzzyMatch, prefixMatching, 
+							hopCount, thresholdWeight, spellingSuggestedWords, maxTopicNumberToExpand);
 					retList = ftSearch(topics, spellingSuggestedWords, pageNum);
 				} catch (ConfigParameterMissingException ex) {
 					log.fatal("FATAL Exception occured: "+ex.getMessage(),ex);
@@ -221,21 +239,4 @@ public class CompassManagerImpl implements CompassManager {
 		
 		return new ResultObject(topics, retList);
 	}
-
-
-	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
-			Integer maxTopicNumberToExpand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
-			int pageNum, Integer maxTopicNumberToExpand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

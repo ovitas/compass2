@@ -67,7 +67,12 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, String search){
+	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, 
+			double thresholdWeight, String search, Integer maxTopicNumberToExpand){
+		
+		int aMaxTopicNumberToExpand = this.maxTopicNumberToExpand;
+		if (maxTopicNumberToExpand != null) aMaxTopicNumberToExpand = maxTopicNumberToExpand.intValue();
+		
 		Set<Topic> topicSet = new HashSet<Topic>();
 		String s = search;
 		String toSearch = s;
@@ -91,9 +96,9 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
 		for (Topic topic : topicSet) {
 			TopicTreeNode node1 = thresholdWeight < 0 ? null : 
-				TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, maxTopicNumberToExpand);
+				TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
 			TopicTreeNode node2 = hopCount < 0 ? null : 
-				TopicUtil.expandTopicsForMinHopCount(topic, hopCount, maxTopicNumberToExpand);
+				TopicUtil.expandTopicsForMinHopCount(topic, hopCount, aMaxTopicNumberToExpand);
 			if (node1 == null) {
 				node1 = node2;
 			} else if (node2 != null) {
@@ -114,7 +119,12 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public List<Set<TopicTreeNode>> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, List<String> search){
+	public List<Set<TopicTreeNode>> getExpansion(boolean fuzzyMatch, boolean prefixMatching, 
+			int hopCount, double thresholdWeight, List<String> search, Integer maxTopicNumberToExpand){
+		
+		int aMaxTopicNumberToExpand = this.maxTopicNumberToExpand;
+		if (maxTopicNumberToExpand != null) aMaxTopicNumberToExpand = maxTopicNumberToExpand.intValue();
+		
 		List<Set<TopicTreeNode>> ret = new ArrayList<Set<TopicTreeNode>>();
 		for (String s : search){
 			Set<Topic> topicSet = new HashSet<Topic>();
@@ -140,9 +150,9 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
 			for (Topic topic : topicSet) {
 				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
-					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, maxTopicNumberToExpand);
+					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
 				TopicTreeNode node2 = hopCount < 0 ? null : 
-					TopicUtil.expandTopicsForMinHopCount(topic, hopCount, maxTopicNumberToExpand);
+					TopicUtil.expandTopicsForMinHopCount(topic, hopCount, aMaxTopicNumberToExpand);
 				if (node1 == null) {
 					node1 = node2;
 				} else if (node2 != null) {
