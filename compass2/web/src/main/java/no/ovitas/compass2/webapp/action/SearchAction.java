@@ -36,7 +36,7 @@ public class SearchAction extends BaseAction implements Preparable {
 
 	
 	private String search;
-	private int hopCount;
+	private int hopCount=1;
 	private double thresholdWeight; 
 	private boolean prefixMatch;
 	private boolean fuzzyMatch;
