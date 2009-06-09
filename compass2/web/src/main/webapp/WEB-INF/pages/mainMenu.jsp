@@ -41,6 +41,10 @@
 		</display:table>
 		<%@ include file="/common/tree.jsp" %>
 	</c:if>
+	<c:if test="${empty result}">	
+     <h3><fmt:message key="no.result"/></h3>	
+	</c:if>
+	
 </p>	
 	
 

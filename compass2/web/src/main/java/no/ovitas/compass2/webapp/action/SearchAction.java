@@ -36,7 +36,7 @@ public class SearchAction extends BaseAction implements Preparable {
 
 	
 	private String search;
-	private int hopCount=1;
+	private Integer hopCount;
 	private double thresholdWeight; 
 	private boolean prefixMatch;
 	private boolean fuzzyMatch;
@@ -78,13 +78,6 @@ public class SearchAction extends BaseAction implements Preparable {
 		this.treeJson = treeJson;
 	}
 
-	public int getHopCount() {
-		return hopCount;
-	}
-
-	public void setHopCount(int hopCount) {
-		this.hopCount = hopCount;
-	}
 
 	public double getThresholdWeight() {
 		return thresholdWeight;
@@ -160,10 +153,10 @@ public class SearchAction extends BaseAction implements Preparable {
 		}catch(Exception e){
 			log.info("NO compassManager");
 		}
-		
+		int hc = hopCount!=null ? hopCount.intValue() : 0;
 		ResultObject resultObj = compassManager.search(
 			search, 
-			hopCount, 
+			hc, 
 			thresholdWeight, 
 			prefixMatch, 
 			fuzzyMatch,
@@ -304,6 +297,20 @@ public class SearchAction extends BaseAction implements Preparable {
 	 */
 	public void setMaxTopicNumberToExpand(Integer maxTopicNumberToExpand) {
 		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
+	}
+
+	/**
+	 * @return the hopCount
+	 */
+	public Integer getHopCount() {
+		return hopCount;
+	}
+
+	/**
+	 * @param hopCount the hopCount to set
+	 */
+	public void setHopCount(Integer hopCount) {
+		this.hopCount = hopCount;
 	}
 
 }
