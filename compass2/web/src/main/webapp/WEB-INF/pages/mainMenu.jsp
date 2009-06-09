@@ -11,7 +11,7 @@
     	}
     </style>
 </head>
-	
+<h1><fmt:message key="search.title"/></h1>	
 <p>
 	<s:form action="mainMenu">
 		<s:textfield key="search"  required="true" />

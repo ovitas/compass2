@@ -42,7 +42,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	private boolean fuzzyMatch;
 	private String treeJson;
 	private int jsonNodeId = 0;
-	private int maxTopicNumberToExpand=0;
+	private Integer maxTopicNumberToExpand;
 
 	private List<Hit> result;
 	protected CompassManager compassManager;
@@ -154,11 +154,7 @@ public class SearchAction extends BaseAction implements Preparable {
 			return SUCCESS;
 		}
 		
-/*		int hopCount = getHopCount();
-		double thresholdWeight = getThresholdWeight(); 
-		boolean prefixMatch = isPrefixMatch();
-		boolean fuzzyMatch = isFuzzyMatch();
-*/		
+
 		try{
 			log.info("compassManager: "+compassManager.toString());
 		}catch(Exception e){
@@ -171,7 +167,7 @@ public class SearchAction extends BaseAction implements Preparable {
 			thresholdWeight, 
 			prefixMatch, 
 			fuzzyMatch,
-			new Integer(this.maxTopicNumberToExpand)
+			this.maxTopicNumberToExpand
 		);
 		
 		List<Hit> hits = resultObj.getHits();
@@ -296,11 +292,18 @@ public class SearchAction extends BaseAction implements Preparable {
 		return node;
 	}
 
-	public int getMaxTopicNumberToExpand() {
+	/**
+	 * @return the maxTopicNumberToExpand
+	 */
+	public Integer getMaxTopicNumberToExpand() {
 		return maxTopicNumberToExpand;
 	}
 
-	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand) {
+	/**
+	 * @param maxTopicNumberToExpand the maxTopicNumberToExpand to set
+	 */
+	public void setMaxTopicNumberToExpand(Integer maxTopicNumberToExpand) {
 		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
 	}
+
 }
