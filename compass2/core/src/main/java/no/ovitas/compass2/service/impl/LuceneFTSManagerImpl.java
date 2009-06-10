@@ -258,7 +258,15 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				for(File file : ff){
 					if(!file.isDirectory()){
 						log.info("processing file:"+file.getCanonicalPath());
-					indexer.index(file, fields);
+						try{
+							String name = file.getAbsolutePath();
+							if(!name.toLowerCase().endsWith("jpg") && !name.toLowerCase().endsWith("ico") && !name.toLowerCase().endsWith("png") && !name.toLowerCase().contains(".axd")){
+					          indexer.index(file, fields);
+							}
+						}catch(Exception ex){
+							log.error("File not indexed: "+file.getAbsolutePath(),ex);
+							
+						}
 					}else{
 						if(depth>0){
 						 uploadFiles(file,depth-1,indexer);
