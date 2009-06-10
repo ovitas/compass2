@@ -49,7 +49,7 @@ public class LuceneHit  implements Serializable,  Hit{
 		this.title = title;
 	}
 
-	protected void setURI(String uri) {
+	public void setURI(String uri) {
 		URI = uri;
 	}
 

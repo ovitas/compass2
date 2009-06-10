@@ -1,6 +1,7 @@
 package no.ovitas.compass2;
 
 
+
 /**
  * Constant values used throughout the application.
  * 
@@ -100,6 +101,7 @@ public class Constants {
     public static final String KNOWLEDGE_BASE_LOAD_ON_STARTUP="knowladge.base.load.on.startup";
     public static final String MAX_TOPIC_NUMBER_TO_EXPAND="max.topic.number.to.expand";
     public static final String USE_RANDOM_WEIGHT="use.random.weight";
+    public static final String DOCUMENT_REPOSITORY_PROPERTY = "document.repository";
     
     
     

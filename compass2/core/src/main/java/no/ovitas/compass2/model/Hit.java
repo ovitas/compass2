@@ -19,6 +19,7 @@ public interface Hit{
 	public abstract String getID();
 	public abstract float getScore();
 	public abstract String getScoreStr();
+	public abstract void setURI(String uri);
 	 
 	
 	
