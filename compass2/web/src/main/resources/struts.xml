@@ -54,6 +54,8 @@
         </action>
         <action name="fts" class="no.ovitas.compass2.webapp.action.FTSAction">
         </action>
+        <action name="fr" class="no.ovitas.compass2.webapp.action.FileReaderAction">
+        </action>
 
       </package>
 

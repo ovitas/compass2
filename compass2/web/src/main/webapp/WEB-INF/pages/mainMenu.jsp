@@ -31,14 +31,16 @@
 	<br />
 
 	<s:set name="result"  value="result" scope="request"/>
-	<c:if test="${not empty result}">	
+	<c:if test="${not empty result}">
+		<h3><fmt:message key="search.result"/></h3>
 	    <display:table class="table" name="result" export="false" id="row" requestURI="mainMenu.do">
-	  		<display:column property="title"/>
-	  		<display:column property="URI"/>
-	  		<display:column property="fileType"/>
-	  		<display:column property="score"/>
-	  		<display:column property="lastModified"/>
+	  		<display:column property="title" title="Title"/>
+	  		<display:column title="URI"><a href="<c:url value="fr.do?docID=${row.ID}" />" target="_blank"><c:out value="${row.URI}"/></a> </display:column>
+	  		<display:column property="fileType" title="File Type"/>
+	  		<display:column property="scoreStr" title="Score"/>
+	  		<display:column property="lastModified" title="Last Modified"/>
 		</display:table>
+		<h3><fmt:message key="topic.expansion"/></h3>
 		<%@ include file="/common/tree.jsp" %>
 	</c:if>
 	<c:if test="${empty result}">	
