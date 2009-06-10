@@ -14,6 +14,9 @@ package no.ovitas.compass2.webapp.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.opensymphony.xwork2.Preparable;
+
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.service.FullTextSearchManager;
 import no.ovitas.compass2.service.factory.FTSFactory;
 
@@ -31,9 +34,17 @@ public class FTSAction extends BaseAction implements Preparable{
 		FTSFactory ff = FTSFactory.getInstance();
 		FullTextSearchManager fts = ff.getFTSImplementation();
 		String docRoot = "/app/compass/data";
-		writeResponse("Processing documents in: "+docRoot+"\n");
-		fts.addDocument(true, 2, docRoot);
-		writeResponse("Documents processed\n");
+		try {
+			writeResponse("Processing documents in: "+docRoot+"\n");
+			fts.addDocument(true, 100, docRoot);
+			writeResponse("Documents processed\n");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (ConfigurationException e) {
+			
+			e.printStackTrace();
+		}
 		
 		
 		return NONE;
