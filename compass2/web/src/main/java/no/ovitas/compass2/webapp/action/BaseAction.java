@@ -35,6 +35,7 @@ public class BaseAction extends ActionSupport {
      */
     public static final String CANCEL = "cancel";
     public static final String SUCCESS = "success";
+    public static final String NONE = "none";
 
     /**
      * Transient log to prevent session synchronization issues - children can use instance for logging.

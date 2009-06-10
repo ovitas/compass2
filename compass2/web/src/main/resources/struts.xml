@@ -52,6 +52,8 @@
             <result name="showResults">/WEB-INF/pages/mainMenu.jsp</result>
             <result name="input">/WEB-INF/pages/mainMenu.jsp</result>
         </action>
+        <action name="fts" class="no.ovitas.compass2.webapp.action.FTSAction">
+        </action>
 
       </package>
 
