@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import no.ovitas.compass2.exception.ConfigurationException;
+import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.Topic;
 
@@ -48,5 +49,12 @@ public interface FullTextSearchManager {
 	 * @param search
 	 */
 	public List<Hit> doSearch(String search, int pageNum);
+	
+    /**
+     * Returns a concrete document.
+     * @param id
+     * @return DocumentDetails
+     */
+	public DocumentDetails getDocument(String id);	
 
 }

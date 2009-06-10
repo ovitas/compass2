@@ -17,7 +17,9 @@ public interface Hit{
 	public abstract String getFileType();
 	public abstract Date getLastModified();
 	public abstract String getID();
-	public abstract float getScore(); 
+	public abstract float getScore();
+	public abstract String getScoreStr();
+	 
 	
 	
 }

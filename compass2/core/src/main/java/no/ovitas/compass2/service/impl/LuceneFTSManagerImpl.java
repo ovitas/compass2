@@ -11,13 +11,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.WildcardQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -25,6 +28,7 @@ import org.apache.lucene.store.LockObtainFailedException;
 
 import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.exception.ConfigurationException;
+import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.LuceneHit;
 import no.ovitas.compass2.model.Topic;
@@ -281,6 +285,41 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				log.error("Error occured: "+e.getMessage(),e);
 			}
 		}
+	}
+
+	public DocumentDetails getDocument(String id) {
+		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
+		Query q = new TermQuery(new Term("ID",id));
+		
+		IndexSearcher searcher = null;
+		try {
+			searcher = new IndexSearcher(indexDir);
+			Hits hits = searcher.search(q);
+			if(hits.length()>0){
+				Document d = hits.doc(0);
+				DocumentDetails dd = new DocumentDetails();
+				dd.setFileType(d.get(Constants.FILE_TYPE_INDEX));
+				dd.setURI(d.get(Constants.URI_INDEX));
+				dd.setID(d.get(Constants.ID_INDEX));
+				return dd;
+			}
+			
+		
+		} catch (Exception e) {
+			log.fatal("Fatal error occured: "+e.getMessage(),e);
+			return null;
+		}finally{
+			if(searcher!=null){
+				try {
+					searcher.close();
+				} catch (IOException e) {
+					log.error("Error occured: "+e.getMessage(),e);
+				}
+			}
+		}
+		
+
+		return null;
 	}
 	
 

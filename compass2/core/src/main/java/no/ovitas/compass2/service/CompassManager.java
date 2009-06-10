@@ -6,6 +6,7 @@ import java.util.List;
 
 import no.ovitas.compass2.exception.ConfigParameterMissingException;
 import no.ovitas.compass2.exception.ConfigurationException;
+import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.ResultObject;
 
@@ -40,6 +41,7 @@ public interface CompassManager {
 	 */
 	public List<String> getSpellingSuggestions(String userSearch) throws ConfigParameterMissingException, ConfigurationException, IOException ;
 	
+    public DocumentDetails getDocument(String id);	
 
 	
 }

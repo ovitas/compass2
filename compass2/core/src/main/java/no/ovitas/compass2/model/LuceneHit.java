@@ -4,6 +4,8 @@
 package no.ovitas.compass2.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -96,6 +98,13 @@ public class LuceneHit  implements Serializable,  Hit{
 
 	public void setScore(float score) {
 		this.score = score;
+	}
+
+	@Override
+	public String getScoreStr() {
+		DecimalFormat nf = new DecimalFormat("0.###################");
+	    
+		return nf.format(score);
 	}
 
 }

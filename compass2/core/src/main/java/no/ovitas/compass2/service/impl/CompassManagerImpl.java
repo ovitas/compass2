@@ -12,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 
 import no.ovitas.compass2.exception.ConfigParameterMissingException;
 import no.ovitas.compass2.exception.ConfigurationException;
+import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.ResultObject;
 import no.ovitas.compass2.model.Topic;
@@ -238,5 +239,10 @@ public class CompassManagerImpl implements CompassManager {
 		}
 		
 		return new ResultObject(topics, retList);
+	}
+
+
+	public DocumentDetails getDocument(String id) {
+		return this.ftsManager.getDocument(id);
 	}
 }
