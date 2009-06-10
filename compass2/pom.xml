@@ -407,6 +407,25 @@
             </properties>
         </profile>
         <profile>
+            <id>mtdevel</id>
+            <properties>
+                 <lucene.spellchecker.dir><![CDATA[/app/compass/lucene/spellindex]]></lucene.spellchecker.dir>
+                 <lucene.spellchecker.index.dir><![CDATA[/app/compass/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
+                 <lucene.fts.index.dir><![CDATA[/app/compass/lucene/ftsindex]]></lucene.fts.index.dir>
+                 <knowledge.base.file><![CDATA[/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
+                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
+                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
+                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <use.random.weight>true</use.random.weight>
+                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
+
+                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
+                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+            </properties>
+        </profile>
+        <profile>
             <id>felfoldi-test</id>
             <properties>
                  <lucene.spellchecker.dir><![CDATA[C:/tmp/ovitas/config/lucene/spellindex]]></lucene.spellchecker.dir>

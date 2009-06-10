@@ -133,6 +133,12 @@
     <!-- Dependencies calculated by AppFuse when running full-source plugin -->
     <dependencies>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+    
+        <dependency>
             <groupId>${pom.parent.groupId}</groupId>
             <artifactId>${pom.parent.artifactId}-core</artifactId>
             <version>${pom.parent.version}</version>
