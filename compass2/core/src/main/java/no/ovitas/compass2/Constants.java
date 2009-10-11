@@ -102,6 +102,9 @@ public class Constants {
     public static final String MAX_TOPIC_NUMBER_TO_EXPAND="max.topic.number.to.expand";
     public static final String USE_RANDOM_WEIGHT="use.random.weight";
     public static final String DOCUMENT_REPOSITORY_PROPERTY = "document.repository";
+    public static final String LUCENE_CONTEXT_INDEXER="no.ovitas.compass2.service.fts.ContentIndexerImplementation";
+    public static final String SUBHEADING_INDEX = "subHeading";
+    public static final String DATA_INDEX = "pageContent";
     
     
     

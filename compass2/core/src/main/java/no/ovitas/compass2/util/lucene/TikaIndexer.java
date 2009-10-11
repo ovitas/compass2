@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.util.XmlUtil;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -32,42 +33,29 @@ import org.xml.sax.ContentHandler;
  * @author magyar
  *
  */
-public class TikaIndexer {
+public class TikaIndexer extends BaseContenIndexer implements ContentIndexer {
 
-	protected IndexWriter writer;
 	
-
 	public TikaIndexer(String indexDir) throws IOException {
+		indexDirectory = indexDir;
 		 Directory dir = FSDirectory.getDirectory(new File(indexDir), null);
-		 writer = new IndexWriter(dir, 
+		 indexWriter = new IndexWriter(dir, 
 		 new StandardAnalyzer(), true,
 		 IndexWriter.MaxFieldLength.UNLIMITED);
 		
 	}
 	
 	public TikaIndexer(IndexWriter writer){
-		this.writer = writer;
+		this.indexWriter = writer;
 	}
 	
-		public void close() throws IOException {
-		 writer.close(); 
-		}	
-	
-    public void index(File f, Map<String, String> additionalFields) throws Exception {
-    	if (!f.isDirectory() &&
-    			!f.isHidden() &&
-    			f.exists() &&
-    			f.canRead() &&
-    			acceptFile(f)) {
-    			indexFile(f, additionalFields);
-    			} 
-    	}
-
-
-	protected boolean acceptFile(File f) { //6
-		return true;
+		public TikaIndexer() {
+		super();
+		
 	}
-	    
+
+	
+ 	    
 	protected Document getDocument(File f, ContentHandler handler, Metadata metadata, Map<String, String> additionalFields) throws Exception {
 		Document doc = new Document();
 		doc.add(new Field("ID",UUID.randomUUID().toString(),Field.Store.YES, Field.Index.NOT_ANALYZED));
@@ -100,7 +88,7 @@ public class TikaIndexer {
 		return doc;
 	}    
 	
-	private void indexFile(File f, Map<String, String> additionalFields) throws Exception {
+	protected void indexFile(File f, Map<String, String> additionalFields) throws Exception {
 		Metadata metadata = new Metadata();
 		metadata.set(Metadata.RESOURCE_NAME_KEY,f.getCanonicalPath());
 		InputStream is = new FileInputStream(f);
@@ -114,7 +102,8 @@ public class TikaIndexer {
 		
 		Document doc = getDocument(f,handler,metadata, additionalFields);
 		if (doc != null) {
-			writer.addDocument(doc); 
+			indexWriter.addDocument(doc); 
 		}
 	}
+
 }

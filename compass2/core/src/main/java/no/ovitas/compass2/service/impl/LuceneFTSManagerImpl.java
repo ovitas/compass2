@@ -31,16 +31,18 @@ import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.LuceneHit;
-import no.ovitas.compass2.model.Topic;
+
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.FullTextSearchManager;
+import no.ovitas.compass2.service.factory.ContentIndexerFactory;
+import no.ovitas.compass2.util.lucene.ContentIndexer;
 import no.ovitas.compass2.util.lucene.PagerHitCollector;
-import no.ovitas.compass2.util.lucene.TikaIndexer;
+
 
 /**
  * @author magyar
  * @version 1.0
- * @created 24-márc.-2009 9:35:39
+ * 
  */
 public class LuceneFTSManagerImpl implements FullTextSearchManager {
 
@@ -72,7 +74,9 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		File f = new File(dir);
 		if(f.isFile()){
 				try {
-					TikaIndexer indexer = new TikaIndexer(getWriter(indexDir,reindex));
+					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
+					indexer.setIndexWriter(getWriter(indexDir,reindex));
+					indexer.init();
 					indexer.index(f, fields);
 					indexer.close();
 				} catch (IOException e) {
@@ -82,9 +86,11 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				}
 		}else{
 			if(f.isDirectory()){
-				TikaIndexer indexer = new TikaIndexer(getWriter(indexDir,reindex));
-				this.uploadFiles(f, depth, indexer);
-				try {
+				try{
+					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
+					indexer.setIndexWriter(getWriter(indexDir,reindex));
+					indexer.init();
+					this.uploadFiles(f, depth, indexer);
 					indexer.close();
 				} catch (IOException e) {
 					log.error("Error occured: "+e.getMessage(),e);
@@ -255,7 +261,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 	
 	
-	protected void uploadFiles(File directory, int depth, TikaIndexer indexer){
+	protected void uploadFiles(File directory, int depth, ContentIndexer indexer){
 		File ff[] = directory.listFiles();
 		if(ff!=null && ff.length>0){
 			try {

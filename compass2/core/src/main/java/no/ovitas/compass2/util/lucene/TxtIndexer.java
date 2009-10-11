@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -21,36 +22,13 @@ import org.apache.lucene.store.FSDirectory;
  * @author magyar
  *
  */
-public class TxtIndexer {
+public class TxtIndexer extends BaseContenIndexer implements ContentIndexer{
 
 	
 	
-	private IndexWriter writer;
 	
 	
-	public TxtIndexer(String indexDir) throws IOException {
-		 Directory dir = FSDirectory.getDirectory(new File(indexDir), null);
-		 writer = new IndexWriter(dir, 
-		 new StandardAnalyzer(), true,
-		 IndexWriter.MaxFieldLength.UNLIMITED);
-		}
-	public TxtIndexer(IndexWriter writer){
-		this.writer = writer;
-	}
 	
-		public void close() throws IOException {
-		 writer.close(); 
-		}	
-	
-    public void index(File f) throws Exception {
-    	if (!f.isDirectory() &&
-    			!f.isHidden() &&
-    			f.exists() &&
-    			f.canRead() &&
-    			acceptFile(f)) {
-    			indexFile(f);
-    			} 
-    	}
     
     protected boolean acceptFile(File f) { //6
     	return f.getName().toLowerCase().endsWith(".txt");
@@ -69,7 +47,16 @@ public class TxtIndexer {
 	private void indexFile(File f) throws Exception {
 		Document doc = getDocument(f);
 		if (doc != null) {
-		  writer.addDocument(doc); 
+		  indexWriter.addDocument(doc); 
 		 }
 		}
+	@Override
+	protected void indexFile(File f, Map<String, String> additionalFields)
+			throws Exception {
+		Document doc = getDocument(f);
+		if (doc != null) {
+		  indexWriter.addDocument(doc); 
+		 }
+		
+	}
 }
