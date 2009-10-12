@@ -30,23 +30,20 @@ public class LuceneFTSManagerImplTestCase extends BaseManagerTestCase {
 		setName(name);
 		// TODO Auto-generated constructor stub
 	}
-
-    @Before
-    public void setUp2() {
+	
+	@Override
+	protected void onSetUp() throws Exception {
         ResourceBundle rb = ResourceBundle.getBundle("compass2");
         documentRepo = rb.getString("document.repository.location");
-        
+	}
 
-    }
-
-	
-	
 	@Test
     public void testLuceneFTSManager() throws Exception {
+	 
 		FTSFactory ff = FTSFactory.getInstance();
 		FullTextSearchManager fts = ff.getFTSImplementation();
-		
-		fts.addDocument(true, 2, documentRepo);
 		log.info("docs: "+documentRepo);
+		fts.addDocument(true, 2, documentRepo);
+		
 	}
 }
