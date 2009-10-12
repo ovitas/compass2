@@ -448,6 +448,26 @@
             </properties>
         </profile>
         <profile>
+            <id>csanyi-test</id>
+            <properties>
+                 <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
+                 <lucene.spellchecker.index.dir><![CDATA[C:/home/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
+                 <lucene.fts.index.dir><![CDATA[C:/home/lucene/ftsindex]]></lucene.fts.index.dir>
+                 <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
+                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
+                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
+                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <use.random.weight>true</use.random.weight>
+                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
+
+                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
+                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
+                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+            </properties>
+        </profile>
+        <profile>
             <id>ovitas-test</id>
             <properties>
                  <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
