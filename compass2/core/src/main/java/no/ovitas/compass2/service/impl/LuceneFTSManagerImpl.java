@@ -75,15 +75,10 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		File f = new File(dir);
 		if(f.isFile()){
 				try {
-					log.debug("addDocument - 1");
 					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
-					log.debug("addDocument - 2");
 					indexer.setIndexWriter(getWriter(indexDir,reindex));
-					log.debug("addDocument - 3");
 					indexer.init();
-					log.debug("addDocument - 4");
 					indexer.index(f, fields);
-					log.debug("addDocument - 5");
 					indexer.close();
 				} catch (IOException e) {
 					log.error("Error occured: "+e.getMessage(),e);
@@ -92,16 +87,11 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				}
 		}else{
 			if(f.isDirectory()){
-				log.debug("addDocument - 6");
 				try{
 					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
-					log.debug("addDocument - 7");
 					indexer.setIndexWriter(getWriter(indexDir,reindex));
-					log.debug("addDocument - 8");
 					indexer.init();
-					log.debug("addDocument - 9");
 					this.uploadFiles(f, depth, indexer);
-					log.debug("addDocument - 10");
 					indexer.close();
 				} catch (IOException e) {
 					log.error("Error occured: "+e.getMessage(),e);
