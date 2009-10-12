@@ -100,7 +100,6 @@ public class LuceneHit  implements Serializable,  Hit{
 		this.score = score;
 	}
 
-	@Override
 	public String getScoreStr() {
 		DecimalFormat nf = new DecimalFormat("0.###################");
 	    
