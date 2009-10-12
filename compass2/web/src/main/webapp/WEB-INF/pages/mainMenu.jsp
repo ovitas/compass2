@@ -34,8 +34,8 @@
 	<c:if test="${not empty result}">
 		<h3><fmt:message key="search.result"/></h3>
 	    <display:table class="table" name="result" export="false" id="row" requestURI="mainMenu.do">
-	  		<display:column property="title" title="Title"/>
-	  		<display:column title="URI"><a href="<c:url value="fr.do?docID=${row.ID}" />" target="_blank"><c:out value="${row.URI}"/></a> </display:column>
+	  		<display:column title="Title"><a href="<c:url value="fr.do?docID=${row.ID}" />" target="_blank"><c:out value="${row.title}"/></a> </display:column>
+	        <display:column title="URI"><a href="<c:out value="${row.URI}"/>" target="_blank"><c:out value="${row.URI}"/></a> </display:column>
 	  		<display:column property="fileType" title="File Type"/>
 	  		<display:column property="scoreStr" title="Score"/>
 	  		<display:column property="lastModified" title="Last Modified"/>
