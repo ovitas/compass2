@@ -54,8 +54,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <debug>true</debug>
                 </configuration>
             </plugin>
             <plugin>
@@ -401,10 +402,10 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
+                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[c:/app/compass/data]]></document.repository>
+                 <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
 
             </properties>
         </profile>
@@ -425,7 +426,7 @@
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[/app/compass/data/]]></document.repository>
+                 <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
 
             </properties>
         </profile>
