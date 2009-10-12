@@ -82,6 +82,7 @@ public class VisitNorwayIndexer extends BaseContenIndexer implements ContentInde
 		
 		String url = "http://"+filePath.substring(index);
 		url = url.replaceAll("\\\\", "/");
+		url = url.replaceAll("index\\.html", "");
 		return url;
 	}
 	/* (non-Javadoc)
