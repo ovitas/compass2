@@ -44,7 +44,7 @@ public class VisitNorwayIndexer extends BaseContenIndexer implements ContentInde
 	protected Document getDocument(String url,  Map<String, String> data, Map<String, String> additionalFields) throws Exception {
 		Document doc = new Document();
 		doc.add(new Field("ID",UUID.randomUUID().toString(),Field.Store.YES, Field.Index.NOT_ANALYZED));
-		doc.add(new Field(Constants.FILE_TYPE_INDEX, "text",Field.Store.YES, Field.Index.NOT_ANALYZED)); //7
+		doc.add(new Field(Constants.FILE_TYPE_INDEX, "html",Field.Store.YES, Field.Index.NOT_ANALYZED)); //7
 
 		doc.add(new Field(Constants.TITLE_INDEX, data.get(Constants.TITLE_INDEX),Field.Store.YES, Field.Index.ANALYZED)); //7
 		
