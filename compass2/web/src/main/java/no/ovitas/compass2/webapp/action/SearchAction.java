@@ -148,11 +148,6 @@ public class SearchAction extends BaseAction implements Preparable {
 		}
 		
 
-		try{
-			log.info("compassManager: "+compassManager.toString());
-		}catch(Exception e){
-			log.info("NO compassManager");
-		}
 		int hc = hopCount!=null ? hopCount.intValue() : 0;
 		ResultObject resultObj = compassManager.search(
 			search, 
@@ -166,16 +161,16 @@ public class SearchAction extends BaseAction implements Preparable {
 		List<Hit> hits = resultObj.getHits();
 		List<Set<TopicTreeNode>> expansions = resultObj.getExpansions();
 		
-		log.info("Search string: "+search);
-		if(expansions != null && expansions.size()>0){
+		//log.info("Search string: "+search);
+		/*		if(expansions != null && expansions.size()>0){
 			//setResult(hits);
 			log.info("There are "+expansions.size()+" Expansions");
 			for(Set<TopicTreeNode> exp: expansions){
 				log.info(exp);
 				if(exp != null && exp.size()>0){
 					for(Topic topic: exp){
-						log.info("Topic: "+topic.getName());
-						log.info(topic);
+						//log.info("Topic: "+topic.getName());
+						//log.info(topic);
 						List<Relation> relations = topic.getRelations();
 						if(relations != null && relations.size()>0){
 							for(Relation relation: relations){
@@ -187,19 +182,22 @@ public class SearchAction extends BaseAction implements Preparable {
 			}
 		}else{
 			log.info("There are no Expansions...");
-		}
+		}*/
 		
 		if(hits != null && hits.size() > 0){
-			setResult(hits);
-			log.info("There are Hits...");
-			for(Hit h: result){
-				log.info("Hit: "+h.getURI());
+			String docRoot = configurationManager.getConfigParameter(no.ovitas.compass2.Constants.DOCUMENT_REPOSITORY_PROPERTY);
+			
+			for(Hit h: hits){
+				String uri = h.getURI();
+				if(uri.indexOf(docRoot)>-1){
+					uri = uri.replace(docRoot, "http://");
+					//uri= uri.replaceAll("\", "/");
+				 h.setURI(uri);
+				}
 			}
-		}else{
-			log.info("There are no Hits...");
+			setResult(hits);
 		}
 		setTreeJson(createJson(expansions));
-		log.info("Tree: "+getTreeJson());
 		
 		return "showResults";
 	}
