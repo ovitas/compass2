@@ -270,7 +270,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			try {
 				for(File file : ff){
 					if(!file.isDirectory()){
-						log.info("processing file:"+file.getCanonicalPath());
+						log.debug("processing file:"+file.getCanonicalPath());
 						try{
 							String name = file.getAbsolutePath();
 							if(!name.toLowerCase().endsWith("jpg") && !name.toLowerCase().endsWith("ico") && !name.toLowerCase().endsWith("png") && !name.toLowerCase().contains(".axd")){
@@ -281,7 +281,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 							
 						}
 					}else{
-						if(depth>0){
+						if(depth>0 && !file.getName().equals("..") && !file.getName().equals(".")){
 						 uploadFiles(file,depth-1,indexer);
 						}
 					}

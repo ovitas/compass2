@@ -307,8 +307,8 @@ public class CompassDOMParser {
 		visitNode(document, 0);
 		
 		result.put(Constants.TITLE_INDEX, mainHeading.replaceAll("\\s+", " "));
-		result.put("subHeading", subHeading.replaceAll("\\s+", " "));
-		result.put("pageContent", (pageKeywords + pageContent).replaceAll("\\s+", " "));
+		result.put(Constants.SUBHEADING_INDEX, subHeading.replaceAll("\\s+", " "));
+		result.put(Constants.DATA_INDEX, (pageKeywords + pageContent).replaceAll("\\s+", " "));
 		
 		return result;
 	}

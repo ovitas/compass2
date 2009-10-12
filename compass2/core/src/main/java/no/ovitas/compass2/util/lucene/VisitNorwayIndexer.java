@@ -63,6 +63,8 @@ public class VisitNorwayIndexer extends BaseContenIndexer implements ContentInde
 			Map<String,String> data = parser.parse(f); 
 			Document doc = getDocument(getURL(f),data, additionalFields);
 			if (doc != null) {
+				logger.info("Indexing file:"+f.getCanonicalPath());
+
 				indexWriter.addDocument(doc); 
 			}
 			
@@ -77,7 +79,9 @@ public class VisitNorwayIndexer extends BaseContenIndexer implements ContentInde
 	protected String getURL(File f){
 		String filePath = f.getAbsolutePath();
 		int index = filePath.indexOf("www");
+		
 		String url = "http://"+filePath.substring(index);
+		url = url.replaceAll("\\\\", "/");
 		return url;
 	}
 	/* (non-Javadoc)
