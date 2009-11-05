@@ -3,6 +3,7 @@ package no.ovitas.compass2.service;
 import java.util.List;
 import java.util.Set;
 
+import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Topic;
 import no.ovitas.compass2.model.TopicTreeNode;
 
@@ -45,5 +46,7 @@ public interface KnowledgeBaseManager {
 	 * @param kb
 	 */
 	public void updateKB(String kb);
+	
+	public KnowledgeBaseHolder getKbModel();
 
 }

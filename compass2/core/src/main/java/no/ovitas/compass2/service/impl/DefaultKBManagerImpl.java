@@ -202,6 +202,10 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		}
 		return retList;
 	}
+
+	public KnowledgeBaseHolder getKbModel() {
+		return this.knowledgeBase;
+	}
 	
 	
 
