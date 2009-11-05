@@ -108,7 +108,12 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>     
+        </repository>    
+        <repository>
+            <id>repository.jboss.org</id>
+            <url>http://repository.jboss.org/maven2</url>
+        </repository>
+         
         <repository>
             <id>central</id>
             <url>http://repo1.maven.org/maven2</url>
@@ -423,7 +428,7 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
+                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
@@ -501,7 +506,7 @@
         
         <!-- Framework dependency versions -->
         <appfuse.version>2.0.2</appfuse.version>
-        <spring.version>2.5.4</spring.version>
+        <spring.version>2.5.6</spring.version>
 
         <!-- Testing dependency versions -->
         <jmock.version>2.4.0</jmock.version>
@@ -542,7 +547,7 @@
         <log4j.version>1.2.13</log4j.version>
         <oscache.version>2.3</oscache.version>
         <sitemesh.version>2.3</sitemesh.version>
-        <spring.security.version>2.0.1</spring.security.version>
+        <spring.security.version>2.0.5.RELEASE</spring.security.version>
         <struts.menu.version>2.4.3</struts.menu.version>
         <urlrewrite.version>3.0.4</urlrewrite.version>
         <xwork.version>2.1.1</xwork.version>
