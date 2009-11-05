@@ -38,5 +38,8 @@
     <!-- Add new Managers here -->
     <bean id="configurationManager" class="no.ovitas.compass2.service.impl.ConfigurationManagerImpl">
     </bean>
+    <bean id="exportDomainModelManager" class="no.ovitas.compass2.service.impl.ExportDomainModel2GraphVizManagerImpl">
+     <property name="configuration" ref="configurationManager"/>
+    </bean>
     
 </beans>
