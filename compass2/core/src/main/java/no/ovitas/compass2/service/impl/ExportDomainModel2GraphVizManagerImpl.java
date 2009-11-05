@@ -12,6 +12,8 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.codec.binary.Base64;
+
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.Topic;
@@ -70,9 +72,11 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 	protected void writeNodes(BufferedWriter fw)throws IOException{
 	 Map<String, Topic> topics = kbHolder.getTopics();
 	 for(Topic t : topics.values()){
-		 fw.write("\""+t.getName()+"\"");
+		 //Base64 b64 = new Base64(true);
+		 String label = new String(Base64.encodeBase64(t.getName().getBytes("UTF-8")));
+		 fw.write("\""+label+"\"");
 		 fw.write(standardNodePart);
-		 fw.write("\""+t.getName()+"\"];\n");
+		 fw.write("\""+t.getName().replaceAll("\"", "'")+"\"];\n");
 	 }
 	}
 	
@@ -84,8 +88,11 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 				 if(r.getSource().getName().equals(t.getName())){
 					 Topic target = r.getTarget();
 					 String label = r.getRelationType().getId()+": "+r.getRelationType().getWeight();
-					 fw.write(t.getName()+"->");
-					 fw.write(target.getName());
+					 String slabel = new String(Base64.encodeBase64(t.getName().getBytes("UTF-8")));
+					 String tlabel = new String(Base64.encodeBase64(target.getName().getBytes("UTF-8")));
+
+					 fw.write(slabel+"->");
+					 fw.write(tlabel);
 					 fw.write(standardEdgePart);
 					 fw.write("\""+label+"\" ];\n");
 				 }
