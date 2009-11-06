@@ -14,6 +14,8 @@ import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 
+
+
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.Topic;
@@ -28,9 +30,9 @@ import no.ovitas.compass2.service.factory.KBFactory;
 public class ExportDomainModel2GraphVizManagerImpl implements
 		ExportDomainModelManager {
 
-	protected ConfigurationManager configManager;
     protected static String standardNodePart ="[ style = \"filled\" penwidth = 1 fillcolor = \"white\" fontname = \"Courier New\" shape = \"Mrecord\" label =";
     protected static String standardEdgePart ="[ penwidth = 5 fontsize = 28 fontcolor = \"black\" label =";
+	protected ConfigurationManager configManager;
     protected KnowledgeBaseHolder kbHolder=null;
 
 	
@@ -73,7 +75,7 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 	 Map<String, Topic> topics = kbHolder.getTopics();
 	 for(Topic t : topics.values()){
 		 //Base64 b64 = new Base64(true);
-		 String label = new String(Base64.encodeBase64(t.getName().getBytes("UTF-8")));
+		 String label = Base64.encodeBase64URLSafeString(t.getName().getBytes("UTF-8"));
 		 fw.write("\""+label+"\"");
 		 fw.write(standardNodePart);
 		 fw.write("\""+t.getName().replaceAll("\"", "'")+"\"];\n");
@@ -88,8 +90,8 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 				 if(r.getSource().getName().equals(t.getName())){
 					 Topic target = r.getTarget();
 					 String label = r.getRelationType().getId()+": "+r.getRelationType().getWeight();
-					 String slabel = new String(Base64.encodeBase64(t.getName().getBytes("UTF-8")));
-					 String tlabel = new String(Base64.encodeBase64(target.getName().getBytes("UTF-8")));
+					 String slabel = Base64.encodeBase64URLSafeString(t.getName().getBytes("UTF-8"));
+					 String tlabel = Base64.encodeBase64URLSafeString(target.getName().getBytes("UTF-8"));
 
 					 fw.write(slabel+"->");
 					 fw.write(tlabel);
