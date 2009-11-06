@@ -37,7 +37,9 @@ public class SearchAction extends BaseAction implements Preparable {
 	
 	private String search;
 	private Integer hopCount;
-	private double thresholdWeight; 
+	private double expansionThreshold;
+	private double resultThreshold;
+
 	private boolean prefixMatch;
 	private boolean fuzzyMatch;
 	private String treeJson;
@@ -45,6 +47,11 @@ public class SearchAction extends BaseAction implements Preparable {
 	private Integer maxTopicNumberToExpand;
 
 	private List<Hit> result;
+	private List<Hit> filteredResult;
+
+	private int resultSize;
+	private int filteredResultSize;
+	
 	protected CompassManager compassManager;
 	protected ConfigurationManager configurationManager;
 
@@ -78,13 +85,20 @@ public class SearchAction extends BaseAction implements Preparable {
 		this.treeJson = treeJson;
 	}
 
-
-	public double getThresholdWeight() {
-		return thresholdWeight;
+	public double getExpansionThreshold() {
+		return expansionThreshold;
 	}
 
-	public void setThresholdWeight(double thresholdWeight) {
-		this.thresholdWeight = thresholdWeight;
+	public void setExpansionThreshold(double expansionThreshold) {
+		this.expansionThreshold = expansionThreshold;
+	}
+	
+	public double getResultThreshold() {
+		return resultThreshold;
+	}
+
+	public void setResultThreshold(double resultThreshold) {
+		this.resultThreshold = resultThreshold;
 	}
 
 	public boolean isPrefixMatch() {
@@ -117,6 +131,22 @@ public class SearchAction extends BaseAction implements Preparable {
 
 	public void setResult(List<Hit> result) {
 		this.result = result;
+	}
+	
+	public List<Hit> getFilteredResult() {
+		return filteredResult;
+	}
+
+	public void setFilteredResult(List<Hit> filteredResult) {
+		this.filteredResult = filteredResult;
+	}
+	
+	public int getResultSize() {
+		return this.result.size();
+	}
+
+	public int getFilteredResultSize() {
+		return this.filteredResult.size();
 	}
 
 	//Getters & Setters END
@@ -152,7 +182,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		ResultObject resultObj = compassManager.search(
 			search, 
 			hc, 
-			thresholdWeight, 
+			expansionThreshold, 
 			prefixMatch, 
 			fuzzyMatch,
 			this.maxTopicNumberToExpand
@@ -186,16 +216,21 @@ public class SearchAction extends BaseAction implements Preparable {
 		
 		if(hits != null && hits.size() > 0){
 			String docRoot = configurationManager.getConfigParameter(no.ovitas.compass2.Constants.DOCUMENT_REPOSITORY_PROPERTY);
-			
+			List<Hit> filteredHits = new ArrayList<Hit>();
 			for(Hit h: hits){
 				String uri = h.getURI();
 				if(uri.indexOf(docRoot)>-1){
 					uri = uri.replace(docRoot, "http://");
 					//uri= uri.replaceAll("\", "/");
-				 h.setURI(uri);
+					h.setURI(uri);
 				}
+				// Add hit from hit list if it's score greater than resultThreshold
+				double score = h.getScore();
+				if(score > resultThreshold)
+					filteredHits.add(h);
 			}
 			setResult(hits);
+			setFilteredResult(filteredHits);
 		}
 		setTreeJson(createJson(expansions));
 		

@@ -18,6 +18,7 @@
 		<s:textfield key="hopCount" />
 		<s:textfield key="maxTopicNumberToExpand" />
 		<s:textfield key="expansionThreshold" />
+		<s:textfield key="resultThreshold" />
 		<li>
 			<s:checkbox key="prefixMatch"/>
 		</li>
@@ -30,9 +31,12 @@
 	</s:form>
 	<br />
 
-	<s:set name="result"  value="result" scope="request"/>
+	<s:set name="result"  value="filteredResult" scope="request"/>
 	<c:if test="${not empty result}">
-		<h3><fmt:message key="search.result"/></h3>
+		<h3><fmt:message key="search.result"/>
+			<s:property value="resultSize"/>/
+			<s:property value="filteredResultSize"/>
+		</h3>
 	    <display:table class="table" name="result" defaultsort="2" defaultorder="descending" export="false" id="row" requestURI="mainMenu.do">
 	  		<display:column title="Title"><a href="<c:url value="${row.URI}"/>" target="_blank"><c:out value="${row.title}"/></a> </display:column>
 	  		<display:column property="scoreStr" title="Score"/>
