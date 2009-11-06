@@ -22,9 +22,6 @@
     </licenses>
 
     <scm>
-        <connection></connection>
-        <developerConnection></developerConnection>
-        <url></url>
     </scm>
 
     <issueManagement>
@@ -342,6 +339,10 @@
                 <exclusion>
                     <artifactId>spring-core</artifactId>
                     <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
                 </exclusion>
                 <exclusion>
                     <artifactId>spring-support</artifactId>
