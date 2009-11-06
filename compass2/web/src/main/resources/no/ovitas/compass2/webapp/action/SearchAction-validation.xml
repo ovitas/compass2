@@ -13,7 +13,7 @@
   </field>
   <field name="hopCount">
     <field-validator type="int">
-      <param name="min">1</param>
+      <param name="min">0</param>
       <message key="errors.integer"/>
     </field-validator>
   </field>
