@@ -17,7 +17,7 @@
 		<s:textfield key="search"  required="true" />
 		<s:textfield key="hopCount" />
 		<s:textfield key="maxTopicNumberToExpand" />
-		<s:textfield key="thresholdWeight" />
+		<s:textfield key="expansionThreshold" />
 		<li>
 			<s:checkbox key="prefixMatch"/>
 		</li>
@@ -33,12 +33,9 @@
 	<s:set name="result"  value="result" scope="request"/>
 	<c:if test="${not empty result}">
 		<h3><fmt:message key="search.result"/></h3>
-	    <display:table class="table" name="result" export="false" id="row" requestURI="mainMenu.do">
+	    <display:table class="table" name="result" defaultsort="2" defaultorder="descending" export="false" id="row" requestURI="mainMenu.do">
 	  		<display:column title="Title"><a href="<c:url value="${row.URI}"/>" target="_blank"><c:out value="${row.title}"/></a> </display:column>
-	        <display:column title="URI"><a href="<c:out value="${row.URI}"/>" target="_blank"><c:out value="${row.URI}"/></a> </display:column>
-	  		<display:column property="fileType" title="File Type"/>
 	  		<display:column property="scoreStr" title="Score"/>
-	  		<display:column property="lastModified" title="Last Modified"/>
 		</display:table>
 		<h3><fmt:message key="topic.expansion"/></h3>
 		<%@ include file="/common/tree.jsp" %>
