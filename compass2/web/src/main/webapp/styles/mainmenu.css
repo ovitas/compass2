@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+div.wwlbl {
+	display: inline !important;
+}
+
+#mainDiv {
+	width: 750px;
+	margin: 0 auto;
+}
+
+#leftSideDiv {
+	float: left;
+	width: 250px;
+}
+
+#rightSideDiv {
+	float: right;
+	width: 500px;
+}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Collection;
 
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.ListableBeanFactory;
 
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.Hit;
+import no.ovitas.compass2.model.KnowledgeBaseHolder;
+import no.ovitas.compass2.model.RelationType;
 import no.ovitas.compass2.model.ResultObject;
 import no.ovitas.compass2.model.Topic;
 import no.ovitas.compass2.model.Relation;
@@ -21,6 +24,7 @@ import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.CompassManager;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.factory.CompassManagerFactory;
+import no.ovitas.compass2.service.factory.KBFactory;
 import no.ovitas.compass2.service.impl.ConfigurationManagerImpl;
 import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.service.impl.ConfigurationManagerImpl;
@@ -52,8 +56,15 @@ public class SearchAction extends BaseAction implements Preparable {
 	private int resultSize;
 	private int filteredResultSize;
 	
+	private ArrayList<RelationType> relationTypes;
+	
 	protected CompassManager compassManager;
 	protected ConfigurationManager configurationManager;
+	
+	private String modifiedRelationtypeId;
+	private String modifiedWeightValue;
+	
+	private KnowledgeBaseHolder kbHolder;
 
 	//FIELDS END
 	
@@ -148,6 +159,30 @@ public class SearchAction extends BaseAction implements Preparable {
 	public int getFilteredResultSize() {
 		return this.filteredResult.size();
 	}
+	
+	public ArrayList<RelationType> getRelationTypes() {
+		return relationTypes;
+	}
+
+	public void setRelationTypes(ArrayList<RelationType> relationTypes) {
+		this.relationTypes = relationTypes;
+	}
+	
+	public String getModifiedRelationtypeId() {
+		return modifiedRelationtypeId;
+	}
+
+	public void setModifiedRelationtypeId(String modifiedRelationtypeId) {
+		this.modifiedRelationtypeId = modifiedRelationtypeId;
+	}
+
+	public String getModifiedWeightValue() {
+		return modifiedWeightValue;
+	}
+
+	public void setModifiedWeightValue(String modifiedWeightValue) {
+		this.modifiedWeightValue = modifiedWeightValue;
+	}
 
 	//Getters & Setters END
 
@@ -159,13 +194,50 @@ public class SearchAction extends BaseAction implements Preparable {
 	public void prepare() throws Exception {
 		log.info("searchAction.prepare()");
 		compassManager = CompassManagerFactory.getInstance().getCompassManager();
+		relationTypes = new ArrayList<RelationType>();
+		
+		// Get knowledge base holder
+		kbHolder = KBFactory.getInstance().getKBImplementation().getKbModel();
+		Map<String, RelationType> relationTypes = kbHolder.getRelationTypes();
+		
+		// Fill relationTypes with relation types
+		for(String key : relationTypes.keySet()){
+			RelationType relType = relationTypes.get(key);
+			this.relationTypes.add(relType);
+		}
 	}
 	
 	public String execute() {
 		log.info("searchAction.execute()");
+		
+		// Modify weight number of the specified relationtype id
+		String modRelId = getModifiedRelationtypeId();
+		String modWeight = getModifiedWeightValue();
+		
+		if (modRelId != null && modWeight != null) {
+			updateRelationTypeWeight(modRelId, modWeight);
+		}
+		
 		return SUCCESS;
 	}
 	
+	/**
+	 * Update weight of the specified relationtype id
+	 */
+	private void updateRelationTypeWeight(String modRelId, String modWeight) {
+		log.info("searchAction.updateRelationTypeWeight");
+		
+		Map<String, RelationType> relationTypes = kbHolder.getRelationTypes();
+		
+		for(String key : relationTypes.keySet()){
+			RelationType relType = relationTypes.get(key);
+			if (relType.getId().equals(modRelId)) {
+				relType.setWeight(Double.parseDouble(modWeight));
+			}
+		}
+		
+	}
+
 	public String search() {
 		log.info("showResults running...");
 		log.info("lucene.spellchecker.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.dir"));
