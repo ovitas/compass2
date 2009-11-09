@@ -11,12 +11,12 @@ div.wwlbl {
 
 #leftSideDiv {
 	float: left;
-	width: 200px;
+	width: 160px;
 }
 
 #rightSideDiv {
 	float: right;
-	width: 300px;
+	width: 360px;
 }
 
 a.link {
