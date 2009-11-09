@@ -43,6 +43,10 @@
             <timezone></timezone>
         </developer>
     </developers>
+    <organization>
+    	<name>Ovitas AS</name>
+    	<url>http://www.ovitas.no</url>
+    </organization>
     
     <build>
         <defaultGoal>install</defaultGoal>

@@ -214,7 +214,13 @@
         </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-codebehind-plugin</artifactId>
+            <artifactId>struts2-core</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-dojo-plugin</artifactId>
             <version>${struts.version}</version>
         </dependency>
         <dependency>
