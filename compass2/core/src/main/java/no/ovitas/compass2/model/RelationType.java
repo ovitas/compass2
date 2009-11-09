@@ -14,7 +14,7 @@ public class RelationType implements Serializable {
 	private String id;
 	private String relationName;
 	private double weight;
-	
+	private double generalizationWeight;
 	
 	public String getRelationName() {
 		return relationName;
@@ -33,5 +33,13 @@ public class RelationType implements Serializable {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public double getGeneralizationWeight() {
+		return generalizationWeight;
+	}
+	
+	public void setGeneralizationWeight(double generalizationWeight) {
+		this.generalizationWeight = generalizationWeight;
 	}
 }
