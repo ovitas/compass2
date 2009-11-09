@@ -63,6 +63,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	
 	private String modifiedRelationtypeId;
 	private String modifiedWeightValue;
+	private String modifiedGenWeightValue;
 	
 	private KnowledgeBaseHolder kbHolder;
 
@@ -183,6 +184,14 @@ public class SearchAction extends BaseAction implements Preparable {
 	public void setModifiedWeightValue(String modifiedWeightValue) {
 		this.modifiedWeightValue = modifiedWeightValue;
 	}
+	
+	public String getModifiedGenWeightValue() {
+		return modifiedGenWeightValue;
+	}
+
+	public void setModifiedGenWeightValue(String modifiedGenWeightValue) {
+		this.modifiedGenWeightValue = modifiedGenWeightValue;
+	}
 
 	//Getters & Setters END
 
@@ -213,9 +222,10 @@ public class SearchAction extends BaseAction implements Preparable {
 		// Modify weight number of the specified relationtype id
 		String modRelId = getModifiedRelationtypeId();
 		String modWeight = getModifiedWeightValue();
+		String modGenWeight = getModifiedGenWeightValue();
 		
-		if (modRelId != null && modWeight != null) {
-			updateRelationTypeWeight(modRelId, modWeight);
+		if (modRelId != null && modWeight != null && modGenWeight != null) {
+			updateRelationTypeWeights(modRelId, modWeight, modGenWeight);
 		}
 		
 		return SUCCESS;
@@ -224,7 +234,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	/**
 	 * Update weight of the specified relationtype id
 	 */
-	private void updateRelationTypeWeight(String modRelId, String modWeight) {
+	private void updateRelationTypeWeights(String modRelId, String modWeight, String modGenWeight) {
 		log.info("searchAction.updateRelationTypeWeight");
 		
 		Map<String, RelationType> relationTypes = kbHolder.getRelationTypes();
@@ -233,6 +243,7 @@ public class SearchAction extends BaseAction implements Preparable {
 			RelationType relType = relationTypes.get(key);
 			if (relType.getId().equals(modRelId)) {
 				relType.setWeight(Double.parseDouble(modWeight));
+				relType.setGeneralizationWeight(Double.parseDouble(modGenWeight));
 			}
 		}
 		

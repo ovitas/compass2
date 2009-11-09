@@ -33,21 +33,25 @@
 		<s:set name="relationTypes"  value="relationTypes" scope="request"/>
 		<c:if test="${not empty relationTypes}">
 			<h1><fmt:message key="relationTypes.result"/></h1>
-			<display:table class="table" name="relationTypes" defaultsort="1" defaultorder="ascending" export="false" id="relationType" requestURI="mainMenu.do">
+			<display:table class="table" name="relationTypes" defaultsort="2" defaultorder="ascending" export="false" id="relationType" requestURI="mainMenu.do">
+				<display:column property="id" title="Id"/>
 				<display:column property="relationName" title="Relation name"/>
 				<display:column title="Weight">
 					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" />
+				</display:column>
+				<display:column title="Gen. weight">
+					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" />
 				</display:column>
 				<display:column>
 					<a href class="link" onclick="saveModifiedId('${relationType.id}');"><fmt:message key="modifyButton" /></a>
 				</display:column>
 			</display:table>
 		</c:if>
-		<br />
 	
 		<s:form name="weightForm" action="mainMenu" theme="ajax">
 			<input type="text" id="modifiedRelationtypeId" name="modifiedRelationtypeId" value="" style="display: none;" />
 			<input type="text" id="modifiedWeightValue" name="modifiedWeightValue" value="" style="display: none;" />
+			<input type="text" id="modifiedGenWeightValue" name="modifiedGenWeightValue" value="" style="display: none;" />
 		</s:form>
 		
 	</div>
