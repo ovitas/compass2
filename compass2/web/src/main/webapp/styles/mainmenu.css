@@ -5,18 +5,18 @@ div.wwlbl {
 }
 
 #mainDiv {
-	width: 750px;
+	width: 800px;
 	margin: 0 auto;
 }
 
 #leftSideDiv {
 	float: left;
-	width: 250px;
+	width: 200px;
 }
 
 #rightSideDiv {
 	float: right;
-	width: 500px;
+	width: 300px;
 }
 
 a.link {
