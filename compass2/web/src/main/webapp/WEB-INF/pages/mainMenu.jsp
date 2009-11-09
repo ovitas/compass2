@@ -55,10 +55,10 @@
 				<display:column property="id" title="Id"/>
 				<display:column property="relationName" title="Relation name"/>
 				<display:column title="Weight">
-					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" />"
+					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" />
 				</display:column>
-				<display:column title="">
-					<input type="button" class="button" onclick="saveModifiedId('${relationType.id}');" value="<fmt:message key="modifyButton" />" />
+				<display:column>
+					<a href class="link" onclick="saveModifiedId('${relationType.id}');"><fmt:message key="modifyButton" /></a>
 				</display:column>
 			</display:table>
 		</c:if>
