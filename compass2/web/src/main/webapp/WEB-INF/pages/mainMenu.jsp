@@ -24,7 +24,7 @@
 				<s:checkbox key="fuzzyMatch"/>
 			</li>
 			<li>
-				<s:submit key="submitButton" method="search"  />
+				<s:submit key="submitButton" method="search" />
 			</li>
 		</s:form>
 		<br />
@@ -36,10 +36,10 @@
 				<display:column property="id" title="Id"/>
 				<display:column property="relationName" title="Relation name"/>
 				<display:column title="Weight">
-					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" />
+					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" class="editable" />
 				</display:column>
 				<display:column title="Gen. weight">
-					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" />
+					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" class="editable" />
 				</display:column>
 				<display:column>
 					<a href class="link" onclick="saveModifiedId('${relationType.id}');"><fmt:message key="modifyButton" /></a>
@@ -47,7 +47,7 @@
 			</display:table>
 		</c:if>
 	
-		<s:form name="weightForm" action="mainMenu" theme="ajax">
+		<s:form name="weightForm" action="mainMenu" theme="ajax" debug="true">
 			<s:hidden id="modifiedRelationtypeId" name="modifiedRelationtypeId" value="" />
 			<s:hidden id="modifiedWeightValue" name="modifiedWeightValue" value="" />
 			<s:hidden id="modifiedGenWeightValue" name="modifiedGenWeightValue" value="" />

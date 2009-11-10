@@ -22,3 +22,7 @@ div.wwlbl {
 a.link {
 	color:#1465B7;
 }
+
+input.editable {
+	width:50px;
+}
