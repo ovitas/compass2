@@ -1,6 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
 
-
 <head>
 	<sx:head />
     <title><fmt:message key="mainMenu.title"/></title>
@@ -12,7 +11,7 @@
 <div id="mainDiv">
 	<div id="leftSideDiv">
 		<h1><fmt:message key="search.title"/></h1>
-		<s:form action="mainMenu">
+		<s:form action="mainMenu" >
 			<s:textfield key="search"  required="true" />
 			<s:textfield key="hopCount" />
 			<s:textfield key="maxTopicNumberToExpand" />
@@ -49,9 +48,9 @@
 		</c:if>
 	
 		<s:form name="weightForm" action="mainMenu" theme="ajax">
-			<input type="text" id="modifiedRelationtypeId" name="modifiedRelationtypeId" value="" style="display: none;" />
-			<input type="text" id="modifiedWeightValue" name="modifiedWeightValue" value="" style="display: none;" />
-			<input type="text" id="modifiedGenWeightValue" name="modifiedGenWeightValue" value="" style="display: none;" />
+			<s:hidden id="modifiedRelationtypeId" name="modifiedRelationtypeId" value="" />
+			<s:hidden id="modifiedWeightValue" name="modifiedWeightValue" value="" />
+			<s:hidden id="modifiedGenWeightValue" name="modifiedGenWeightValue" value="" />
 		</s:form>
 		
 	</div>

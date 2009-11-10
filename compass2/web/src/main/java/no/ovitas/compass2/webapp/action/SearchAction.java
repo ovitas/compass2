@@ -235,7 +235,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	 * Update weight of the specified relationtype id
 	 */
 	private void updateRelationTypeWeights(String modRelId, String modWeight, String modGenWeight) {
-		log.info("searchAction.updateRelationTypeWeight");
+		log.info("searchAction.updateRelationTypeWeights");
 		
 		Map<String, RelationType> relationTypes = kbHolder.getRelationTypes();
 		
