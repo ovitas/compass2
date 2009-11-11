@@ -532,7 +532,7 @@
         <cargo.wait>true</cargo.wait>
         <!-- java.io.tmpdir>WEB-INF/data</java.io.tmpdir -->        
         <!-- Database settings -->
-        <struts.version>2.1.2</struts.version>
+        <struts.version>2.1.8</struts.version>
         <commons.beanutils.version>1.7.0</commons.beanutils.version>
         <commons.collections.version>3.2</commons.collections.version>
         <commons.dbcp.version>1.2.2</commons.dbcp.version>
