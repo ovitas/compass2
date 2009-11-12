@@ -52,6 +52,19 @@ public class TopicUtil {
 			return ret;
 		}
 		
+		List<TopicLinkNode> contract(Topic topic) {
+			List<TopicLinkNode> ret = new ArrayList<TopicLinkNode>();
+			List<Relation> relations = topic.getRelations();
+			if (relations != null) {
+				for (Relation relation : relations) {
+					Topic otherTopic = relation.getTarget();
+					if (otherTopic == topic) otherTopic = relation.getSource();
+					ret.add(new TopicLinkNode(otherTopic, getDistance(relation)));
+				}
+			}
+			return ret;
+		}
+		
 		protected abstract double getDistance(Relation relation);
 	}
 	
