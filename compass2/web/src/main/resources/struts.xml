@@ -45,8 +45,6 @@
             </interceptor-stack>
         </interceptors>
 
-  
-
         <action name="mainMenu" class="no.ovitas.compass2.webapp.action.SearchAction">
             <result name="success">/WEB-INF/pages/mainMenu.jsp</result>
             <result name="showResults">/WEB-INF/pages/mainMenu.jsp</result>
@@ -58,14 +56,6 @@
         </action>
         <action name="fr" class="no.ovitas.compass2.webapp.action.FileReaderAction">
         </action>
-
-		<!-- Only for testing -->
-        <!--<action name="testAction" class="no.ovitas.compass2.webapp.action.TestAction">
-            <result name="success">/WEB-INF/pages/testPage.jsp</result>
-        </action>
-        <action name="mainAction" class="no.ovitas.compass2.webapp.action.MainAction">
-        </action>-->
-
       </package>
 
 

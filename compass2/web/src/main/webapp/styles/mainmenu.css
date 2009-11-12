@@ -5,18 +5,20 @@ div.wwlbl {
 }
 
 #mainDiv {
-	width: 800px;
+	width: 900px;
 	margin: 0 auto;
 }
 
 #leftSideDiv {
 	float: left;
-	width: 160px;
+	width: 500px;
+	text-align: left;
 }
 
 #rightSideDiv {
 	float: right;
 	width: 360px;
+	text-align: left;
 }
 
 a.link {
@@ -26,4 +28,19 @@ a.link {
 input.editable {
 	width:50px;
 	border: solid 1px #74B3DC;
+}
+
+div#footer {
+	clear: both;
+	padding: 0;
+	width: 900px;
+	margin: 0 auto;
+}
+
+form ul {
+	margin: 0px !important;
+}
+
+form li {
+	padding: 0px !important;
 }

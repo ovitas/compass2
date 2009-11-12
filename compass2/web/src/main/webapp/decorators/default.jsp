@@ -20,24 +20,15 @@
     </head>
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class" writeEntireProperty="true"/>>
 
-    <div id="page">
-        <div id="header" class="clearfix">
-            <jsp:include page="/common/header.jsp"/>
-        </div>
 
-        <div id="content" class="clearfix">
-            <div id="main">
-                <%@ include file="/common/messages.jsp" %>
-                <h1><decorator:getProperty property="meta.heading"/></h1>
-                <decorator:body/>
-            </div>
+	<%@ include file="/common/messages.jsp" %>
+	<h1><decorator:getProperty property="meta.heading"/></h1>
+	<decorator:body/>
 
 
-        </div>
+	<div id="footer" class="clearfix">
+		<jsp:include page="/common/footer.jsp"/>
+	</div>
 
-        <div id="footer" class="clearfix">
-            <jsp:include page="/common/footer.jsp"/>
-        </div>
-    </div>
 </body>
 </html>
