@@ -33,7 +33,7 @@
                 <interceptor-ref name="checkbox"/>
                 <interceptor-ref name="staticParams"/>
                 <interceptor-ref name="params">
-                    <param name="excludeParams">dojo\..*</param>
+                    <param name="excludeParams">dojo\..*,^struts\..*</param>
                 </interceptor-ref>
                 <interceptor-ref name="conversionError"/>
                 <interceptor-ref name="validation">
@@ -52,10 +52,19 @@
             <result name="showResults">/WEB-INF/pages/mainMenu.jsp</result>
             <result name="input">/WEB-INF/pages/mainMenu.jsp</result>
         </action>
+        <action name="updateWeight" class="no.ovitas.compass2.webapp.action.UpdateWeightAction">
+        </action>
         <action name="fts" class="no.ovitas.compass2.webapp.action.FTSAction">
         </action>
         <action name="fr" class="no.ovitas.compass2.webapp.action.FileReaderAction">
         </action>
+
+		<!-- Only for testing -->
+        <!--<action name="testAction" class="no.ovitas.compass2.webapp.action.TestAction">
+            <result name="success">/WEB-INF/pages/testPage.jsp</result>
+        </action>
+        <action name="mainAction" class="no.ovitas.compass2.webapp.action.MainAction">
+        </action>-->
 
       </package>
 

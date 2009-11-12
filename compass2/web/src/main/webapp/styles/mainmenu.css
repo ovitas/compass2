@@ -25,4 +25,5 @@ a.link {
 
 input.editable {
 	width:50px;
+	border: solid 1px #FEFEFE;
 }

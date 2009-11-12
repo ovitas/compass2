@@ -37,7 +37,6 @@ public class SearchAction extends BaseAction implements Preparable {
 	/*
 	 * FIELDS
 	 */
-
 	
 	private String search;
 	private Integer hopCount;
@@ -61,18 +60,14 @@ public class SearchAction extends BaseAction implements Preparable {
 	protected CompassManager compassManager;
 	protected ConfigurationManager configurationManager;
 	
-	private String modifiedRelationtypeId;
-	private String modifiedWeightValue;
-	private String modifiedGenWeightValue;
-	
 	private KnowledgeBaseHolder kbHolder;
-
+	
 	//FIELDS END
 	
 	/*
 	 * Getters & Setters 
 	 */	
-
+	
 	public String getTreeJson() {
 		return treeJson;
 	}
@@ -168,31 +163,15 @@ public class SearchAction extends BaseAction implements Preparable {
 	public void setRelationTypes(ArrayList<RelationType> relationTypes) {
 		this.relationTypes = relationTypes;
 	}
-	
-	public String getModifiedRelationtypeId() {
-		return modifiedRelationtypeId;
+
+	public KnowledgeBaseHolder getKbHolder() {
+		return kbHolder;
 	}
 
-	public void setModifiedRelationtypeId(String modifiedRelationtypeId) {
-		this.modifiedRelationtypeId = modifiedRelationtypeId;
-	}
-
-	public String getModifiedWeightValue() {
-		return modifiedWeightValue;
-	}
-
-	public void setModifiedWeightValue(String modifiedWeightValue) {
-		this.modifiedWeightValue = modifiedWeightValue;
+	public void setKbHolder(KnowledgeBaseHolder kbHolder) {
+		this.kbHolder = kbHolder;
 	}
 	
-	public String getModifiedGenWeightValue() {
-		return modifiedGenWeightValue;
-	}
-
-	public void setModifiedGenWeightValue(String modifiedGenWeightValue) {
-		this.modifiedGenWeightValue = modifiedGenWeightValue;
-	}
-
 	//Getters & Setters END
 
 	
@@ -217,36 +196,8 @@ public class SearchAction extends BaseAction implements Preparable {
 	}
 	
 	public String execute() {
-		log.info("searchAction.execute()");
-		
-		// Modify weight number of the specified relationtype id
-		String modRelId = getModifiedRelationtypeId();
-		String modWeight = getModifiedWeightValue();
-		String modGenWeight = getModifiedGenWeightValue();
-		
-		if (modRelId != null && modWeight != null && modGenWeight != null) {
-			updateRelationTypeWeights(modRelId, modWeight, modGenWeight);
-		}
-		
+		log.info("searchAction.execute()");	
 		return SUCCESS;
-	}
-	
-	/**
-	 * Update weight of the specified relationtype id
-	 */
-	private void updateRelationTypeWeights(String modRelId, String modWeight, String modGenWeight) {
-		log.info("searchAction.updateRelationTypeWeights");
-		
-		Map<String, RelationType> relationTypes = kbHolder.getRelationTypes();
-		
-		for(String key : relationTypes.keySet()){
-			RelationType relType = relationTypes.get(key);
-			if (relType.getId().equals(modRelId)) {
-				relType.setWeight(Double.parseDouble(modWeight));
-				relType.setGeneralizationWeight(Double.parseDouble(modGenWeight));
-			}
-		}
-		
 	}
 
 	public String search() {

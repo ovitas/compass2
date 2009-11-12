@@ -2,6 +2,7 @@
 
 <head>
 	<sx:head />
+	<%--<sx:head debug="true" cache="false" compressed="false"/>--%>
     <title><fmt:message key="mainMenu.title"/></title>
     <%--<meta name="heading" content="<fmt:message key='mainMenu.heading'/>"/>--%>
     <meta name="menu" content="MainMenu"/>
@@ -36,22 +37,21 @@
 				<display:column property="id" title="Id"/>
 				<display:column property="relationName" title="Relation name"/>
 				<display:column title="Weight">
-					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" class="editable" />
+					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" onkeyup="updateRecord(this.id)" class="editable" />
 				</display:column>
 				<display:column title="Gen. weight">
-					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" class="editable" />
+					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" onkeyup="updateRecord(this.id)" class="editable" />
 				</display:column>
 				<display:column>
-					<a href class="link" onclick="saveModifiedId('${relationType.id}');"><fmt:message key="modifyButton" /></a>
+					<s:form action="updateWeight" method="post">
+						<input type="text" style="display: none;" name="modifiedRelationtypeId" value="${relationType.id}" />
+						<input type="text" style="display: none;" id="${relationType.id}_form_weight" name="modifiedWeightValue" value="${relationType.weight}" />
+						<input type="text" style="display: none;" id="${relationType.id}_form_genweight" name="modifiedGenWeightValue" value="${relationType.generalizationWeight}" />
+						<sx:submit value="Modify" onmouseup="resetHighlight()"/>
+					</s:form>
 				</display:column>
 			</display:table>
 		</c:if>
-	
-		<s:form name="weightForm" action="mainMenu" theme="ajax" debug="true">
-			<s:hidden id="modifiedRelationtypeId" name="modifiedRelationtypeId" value="" />
-			<s:hidden id="modifiedWeightValue" name="modifiedWeightValue" value="" />
-			<s:hidden id="modifiedGenWeightValue" name="modifiedGenWeightValue" value="" />
-		</s:form>
 		
 	</div>
 	
