@@ -101,7 +101,7 @@ public class LuceneHit  implements Serializable,  Hit{
 	}
 
 	public String getScoreStr() {
-		DecimalFormat nf = new DecimalFormat("0.###################");
+		DecimalFormat nf = new DecimalFormat("0.###");
 	    
 		return nf.format(score);
 	}
