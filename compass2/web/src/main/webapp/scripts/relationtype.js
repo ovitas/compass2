@@ -7,10 +7,11 @@ function updateRecord(id) {
 	document.getElementById(id).style.border = "solid 1px #FF0000";
 }
 
-function resetHighlight(id) {
-	//alert(id);
-	inputArray = id.getElementsByTagName("input");
-	alert(inputArray[0].id);
-	/*document.getElementById(id + "_weight").style.border = "solid 1px #FEFEFE";
-	document.getElementById(id + "_genweight").style.border = "solid 1px #FEFEFE";*/
+function resetHighlight(object) {
+	div= object.parentNode;
+    inputs = div.parentNode.getElementsByTagName('input');
+    //alert(inputs[1].id);
+    recordID = inputs[1].id.split("_")[0];
+	document.getElementById(recordID + "_weight").style.border = "solid 1px #74B3DC";
+	document.getElementById(recordID + "_genweight").style.border = "solid 1px #74B3DC";
 }

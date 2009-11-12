@@ -47,7 +47,7 @@
 						<input type="text" style="display: none;" name="modifiedRelationtypeId" value="${relationType.id}" />
 						<input type="text" style="display: none;" id="${relationType.id}_form_weight" name="modifiedWeightValue" value="${relationType.weight}" />
 						<input type="text" style="display: none;" id="${relationType.id}_form_genweight" name="modifiedGenWeightValue" value="${relationType.generalizationWeight}" />
-						<sx:submit value="Modify" onmouseup="resetHighlight()"/>
+						<sx:submit value="Modify" onmouseup="resetHighlight(this)"/>
 					</s:form>
 				</display:column>
 			</display:table>
