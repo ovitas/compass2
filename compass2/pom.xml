@@ -503,7 +503,7 @@
      </profiles>
     <properties>
         <!-- Application settings -->
-        <copyright.year>2008</copyright.year>
+        <copyright.year>2009</copyright.year>
         <dao.framework>jpa</dao.framework>
         <web.framework>struts</web.framework>
         <amp.genericCore>false</amp.genericCore>
