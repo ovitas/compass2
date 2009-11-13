@@ -1,6 +1,8 @@
 package no.ovitas.compass2.webapp.action;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -172,4 +174,8 @@ public class BaseAction extends ActionSupport {
     public void setSave(String save) {
         this.save = save;
     }
+    protected void writeResponse(String response) throws IOException {
+        PrintWriter out = getResponse().getWriter();
+        out.append(response);
+    }          
 }
