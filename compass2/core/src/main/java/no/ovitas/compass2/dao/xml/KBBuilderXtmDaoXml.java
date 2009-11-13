@@ -36,6 +36,7 @@ import org.dom4j.io.SAXReader;
 
 public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
+	// xmlns="http://www.topicmaps.org/xtm/1.0/"
 	private static final Log log = LogFactory.getLog(KBBuilderXtmDaoXml.class);
 	
 	public static final String TOPIC_NODE         = "topic";
@@ -59,7 +60,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	/* (non-Javadoc)
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
-	public KnowledgeBaseHolder buildKBNew(String kbAccessString) {
+	public KnowledgeBaseHolder buildKB(String kbAccessString) {
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
@@ -81,9 +82,9 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 			Document document = saxReader.read(kbAccessString);
 			
 			// Select Topics
-			List list = document.selectNodes("//topicMap/topic");
-		    log.debug("results size: " + list.size());
-			Iterator iter = list.iterator();
+			List<Element> nodeList = document.selectNodes("//topic");
+		    log.debug("results size: " + nodeList.size());
+			Iterator iter = nodeList.iterator();
 			while(iter.hasNext()){
 				Element element=(Element)iter.next();
 				String id = "#" + element.getName();
@@ -110,7 +111,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	/* (non-Javadoc)
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
-	public KnowledgeBaseHolder buildKB(String kbAccessString) {
+/*	public KnowledgeBaseHolder buildKB(String kbAccessString) {
 		
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
@@ -264,6 +265,6 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		}
 
 		return kbh;
-	}
+	}*/
 
 }
