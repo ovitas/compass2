@@ -116,8 +116,16 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					String scope = (scopeNode != null) ? scopeNode.getStringValue() : "";
 					String baseName = (baseNameNode != null) ? baseNameNode.getStringValue() : "";
 					
-					// TODO create topic and add to topicMap
 					//log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
+					
+					// Set topic properties and add to topicMap
+					//actTopic.setName("name");
+					topicId = "#" + topicId;
+					actTopic = topicMap.get(topicId);
+					if (actTopic == null) {
+						actTopic = new Topic();
+						topicMap.put(topicId, actTopic);
+					}
 				}
 				
 
@@ -164,8 +172,9 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 						String roleSpec = (roleSpecAttr != null) ? roleSpecAttr.getValue() : "";
 						String topicRef = (topicRefAttr != null) ? topicRefAttr.getValue() : "";
 						
-						// TODO create RelationType
 						//log.debug("association -> id: " + assocId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", source: " +roleSpec + ", target: " + topicRef);
+						
+						// TODO create RelationType
 						
 					}
 				}
