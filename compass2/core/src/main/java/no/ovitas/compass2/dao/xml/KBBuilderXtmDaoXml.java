@@ -32,6 +32,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.XPath;
 import org.dom4j.io.SAXReader;
 
@@ -40,15 +41,17 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	// xmlns="http://www.topicmaps.org/xtm/1.0/"
 	private static final Log log = LogFactory.getLog(KBBuilderXtmDaoXml.class);
 	
+	public static final String ID_ATTR         = "id";
 	public static final String TOPIC_NODE         = "topic";
 	public static final String BASENAME_NODE      = "baseName";
 	public static final String BASENAMESTING_NODE = "baseNameString";
 	public static final String SCOPE_NODE         = "scope";
 	public static final String TOPICREF_NODE      = "topicRef";
-	public static final String HREF_NODE          = "href";
+	public static final String HREF_NODE          = "xlink:href";
 	public static final String ASSOCIATION_NODE   = "association";
 	public static final String MEMBER_NODE        = "member";
 	public static final String INSTANCEOF_NODE    = "instanceOf";
+	public static final String ROLE_SPEC_NODE    = "roleSpec";
 	
 	public static final String SCOPE_ID           = "#t-4491300";
 	
@@ -77,30 +80,95 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
 		
 		Map<String, Topic> topicMap = new HashMap<String, Topic>();
-		Topic    actTopic = null;
-		
+		Topic actTopic = null;
+		Relation actRelation = null;
+
 		SAXReader saxReader = new SAXReader();
 		try {
 			// Create document from source
 			Document document = saxReader.read(kbAccessString);
 			
-			// Select Topics
-			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE + "/@id");
-		    log.debug("topics size: " + topicList.size());
+			// Examine Topics
+			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE);
+		    log.info("topic count: " + topicList.size());
+		    
 			Iterator topicIterator = topicList.iterator();
-			
 			while(topicIterator.hasNext()){
-				Attribute idAttr = (Attribute)topicIterator.next();
-				String id = "#" + idAttr.getValue();
-				actTopic = topicMap.get(id);
-				if (actTopic == null) {
-					actTopic = new Topic();
-					// Add topics into topic map
-					topicMap.put(id, actTopic);			
-					// Set knowledge base topics
-					kbh.addTopic(actTopic);
+				Element topicElement = (Element)topicIterator.next();
+				String topicId = topicElement.attributeValue(ID_ATTR);
+				
+				// Get instanceOf tag
+				Node instanceOfNode = topicElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+				String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
+				
+				// Select topic name
+				List<Element> baseNameList = topicElement.selectNodes(BASENAME_NODE);
+				Iterator baseNameIterator = baseNameList.iterator();
+				
+				// Iterate over base names
+				while(baseNameIterator.hasNext()){
+					Element basNameElement = (Element)baseNameIterator.next();
+					
+					// scope tag and baseNameString tag
+					Node scopeNode = basNameElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+					Node baseNameNode = basNameElement.selectSingleNode(BASENAMESTING_NODE);
+					
+					String scope = (scopeNode != null) ? scopeNode.getStringValue() : "";
+					String baseName = (baseNameNode != null) ? baseNameNode.getStringValue() : "";
+					
+					// TODO create topic and add to topicMap
+					//log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
 				}
+				
 
+			}
+			
+			// Examine associations
+			List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
+			log.info("association count: " + assocList.size());
+			Iterator assocIterator = assocList.iterator();
+			
+			while(assocIterator.hasNext()){
+				Element assocElement = (Element)assocIterator.next();
+				String assocId = assocElement.attributeValue(ID_ATTR);
+				
+				// Get instanceOf tag
+				Node instanceOfNode = assocElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+				String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
+				
+				// Get scope tag
+				Node scopeNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+				String scope = (scopeNode != null) ? scopeNode.getStringValue() : "";
+				
+				// Select member tags
+				List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
+				Iterator memberIterator = memberList.iterator();
+				
+				// Iterate over member tags
+				while(memberIterator.hasNext()){
+					Element memberElement = (Element)memberIterator.next();
+									
+					// roleSpec tag and topicRef tag
+					List<Element> roleSpecList = memberElement.selectNodes(ROLE_SPEC_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+					List<Element> topicRefList = memberElement.selectNodes(TOPICREF_NODE + "/@" + HREF_NODE);
+					int maxSize = (roleSpecList.size() > topicRefList.size()) ? roleSpecList.size() : topicRefList.size();
+
+					Attribute roleSpecAttr = null;
+					Attribute topicRefAttr = null;
+					
+					for (int i = 0; i < maxSize; i++) {
+						
+						if (i < roleSpecList.size()) roleSpecAttr = (Attribute)roleSpecList.get(i);
+						if (i < topicRefList.size()) topicRefAttr = (Attribute)topicRefList.get(i);
+
+						String roleSpec = (roleSpecAttr != null) ? roleSpecAttr.getValue() : "";
+						String topicRef = (topicRefAttr != null) ? topicRefAttr.getValue() : "";
+						
+						// TODO create RelationType
+						//log.debug("association -> id: " + assocId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", source: " +roleSpec + ", target: " + topicRef);
+						
+					}
+				}
 			}
 			
 		} catch (DocumentException e) {
