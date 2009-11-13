@@ -173,6 +173,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	 * @param kb
 	 */
 	public void importKB(String kb){
+		knowledgeBase = null;
 		knowledgeBase = this.builderDao.buildKB(kb);
 	}
 
