@@ -2,6 +2,8 @@ package no.ovitas.compass2.dao.xml;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.namespace.QName;
@@ -23,8 +25,19 @@ import no.ovitas.compass2.model.Topic;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.util.CompassUtil;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.XPath;
+import org.dom4j.io.SAXReader;
+
 public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
+	private static final Log log = LogFactory.getLog(KBBuilderXtmDaoXml.class);
+	
 	public static final String TOPIC_NODE         = "topic";
 	public static final String BASENAME_NODE      = "baseName";
 	public static final String BASENAMESTING_NODE = "baseNameString";
@@ -41,6 +54,57 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	public KBBuilderXtmDaoXml() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	/* (non-Javadoc)
+	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
+	 */
+	public KnowledgeBaseHolder buildKBNew(String kbAccessString) {
+		log.info("KBBuilderXtmDaoXml.buildKB");
+		ApplicationContext context = CompassUtil.getApplicationContext();
+		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
+		String sUseRandomWeight = configManager.getConfigParameter(Constants.USE_RANDOM_WEIGHT);
+		boolean useRandomWeight = false;
+		if (sUseRandomWeight != null){
+			if (sUseRandomWeight.trim().equals("true")) {
+				useRandomWeight = true;
+			}
+		}
+		
+		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
+		
+		Map<String, Topic> topicMap = new HashMap<String, Topic>();
+		Topic    actTopic = null;
+		
+		SAXReader saxReader = new SAXReader();
+		try {
+			Document document = saxReader.read(kbAccessString);
+			
+			// Select Topics
+			List list = document.selectNodes("//topicMap/topic");
+		    log.debug("results size: " + list.size());
+			Iterator iter = list.iterator();
+			while(iter.hasNext()){
+				Element element=(Element)iter.next();
+				String id = "#" + element.getName();
+				actTopic = topicMap.get(id);
+				if (actTopic == null) {
+					actTopic = new Topic();
+					
+					// Add topics into topicmap
+					topicMap.put(id, actTopic);
+					log.debug("topic id: " + id);
+					
+					// Set knowlegde base topics
+					kbh.addTopic(actTopic);
+				}
+			}
+		} catch (DocumentException e) {
+			log.error("Error parsing document: " + kbAccessString + " - " +e.getMessage());
+		}
+		
+		
+		return kbh;
 	}
 
 	/* (non-Javadoc)
