@@ -56,6 +56,8 @@
         </action>
         <action name="fr" class="no.ovitas.compass2.webapp.action.FileReaderAction">
         </action>
+        <action name="reloadkb" class="no.ovitas.compass2.webapp.action.ReloadKBAction">
+        </action>
       </package>
 
 
