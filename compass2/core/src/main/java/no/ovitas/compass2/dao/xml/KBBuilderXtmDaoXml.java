@@ -27,6 +27,7 @@ import no.ovitas.compass2.util.CompassUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -60,6 +61,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	/* (non-Javadoc)
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public KnowledgeBaseHolder buildKB(String kbAccessString) {
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
@@ -79,27 +81,28 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		
 		SAXReader saxReader = new SAXReader();
 		try {
+			// Create document from source
 			Document document = saxReader.read(kbAccessString);
 			
 			// Select Topics
-			List<Element> nodeList = document.selectNodes("//topic");
-		    log.debug("results size: " + nodeList.size());
-			Iterator iter = nodeList.iterator();
-			while(iter.hasNext()){
-				Element element=(Element)iter.next();
-				String id = "#" + element.getName();
+			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE + "/@id");
+		    log.debug("topics size: " + topicList.size());
+			Iterator topicIterator = topicList.iterator();
+			
+			while(topicIterator.hasNext()){
+				Attribute idAttr = (Attribute)topicIterator.next();
+				String id = "#" + idAttr.getValue();
 				actTopic = topicMap.get(id);
 				if (actTopic == null) {
 					actTopic = new Topic();
-					
-					// Add topics into topicmap
-					topicMap.put(id, actTopic);
-					log.debug("topic id: " + id);
-					
-					// Set knowlegde base topics
+					// Add topics into topic map
+					topicMap.put(id, actTopic);			
+					// Set knowledge base topics
 					kbh.addTopic(actTopic);
 				}
+
 			}
+			
 		} catch (DocumentException e) {
 			log.error("Error parsing document: " + kbAccessString + " - " +e.getMessage());
 		}
