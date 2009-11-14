@@ -17,6 +17,7 @@ public class Topic implements Serializable, Comparable {
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
+	private String id;
 	private List<String> alternativeNames = new ArrayList<String>();
 	private List<Relation> relations = new ArrayList<Relation>();
 
@@ -80,5 +81,13 @@ public class Topic implements Serializable, Comparable {
 	
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -30,6 +31,7 @@ import org.apache.commons.logging.LogFactory;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.DocumentFactory;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
@@ -42,30 +44,33 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 	private static final Log log = LogFactory.getLog(KBBuilderXtmDaoXml.class);
 	
 	public static final String ID_ATTR         = "id";
-	public static final String TOPIC_NODE         = "topic";
-	public static final String BASENAME_NODE      = "baseName";
-	public static final String BASENAMESTING_NODE = "baseNameString";
-	public static final String SCOPE_NODE         = "scope";
-	public static final String TOPICREF_NODE      = "topicRef";
+	public static final String TOPIC_NODE         = "tnamspc:"+"topic";
+	public static final String BASENAME_NODE      = "tnamspc:"+"baseName";
+	public static final String BASENAMESTING_NODE = "tnamspc:"+"baseNameString";
+	public static final String SCOPE_NODE         = "tnamspc:"+"scope";
+	public static final String TOPICREF_NODE      = "tnamspc:"+"topicRef";
 	public static final String HREF_NODE          = "xlink:href";
-	public static final String ASSOCIATION_NODE   = "association";
-	public static final String MEMBER_NODE        = "member";
-	public static final String INSTANCEOF_NODE    = "instanceOf";
-	public static final String ROLE_SPEC_NODE    = "roleSpec";
+	public static final String ASSOCIATION_NODE   = "tnamspc:"+"association";
+	public static final String MEMBER_NODE        = "tnamspc:"+"member";
+	public static final String INSTANCEOF_NODE    = "tnamspc:"+"instanceOf";
+	public static final String ROLE_SPEC_NODE    = "tnamspc:"+"roleSpec";
 	
 	public static final String SCOPE_ID           = "#t-4491300";
 	
 	
+	
+	
 	public KBBuilderXtmDaoXml() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
+		}
 	
 	/* (non-Javadoc)
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	public KnowledgeBaseHolder buildKB(String kbAccessString) {
+		
+		Map<String, Element> allNodes = new TreeMap<String,Element>();
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
@@ -84,6 +89,11 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		Relation actRelation = null;
 
 		SAXReader saxReader = new SAXReader();
+		DocumentFactory documentFactory = new DocumentFactory();
+		Map<String,String> uris = new HashMap<String,String>();
+		uris.put("tnamspc", "http://www.topicmaps.org/xtm/1.0/");
+		documentFactory.setXPathNamespaceURIs(uris);
+		saxReader.setDocumentFactory(documentFactory);
 		try {
 			// Create document from source
 			Document document = saxReader.read(kbAccessString);
@@ -92,52 +102,57 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE);
 		    log.info("topic count: " + topicList.size());
 		    
-			Iterator topicIterator = topicList.iterator();
-			while(topicIterator.hasNext()){
-				Element topicElement = (Element)topicIterator.next();
+			//Iterator topicIterator = topicList.iterator();
+		    if(topicList!=null && topicList.size()>0){
+			for(Element topicElement: topicList){
+				
 				String topicId = topicElement.attributeValue(ID_ATTR);
 				
 				// Get instanceOf tag
-				Node instanceOfNode = topicElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-				String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
+				//Node instanceOfNode = topicElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+				//String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
 				
 				// Select topic name
 				List<Element> baseNameList = topicElement.selectNodes(BASENAME_NODE);
-				Iterator baseNameIterator = baseNameList.iterator();
 				
 				// Iterate over base names
-				while(baseNameIterator.hasNext()){
-					Element basNameElement = (Element)baseNameIterator.next();
-					
-					// scope tag and baseNameString tag
-					Node scopeNode = basNameElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-					Node baseNameNode = basNameElement.selectSingleNode(BASENAMESTING_NODE);
-					
-					String scope = (scopeNode != null) ? scopeNode.getStringValue() : "";
-					String baseName = (baseNameNode != null) ? baseNameNode.getStringValue() : "";
-					
-					//log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
-					
-					// Set topic properties and add to topicMap
-					//actTopic.setName("name");
-					topicId = "#" + topicId;
-					actTopic = topicMap.get(topicId);
-					if (actTopic == null) {
-						actTopic = new Topic();
-						topicMap.put(topicId, actTopic);
+				if(baseNameList!=null && baseNameList.size()>0){
+					for(Element basNameElement : baseNameList){
+						
+						// scope tag and baseNameString tag
+						Node topicRef = basNameElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
+						Node baseNameNode = basNameElement.selectSingleNode(BASENAMESTING_NODE);
+						
+						String href = topicRef != null ? ((Element)topicRef).attributeValue("href") : "" ;
+						String baseName = (baseNameNode != null) ? baseNameNode.getStringValue() : "";
+						
+						//log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
+						
+						// Set topic properties and add to topicMap
+						//actTopic.setName("name");
+						if(href!=null && href.equals(this.SCOPE_ID) && baseName!=null){
+						topicId = "#" + topicId;
+						actTopic = topicMap.get(topicId);
+						if (actTopic == null) {
+							actTopic = new Topic();
+							actTopic.setName(baseName);
+							actTopic.setId(topicId);
+							topicMap.put(topicId, actTopic);
+						}
 					}
+					
 				}
-				
 
-			}
-			
+			   }
+				allNodes.put(topicId, topicElement);
+			 }
+		    }
 			// Examine associations
 			List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
 			log.info("association count: " + assocList.size());
-			Iterator assocIterator = assocList.iterator();
 			
-			while(assocIterator.hasNext()){
-				Element assocElement = (Element)assocIterator.next();
+			
+			for(Element assocElement: assocList){
 				String assocId = assocElement.attributeValue(ID_ATTR);
 				
 				// Get instanceOf tag
@@ -150,11 +165,10 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 				
 				// Select member tags
 				List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
-				Iterator memberIterator = memberList.iterator();
+				
 				
 				// Iterate over member tags
-				while(memberIterator.hasNext()){
-					Element memberElement = (Element)memberIterator.next();
+				for(Element memberElement:memberList){
 									
 					// roleSpec tag and topicRef tag
 					List<Element> roleSpecList = memberElement.selectNodes(ROLE_SPEC_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
@@ -178,6 +192,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 						
 					}
 				}
+			
 			}
 			
 		} catch (DocumentException e) {
