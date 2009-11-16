@@ -58,6 +58,8 @@
         </action>
         <action name="reloadkb" class="no.ovitas.compass2.webapp.action.ReloadKBAction">
         </action>
+        <action name="kbDump" class="no.ovitas.compass2.webapp.action.KBDumpAction">
+        </action>
       </package>
 
 

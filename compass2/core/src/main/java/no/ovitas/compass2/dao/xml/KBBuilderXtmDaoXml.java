@@ -161,12 +161,22 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					// Get instanceOf tag (this is the RelationType)
 					Node instanceOfNode = assocElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE);
 					String instanceOf = (instanceOfNode != null) ? ((Element) instanceOfNode).attributeValue(HREF_ATTR) : "";
-					
-
+										
 					// Get scope tag
 					Node scopeNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
 					String scope = (scopeNode != null) ? ((Element) scopeNode).attributeValue(HREF_ATTR) : "";
-
+					
+					// Create RelationType
+					relationType = new RelationType();
+					if (topicMap.containsKey(instanceOf)){
+							relationType.setId(topicMap.get(instanceOf).getId());
+							relationType.setRelationName(topicMap.get(instanceOf).getName());
+					}
+					else relationType.setId(instanceOf);
+					
+					relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
+					kbh.addRelationType(relationType);
+					
 					// Select member tags
 					List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
 					List<String> members = new ArrayList<String>();
@@ -195,17 +205,6 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							}
 						}
 						
-						// Create RelationType
-						relationType = new RelationType();
-						if (topicMap.containsKey(instanceOf)){
-								relationType.setId(topicMap.get(instanceOf).getId());
-								relationType.setRelationName(topicMap.get(instanceOf).getName());
-						}
-						else relationType.setId(instanceOf);
-						
-						relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
-						kbh.addRelationType(relationType);
-
 						// Create relation if both topics are exists in goodNodes
 						if (members.size() >= 2) {
 							String source = members.get(0);
