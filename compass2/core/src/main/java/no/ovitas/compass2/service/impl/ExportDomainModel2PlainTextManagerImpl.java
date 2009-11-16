@@ -60,11 +60,15 @@ public class ExportDomainModel2PlainTextManagerImpl implements
 	}
 	
 	protected void dumpTopic(BufferedWriter fw, Topic topic) throws IOException{
-		fw.write(topic.getName()+"\n");
+		fw.write("#"+topic.getName()+"\n");
 		for(Relation rel : topic.getRelations()){
 			if(rel.getSource().getName().equals(topic.getName())){
-				fw.write(" - ");
-				fw.write(rel.getRelationType().getRelationName()+":"+rel.getTarget().getName()+"\n");
+				fw.write(" -- ");
+				fw.write(rel.getRelationType().getRelationName()+":["+rel.getTarget().getName()+"]\n");
+			}
+			if(rel.getTarget().getName().equals(topic.getName())){
+				fw.write(" ++ ");
+				fw.write(rel.getRelationType().getRelationName()+":["+rel.getSource().getName()+"]\n");
 			}
 		}
 		

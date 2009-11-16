@@ -50,7 +50,7 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 		try {
 		    kbHolder = KBFactory.getInstance().getKBImplementation().getKbModel();
 			tempFile = File.createTempFile("Compass2", ".gv");
-			BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFile),"8859_1"));
+			BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFile),"UTF-8"));
 			writeHeader(fw);
 			writeNodes(fw);
 			writeEdges(fw);
@@ -71,11 +71,20 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 	 fw.write("ratio = auto;\n");
 	}
 	
+	protected String byte2String(String label){
+		/*byte[] bytes = label.getBytes();
+		StringBuffer sb = new StringBuffer();
+		for(byte b: bytes){
+			sb.append(String.valueOf(b));
+		}
+		return sb.toString().replaceAll("-", "#");*/
+		return String.valueOf(label.hashCode());
+	}
 	protected void writeNodes(BufferedWriter fw)throws IOException{
 	 Map<String, Topic> topics = kbHolder.getTopics();
 	 for(Topic t : topics.values()){
 		 //Base64 b64 = new Base64(true);
-		 String label = Base64.encodeBase64URLSafeString(t.getName().getBytes("UTF-8"));
+		 String label = byte2String(t.getName());
 		 fw.write("\""+label+"\"");
 		 fw.write(standardNodePart);
 		 fw.write("\""+t.getName().replaceAll("\"", "'")+"\"];\n");
@@ -90,8 +99,8 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 				 if(r.getSource().getName().equals(t.getName())){
 					 Topic target = r.getTarget();
 					 String label = r.getRelationType().getId()+": "+r.getRelationType().getWeight();
-					 String slabel = Base64.encodeBase64URLSafeString(t.getName().getBytes("UTF-8"));
-					 String tlabel = Base64.encodeBase64URLSafeString(target.getName().getBytes("UTF-8"));
+					 String slabel = byte2String(t.getName());
+					 String tlabel = byte2String(target.getName());
 
 					 fw.write(slabel+"->");
 					 fw.write(tlabel);
