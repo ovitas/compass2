@@ -158,7 +158,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					// Check if RelationType is exist or not
 					RelationType relationType = kbh.findRelationType(href);
 					if(relationType == null){
-						if (allNodes.containsKey(href)){
+						if (href != null && allNodes.containsKey(href)){
 							Element element = allNodes.get(href);
 							Node baseNameStringNode = element.selectSingleNode(BASENAME_NODE + "/" +BASENAMESTING_NODE);
 							
@@ -198,11 +198,18 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 								
 								// Both source and target exists
 								if (goodNodes.containsKey(source) && goodNodes.containsKey(target)) {
+									
+									// Create new Relation
 									Relation actRelation = new Relation();
 									actRelation.setSource(goodNodes.get(source));
 									actRelation.setTarget(goodNodes.get(target));
 									actRelation.setRelationType(relationType);
+									
+									// Add Relation to topics 
+									actRelation.getSource().addRelation(actRelation);
+									actRelation.getTarget().addRelation(actRelation);
 									kbh.addRelation(actRelation);
+
 									warningMsg = "";
 									
 								// Both source and target not exist
