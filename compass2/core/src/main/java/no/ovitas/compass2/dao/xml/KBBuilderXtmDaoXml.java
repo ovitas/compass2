@@ -86,11 +86,8 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		}
 
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
+		
 
-		Map<String, Topic> topicMap = new HashMap<String, Topic>();
-		Topic actTopic = null;
-		Relation actRelation = null;
-		RelationType relationType = null;
 
 		SAXReader saxReader = new SAXReader();
 		DocumentFactory documentFactory = new DocumentFactory();
@@ -134,12 +131,12 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							// Set topic properties and add to topicMap
 							if (href != null && href.equals(this.SCOPE_ID) && baseName != null) {
 								topicId = "#" + topicId;
-								actTopic = topicMap.get(topicId);
+								Topic actTopic = goodNodes.get(topicId);
 								if (actTopic == null) {
 									actTopic = new Topic();
 									actTopic.setName(baseName);
 									actTopic.setId(topicId);
-									topicMap.put(topicId, actTopic);
+									kbh.addTopic(actTopic);
 									goodNodes.put(topicId, actTopic);
 								}
 							}
@@ -152,7 +149,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 			// Examine associations
 			List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
 			log.info("association count: " + assocList.size());
-
+            Map<String, RelationType> relationTypes = new TreeMap<String, RelationType>();
 			// Iterate over associations
 			if (assocList != null && assocList.size() > 0) {
 				for (Element assocElement : assocList) {
@@ -163,19 +160,24 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					String instanceOf = (instanceOfNode != null) ? ((Element) instanceOfNode).attributeValue(HREF_ATTR) : "";
 										
 					// Get scope tag
-					Node scopeNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
-					String scope = (scopeNode != null) ? ((Element) scopeNode).attributeValue(HREF_ATTR) : "";
+					Node topicRefNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
+					String href = (topicRefNode != null) ? ((Element) topicRefNode).attributeValue(HREF_ATTR) : "";
 					
 					// Create RelationType
-					relationType = new RelationType();
-					if (topicMap.containsKey(instanceOf)){
-							relationType.setId(topicMap.get(instanceOf).getId());
-							relationType.setRelationName(topicMap.get(instanceOf).getName());
-					}
-					else relationType.setId(instanceOf);
+					RelationType relationType = kbh.findRelationType(instanceOf);
 					
-					relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
-					kbh.addRelationType(relationType);
+					if(relationType==null){
+						if (allNodes.containsKey(instanceOf)){
+							Element element = allNodes.get(instanceOf);
+							relationType = new RelationType();
+								relationType.setId(instanceOf);
+								relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
+								kbh.addRelationType(relationType);
+								// at kell alakitani -- relationType.setRelationName(allNodes.get(instanceOf).getName());
+						}
+					    
+					}
+				
 					
 					// Select member tags
 					List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
@@ -212,7 +214,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 								String target = members.get(i);
 								String warningMsg = "Missing relation: [#" + assocId + ": "+ source +" -> " + target + "]: missing ";
 								if (goodNodes.containsKey(source) && goodNodes.containsKey(target)) {
-									actRelation = new Relation();
+									Relation actRelation = new Relation();
 									actRelation.setSource(goodNodes.get(source));
 									actRelation.setTarget(goodNodes.get(target));
 									actRelation.setRelationType(relationType);

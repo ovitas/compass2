@@ -9,6 +9,7 @@ import java.util.TreeMap;
 public class KnowledgeBaseHolder implements Serializable {
 
 	protected Map<String, RelationType> relationTypes;
+	protected Map<String, RelationType> relationTypesById;
 	protected Map<String, Topic> topics;
 	protected List<Relation> relations;
 	
@@ -41,8 +42,9 @@ public class KnowledgeBaseHolder implements Serializable {
 		return topics.get(name);
 	}
 
-	public RelationType findRelationType(String name){
-		return relationTypes.get(name);
+
+	public RelationType findRelationType(String id){
+		return relationTypes.get(id);
 	}
 
 	public List<Relation> getRelations() {
