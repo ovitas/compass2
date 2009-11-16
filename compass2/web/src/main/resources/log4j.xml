@@ -13,7 +13,7 @@
 		<param name="Threshold" value="DEBUG"/>
 		<param name="File" value="/tmp/compass2.log"/>
 		<param name="Append" value="true"/>
-		<param name="MaxFileSize" value="5MB"/>
+		<param name="MaxFileSize" value="10MB"/>
 		<param name="MaxBackupIndex" value="1"/>         
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
@@ -52,10 +52,10 @@
         <appender-ref ref="FILE"/>
     </logger>
 
-    <root>
+    <!--<root>
         <level value="WARN"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-    </root>
+    </root>-->
 
 </log4j:configuration>

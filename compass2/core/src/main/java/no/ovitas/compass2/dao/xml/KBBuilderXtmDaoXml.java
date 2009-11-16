@@ -1,6 +1,7 @@
 package no.ovitas.compass2.dao.xml;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,7 @@ import no.ovitas.compass2.util.CompassUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.aspectj.weaver.Member;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -42,171 +44,210 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
 	// xmlns="http://www.topicmaps.org/xtm/1.0/"
 	private static final Log log = LogFactory.getLog(KBBuilderXtmDaoXml.class);
-	
-	public static final String ID_ATTR         = "id";
-	public static final String TOPIC_NODE         = "tnamspc:"+"topic";
-	public static final String BASENAME_NODE      = "tnamspc:"+"baseName";
-	public static final String BASENAMESTING_NODE = "tnamspc:"+"baseNameString";
-	public static final String SCOPE_NODE         = "tnamspc:"+"scope";
-	public static final String TOPICREF_NODE      = "tnamspc:"+"topicRef";
-	public static final String HREF_NODE          = "xlink:href";
-	public static final String ASSOCIATION_NODE   = "tnamspc:"+"association";
-	public static final String MEMBER_NODE        = "tnamspc:"+"member";
-	public static final String INSTANCEOF_NODE    = "tnamspc:"+"instanceOf";
-	public static final String ROLE_SPEC_NODE    = "tnamspc:"+"roleSpec";
-	
-	public static final String SCOPE_ID           = "#t-4491300";
-	
-	
-	
-	
+
+	public static final String ID_ATTR = "id";
+	public static final String HREF_ATTR = "href";
+	public static final String TOPIC_NODE = "tnamspc:" + "topic";
+	public static final String BASENAME_NODE = "tnamspc:" + "baseName";
+	public static final String BASENAMESTING_NODE = "tnamspc:"	+ "baseNameString";
+	public static final String SCOPE_NODE = "tnamspc:" + "scope";
+	public static final String TOPICREF_NODE = "tnamspc:" + "topicRef";
+	public static final String HREF_NODE = "xlink:href";
+	public static final String ASSOCIATION_NODE = "tnamspc:" + "association";
+	public static final String MEMBER_NODE = "tnamspc:" + "member";
+	public static final String INSTANCEOF_NODE = "tnamspc:" + "instanceOf";
+	public static final String ROLE_SPEC_NODE = "tnamspc:" + "roleSpec";
+
+	public static final String SCOPE_ID = "#t-4491300";
+
 	public KBBuilderXtmDaoXml() {
 		super();
-		}
-	
-	/* (non-Javadoc)
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	public KnowledgeBaseHolder buildKB(String kbAccessString) {
-		
-		Map<String, Element> allNodes = new TreeMap<String,Element>();
+
+		Map<String, Element> allNodes = new TreeMap<String, Element>();
+		Map<String, Topic> goodNodes = new TreeMap<String, Topic>();
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
-		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
+		ConfigurationManager configManager = (ConfigurationManager) context.getBean("configurationManager");
 		String sUseRandomWeight = configManager.getConfigParameter(Constants.USE_RANDOM_WEIGHT);
 		boolean useRandomWeight = false;
-		if (sUseRandomWeight != null){
+		if (sUseRandomWeight != null) {
 			if (sUseRandomWeight.trim().equals("true")) {
 				useRandomWeight = true;
 			}
 		}
-		
+
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
-		
+
 		Map<String, Topic> topicMap = new HashMap<String, Topic>();
 		Topic actTopic = null;
 		Relation actRelation = null;
+		RelationType relationType = null;
 
 		SAXReader saxReader = new SAXReader();
 		DocumentFactory documentFactory = new DocumentFactory();
-		Map<String,String> uris = new HashMap<String,String>();
+		Map<String, String> uris = new HashMap<String, String>();
 		uris.put("tnamspc", "http://www.topicmaps.org/xtm/1.0/");
 		documentFactory.setXPathNamespaceURIs(uris);
 		saxReader.setDocumentFactory(documentFactory);
 		try {
 			// Create document from source
 			Document document = saxReader.read(kbAccessString);
-			
+
 			// Examine Topics
 			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE);
-		    log.info("topic count: " + topicList.size());
-		    
-			//Iterator topicIterator = topicList.iterator();
-		    if(topicList!=null && topicList.size()>0){
-			for(Element topicElement: topicList){
-				
-				String topicId = topicElement.attributeValue(ID_ATTR);
-				
-				// Get instanceOf tag
-				//Node instanceOfNode = topicElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-				//String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
-				
-				// Select topic name
-				List<Element> baseNameList = topicElement.selectNodes(BASENAME_NODE);
-				
-				// Iterate over base names
-				if(baseNameList!=null && baseNameList.size()>0){
-					for(Element basNameElement : baseNameList){
-						
-						// scope tag and baseNameString tag
-						Node topicRef = basNameElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
-						Node baseNameNode = basNameElement.selectSingleNode(BASENAMESTING_NODE);
-						
-						String href = topicRef != null ? ((Element)topicRef).attributeValue("href") : "" ;
-						String baseName = (baseNameNode != null) ? baseNameNode.getStringValue() : "";
-						
-						//log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
-						
-						// Set topic properties and add to topicMap
-						//actTopic.setName("name");
-						if(href!=null && href.equals(this.SCOPE_ID) && baseName!=null){
-						topicId = "#" + topicId;
-						actTopic = topicMap.get(topicId);
-						if (actTopic == null) {
-							actTopic = new Topic();
-							actTopic.setName(baseName);
-							actTopic.setId(topicId);
-							topicMap.put(topicId, actTopic);
+			log.info("topic count: " + topicList.size());
+
+			if (topicList != null && topicList.size() > 0) {
+				for (Element topicElement : topicList) {
+
+					String topicId = topicElement.attributeValue(ID_ATTR);
+
+					// Get instanceOf tag
+					// Node instanceOfNode = topicElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
+					// String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
+
+					// Select topic name
+					List<Element> baseNameList = topicElement.selectNodes(BASENAME_NODE);
+
+					// Iterate over base names
+					if (baseNameList != null && baseNameList.size() > 0) {
+						for (Element basNameElement : baseNameList) {
+
+							// scope tag and baseNameString tag
+							Node topicRef = basNameElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
+							Node baseNameNode = basNameElement.selectSingleNode(BASENAMESTING_NODE);
+
+							String href = topicRef != null ? ((Element) topicRef).attributeValue(HREF_ATTR): "";
+							String baseName = (baseNameNode != null) ? baseNameNode.getStringValue(): "";
+
+							// log.debug("topic -> id: " + topicId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", baseNameString: " + baseName);
+
+							// Set topic properties and add to topicMap
+							if (href != null && href.equals(this.SCOPE_ID) && baseName != null) {
+								topicId = "#" + topicId;
+								actTopic = topicMap.get(topicId);
+								if (actTopic == null) {
+									actTopic = new Topic();
+									actTopic.setName(baseName);
+									actTopic.setId(topicId);
+									topicMap.put(topicId, actTopic);
+									goodNodes.put(topicId, actTopic);
+								}
+							}
 						}
 					}
-					
+					allNodes.put(topicId, topicElement);
 				}
-
-			   }
-				allNodes.put(topicId, topicElement);
-			 }
-		    }
+			}
+			
 			// Examine associations
 			List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
 			log.info("association count: " + assocList.size());
-			
-			
-			for(Element assocElement: assocList){
-				String assocId = assocElement.attributeValue(ID_ATTR);
-				
-				// Get instanceOf tag
-				Node instanceOfNode = assocElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-				String instanceOf = (instanceOfNode != null) ? instanceOfNode.getStringValue() : "";
-				
-				// Get scope tag
-				Node scopeNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-				String scope = (scopeNode != null) ? scopeNode.getStringValue() : "";
-				
-				// Select member tags
-				List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
-				
-				
-				// Iterate over member tags
-				for(Element memberElement:memberList){
-									
-					// roleSpec tag and topicRef tag
-					List<Element> roleSpecList = memberElement.selectNodes(ROLE_SPEC_NODE + "/" + TOPICREF_NODE + "/@" + HREF_NODE);
-					List<Element> topicRefList = memberElement.selectNodes(TOPICREF_NODE + "/@" + HREF_NODE);
-					int maxSize = (roleSpecList.size() > topicRefList.size()) ? roleSpecList.size() : topicRefList.size();
 
-					Attribute roleSpecAttr = null;
-					Attribute topicRefAttr = null;
+			// Iterate over associations
+			if (assocList != null && assocList.size() > 0) {
+				for (Element assocElement : assocList) {
+					String assocId = assocElement.attributeValue(ID_ATTR);
+
+					// Get instanceOf tag (this is the RelationType)
+					Node instanceOfNode = assocElement.selectSingleNode(INSTANCEOF_NODE + "/" + TOPICREF_NODE);
+					String instanceOf = (instanceOfNode != null) ? ((Element) instanceOfNode).attributeValue(HREF_ATTR) : "";
 					
-					for (int i = 0; i < maxSize; i++) {
-						
-						if (i < roleSpecList.size()) roleSpecAttr = (Attribute)roleSpecList.get(i);
-						if (i < topicRefList.size()) topicRefAttr = (Attribute)topicRefList.get(i);
 
-						String roleSpec = (roleSpecAttr != null) ? roleSpecAttr.getValue() : "";
-						String topicRef = (topicRefAttr != null) ? topicRefAttr.getValue() : "";
+					// Get scope tag
+					Node scopeNode = assocElement.selectSingleNode(SCOPE_NODE + "/" + TOPICREF_NODE);
+					String scope = (scopeNode != null) ? ((Element) scopeNode).attributeValue(HREF_ATTR) : "";
+
+					// Select member tags
+					List<Element> memberList = assocElement.selectNodes(MEMBER_NODE);
+					List<String> members = new ArrayList<String>();
+					// Iterate over member tags
+					if (memberList != null && memberList.size() > 0) {
+						for (Element memberElement : memberList) {
+
+							// roleSpec tag and topicRef tag
+							List<Element> roleSpecList = memberElement.selectNodes(ROLE_SPEC_NODE + "/"	+ TOPICREF_NODE);
+							List<Element> topicRefList = memberElement.selectNodes(TOPICREF_NODE);
+							int maxSize = (roleSpecList.size() > topicRefList.size()) ? roleSpecList.size()	: topicRefList.size();
+
+							String roleSpec = null;
+							String topicRef = null;
+
+							for (int i = 0; i < maxSize; i++) {
+
+								if (i < roleSpecList.size())roleSpec = ((Element) roleSpecList.get(i)).attributeValue(HREF_ATTR);
+								if (i < topicRefList.size())topicRef = ((Element) topicRefList.get(i)).attributeValue(HREF_ATTR);
+
+								//roleSpec = (roleSpec != null) ? roleSpec : "";
+								//topicRef = (topicRef != null) ? topicRef : "";
+								// log.debug("association -> id: " + assocId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", source: " +roleSpec + ", target: " + topicRef);
+								
+								if (topicRef != null) members.add(topicRef);
+							}
+						}
 						
-						//log.debug("association -> id: " + assocId + ", instanceOf: " + instanceOf + ", scope: " + scope + ", source: " +roleSpec + ", target: " + topicRef);
+						// Create RelationType
+						relationType = new RelationType();
+						if (topicMap.containsKey(instanceOf)){
+								relationType.setId(topicMap.get(instanceOf).getId());
+								relationType.setRelationName(topicMap.get(instanceOf).getName());
+						}
+						else relationType.setId(instanceOf);
 						
-						// TODO create RelationType
-						
+						relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
+						kbh.addRelationType(relationType);
+
+						// Create relation if both topics are exists in goodNodes
+						if (members.size() >= 2) {
+							String source = members.get(0);
+							for(int i = 1; i<members.size(); i++) {
+								String target = members.get(i);
+								String warningMsg = "Missing relation: [#" + assocId + ": "+ source +" -> " + target + "]: missing ";
+								if (goodNodes.containsKey(source) && goodNodes.containsKey(target)) {
+									actRelation = new Relation();
+									actRelation.setSource(goodNodes.get(source));
+									actRelation.setTarget(goodNodes.get(target));
+									actRelation.setRelationType(relationType);
+									kbh.addRelation(actRelation);
+									warningMsg = "";
+								// Both source and target not exist
+								} else if (!goodNodes.containsKey(source) && !goodNodes.containsKey(target)) {
+									warningMsg +=  source + " and " + target + " from goodNodes!";
+								// If source not exist
+								} else if (!goodNodes.containsKey(source)) {
+									warningMsg += source + " from goodNodes!";
+								// If target not exist									
+								} else if (!goodNodes.containsKey(target)) {
+									warningMsg += target + " from goodNodes!";
+								}
+								
+								if (warningMsg.length()>0) log.warn(warningMsg);
+							}
+						}
 					}
 				}
-			
 			}
-			
+
 		} catch (DocumentException e) {
-			log.error("Error parsing document: " + kbAccessString + " - " +e.getMessage());
+			log.error("Error parsing document: " + kbAccessString + " - " + e.getMessage());
 		}
-		
-		
+
 		return kbh;
 	}
 
 	/* (non-Javadoc)
 	 * @see no.ovitas.compass2.dao.KBBuilderDao#buildKB(java.lang.String)
 	 */
-/*	public KnowledgeBaseHolder buildKB(String kbAccessString) {
+	/*	public KnowledgeBaseHolder buildKB(String kbAccessString) {
 		
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager)context.getBean("configurationManager");
