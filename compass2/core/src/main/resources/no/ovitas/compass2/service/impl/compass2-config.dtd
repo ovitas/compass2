@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Compass2 config configuration DTD
+
+  $Date: 2009-11-17$
+  $Author: csanyi $
+  $Version: 1.0$
+
+  Barnabas Davoti - Ovitas AS
+  Ferenc Magyar - ThotSoft KFT
+  Attila Csanyi - ThotSoft KFT
+
+-->
+<!-- Compass2 config -->
+<!ELEMENT compass2-config ( system-config, search-config ) >
+
+<!-- System config -->
+<!ELEMENT system-config ( full-text-search, knowledge-base, language-tools ) >
+
+<!-- Fulltext search -->
+<!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation, document-repository ) >
+
+<!ELEMENT full-text-search-implementation ( params ) >
+<!ATTLIST full-text-search-implementation class CDATA #REQUIRED >
+
+<!ELEMENT params ( param+ ) >
+
+<!ELEMENT param EMPTY >
+<!ATTLIST param name CDATA #REQUIRED >
+<!ATTLIST param value CDATA #REQUIRED >
+
+<!ELEMENT content-indexer-implementation EMPTY >
+<!ATTLIST content-indexer-implementation class CDATA #REQUIRED >
+
+<!ELEMENT document-repository EMPTY >
+<!ATTLIST document-repository path CDATA #REQUIRED >
+
+<!-- Knowledge base -->
+<!ELEMENT knowledge-base ( knowlegde-base-implementation ) >
+
+<!ELEMENT knowlegde-base-implementation ( params ) >
+<!ATTLIST knowlegde-base-implementation class CDATA #REQUIRED >
+
+<!-- Language tools -->
+<!ELEMENT language-tools ( language-tools-implementation ) >
+
+<!ELEMENT language-tools-implementation ( params ) >
+<!ATTLIST language-tools-implementation class CDATA #REQUIRED >
+
+<!-- Search config -->
+<!ELEMENT search-config ( use-random-weigth, max-topic-number-to-expand, relation-types ) >
+
+<!ELEMENT use-random-weigth EMPTY >
+<!ATTLIST use-random-weigth value CDATA #REQUIRED >
+
+<!ELEMENT max-topic-number-to-expand EMPTY >
+<!ATTLIST max-topic-number-to-expand value CDATA #REQUIRED >
+
+<!-- Relation types -->
+<!ELEMENT relation-types ( relation-type ) >
+
+<!ELEMENT relation-type EMPTY >
+<!ATTLIST relation-type generalization-weight CDATA #REQUIRED >
+<!ATTLIST relation-type id CDATA #REQUIRED >
+<!ATTLIST relation-type weight CDATA #REQUIRED >
+
+
+
+
+
+
+
