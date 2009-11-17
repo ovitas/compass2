@@ -16,6 +16,7 @@
 			<s:textfield key="maxTopicNumberToExpand" />
 			<s:textfield key="expansionThreshold" />
 			<s:textfield key="resultThreshold" />
+			<s:textfield key="maxNumberOfHits" />
 			<li>
 				<s:checkbox key="prefixMatch"/>
 			</li>
