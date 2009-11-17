@@ -193,6 +193,8 @@ public class SearchAction extends BaseAction implements Preparable {
 			RelationType relType = relationTypes.get(key);
 			this.relationTypes.add(relType);
 		}
+		
+		// TODO set maxNumberOfHits value from config xml
 	}
 	
 	public String execute() {
