@@ -94,6 +94,12 @@
             <version>${commons.logging.version}</version>
         </dependency>
         
+		<dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+			<version>${commons-digester.version}</version>
+        </dependency>
+		
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
