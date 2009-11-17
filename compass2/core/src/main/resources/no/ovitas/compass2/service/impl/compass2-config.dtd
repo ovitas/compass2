@@ -11,57 +11,81 @@
   Attila Csanyi - ThotSoft KFT
 
 -->
-<!-- Compass2 config -->
-<!ELEMENT compass2-config ( system-config, search-config? ) >
 
-<!-- System config -->
-<!ELEMENT system-config ( full-text-search, knowledge-base?, language-tools? ) >
+<!-- Compass2 config -->
+<!ELEMENT compass2-config ( full-text-search, language-tools?, knowledge-bases?, result ) >
 
 <!-- Fulltext search -->
 <!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation? ) >
+<!ATTLIST full-text-search
+          prefix-match (yes | no) "no"
+          fuzzy-match (yes | no) "no"
+>
 
 <!ELEMENT full-text-search-implementation ( params? ) >
-<!ATTLIST full-text-search-implementation class CDATA #REQUIRED >
+<!ATTLIST full-text-search-implementation
+          class CDATA #REQUIRED
+>
 
 <!ELEMENT params ( param+ ) >
 
 <!ELEMENT param EMPTY >
-<!ATTLIST param name CDATA #REQUIRED >
-<!ATTLIST param value CDATA #REQUIRED >
+<!ATTLIST param
+          name CDATA #REQUIRED
+          value CDATA #REQUIRED
+>
 
 <!ELEMENT content-indexer-implementation EMPTY >
-<!ATTLIST content-indexer-implementation class CDATA #REQUIRED >
-
-
-<!-- Knowledge base -->
-<!ELEMENT knowledge-base ( knowlegde-base-implementation ) >
-
-<!ELEMENT knowlegde-base-implementation ( params? ) >
-<!ATTLIST knowlegde-base-implementation class CDATA #REQUIRED >
+<!ATTLIST content-indexer-implementation
+          class CDATA #REQUIRED
+>
 
 <!-- Language tools -->
 <!ELEMENT language-tools ( language-tools-implementation ) >
 
 <!ELEMENT language-tools-implementation ( params? ) >
-<!ATTLIST language-tools-implementation class CDATA #REQUIRED >
+<!ATTLIST language-tools-implementation
+          class CDATA #REQUIRED
+>
 
-<!-- Search config -->
-<!ELEMENT search-config ( use-random-weigth?, max-topic-number-to-expand?, relation-types? ) >
+<!-- Knowledge base -->
+<!ELEMENT knowledge-bases ( knowledge-base* ) >
 
-<!ELEMENT use-random-weigth EMPTY >
-<!ATTLIST use-random-weigth value CDATA #REQUIRED >
+<!ELEMENT knowledge-base ( knowledge-base-implementation, expansion ) >
+<!ATTLIST knowledge-base
+          name CDATA #REQUIRED
+>
 
-<!ELEMENT max-topic-number-to-expand EMPTY >
-<!ATTLIST max-topic-number-to-expand value CDATA #REQUIRED >
+<!ELEMENT knowledge-base-implementation ( params? ) >
+<!ATTLIST knowledge-base-implementation
+          class CDATA #REQUIRED
+>
 
-<!-- Relation types -->
-<!ELEMENT relation-types ( relation-type ) >
+<!-- Expansion -->
+<!ELEMENT expansion (association-types? ) >
+<!ATTLIST expansion
+          use-random-weight (yes | no) "no"
+          prefix-match (yes | no) "no"
+          expansion-threshold  CDATA #IMPLIED
+          max-nr-of-topic-to-expand CDATA #IMPLIED
+>
 
-<!ELEMENT relation-type EMPTY >
-<!ATTLIST relation-type generalization-weight CDATA #REQUIRED >
-<!ATTLIST relation-type id CDATA #REQUIRED >
-<!ATTLIST relation-type weight CDATA #REQUIRED >
+<!-- Association types -->
+<!ELEMENT association-types ( association-type ) >
 
+<!ELEMENT association-type EMPTY >
+<!ATTLIST association-type
+          id CDATA #REQUIRED
+          name CDATA #REQUIRED
+          weight-ahead CDATA #REQUIRED           
+          weight-aback CDATA #REQUIRED
+>
+
+<!-- Result -->
+<!ELEMENT result EMPTY >
+<!ATTLIST result
+          result-threshold  CDATA #IMPLIED
+>
 
 
 
