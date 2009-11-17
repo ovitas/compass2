@@ -99,7 +99,18 @@ public class TopicUtil {
 		int idx = 0;
 		while (queue.size() > 0 && idx++ < maxTopicNumberToExpand) {
 			TopicNode topicNode = queue.poll();
-			List<TopicLinkNode> topicLinkNodes = expander.expand(topicNode.topic);
+			
+			// Get source -> target nodes
+			List<TopicLinkNode> topicLinkNodes = expander.contract(topicNode.topic);
+			
+			// Get target -> source nodes and merge into topicLinkNodes
+			List<TopicLinkNode> topicLinkNodesBack = expander.contract(topicNode.topic);
+			for(TopicLinkNode node : topicLinkNodesBack) {
+				if (!topicLinkNodes.contains(node)) {
+					topicLinkNodes.add(node);
+				}
+			}
+			
 			for (TopicLinkNode topicLinkNode : topicLinkNodes) {
 				Topic aTopic = topicLinkNode.topic;
 				TopicNode aTopicNode = topicNodes.get(aTopic);
