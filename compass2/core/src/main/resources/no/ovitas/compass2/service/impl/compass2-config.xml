@@ -29,7 +29,6 @@
 					<param name="snowball-language" value="English"/>
 					<param name="lucene-spellchecker-directory" value="${lucene.spellchecker.dir}"/>
 					<param name="lucene-spellchecker-index-directory" value="${lucene.spellchecker.index.dir}"/>
-					<param name="lucene-spellchecker-index-directory" value="${lucene.spellchecker.index.dir}"/>
 					<param name="lucene-spellchecker-field" value="word"/>
 					<param name="lucene-spellchecker-max-suggestion-num" value="${lucene.spellchecker.max.suggestion.num}"/>
 				</params>
