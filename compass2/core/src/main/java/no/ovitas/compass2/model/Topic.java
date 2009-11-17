@@ -35,7 +35,11 @@ public class Topic implements Serializable, Comparable {
 	}
 	
 	public void setName(String name) {
-		this.name = name;
+		if(name!=null){
+		 this.name = name.trim();
+		}else{
+			this.name=null;
+		}
 	}
 	
 	public List<String> getAlternativeNames() {

@@ -64,6 +64,15 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		super();
 	}
 
+	
+	
+	protected String getFirstBaseElementString(Element topicElement){
+		
+		Node baseNameStringNode = topicElement.selectSingleNode(BASENAME_NODE + "/" +BASENAMESTING_NODE);
+		
+		return baseNameStringNode!=null ? baseNameStringNode.getStringValue() : null;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -103,11 +112,10 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
 			if (topicList != null && topicList.size() > 0) {
 				for (Element topicElement : topicList) {
-
+                     
 					// Get topic id
 					String topicId = topicElement.attributeValue(ID_ATTR);				
 					topicId = "#" + topicId;
-					
 					// Iterate over baseName
 					List<Element> baseNameList = topicElement.selectNodes(BASENAME_NODE);
 					if (baseNameList != null && baseNameList.size() > 0) {
@@ -160,14 +168,14 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 					if(relationType == null){
 						if (href != null && allNodes.containsKey(href)){
 							Element element = allNodes.get(href);
-							Node baseNameStringNode = element.selectSingleNode(BASENAME_NODE + "/" +BASENAMESTING_NODE);
+							String baseNameStringNode = this.getFirstBaseElementString(element);
 							
 							// Create new RealtionType
 							relationType = new RelationType();
 							relationType.setId(href);
 							relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
 							if (baseNameStringNode != null)
-								relationType.setRelationName(baseNameStringNode.getStringValue());
+								relationType.setRelationName(baseNameStringNode);
 							else
 								relationType.setRelationName(href);
 							kbh.addRelationType(relationType);
@@ -197,6 +205,32 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 								String warningMsg = "Missing relation: [#" + assocId + ": "+ source +" -> " + target + "]: missing ";
 								
 								// Both source and target exists
+								if(!goodNodes.containsKey(source)){
+									Element s = allNodes.get(source);
+									String name = this.getFirstBaseElementString(s);
+									if(name==null){
+										name = source;
+									}
+									Topic t = new Topic();
+									t.setName(name);
+									t.setId(source);
+									kbh.addTopic(t);
+									goodNodes.put(source, t);
+								}
+								if(!goodNodes.containsKey(target)){
+									Element s = allNodes.get(target);
+									String name = this.getFirstBaseElementString(s);
+									if(name==null){
+										name = target;
+									}
+									Topic t = new Topic();
+									t.setName(name);
+									t.setId(target);
+									kbh.addTopic(t);
+									goodNodes.put(target, t);
+									
+								}
+								
 								if (goodNodes.containsKey(source) && goodNodes.containsKey(target)) {
 									
 									// Create new Relation
