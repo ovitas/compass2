@@ -12,15 +12,15 @@
 
 -->
 <!-- Compass2 config -->
-<!ELEMENT compass2-config ( system-config, search-config ) >
+<!ELEMENT compass2-config ( system-config, search-config? ) >
 
 <!-- System config -->
-<!ELEMENT system-config ( full-text-search, knowledge-base, language-tools ) >
+<!ELEMENT system-config ( full-text-search, knowledge-base?, language-tools? ) >
 
 <!-- Fulltext search -->
-<!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation ) >
+<!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation? ) >
 
-<!ELEMENT full-text-search-implementation ( params ) >
+<!ELEMENT full-text-search-implementation ( params? ) >
 <!ATTLIST full-text-search-implementation class CDATA #REQUIRED >
 
 <!ELEMENT params ( param+ ) >
@@ -36,17 +36,17 @@
 <!-- Knowledge base -->
 <!ELEMENT knowledge-base ( knowlegde-base-implementation ) >
 
-<!ELEMENT knowlegde-base-implementation ( params ) >
+<!ELEMENT knowlegde-base-implementation ( params? ) >
 <!ATTLIST knowlegde-base-implementation class CDATA #REQUIRED >
 
 <!-- Language tools -->
 <!ELEMENT language-tools ( language-tools-implementation ) >
 
-<!ELEMENT language-tools-implementation ( params ) >
+<!ELEMENT language-tools-implementation ( params? ) >
 <!ATTLIST language-tools-implementation class CDATA #REQUIRED >
 
 <!-- Search config -->
-<!ELEMENT search-config ( use-random-weigth, max-topic-number-to-expand, relation-types ) >
+<!ELEMENT search-config ( use-random-weigth?, max-topic-number-to-expand?, relation-types? ) >
 
 <!ELEMENT use-random-weigth EMPTY >
 <!ATTLIST use-random-weigth value CDATA #REQUIRED >
