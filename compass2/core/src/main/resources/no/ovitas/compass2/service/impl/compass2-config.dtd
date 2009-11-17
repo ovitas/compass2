@@ -18,7 +18,7 @@
 <!ELEMENT system-config ( full-text-search, knowledge-base, language-tools ) >
 
 <!-- Fulltext search -->
-<!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation, document-repository ) >
+<!ELEMENT full-text-search ( full-text-search-implementation, content-indexer-implementation ) >
 
 <!ELEMENT full-text-search-implementation ( params ) >
 <!ATTLIST full-text-search-implementation class CDATA #REQUIRED >
@@ -32,8 +32,6 @@
 <!ELEMENT content-indexer-implementation EMPTY >
 <!ATTLIST content-indexer-implementation class CDATA #REQUIRED >
 
-<!ELEMENT document-repository EMPTY >
-<!ATTLIST document-repository path CDATA #REQUIRED >
 
 <!-- Knowledge base -->
 <!ELEMENT knowledge-base ( knowlegde-base-implementation ) >

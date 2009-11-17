@@ -7,12 +7,11 @@
 			<full-text-search-implementation class="${no.ovitas.compass2.service.FTSImplementation}" >
 				<params>
 					<param name="indexdirectory-path" value="${lucene.spellchecker.index.dir}"/>
-					<param name="max-hits-per-query " value="${lucene.fts.max.hits.per.query}"/>
+					<param name="max-hits-per-query" value="${lucene.fts.max.hits.per.query}"/>
+					<param name="document-repository" value="${document.repository}"/>
 				</params>
 			</full-text-search-implementation>
-       		  
 			<content-indexer-implementation class="${no.ovitas.compass2.service.fts.ContentIndexerImplementation}" />
-			<document-repository path="${document.repository}" />
 		</full-text-search>
 		
 		<knowledge-base>
