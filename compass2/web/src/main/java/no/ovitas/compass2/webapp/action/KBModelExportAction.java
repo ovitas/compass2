@@ -76,6 +76,7 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 			getResponse().setHeader("Content-Disposition", "attachment; filename=\"model.txt\"");
 			getResponse().setHeader("Pragma", "public");
 			getResponse().getOutputStream().write(b);
+			getResponse().getOutputStream().close();	
 			
 		} catch (FileNotFoundException fnfe) {
 			log.error("File not found: " + fileName + ", " + fnfe.getMessage());
