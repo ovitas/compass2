@@ -285,8 +285,9 @@ public class SearchAction extends BaseAction implements Preparable {
 		children = new ArrayList<String>();
 		if(expansions != null && expansions.size()>0){
 			for(Set<TopicTreeNode> topictreeNodes: expansions){
+				for(TopicTreeNode rootNode : topictreeNodes)
 				children.add(
-					createTreeFromSetTopicTreeNodes(topictreeNodes)
+						treeNode2JsonSubTree(rootNode)
 				);
 			}
 		}
@@ -316,36 +317,20 @@ public class SearchAction extends BaseAction implements Preparable {
 		return createJsonNode(treeNode.getName(), null);
 	}
 	
-	private List<TopicTreeNode> getRootNode(Set<TopicTreeNode> topictreeNodes){
+	private TopicTreeNode getRootNode(Set<TopicTreeNode> topictreeNodes){
 		log.info("topictreeNodes(getRootNode): "+topictreeNodes.size());
-		List<TopicTreeNode> retList = new ArrayList<TopicTreeNode>();
 		for (TopicTreeNode treeNode: topictreeNodes) {
 			if(treeNode.getParent() == null){
-				retList.add(treeNode);
-			  }else{
-			    log.info("Node: "+treeNode.getName()+" Parent: "+treeNode.getParent().getName());
-			  }
+				return treeNode;
+			}
+			log.info("Node: "+treeNode.getName()+" Parent: "+treeNode.getParent().getName());
 		}
-		return retList;
+		return null;
 	}
 	
 	private String createTreeFromSetTopicTreeNodes(Set<TopicTreeNode> topictreeNodes){
-		List<TopicTreeNode> rootNodes = getRootNode(topictreeNodes);
-		StringBuffer sb = new StringBuffer();
-		boolean isFirst = true;
-		if(rootNodes.size()>0){
-			for(TopicTreeNode rootNode  : rootNodes){
-			if(isFirst){
-				isFirst = false;
-			}else{
-				sb.append(",");
-			}
-		     sb.append(treeNode2JsonSubTree(rootNode));
-		     
-			}
-		}
-		
-		return sb.toString();
+		TopicTreeNode rootNode = getRootNode(topictreeNodes);
+		return treeNode2JsonSubTree(rootNode);
 	}
 	
 	private String createJsonNode(String text, List<String> children) {
