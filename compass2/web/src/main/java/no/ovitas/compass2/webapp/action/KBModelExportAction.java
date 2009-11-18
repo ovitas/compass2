@@ -61,8 +61,13 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 		try {
 			fileName = this.exportDomainModelManager.exportModel();
 			if (fileName != null) {
-				File file = new File(fileName);
-			    byte[] byteContent = new byte[(int) file.length()];
+				File f = new File(fileName);
+				FileInputStream fis = new FileInputStream(fileName);
+
+				BufferedInputStream bi = new BufferedInputStream(fis);
+			    byte[] byteContent = new byte[(int) f.length()];
+			    bi.read(byteContent);
+			    bi.close();
 				
 				getResponse().setContentType("application/plain");
 				getResponse().setContentLength(byteContent.length);
@@ -71,8 +76,7 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 				getResponse().setHeader("Content-Disposition", "attachment; filename=\"model.txt\"");
 				getResponse().setHeader("Pragma", "public");
 				getResponse().getOutputStream().write(byteContent);
-				getResponse().getOutputStream().close();
-				
+				getResponse().getOutputStream().close();	
 			} else {
 				log.error("Model is null!");
 			}
