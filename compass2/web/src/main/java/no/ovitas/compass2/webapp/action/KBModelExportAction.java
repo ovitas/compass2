@@ -60,23 +60,22 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 		String fileName = null;
 		try {
 			fileName = this.exportDomainModelManager.exportModel();
-			File f = new File(fileName);
-			
-			FileInputStream fis = new FileInputStream(fileName);
-			BufferedInputStream bi = new BufferedInputStream(fis);
-		    f.length();
-		    byte[] b = new byte[(int) f.length()];
-		    bi.read(b);
-		    bi.close();
-			
-			getResponse().setContentType("application/plain");
-			getResponse().setContentLength(b.length);
-			getResponse().setHeader("Expires", "0");
-			getResponse().setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
-			getResponse().setHeader("Content-Disposition", "attachment; filename=\"model.txt\"");
-			getResponse().setHeader("Pragma", "public");
-			getResponse().getOutputStream().write(b);
-			getResponse().getOutputStream().close();	
+			if (fileName != null) {
+				File file = new File(fileName);
+			    byte[] byteContent = new byte[(int) file.length()];
+				
+				getResponse().setContentType("application/plain");
+				getResponse().setContentLength(byteContent.length);
+				getResponse().setHeader("Expires", "0");
+				getResponse().setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+				getResponse().setHeader("Content-Disposition", "attachment; filename=\"model.txt\"");
+				getResponse().setHeader("Pragma", "public");
+				getResponse().getOutputStream().write(byteContent);
+				getResponse().getOutputStream().close();
+				
+			} else {
+				log.error("Model is null!");
+			}
 			
 		} catch (FileNotFoundException fnfe) {
 			log.error("File not found: " + fileName + ", " + fnfe.getMessage());
