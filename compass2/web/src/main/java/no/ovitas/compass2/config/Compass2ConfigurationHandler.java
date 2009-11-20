@@ -1,7 +1,5 @@
 package no.ovitas.compass2.config;
 
-import no.ovitas.fk.ecls.config.Param;
-
 import org.apache.commons.digester.Digester;
 import org.apache.log4j.Logger;
 
@@ -27,7 +25,7 @@ public class Compass2ConfigurationHandler {
 	 * Setup digester
 	 */
 	protected void setupDigester(Digester digester){
-		
+
 		String prefix = ConfigConstants.TAG_COPMASS2_CONFIG;
 		
 		// Compass2Configuration
