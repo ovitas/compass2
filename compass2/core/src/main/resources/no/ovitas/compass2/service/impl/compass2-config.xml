@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE compass2-config SYSTEM "compass2-config.dtd" >
 <compass2-config>
-
-	<system-config>
-	    <full-text-search>
-			<full-text-search-implementation class="${no.ovitas.compass2.service.FTSImplementation}" >
-				<params>
-					<param name="indexdirectory-path" value="${lucene.spellchecker.index.dir}"/>
-					<param name="max-hits-per-query" value="${lucene.fts.max.hits.per.query}"/>
-					<param name="document-repository" value="${document.repository}"/>
-				</params>
-			</full-text-search-implementation>
-			<content-indexer-implementation class="${no.ovitas.compass2.service.fts.ContentIndexerImplementation}" />
-		</full-text-search>
-		
-		<knowledge-base>
-			<knowlegde-base-implementation class="${no.ovitas.compass2.service.KBImplementation}" >
+    <full-text-search prefix-match="no" fuzzy-match="no">
+		<full-text-search-implementation class="${no.ovitas.compass2.service.FTSImplementation}" >
+			<params>
+				<param name="indexdirectory-path" value="${lucene.spellchecker.index.dir}"/>
+				<param name="max-hits-per-query" value="${lucene.fts.max.hits.per.query}"/>
+				<param name="document-repository" value="${document.repository}"/>
+			</params>
+		</full-text-search-implementation>
+		<content-indexer-implementation class="${no.ovitas.compass2.service.fts.ContentIndexerImplementation}" />
+	</full-text-search>
+	
+	<language-tools>
+		<language-tools-implementation class="${no.ovitas.compass2.service.LTImplementation}">
+			<params>
+				<param name="snowball-language" value="English"/>
+				<param name="lucene-spellchecker-directory" value="${lucene.spellchecker.dir}"/>
+				<param name="lucene-spellchecker-index-directory" value="${lucene.spellchecker.index.dir}"/>
+				<param name="lucene-spellchecker-field" value="word"/>
+				<param name="lucene-spellchecker-max-suggestion-num" value="${lucene.spellchecker.max.suggestion.num}"/>
+			</params>
+		</language-tools-implementation>
+	</language-tools>
+	
+	<knowledge-bases>
+		<knowledge-base name="${knowledge.base.name}">
+			<knowledge-base-implementation class="${no.ovitas.compass2.service.KBImplementation}" >
 				<params>
 					<param name="file-path" value="${knowledge.base.file}"/>
 					<param name="load-on-startup" value="${knowladge.base.load.on.startup}"/>
 				</params>
-			</knowlegde-base-implementation>
+			</knowledge-base-implementation>
+			<expansion use-random-weight="no" prefix-match="no" expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}">
+				<association-types>
+					<association-type id="#123456" name="TestAssocTypeName" weight-ahead="0.5" weight-aback="0.7" />
+				</association-types>
+			</expansion>
 		</knowledge-base>
-		
-		<language-tools>
-			<language-tools-implementation class="${no.ovitas.compass2.service.LTImplementation}">
-				<params>
-					<param name="snowball-language" value="English"/>
-					<param name="lucene-spellchecker-directory" value="${lucene.spellchecker.dir}"/>
-					<param name="lucene-spellchecker-index-directory" value="${lucene.spellchecker.index.dir}"/>
-					<param name="lucene-spellchecker-field" value="word"/>
-					<param name="lucene-spellchecker-max-suggestion-num" value="${lucene.spellchecker.max.suggestion.num}"/>
-				</params>
-			</language-tools-implementation>
-		</language-tools>
-	</system-config>
-  
-	<search-config>
-		<use-random-weigth value="${use.random.weight}"/>
-		<max-topic-number-to-expand value="${max.topic.number.to.expand}" />
-		
-		<relation-types>
-			<relation-type id="#123456" weight="0.5" generalization-weight="0.73" />
-		</relation-types>
-	</search-config>
-	
+	</knowledge-bases>
+
+	<result result-threshold="${result.threshold}" />
 </compass2-config>
