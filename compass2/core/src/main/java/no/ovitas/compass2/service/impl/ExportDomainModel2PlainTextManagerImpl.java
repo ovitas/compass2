@@ -63,11 +63,11 @@ public class ExportDomainModel2PlainTextManagerImpl implements
 		fw.write("#"+topic.getName()+"\n");
 		for(Relation rel : topic.getRelations()){
 			if(rel.getSource().getName().equals(topic.getName())){
-				fw.write(" -- ");
+				fw.write(" --> ");
 				fw.write(rel.getRelationType().getRelationName()+":["+rel.getTarget().getName()+"]\n");
 			}
 			if(rel.getTarget().getName().equals(topic.getName())){
-				fw.write(" ++ ");
+				fw.write(" <-- ");
 				fw.write(rel.getRelationType().getRelationName()+":["+rel.getSource().getName()+"]\n");
 			}
 		}
