@@ -9,6 +9,7 @@ public class ConfigConstants {
 
 	public static final String COPMASS2_CONFIG = "compass2-config";
 	public static final String FULL_TEXT_SEARCH = "full-text-search";
+	public static final String FULL_TEXT_SEARCH_IMPLEMENTATION = "full-text-search-implementation";
 	public static final String CONTENT_INDEXER_IMPLEMENTATION = "content-indexer-implementation";
 	public static final String LANGUAGE_TOOLS = "language-tools";
 	public static final String LANGUAGE_TOOLS_IMPLEMENTATION = "language-tools-implementation";
