@@ -30,6 +30,11 @@ import com.opensymphony.xwork2.Preparable;
  */
 public class KBModelExportAction extends BaseAction implements Preparable {
 
+	/**
+	 * Serial version id
+	 */
+	private static final long serialVersionUID = 8152568308641162001L;
+
 	private static final Log log = LogFactory.getLog(KBModelExportAction.class);
 	
 	protected ExportDomainModelManager exportDomainModelManager;
@@ -40,10 +45,9 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 	}
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public KBModelExportAction() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)
@@ -51,8 +55,6 @@ public class KBModelExportAction extends BaseAction implements Preparable {
 	 */
 	@Override
 	public void prepare() throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public String execute(){
