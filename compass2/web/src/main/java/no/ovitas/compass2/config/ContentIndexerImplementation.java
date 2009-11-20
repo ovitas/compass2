@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
  * @author csanyi
  * 
  */
-public class ContentIndexerImplementation extends BaseImplementation {
+public class ContentIndexerImplementation extends Reference {
 
 	// Attributes
 

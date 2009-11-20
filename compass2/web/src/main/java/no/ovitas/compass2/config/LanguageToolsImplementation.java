@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
  * @author csanyi
  * 
  */
-public class LanguageToolsImplementation extends BaseImplementation {
+public class LanguageToolsImplementation extends Reference {
 	
 	// Attributes
 

@@ -1,13 +1,9 @@
 package no.ovitas.compass2.config;
 
-import org.apache.log4j.Logger;
-
-public class BaseImplementation {
-	
+public class Reference extends ParamContainer {
 	// Attributes
 
 	protected String className;
-	protected ParamContainer params;
 	
 	// Getter / setter methods
 	
@@ -19,17 +15,9 @@ public class BaseImplementation {
 		this.className = className;
 	}
 	
-	public ParamContainer getParams() {
-		return params;
-	}
-
-	public void setParams(ParamContainer params) {
-		this.params = params;
-	}
-	
 	// Constructors
 	
-	public BaseImplementation(){}
+	public Reference(){}
 	
 	// Methods
 }

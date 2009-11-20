@@ -30,4 +30,8 @@ public class AssociationTypes {
 	public AssociationTypes() {}
 
 	// Methods
+	
+	public void addAssociationType(AssociationType associationType) {
+		this.associationTypes.add(associationType);
+	}
 }
