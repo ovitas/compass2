@@ -1,5 +1,7 @@
 package no.ovitas.compass2.config;
 
+import no.ovitas.fk.ecls.config.Param;
+
 import org.apache.commons.digester.Digester;
 import org.apache.log4j.Logger;
 
@@ -26,46 +28,70 @@ public class Compass2ConfigurationHandler {
 	 */
 	protected void setupDigester(Digester digester){
 		
-		String prefix = ConfigConstants.COPMASS2_CONFIG;
+		String prefix = ConfigConstants.TAG_COPMASS2_CONFIG;
 		
 		// Compass2Configuration
 		digester.addObjectCreate(prefix, Compass2Configuration.class);
-		
+
 		// FullTextSearch
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.FULL_TEXT_SEARCH, FullTextSearch.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH, FullTextSearch.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH, ConfigConstants.ATTR_FUZZY_MATCH, "fuzzyMatch");
 		
 		// FullTextSearchImplementation
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.FULL_TEXT_SEARCH + "/" + ConfigConstants.FULL_TEXT_SEARCH_IMPLEMENTATION, FullTextSearchImplementation.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH_IMPLEMENTATION, FullTextSearchImplementation.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH_IMPLEMENTATION, ConfigConstants.ATTR_CLASS, "className");
 		
 		// ContentIndexerImplementation
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.FULL_TEXT_SEARCH + "/" + ConfigConstants.CONTENT_INDEXER_IMPLEMENTATION, ContentIndexerImplementation.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH + "/" + ConfigConstants.TAG_CONTENT_INDEXER_IMPLEMENTATION, ContentIndexerImplementation.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH + "/" + ConfigConstants.TAG_CONTENT_INDEXER_IMPLEMENTATION, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageTools
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.LANGUAGE_TOOLS, LanguageTools.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS, LanguageTools.class);
 		
 		// LanguageToolsImplementation
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.LANGUAGE_TOOLS + "/" + ConfigConstants.LANGUAGE_TOOLS_IMPLEMENTATION, LanguageToolsImplementation.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS_IMPLEMENTATION, LanguageToolsImplementation.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS_IMPLEMENTATION, ConfigConstants.ATTR_CLASS, "className");
 		
 		// KnowledgeBases
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASES, KnowledgeBases.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASES, KnowledgeBases.class);
 		
 		// KnowledgeBase
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASE, KnowledgeBase.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE, KnowledgeBase.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE, ConfigConstants.ATTR_NAME, "name");
 		
 		// KnowledgeBaseImplementation
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASE + "/" + ConfigConstants.KNOWLEDGE_BASE_IMPLEMENTATION, KnowledgeBaseImplementation.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION, KnowledgeBaseImplementation.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION, ConfigConstants.ATTR_CLASS, "className");
 		
 		// Expansion
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASE + "/" + ConfigConstants.EXPANSION, Expansion.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION, Expansion.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION, ConfigConstants.ATTR_USE_RANDOM_WEIGHT, "useRandomWeight");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION, ConfigConstants.ATTR_EXPANSION_THRESHOLD, "expansionThreshold");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION, ConfigConstants.ATTR_MAX_NUM_OF_TOPIC_TO_EXPAND, "maxNumOfTopicToExpand");
 		
 		// AssociationTypes
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASE + "/" + ConfigConstants.EXPANSION  + "/" + ConfigConstants.ASSOCIATION_TYPES, AssociationTypes.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES, AssociationTypes.class);
 		
 		// AssociationType
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.KNOWLEDGE_BASE + "/" + ConfigConstants.EXPANSION  + "/" + ConfigConstants.ASSOCIATION_TYPES  + "/" + ConfigConstants.ASSOCIATION_TYPE, AssociationType.class);
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPE, AssociationType.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPE, ConfigConstants.ATTR_ID, "id");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPE, ConfigConstants.ATTR_NAME, "name");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPE, ConfigConstants.ATTR_WEIGHT_AHEAD, "weightAhead");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE + "/" + ConfigConstants.TAG_EXPANSION  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPES  + "/" + ConfigConstants.TAG_ASSOCIATION_TYPE, ConfigConstants.ATTR_WEIGHT_ABACK, "weigthAback");
 		
 		// Result
-		digester.addObjectCreate(prefix + "/" + ConfigConstants.RESULT, Result.class);		
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_RESULT, Result.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_RESULT, ConfigConstants.ATTR_RESULT_THRESHOLD, "resultThreshold");
+		
+		// Params
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
+
+		// Param
+		digester.addObjectCreate(prefix + "/" + ConfigConstants.TAG_PARAM, Param.class);
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_PARAM, ConfigConstants.ATTR_NAME, "name");
+		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_PARAM, ConfigConstants.ATTR_VALUE, "value");
 	}
 
 }
