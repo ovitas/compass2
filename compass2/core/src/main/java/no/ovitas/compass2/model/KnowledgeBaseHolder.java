@@ -45,7 +45,7 @@ public class KnowledgeBaseHolder implements Serializable {
 	public List<Topic> findTopicByPrefixMatchCaseInSensitive(String prefix){
 		List<Topic> matches = new ArrayList<Topic>();
 		for(String name : topics.keySet()){
-			if (name.length() <= prefix.length()) {
+			if (name.length() >= prefix.length()) {
 				// Get topic name prefix
 				String topicNamePrefix = name.substring(0, prefix.length());
 				if(topicNamePrefix.equalsIgnoreCase(prefix) ) {
