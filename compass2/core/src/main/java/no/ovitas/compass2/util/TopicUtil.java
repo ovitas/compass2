@@ -101,7 +101,7 @@ public class TopicUtil {
 			TopicNode topicNode = queue.poll();
 			
 			// Get source -> target nodes
-			List<TopicLinkNode> topicLinkNodes = expander.contract(topicNode.topic);
+			List<TopicLinkNode> topicLinkNodes = expander.expand(topicNode.topic);
 			
 			// Get target -> source nodes and merge into topicLinkNodes
 			List<TopicLinkNode> topicLinkNodesBack = expander.contract(topicNode.topic);
