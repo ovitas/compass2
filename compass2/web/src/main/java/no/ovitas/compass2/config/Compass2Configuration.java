@@ -12,10 +12,6 @@ public class Compass2Configuration {
 	private Result result;
 	
 	// Getter / setter methods
-	
-	// Constructors
-
-	public Compass2Configuration(){}
 
 	public Logger getLogger() {
 		return logger;
@@ -56,6 +52,10 @@ public class Compass2Configuration {
 	public void setResult(Result result) {
 		this.result = result;
 	}
+	
+	// Constructors
+
+	public Compass2Configuration(){}
 	
 	// Methods
 }
