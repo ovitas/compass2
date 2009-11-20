@@ -80,16 +80,22 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			if(s.endsWith("%")){
 				toSearch = s.replaceAll("%", "");
 			}
-			List<Topic> tp = this.knowledgeBase.findTopicByPrefixMatch(toSearch);
+			List<Topic> tp = this.knowledgeBase.findTopicByPrefixMatchCaseInSensitive(toSearch);
 			if(tp!=null && tp.size()>0){
 				for(Topic topic : tp){
 					topicSet.add(topic);
 				}
 			}
 		} else {
-			Topic topic = this.knowledgeBase.findTopic(toSearch);
+			/*Topic topic = this.knowledgeBase.findTopic(toSearch);
 			if (topic != null){
 				topicSet.add(topic);
+			}*/
+			List<Topic> tp = this.knowledgeBase.findTopicCaseInSensitive(toSearch);
+			if(tp!=null && tp.size()>0){
+				for(Topic topic : tp){
+					topicSet.add(topic);
+				}
 			}
 		}
 		
