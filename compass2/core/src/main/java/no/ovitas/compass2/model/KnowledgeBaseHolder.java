@@ -8,6 +8,11 @@ import java.util.TreeMap;
 
 public class KnowledgeBaseHolder implements Serializable {
 
+	/**
+	 *Serial version id 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	protected Map<String, RelationType> relationTypes;
 	protected Map<String, Topic> topics;
 	protected List<Relation> relations;
@@ -37,8 +42,33 @@ public class KnowledgeBaseHolder implements Serializable {
 		
 	}
 	
+	public List<Topic> findTopicByPrefixMatchCaseInSensitive(String prefix){
+		List<Topic> matches = new ArrayList<Topic>();
+		for(String name : topics.keySet()){
+			if (name.length() <= prefix.length()) {
+				// Get topic name prefix
+				String topicNamePrefix = name.substring(0, prefix.length());
+				if(topicNamePrefix.equalsIgnoreCase(prefix) ) {
+					matches.add(topics.get(name));
+				}
+			}
+		}
+		return matches;
+		
+	}
+	
 	public Topic findTopic(String name){
 		return topics.get(name);
+	}
+	
+	public List<Topic> findTopicCaseInSensitive(String topicName){
+		List<Topic> matches = new ArrayList<Topic>();
+		for(String name : topics.keySet()){
+			if(name.equalsIgnoreCase(topicName)) {
+				matches.add(topics.get(name));
+			}
+		}
+		return matches;
 	}
 
 	public RelationType findRelationType(String id){
