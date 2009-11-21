@@ -35,10 +35,10 @@
 			<display:table class="table" name="relationTypes" defaultsort="2" defaultorder="ascending" export="false" id="relationType" requestURI="mainMenu.do">
 				<display:column property="id" title="Id" style="width:90px;"/>
 				<display:column property="relationName" title="Relation name"/>
-				<display:column title="Weight">
+				<display:column title="Weight ahead">
 					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" onkeyup="updateRecord(this.id)" class="editable" />
 				</display:column>
-				<display:column title="Gen. weight">
+				<display:column title="Weight aback">
 					<input type="text" id="${relationType.id}_genweight" value="${relationType.generalizationWeight}" onkeyup="updateRecord(this.id)" class="editable" />
 				</display:column>
 				<display:column>
@@ -57,12 +57,17 @@
 	</div>
 	
 	<div id="rightSideDiv">
+	<s:set name="firstTime" value="firstTime" scope="request"/> 
+	<s:set name="treeEmpty" value="treeEmpty" scope="request"/> 
+	
 		<s:set name="result"  value="filteredResult" scope="request"/>
-		<c:if test="${not empty result}">
-			<h1><fmt:message key="topic.expansion"/></h1>
-			<%@ include file="/common/tree.jsp" %>
-			<br />
-
+		<c:if test="${not firstTime }">
+		    <c:if test="${not treeEmpty }">
+			  <h1><fmt:message key="topic.expansion"/></h1>
+			  <%@ include file="/common/tree.jsp" %>
+			  <br />
+		    </c:if>
+		    <c:if test="${not empty result}">
 			<h3><fmt:message key="search.result"/>
 				<s:property value="resultSize"/>/
 				<s:property value="filteredResultSize"/>
@@ -72,7 +77,8 @@
 				<display:column property="scoreStr" title="Score"/>
 			</display:table>
 		</c:if>
-		<c:if test="${empty result}">	
+		</c:if>
+		<c:if test="${empty result and not firstTime }">	
 		 <h3><fmt:message key="no.result"/></h3>	
 		</c:if>
 
