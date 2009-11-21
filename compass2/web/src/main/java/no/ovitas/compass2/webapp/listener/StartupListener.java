@@ -3,6 +3,7 @@ package no.ovitas.compass2.webapp.listener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.service.factory.KBFactory;
 //import no.ovitas.compass2.service._LookupManager;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
@@ -61,6 +62,7 @@ public class StartupListener implements ServletContextListener {
         
 
         context.setAttribute(Constants.CONFIG, config);
+        KBFactory.getInstance().getKBImplementation().getKbModel();
 
  
     }

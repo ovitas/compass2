@@ -1,33 +1,21 @@
 package no.ovitas.compass2.webapp.action;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Collection;
 
-import javax.swing.tree.TreeNode;
-
-import org.apache.commons.digester.SetRootRule;
-import org.springframework.beans.factory.ListableBeanFactory;
-
-import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.RelationType;
 import no.ovitas.compass2.model.ResultObject;
-import no.ovitas.compass2.model.Topic;
-import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.CompassManager;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.factory.CompassManagerFactory;
 import no.ovitas.compass2.service.factory.KBFactory;
-import no.ovitas.compass2.service.impl.ConfigurationManagerImpl;
-import no.ovitas.compass2.Constants;
-import no.ovitas.compass2.service.impl.ConfigurationManagerImpl;
+
 import com.opensymphony.xwork2.Preparable;
 
 public class SearchAction extends BaseAction implements Preparable {
@@ -38,6 +26,8 @@ public class SearchAction extends BaseAction implements Preparable {
 	 * FIELDS
 	 */
 	
+	private boolean firstTime;
+	private boolean treeEmpty;
 	private String search;
 	private Integer hopCount;
 	private double expansionThreshold;
@@ -199,10 +189,13 @@ public class SearchAction extends BaseAction implements Preparable {
 	
 	public String execute() {
 		log.info("searchAction.execute()");	
+		this.firstTime=true;
+		this.treeEmpty=true;
 		return SUCCESS;
 	}
 
 	public String search() {
+	    this.firstTime=false;
 		log.info("showResults running...");
 		log.info("lucene.spellchecker.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.dir"));
 		log.info("lucene.spellchecker.index.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.index.dir"));
@@ -268,7 +261,13 @@ public class SearchAction extends BaseAction implements Preparable {
 			setResult(hits);
 			setFilteredResult(filteredHits);
 		}
-		setTreeJson(createJson(expansions));
+		String cj = createJson(expansions);
+		setTreeJson(cj);
+		if(cj!=null && !cj.isEmpty()){
+		 this.treeEmpty = false;
+		}else{
+		  this.treeEmpty = true;
+		}
 		
 		return "showResults";
 	}
@@ -381,6 +380,14 @@ public class SearchAction extends BaseAction implements Preparable {
 	 */
 	public void setHopCount(Integer hopCount) {
 		this.hopCount = hopCount;
+	}
+
+	public Boolean getFirstTime() {
+		return new Boolean(firstTime);
+	}
+
+	public Boolean getTreeEmpty() {
+		return new Boolean(treeEmpty);
 	}
 
 }
