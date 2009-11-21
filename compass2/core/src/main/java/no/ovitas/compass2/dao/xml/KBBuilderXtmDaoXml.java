@@ -174,6 +174,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							relationType = new RelationType();
 							relationType.setId(href);
 							relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
+							relationType.setGeneralizationWeight(.1 + (useRandomWeight ? (Math.random() - .1) * .2 : 0));
 							if (baseNameStringNode != null)
 								relationType.setRelationName(baseNameStringNode);
 							else
