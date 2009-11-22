@@ -83,6 +83,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 
 		Map<String, Element> allNodes = new TreeMap<String, Element>();
 		Map<String, Topic> goodNodes = new TreeMap<String, Topic>();
+		List<Element> assocList = new ArrayList<Element>();
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager) context.getBean("configurationManager");
@@ -107,12 +108,16 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 			Document document = saxReader.read(kbAccessString);
 
 			// Examine Topics
-			List<Element> topicList = document.selectNodes("//" + TOPIC_NODE);
-			log.info("topic count: " + topicList.size());
+			//List<Element> topicList = document.selectNodes("//" + TOPIC_NODE);
+			//log.info("topic count: " + topicList.size());
+			Element rootElement = document.getRootElement();
+			rootElement.nodeIterator();
 
-			if (topicList != null && topicList.size() > 0) {
-				for (Element topicElement : topicList) {
-                     
+			if (rootElement!=null) {
+				for (java.util.Iterator<Node> i= rootElement.nodeIterator();i.hasNext();) {
+					Node actNode = i.next();
+					if(actNode!=null && actNode.getName()!=null && actNode.getName().equals("topic")){
+					Element topicElement = (Element)actNode;
 					// Get topic id
 					String topicId = topicElement.attributeValue(ID_ATTR);				
 					topicId = "#" + topicId;
@@ -143,12 +148,18 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							}
 						}
 					}
-					allNodes.put(topicId, topicElement);
+					 allNodes.put(topicId, topicElement);
+					}else{
+						if(actNode!=null && actNode.getName()!=null && actNode.getName().equals("association")){
+							assocList.add((Element)actNode);
+						}
+					}
 				}
 			}
 			
 			// Examine associations
-			List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
+			//List<Element> assocList = document.selectNodes("//" + ASSOCIATION_NODE);
+			log.info("allnode count: " + allNodes.size());
 			log.info("association count: " + assocList.size());
             
 			// Iterate over associations
@@ -175,6 +186,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							relationType.setId(href);
 							relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
 							relationType.setGeneralizationWeight(.1 + (useRandomWeight ? (Math.random() - .1) * .2 : 0));
+
 							if (baseNameStringNode != null)
 								relationType.setRelationName(baseNameStringNode);
 							else
@@ -263,7 +275,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 						}
 					}
 				}
-			}
+			} //eddig
 
 		} catch (DocumentException e) {
 			log.error("Error parsing document: " + kbAccessString + " - " + e.getMessage());
