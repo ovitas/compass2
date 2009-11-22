@@ -2,7 +2,7 @@
 <!--
 tree.jsp
 -->
-<s:set name="treeJson"  value="treeJson" scope="request"/>
+
 <script type="text/javascript">
 Ext.onReady(function(){
 

@@ -64,6 +64,7 @@
 		<c:if test="${not firstTime }">
 		    <c:if test="${not treeEmpty }">
 			  <h1><fmt:message key="topic.expansion"/></h1>
+			  <s:set name="treeJson"  value="treeJson" scope="request"/>
 			  <%@ include file="/common/tree.jsp" %>
 			  <br />
 		    </c:if>
