@@ -224,9 +224,9 @@
             <version>${struts.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.jsonplugin</groupId>
-            <artifactId>jsonplugin</artifactId>
-            <version>${jsonplugin.version}</version>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${struts.version}</version>
         </dependency>
         <dependency>
             <groupId>velocity</groupId>
