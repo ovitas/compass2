@@ -36,7 +36,7 @@ public class Topic implements Serializable, Comparable {
 	
 	public void setName(String name) {
 		if(name!=null){
-		 this.name = name.trim();
+		 this.name = name.trim().replaceAll("\"", "");
 		}else{
 			this.name=null;
 		}
@@ -63,7 +63,9 @@ public class Topic implements Serializable, Comparable {
 	}
 	
 	public void addAlternativeName(String altName){
-		this.alternativeNames.add(altName);
+		if(altName!=null){
+		 this.alternativeNames.add(altName.trim().replaceAll("\"", ""));
+		}
 	}
 
 	public int compareTo(Object o) {
