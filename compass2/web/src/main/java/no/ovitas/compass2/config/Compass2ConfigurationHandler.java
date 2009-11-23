@@ -53,7 +53,6 @@ public class Compass2ConfigurationHandler {
 				config = (Compass2Configuration)digester.parse(cfile);
 			} catch (Exception e) {
 				logger.fatal("Exception occured while loading and processing the configuration: " + e.getMessage(),e);
-				
 			}
 		}
 	}
@@ -66,14 +65,15 @@ public class Compass2ConfigurationHandler {
 		String prefix = ConfigConstants.TAG_COPMASS2_CONFIG;
 		
 		String fullTextSearchTag				= prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH;
-		String languageToolsImplementationTag	= prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS		+ "/" + ConfigConstants.TAG_LANGUAGE_TOOLS_IMPLEMENTATION;
+		String languageToolsTag					= prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS;
 		String knowledgeBasesTag				= prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASES;
 		String resultTag						= prefix + "/" + ConfigConstants.TAG_RESULT;
 		
 		String fullTextSearchImplementationTag	= fullTextSearchTag		+ "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH_IMPLEMENTATION;
 		String contentIndexerImplementationTag	= fullTextSearchTag		+ "/" + ConfigConstants.TAG_CONTENT_INDEXER_IMPLEMENTATION;
+		String languageToolsImplementationTag	= languageToolsTag		+ "/" + ConfigConstants.TAG_LANGUAGE_TOOLS_IMPLEMENTATION;
+		String knowledgeBaseImplementationTag	= knowledgeBasesTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION;
 		String knowledgeBaseTag					= knowledgeBasesTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE;	
-		String knowledgeBaseImplementationTag	= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION;
 		String expansionTag						= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_EXPANSION;
 		String associationTypesTag 				= expansionTag			+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPES;
 		String associationTypeTag				= associationTypesTag	+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPE;
@@ -93,10 +93,10 @@ public class Compass2ConfigurationHandler {
 		
 		// FullTextSearchImplementation Params
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext      (fullTextSearchImplementationTag + "/" + paramTag, "addParam");
 
 		// FullTextSearchImplementation Param
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + paramTag, Param.class);
+		digester.addSetNext      (fullTextSearchImplementationTag + "/" + paramTag, "addParam");
 		digester.addSetProperties(fullTextSearchImplementationTag + "/" + paramTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(fullTextSearchImplementationTag + "/" + paramTag, ConfigConstants.ATTR_VALUE, "value");
 		
@@ -113,10 +113,10 @@ public class Compass2ConfigurationHandler {
 		
 		// LanguageToolsImplementation Params
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext      (languageToolsImplementationTag + "/" + paramTag, "addParam");
 
 		// LanguageToolsImplementation Param
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + paramTag, Param.class);
+		digester.addSetNext      (languageToolsImplementationTag + "/" + paramTag, "addParam");
 		digester.addSetProperties(languageToolsImplementationTag + "/" + paramTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(languageToolsImplementationTag + "/" + paramTag, ConfigConstants.ATTR_VALUE, "value");
 		
@@ -133,10 +133,10 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBaseImplementation Params
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext      (knowledgeBaseImplementationTag + "/" + paramTag, "addParam");
 
 		// KnowledgeBaseImplementation Param
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + paramTag, Param.class);
+		digester.addSetNext      (knowledgeBaseImplementationTag + "/" + paramTag, "addParam");
 		digester.addSetProperties(knowledgeBaseImplementationTag + "/" + paramTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(knowledgeBaseImplementationTag + "/" + paramTag, ConfigConstants.ATTR_VALUE, "value");
 		
@@ -149,10 +149,10 @@ public class Compass2ConfigurationHandler {
 		
 		// AssociationTypes
 		digester.addObjectCreate (associationTypesTag, AssociationTypes.class);	
-		digester.addSetNext      (associationTypeTag, "addAssociationType");
 		
 		// AssociationType
 		digester.addObjectCreate (associationTypeTag, AssociationType.class);
+		digester.addSetNext      (associationTypeTag, "addAssociationType");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_ID, "id");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_AHEAD, "weightAhead");

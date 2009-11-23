@@ -27,7 +27,9 @@ public class KnowledgeBases {
 
 	// Constructors
 
-	public KnowledgeBases() {}
+	public KnowledgeBases() {
+		knowledgeBases = new ArrayList<KnowledgeBase>();
+	}
 
 	// Methods
 }

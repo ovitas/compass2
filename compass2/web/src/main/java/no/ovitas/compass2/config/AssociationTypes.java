@@ -27,7 +27,9 @@ public class AssociationTypes {
 
 	// Constructors
 
-	public AssociationTypes() {}
+	public AssociationTypes() {
+		associationTypes = new ArrayList<AssociationType>();
+	}
 
 	// Methods
 	

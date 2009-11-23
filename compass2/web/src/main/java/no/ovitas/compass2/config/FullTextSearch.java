@@ -54,7 +54,10 @@ public class FullTextSearch {
 
 	// Constructors
 
-	public FullTextSearch() {}
+	public FullTextSearch() {
+		fullTextSearchImplementation = new FullTextSearchImplementation();
+		contentIndexerImplementation = new ContentIndexerImplementation();
+	}
 
 	// Methods
 }

@@ -21,11 +21,7 @@ public class ParamContainer {
 	protected Map<String, Param > params;
 
 	// Getter / setter methods
-	
-	public ParamContainer() {
-		params = new TreeMap<String, Param>();
-	}
-	
+		
 	public void addParam(Param param){
 		params.put(param.getName(), param);
 	}
@@ -36,6 +32,12 @@ public class ParamContainer {
 	
 	public Collection<Param> getParams(){
 		return params.values();
+	}
+	
+	// Constructor
+
+	public ParamContainer() {
+		params = new TreeMap<String, Param>();
 	}
 
 	// Methods

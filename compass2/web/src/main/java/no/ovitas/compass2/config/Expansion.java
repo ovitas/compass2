@@ -17,7 +17,7 @@ public class Expansion {
 	private String prefixMatch;
 	private String exansionThreshold;
 	private String maxNumOfTopicToExpand;
-	private ArrayList<AssociationType> associationTypes;
+	private AssociationTypes associationTypes;
 
 	// Getter / setter methods
 
@@ -52,18 +52,20 @@ public class Expansion {
 	public void setMaxNumOfTopicToExpand(String maxNumOfTopicToExpand) {
 		this.maxNumOfTopicToExpand = maxNumOfTopicToExpand;
 	}
-
-	public ArrayList<AssociationType> getAssociationTypes() {
+	
+	public AssociationTypes getAssociationTypes() {
 		return associationTypes;
 	}
 
-	public void setAssociationTypes(ArrayList<AssociationType> associationTypes) {
+	public void setAssociationTypes(AssociationTypes associationTypes) {
 		this.associationTypes = associationTypes;
 	}
-
+	
 	// Constructors
 
-	public Expansion() {}
+	public Expansion() {
+		associationTypes = new AssociationTypes();
+	}
 
 	// Methods
 }
