@@ -17,13 +17,13 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
 		<result-types>
-            <result-type name="json" class="com.googlecode.jsonplugin.JSONResult"/>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
         </result-types>
         <interceptors>
             <!-- Interceptor to handle allowing only admins to certain actions -->
             <!--<interceptor name="adminOnly" class="adminInterceptor"/>-->
             <!-- Copied from struts-default.xml and changed validation exclude methods -->
-            <interceptor name="json" class="com.googlecode.jsonplugin.JSONInterceptor"/>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
             
             <interceptor-stack name="defaultStack">
                 <interceptor-ref name="exception"/>
