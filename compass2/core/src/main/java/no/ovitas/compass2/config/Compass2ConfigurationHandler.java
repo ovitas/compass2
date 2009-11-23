@@ -96,7 +96,7 @@ public class Compass2ConfigurationHandler {
 		
 		// FullTextSearchImplementation Params
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
+		digester.addSetNext		 (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// FullTextSearchImplementation Param
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + paramTag, Param.class);
@@ -115,12 +115,12 @@ public class Compass2ConfigurationHandler {
 		
 		// LanguageToolsImplementation
 		digester.addObjectCreate (languageToolsImplementationTag, LanguageToolsImplementation.class);
-		digester.addSetNext (languageToolsImplementationTag, "setLanguageToolsImplementation");
+		digester.addSetNext		 (languageToolsImplementationTag, "setLanguageToolsImplementation");
 		digester.addSetProperties(languageToolsImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageToolsImplementation Params
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
+		digester.addSetNext		 (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// LanguageToolsImplementation Param
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + paramTag, Param.class);
@@ -144,7 +144,7 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBaseImplementation Params
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
+		digester.addSetNext		 (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// KnowledgeBaseImplementation Param
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + paramTag, Param.class);
@@ -154,7 +154,7 @@ public class Compass2ConfigurationHandler {
 		
 		// Expansion
 		digester.addObjectCreate (expansionTag, Expansion.class);
-		digester.addSetNext (expansionTag, "setExpansion");
+		digester.addSetNext		 (expansionTag, "setExpansion");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_USE_RANDOM_WEIGHT, "useRandomWeight");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_EXPANSION_THRESHOLD, "expansionThreshold");
@@ -173,7 +173,7 @@ public class Compass2ConfigurationHandler {
 		
 		// Result
 		digester.addObjectCreate (resultTag, Result.class);
-		digester.addSetNext(resultTag, "setResult");
+		digester.addSetNext		 (resultTag, "setResult");
 		digester.addSetProperties(resultTag, ConfigConstants.ATTR_RESULT_THRESHOLD, "resultThreshold");
 		
 	}

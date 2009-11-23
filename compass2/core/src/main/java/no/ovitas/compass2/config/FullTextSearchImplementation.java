@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
  * @author csanyi
  * 
  */
-public class FullTextSearchImplementation  {
+public class FullTextSearchImplementation {
 
 	// Attributes
 

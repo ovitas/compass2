@@ -2,6 +2,10 @@ package no.ovitas.compass2.config;
 
 import org.apache.log4j.Logger;
 
+/**
+ * @author csanyi
+ * 
+ */
 public class KnowledgeBaseImplementation {
 
 	// Attributes

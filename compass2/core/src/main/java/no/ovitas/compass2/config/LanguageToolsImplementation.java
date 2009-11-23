@@ -31,6 +31,7 @@ public class LanguageToolsImplementation {
 	public void setParams(ParamContainer params) {
 		this.params = params;
 	}
+
 	// Constructors
 
 	public LanguageToolsImplementation() {
