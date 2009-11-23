@@ -91,7 +91,7 @@ public class Compass2ConfigurationHandler {
 		
 		// FullTextSearchImplementation
 		digester.addObjectCreate (fullTextSearchImplementationTag, FullTextSearchImplementation.class);
-		digester.addSetNext (fullTextSearchImplementationTag, "setFullTextSearchImplementation");
+		digester.addSetNext		 (fullTextSearchImplementationTag, "setFullTextSearchImplementation");
 		digester.addSetProperties(fullTextSearchImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// FullTextSearchImplementation Params
@@ -106,7 +106,7 @@ public class Compass2ConfigurationHandler {
 		
 		// ContentIndexerImplementation
 		digester.addObjectCreate (contentIndexerImplementationTag, ContentIndexerImplementation.class);
-		digester.addSetNext (contentIndexerImplementationTag, "setContentIndexerImplementation");
+		digester.addSetNext		 (contentIndexerImplementationTag, "setContentIndexerImplementation");
 		digester.addSetProperties(contentIndexerImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageTools
@@ -130,7 +130,7 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBases
 		digester.addObjectCreate (knowledgeBasesTag, KnowledgeBases.class);
-		digester.addSetNext(resultTag, "setKnowledgeBases");
+		digester.addSetNext		 (knowledgeBasesTag, "setKnowledgeBases");
 		
 		// KnowledgeBase
 		digester.addObjectCreate (knowledgeBaseTag, KnowledgeBase.class);
@@ -139,7 +139,7 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBaseImplementation
 		digester.addObjectCreate (knowledgeBaseImplementationTag, KnowledgeBaseImplementation.class);
-		digester.addSetNext (knowledgeBaseImplementationTag, "setKnowledgeBaseImplementation");
+		digester.addSetNext		 (knowledgeBaseImplementationTag, "setKnowledgeBaseImplementation");
 		digester.addSetProperties(knowledgeBaseImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// KnowledgeBaseImplementation Params
