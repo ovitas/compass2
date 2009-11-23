@@ -84,16 +84,19 @@ public class Compass2ConfigurationHandler {
 
 		// FullTextSearch
 		digester.addObjectCreate (fullTextSearchTag, FullTextSearch.class);
+		digester.addSetNext		 (fullTextSearchTag, "setFullTextSearch");
 		digester.addSetProperties(fullTextSearchTag, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
 		digester.addSetProperties(fullTextSearchTag, ConfigConstants.ATTR_FUZZY_MATCH, "fuzzyMatch");
-		digester.addSetNext(fullTextSearchTag, "setFullTextSearch");
+		
 		
 		// FullTextSearchImplementation
 		digester.addObjectCreate (fullTextSearchImplementationTag, FullTextSearchImplementation.class);
+		digester.addSetNext (fullTextSearchImplementationTag, "setFullTextSearchImplementation");
 		digester.addSetProperties(fullTextSearchImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// FullTextSearchImplementation Params
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
+		digester.addSetNext (fullTextSearchImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// FullTextSearchImplementation Param
 		digester.addObjectCreate (fullTextSearchImplementationTag + "/" + paramTag, Param.class);
@@ -103,6 +106,7 @@ public class Compass2ConfigurationHandler {
 		
 		// ContentIndexerImplementation
 		digester.addObjectCreate (contentIndexerImplementationTag, ContentIndexerImplementation.class);
+		digester.addSetNext (contentIndexerImplementationTag, "setContentIndexerImplementation");
 		digester.addSetProperties(contentIndexerImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageTools
@@ -111,10 +115,12 @@ public class Compass2ConfigurationHandler {
 		
 		// LanguageToolsImplementation
 		digester.addObjectCreate (languageToolsImplementationTag, LanguageToolsImplementation.class);
+		digester.addSetNext (languageToolsImplementationTag, "setLanguageToolsImplementation");
 		digester.addSetProperties(languageToolsImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageToolsImplementation Params
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
+		digester.addSetNext (languageToolsImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// LanguageToolsImplementation Param
 		digester.addObjectCreate (languageToolsImplementationTag + "/" + paramTag, Param.class);
@@ -133,10 +139,12 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBaseImplementation
 		digester.addObjectCreate (knowledgeBaseImplementationTag, KnowledgeBaseImplementation.class);
+		digester.addSetNext (knowledgeBaseImplementationTag, "setKnowledgeBaseImplementation");
 		digester.addSetProperties(knowledgeBaseImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// KnowledgeBaseImplementation Params
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
+		digester.addSetNext (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// KnowledgeBaseImplementation Param
 		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + paramTag, Param.class);
@@ -146,6 +154,7 @@ public class Compass2ConfigurationHandler {
 		
 		// Expansion
 		digester.addObjectCreate (expansionTag, Expansion.class);
+		digester.addSetNext (expansionTag, "setExpansion");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_USE_RANDOM_WEIGHT, "useRandomWeight");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
 		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_EXPANSION_THRESHOLD, "expansionThreshold");
