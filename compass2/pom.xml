@@ -566,7 +566,7 @@
         <jaxb.version>2.1.6</jaxb.version>
         <xerces.version>2.9.1</xerces.version>
         <org.apache.servicemix.bundles.version>1.4.2_1</org.apache.servicemix.bundles.version>
-        <jsonplugin.version>0.22</jsonplugin.version>
+        <!--   jsonplugin.version>0.34</jsonplugin.version  deprecated -->
 		<commons.codec.version>1.4</commons.codec.version>
 		<!-- Lucene settings -->
 		<lucene.version>2.4.1</lucene.version>
