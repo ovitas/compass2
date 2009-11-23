@@ -223,28 +223,6 @@ public class SearchAction extends BaseAction implements Preparable {
 		List<Hit> hits = resultObj.getHits();
 		List<Set<TopicTreeNode>> expansions = resultObj.getExpansions();
 		
-		//log.info("Search string: "+search);
-		/*		if(expansions != null && expansions.size()>0){
-			//setResult(hits);
-			log.info("There are "+expansions.size()+" Expansions");
-			for(Set<TopicTreeNode> exp: expansions){
-				log.info(exp);
-				if(exp != null && exp.size()>0){
-					for(Topic topic: exp){
-						//log.info("Topic: "+topic.getName());
-						//log.info(topic);
-						List<Relation> relations = topic.getRelations();
-						if(relations != null && relations.size()>0){
-							for(Relation relation: relations){
-								log.info("Relation: "+relation.toString());
-							}
-						}
-					}	
-				}
-			}
-		}else{
-			log.info("There are no Expansions...");
-		}*/
 		
 		if(hits != null && hits.size() > 0){
 			String docRoot = configurationManager.getConfigParameter(no.ovitas.compass2.Constants.DOCUMENT_REPOSITORY_PROPERTY);
@@ -266,7 +244,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		}
 		String cj = createJson(expansions);
 		if(log.isDebugEnabled()){
-			log.debug("JSON string: "+cj);
+			/*log.debug("JSON string: "+cj);
 			try {
 				File f = File.createTempFile("json-compass2", "txt");
 				FileWriter fw = new FileWriter(f);
@@ -278,7 +256,7 @@ public class SearchAction extends BaseAction implements Preparable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			*/
 			
 		}
 		setTreeJson(cj);
@@ -358,9 +336,9 @@ public class SearchAction extends BaseAction implements Preparable {
 		boolean leaf = (children==null || children.isEmpty());
 		
 		if(leaf){
-			node = "{text:'"+text+"', id:"+jsonNodeId+", leaf:true}";
+			node = "{text:\""+text+"\", id:"+jsonNodeId+", leaf:true}";
 		}else{
-			node = "{text:'"+text+"', id:"+jsonNodeId+", leaf:false, " +
+			node = "{text:\""+text+"\", id:"+jsonNodeId+", leaf:false, " +
 					"children:[";
 			for(String child: children){
 				childrenString += child+", ";
