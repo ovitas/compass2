@@ -4,10 +4,13 @@
 package no.ovitas.compass2.config;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 /**
  * @author csanyi
@@ -19,6 +22,7 @@ public class ParamContainer {
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	protected Map<String, Param > params;
+	protected List<Param> temp;
 
 	// Getter / setter methods
 		
@@ -37,7 +41,7 @@ public class ParamContainer {
 	// Constructor
 
 	public ParamContainer() {
-		params = new TreeMap<String, Param>();
+		params = Collections.synchronizedSortedMap(new TreeMap<String, Param>());
 	}
 
 	// Methods

@@ -45,6 +45,7 @@ public class CompassManagerImpl implements CompassManager {
 	protected boolean prefixMatchingEnabled;
 	protected int hitThreshold;
 	private Log log = LogFactory.getLog(getClass());
+	private double resultThreshold;
 	
 
 
@@ -244,5 +245,15 @@ public class CompassManagerImpl implements CompassManager {
 
 	public DocumentDetails getDocument(String id) {
 		return this.ftsManager.getDocument(id);
+	}
+
+
+	public double getResultThreshold() {
+		return resultThreshold;
+	}
+
+
+	public void setResultThreshold(double resultThreshold) {
+		this.resultThreshold = resultThreshold;
 	}
 }

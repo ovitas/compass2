@@ -160,6 +160,7 @@ public class Compass2ConfigurationHandler {
 		
 		// Result
 		digester.addObjectCreate (resultTag, Result.class);
+		digester.addSetNext(resultTag, "setResult");
 		digester.addSetProperties(resultTag, ConfigConstants.ATTR_RESULT_THRESHOLD, "resultThreshold");
 		
 	}
