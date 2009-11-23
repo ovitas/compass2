@@ -24,6 +24,7 @@ public interface CompassManager {
 	public void setUseStemmingEnabled(boolean useStemming);
 	public void setPrefixMatchingEnabled(boolean prefixMatching);
 	public void setHitThreshold(int hitThreshold);
+	public void setResultThreshold(double resultThreshold);
 	
 	public boolean isUseStemmingEnabled();
 	public boolean isPrefixMatchingEnabled();
