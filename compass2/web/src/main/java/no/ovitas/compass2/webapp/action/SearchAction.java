@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.ConfigConstants;
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.RelationType;
@@ -16,8 +19,13 @@ import no.ovitas.compass2.model.ResultObject;
 import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.CompassManager;
 import no.ovitas.compass2.service.ConfigurationManager;
+import no.ovitas.compass2.service.FullTextSearchManager;
+import no.ovitas.compass2.service.KnowledgeBaseManager;
+import no.ovitas.compass2.service.LanguageToolsManager;
 import no.ovitas.compass2.service.factory.CompassManagerFactory;
+import no.ovitas.compass2.service.factory.FTSFactory;
 import no.ovitas.compass2.service.factory.KBFactory;
+import no.ovitas.compass2.service.factory.LTFactory;
 
 import com.opensymphony.xwork2.Preparable;
 
@@ -35,6 +43,7 @@ public class SearchAction extends BaseAction implements Preparable {
 	private Integer hopCount;
 	private double expansionThreshold;
 	private double resultThreshold;
+	private int maxNumberOfHits;
 
 	private boolean prefixMatch;
 	private boolean fuzzyMatch;
@@ -194,6 +203,9 @@ public class SearchAction extends BaseAction implements Preparable {
 		log.info("searchAction.execute()");	
 		this.firstTime=true;
 		this.treeEmpty=true;
+		this.maxTopicNumberToExpand = Integer.valueOf(configurationManager.getConfigParameter(Constants.MAX_TOPIC_NUMBER_TO_EXPAND));
+		this.maxNumberOfHits = Integer.valueOf(configurationManager.getConfigParameter(Constants.LUCENE_FTS_MAX_HITS_PER_QUERY));
+		
 		return SUCCESS;
 	}
 
@@ -208,8 +220,14 @@ public class SearchAction extends BaseAction implements Preparable {
 		if(search==null ||  search.equals("")){
 			return SUCCESS;
 		}
+		FullTextSearchManager ftsManager;
+		KnowledgeBaseManager kbManager;
+		ftsManager = FTSFactory.getInstance().getFTSImplementation();
+		kbManager = KBFactory.getInstance().getKBImplementation();
+		ftsManager.setMaxNumberOfHits(maxNumberOfHits);
+		kbManager.setExpansionThreshold(expansionThreshold);
+		kbManager.setMaxTopicNumberToExpand(maxTopicNumberToExpand);
 		
-
 		int hc = hopCount!=null ? hopCount.intValue() : 0;
 		ResultObject resultObj = compassManager.search(
 			search, 
@@ -385,6 +403,14 @@ public class SearchAction extends BaseAction implements Preparable {
 
 	public Boolean getTreeEmpty() {
 		return new Boolean(treeEmpty);
+	}
+
+	public int getMaxNumberOfHits() {
+		return maxNumberOfHits;
+	}
+
+	public void setMaxNumberOfHits(int maxNumberOfHits) {
+		this.maxNumberOfHits = maxNumberOfHits;
 	}
 
 }
