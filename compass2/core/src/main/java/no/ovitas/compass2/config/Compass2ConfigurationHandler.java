@@ -134,7 +134,7 @@ public class Compass2ConfigurationHandler {
 		
 		// KnowledgeBase
 		digester.addObjectCreate (knowledgeBaseTag, KnowledgeBase.class);
-		digester.addSetNext		 (knowledgeBaseTag, "AddElement");
+		digester.addSetNext		 (knowledgeBaseTag, "addElement");
 		digester.addSetProperties(knowledgeBaseTag, ConfigConstants.ATTR_NAME, "name");
 		
 		// KnowledgeBaseImplementation
