@@ -48,14 +48,14 @@
    
     <logger name="no.ovitas.compass2">
         <level value="DEBUG"/>
-        <appender-ref ref="CONSOLE"/>
+        <!--<appender-ref ref="CONSOLE"/>-->
         <appender-ref ref="FILE"/>
     </logger>
 
-    <!--<root>
+    <root>
         <level value="WARN"/>
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </root>-->
+        <!--<appender-ref ref="FILE"/>-->
+    </root>
 
 </log4j:configuration>
