@@ -64,12 +64,15 @@ public class Compass2ConfigurationHandler {
 	private void setupDigester(Digester digester){
 
 		String prefix = ConfigConstants.TAG_COPMASS2_CONFIG;
+		
 		String fullTextSearchTag				= prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH;
-		String fullTextSearchImplementationTag	= prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH	+ "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH_IMPLEMENTATION;
-		String contentIndexerImplementationTag	= prefix + "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH	+ "/" + ConfigConstants.TAG_CONTENT_INDEXER_IMPLEMENTATION;
 		String languageToolsImplementationTag	= prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS		+ "/" + ConfigConstants.TAG_LANGUAGE_TOOLS_IMPLEMENTATION;
-		String knowledgeBaseTag					= prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASES	+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE;
+		String knowledgeBasesTag				= prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASES;
 		String resultTag						= prefix + "/" + ConfigConstants.TAG_RESULT;
+		
+		String fullTextSearchImplementationTag	= fullTextSearchTag		+ "/" + ConfigConstants.TAG_FULL_TEXT_SEARCH_IMPLEMENTATION;
+		String contentIndexerImplementationTag	= fullTextSearchTag		+ "/" + ConfigConstants.TAG_CONTENT_INDEXER_IMPLEMENTATION;
+		String knowledgeBaseTag					= knowledgeBasesTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE;	
 		String knowledgeBaseImplementationTag	= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION;
 		String expansionTag						= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_EXPANSION;
 		String associationTypesTag 				= expansionTag			+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPES;
