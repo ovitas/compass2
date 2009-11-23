@@ -46,6 +46,7 @@ public class CompassManagerImpl implements CompassManager {
 	protected int hitThreshold;
 	private Log log = LogFactory.getLog(getClass());
 	private double resultThreshold;
+	private int maxExpansionNode;
 	
 
 
@@ -255,5 +256,15 @@ public class CompassManagerImpl implements CompassManager {
 
 	public void setResultThreshold(double resultThreshold) {
 		this.resultThreshold = resultThreshold;
+	}
+
+
+	public int getMaxExpansionNode() {
+		return maxExpansionNode;
+	}
+
+
+	public void setMaxExpansionNode(int maxExpansionNode) {
+		this.maxExpansionNode = maxExpansionNode;
 	}
 }

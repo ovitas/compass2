@@ -49,6 +49,9 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	protected ConfigurationManager configManager;
     private Log log = LogFactory.getLog(getClass());
 	private Map<String, String> fields = new HashMap<String, String>();
+	private int hitThreshold;
+	private double resultThreshold;
+	private int maxNumberOfHits;
     
     
 	public void setConfiguration(ConfigurationManager manager){
@@ -56,7 +59,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 	
 	public LuceneFTSManagerImpl(){
-
+		maxNumberOfHits = -1;
 	}
 
 
@@ -210,13 +213,15 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 */
 	public List<Hit> doSearch(String search, int pageNum){
 		String pageMaxHits = configManager.getConfigParameter(Constants.LUCENE_FTS_MAX_HITS_PER_QUERY);
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
-		int maxHitsNum = 100;
-		try{
-			maxHitsNum= Integer.parseInt(pageMaxHits);
-		}catch(Exception ex){
+		if(maxNumberOfHits==-1){
+			try{
+				maxNumberOfHits= Integer.parseInt(pageMaxHits);
+			}catch(Exception ex){
+				maxNumberOfHits=100;	
+			}
 			
 		}
+		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
 		
 		Query q = null;
 		IndexSearcher searcher = null;
@@ -240,7 +245,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				
 			}
 			try {
-				PagerHitCollector phc = new PagerHitCollector((pageNum-1)*maxHitsNum, pageNum*maxHitsNum);
+				PagerHitCollector phc = new PagerHitCollector((pageNum-1)*this.maxNumberOfHits, pageNum*this.maxNumberOfHits);
 				try{
 				 searcher.search(q,phc);
 				}catch(RuntimeException e){
@@ -329,6 +334,27 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		
 
 		return null;
+	}
+
+	@Override
+	public void setHitThreshold(int hitThreshold) {
+		this.hitThreshold = hitThreshold;
+		
+	}
+
+	@Override
+	public void setResultThreshold(double resultThreshold) {
+		this.resultThreshold = resultThreshold;
+	
+		
+	}
+
+	public int getMaxNumberOfHits() {
+		return maxNumberOfHits;
+	}
+
+	public void setMaxNumberOfHits(int maxNumberOfHits) {
+		this.maxNumberOfHits = maxNumberOfHits;
 	}
 	
 

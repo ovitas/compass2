@@ -27,6 +27,8 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 
 	protected KBBuilderDao builderDao;
 	protected KnowledgeBaseHolder knowledgeBase;
+	protected double expansionThreshold;
+	
 
 	protected int maxTopicNumberToExpand;
 	
@@ -219,6 +221,23 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	public KnowledgeBaseHolder getKbModel() {
 		return this.knowledgeBase;
 	}
+
+	public double getExpansionThreshold() {
+		return expansionThreshold;
+	}
+
+	public void setExpansionThreshold(double expansionThreshold) {
+		this.expansionThreshold = expansionThreshold;
+	}
+
+	public int getMaxTopicNumberToExpand() {
+		return maxTopicNumberToExpand;
+	}
+
+	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand) {
+		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
+	}
+
 	
 	
 

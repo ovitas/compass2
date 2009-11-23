@@ -25,6 +25,7 @@ public interface CompassManager {
 	public void setPrefixMatchingEnabled(boolean prefixMatching);
 	public void setHitThreshold(int hitThreshold);
 	public void setResultThreshold(double resultThreshold);
+	public void setMaxExpansionNode(int maxExpansionNode) ;
 	
 	public boolean isUseStemmingEnabled();
 	public boolean isPrefixMatchingEnabled();

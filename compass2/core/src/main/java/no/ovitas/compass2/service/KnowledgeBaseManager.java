@@ -15,6 +15,8 @@ public interface KnowledgeBaseManager {
 
 	
 	public void setConfiguration(ConfigurationManager manager);
+	public void setExpansionThreshold(double expansionThreshold);
+	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand);
 	/**
 	 * 
 	 * @param fuzzyMatch
