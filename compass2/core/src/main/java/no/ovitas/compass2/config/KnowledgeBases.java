@@ -13,36 +13,17 @@ import edu.emory.mathcs.backport.java.util.Collections;
  * @author csanyi
  * 
  */
-public class KnowledgeBases {
+public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 
 	// Attributes
 
 	private Logger logger = Logger.getLogger(this.getClass());
-	private Map<String, KnowledgeBase> knowledgeBases;
-	private List<KnowledgeBase> temp;
-
-	// Getter / setter methods
-
-	public Map<String, KnowledgeBase> getKnowledgeBases() {
-		return knowledgeBases;
-	}
-
-	public void addKnowledgeBase(KnowledgeBase kb){
-		temp.add(kb);
-	}
 
 	// Constructors
 
 	public KnowledgeBases() {
-		temp = new ArrayList<KnowledgeBase>();
-		this.knowledgeBases = Collections.synchronizedSortedMap(new TreeMap<String, KnowledgeBase>());
+		super();
 		
-	}
-	
-	public void postProcess(){
-		for(KnowledgeBase kb : temp){
-			this.knowledgeBases.put(kb.getName(), kb);
-		}
 	}
 
 	// Methods

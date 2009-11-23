@@ -3,6 +3,7 @@
  */
 package no.ovitas.compass2.config;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,6 @@ public class ParamContainer {
 	protected List<Param> temp;
 
 	// Getter / setter methods
-		
-	public void addParam(Param param){
-		params.put(param.getName(), param);
-	}
 	
 	public Param getParam(String name){
 		return params.get(name);
@@ -41,10 +38,21 @@ public class ParamContainer {
 	// Constructor
 
 	public ParamContainer() {
-		params = Collections.synchronizedSortedMap(new TreeMap<String, Param>());
+		temp = new ArrayList<Param>();
+		this.params = Collections.synchronizedSortedMap(new TreeMap<String, Param>());
 	}
 
 	// Methods
+	
+	public void addParam(Param param){
+		temp.add(param);
+	}
+	
+	public void postProcess(){
+		for(Param p : temp){
+			this.params.put(p.getName(), p);
+		}
+	}
 	
 	public void dumpOut(){
 		String toDumpOut = "";

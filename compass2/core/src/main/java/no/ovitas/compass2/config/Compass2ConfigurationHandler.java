@@ -45,7 +45,7 @@ public class Compass2ConfigurationHandler {
 		Digester digester = new Digester();
 		setupDigester(digester);
 		digester.setValidating(true);
-		//digester.setStackAction(new FrameworkDigesterStackAction());
+		digester.setStackAction(new ConfigDigesterStackAction());
 		
 		File cfile = new File( configPath);
 		if(cfile!=null && cfile.canRead() && cfile.isFile()){
@@ -86,6 +86,7 @@ public class Compass2ConfigurationHandler {
 		digester.addObjectCreate (fullTextSearchTag, FullTextSearch.class);
 		digester.addSetProperties(fullTextSearchTag, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
 		digester.addSetProperties(fullTextSearchTag, ConfigConstants.ATTR_FUZZY_MATCH, "fuzzyMatch");
+		digester.addSetNext(fullTextSearchTag, "setFullTextSearch");
 		
 		// FullTextSearchImplementation
 		digester.addObjectCreate (fullTextSearchImplementationTag, FullTextSearchImplementation.class);
@@ -105,7 +106,8 @@ public class Compass2ConfigurationHandler {
 		digester.addSetProperties(contentIndexerImplementationTag, ConfigConstants.ATTR_CLASS, "className");
 		
 		// LanguageTools
-		digester.addObjectCreate (prefix + "/" + ConfigConstants.TAG_LANGUAGE_TOOLS, LanguageTools.class);
+		digester.addObjectCreate (languageToolsTag, LanguageTools.class);
+		digester.addSetNext(languageToolsTag, "setLanguageTools");
 		
 		// LanguageToolsImplementation
 		digester.addObjectCreate (languageToolsImplementationTag, LanguageToolsImplementation.class);
@@ -121,11 +123,13 @@ public class Compass2ConfigurationHandler {
 		digester.addSetProperties(languageToolsImplementationTag + "/" + paramTag, ConfigConstants.ATTR_VALUE, "value");
 		
 		// KnowledgeBases
-		digester.addObjectCreate (prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASES, KnowledgeBases.class);
+		digester.addObjectCreate (knowledgeBasesTag, KnowledgeBases.class);
+		digester.addSetNext(resultTag, "setKnowledgeBases");
 		
 		// KnowledgeBase
-		digester.addObjectCreate (prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE, KnowledgeBase.class);
-		digester.addSetProperties(prefix + "/" + ConfigConstants.TAG_KNOWLEDGE_BASE, ConfigConstants.ATTR_NAME, "name");
+		digester.addObjectCreate (knowledgeBaseTag, KnowledgeBase.class);
+		digester.addSetNext		 (knowledgeBaseTag, "AddElement");
+		digester.addSetProperties(knowledgeBaseTag, ConfigConstants.ATTR_NAME, "name");
 		
 		// KnowledgeBaseImplementation
 		digester.addObjectCreate (knowledgeBaseImplementationTag, KnowledgeBaseImplementation.class);
@@ -152,7 +156,7 @@ public class Compass2ConfigurationHandler {
 		
 		// AssociationType
 		digester.addObjectCreate (associationTypeTag, AssociationType.class);
-		digester.addSetNext      (associationTypeTag, "addAssociationType");
+		digester.addSetNext      (associationTypeTag, "addElement");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_ID, "id");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_AHEAD, "weightAhead");

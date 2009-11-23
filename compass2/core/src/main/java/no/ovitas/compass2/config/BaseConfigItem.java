@@ -13,9 +13,18 @@ public class BaseConfigItem {
 
 	// Attributes
 	private Logger logger = Logger.getLogger(this.getClass());
+	protected String id;
 	protected String name;
 
 	// Getter / setter methods
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -30,5 +39,12 @@ public class BaseConfigItem {
 	public BaseConfigItem() {}
 
 	// Methods
+	
+	public void dumpOut(){
+		String toDumpOut = ".[name].="+name+"\n";
+		toDumpOut +=".[id].="+id+"\n";
+		logger.debug(toDumpOut); 
+		
+	}
 
 }
