@@ -1,5 +1,8 @@
 package no.ovitas.compass2.webapp.action;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -262,6 +265,22 @@ public class SearchAction extends BaseAction implements Preparable {
 			setFilteredResult(filteredHits);
 		}
 		String cj = createJson(expansions);
+		if(log.isDebugEnabled()){
+			log.debug("JSON string: "+cj);
+			try {
+				File f = File.createTempFile("json-compass2", "txt");
+				FileWriter fw = new FileWriter(f);
+				fw.write(cj);
+				fw.close();
+				log.debug("File name is: "+f.getAbsolutePath());
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		setTreeJson(cj);
 		if(cj!=null && !cj.isEmpty()){
 		 this.treeEmpty = false;
