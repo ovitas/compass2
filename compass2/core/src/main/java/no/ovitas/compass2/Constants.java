@@ -107,5 +107,20 @@ public class Constants {
     public static final String DATA_INDEX = "pageContent";
     
     
+    /**
+     * The compass2-config.xml configuration file
+     */
+    public static final String INDEXDIRECTORY_PATH						= "indexdirectory-path";
+    public static final String MAX_HITS_PER_QUERY						= "max-hits-per-query";
+    public static final String DOCUMENT_REPOSITORY						= "document-repository";
+    public static final String SNOWBALL_LANGUAGE						= "snowball-language";
+    public static final String LUCENE_SPELLCHECKER_DIRECTORY			= "lucene-spellchecker-directory";
+    public static final String LUCENE_SPELLCHECKER_INDEX_DIRECTORY		= "lucene-spellchecker-index-directory";
+    public static final String LUCENE_SPELLCHECKER_FIELD				= "lucene-spellchecker-field";
+    public static final String LUCENE_SPELLCHECKER_MAX_SUGGESTION_NUM	= "lucene-spellchecker-max-suggestion-num";
+    public static final String FILE_PATH								= "file-path";
+    public static final String LOAD_ON_STARTUP							= "load-on-startup";
+    
+    
     
 }
