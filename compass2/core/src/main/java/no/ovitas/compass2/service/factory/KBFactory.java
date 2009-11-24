@@ -50,7 +50,7 @@ public class KBFactory {
 				if(kbImplClassName!=null){
 					manager = (KnowledgeBaseManager)Class.forName(kbImplClassName).newInstance();
 					manager.setConfiguration(configurationManager);
-					manager.setKnowledgeBaseImpl(kb);
+					manager.setKnowledgeBaseImpl(kb.getKnowledgeBaseImplementation());
 					if(this.loadOnStartup){
 						manager.importKB(kbFile);
 					}
