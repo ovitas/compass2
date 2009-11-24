@@ -56,10 +56,6 @@ public class Compass2Configuration {
 	// Constructors
 
 	public Compass2Configuration(){
-		fullTextSearch = new FullTextSearch();
-		languageTools = new LanguageTools();
-		knowledgeBases = new KnowledgeBases();
-		result = new Result();
 	}
 	
 	// Methods
