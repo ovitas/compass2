@@ -1,5 +1,6 @@
 package no.ovitas.compass2.service.factory;
 import no.ovitas.compass2.config.FullTextSearch;
+import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.FullTextSearchManager;
 import no.ovitas.compass2.util.CompassUtil;
@@ -26,14 +27,14 @@ public class FTSFactory {
 
 	public FullTextSearchManager getFTSImplementation(){
 		if(manager==null){
-			FullTextSearch fts = configurationManager.getFullTextSearch();
-			String ftsImpl = fts.getFullTextSearchImplementation().getClassName();
-			log.info("ftsImpl configuration: "+ftsImpl);
+			FullTextSearchImplementation ftsImpl = configurationManager.getFullTextSearch().getFullTextSearchImplementation();
+			String ftsImplClassName = ftsImpl.getClassName();
+			log.info("ftsImpl configuration: "+ftsImplClassName);
 			try{
-				if(ftsImpl!=null){
-					manager = (FullTextSearchManager)Class.forName(ftsImpl).newInstance();
+				if(ftsImplClassName!=null){
+					manager = (FullTextSearchManager)Class.forName(ftsImplClassName).newInstance();
 					manager.setConfiguration(configurationManager);
-					manager.setFTSImplConfig(fts.getFullTextSearchImplementation());
+					manager.setFTSImpl(ftsImpl);
 					log.info("FTS manager initialized!");
 
 				}

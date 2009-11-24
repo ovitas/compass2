@@ -56,7 +56,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	private FullTextSearchImplementation ftsImpl;
     
 	@Override
-	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl) {
+	public void setFTSImpl(FullTextSearchImplementation ftsImpl) {
 		this.ftsImpl = ftsImpl;
 		
 	}

@@ -7,7 +7,6 @@ import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
-import no.ovitas.compass2.model.Topic;
 
 /**
  * @author magyar
@@ -19,8 +18,7 @@ public interface FullTextSearchManager {
 	public void setHitThreshold(int hitThreshold);
 	public void setResultThreshold(double resultThreshold);
 	public void setMaxNumberOfHits(int maxNumberOfHits);
-	
-	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl);
+	public void setFTSImpl(FullTextSearchImplementation ftsImpl);
 	
 	/**
 	 * 

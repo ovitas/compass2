@@ -34,6 +34,13 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 
 	protected ConfigurationManager configManager;
     private Log log = LogFactory.getLog(getClass());
+	private LanguageToolsImplementation ltImpl;
+    
+	@Override
+	public void setLanguageToolsImpl(LanguageToolsImplementation ltImpl) {
+		this.ltImpl = ltImpl;
+		
+	}
 	
 	public void setConfiguration(ConfigurationManager manager){
 		configManager = manager;
@@ -172,11 +179,5 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 		
 		
 	}
-	@Override
-	public void setLanguageToolsImpl(LanguageToolsImplementation lti) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

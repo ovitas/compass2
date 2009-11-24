@@ -15,9 +15,9 @@ public interface LanguageToolsManager {
 
 	
 	public void initSpellchecker() throws ConfigParameterMissingException, ConfigurationException, IOException;
-	public void setLanguageToolsImpl(LanguageToolsImplementation lti);
-	
 	public void setConfiguration(ConfigurationManager manager);
+	public void setLanguageToolsImpl(LanguageToolsImplementation ltImpl);
+	
 	/**
 	 * 
 	 * @param userSearch

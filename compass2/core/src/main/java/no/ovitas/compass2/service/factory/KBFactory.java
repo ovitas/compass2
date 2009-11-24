@@ -1,14 +1,13 @@
 package no.ovitas.compass2.service.factory;
+import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.KnowledgeBase;
+import no.ovitas.compass2.service.ConfigurationManager;
+import no.ovitas.compass2.service.KnowledgeBaseManager;
+import no.ovitas.compass2.util.CompassUtil;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import no.ovitas.compass2.Constants;
-import no.ovitas.compass2.service.FullTextSearchManager;
-import no.ovitas.compass2.service.KnowledgeBaseManager;
-import no.ovitas.compass2.service.ConfigurationManager;
-import no.ovitas.compass2.util.CompassUtil;
 
 /**
  * @author magyar
@@ -44,11 +43,14 @@ public class KBFactory {
 
 	public KnowledgeBaseManager getKBImplementation(){
 		if(manager==null){
-			String kbImpl = configurationManager.getConfigParameter("no.ovitas.compass2.service.KBImplementation");
+			KnowledgeBase kb = configurationManager.getKnowledgeBase("");
+			String kbImplClassName = kb.getKnowledgeBaseImplementation().getClassName();
+			log.info("kbImpl configuration: "+kbImplClassName);
 			try{
-				if(kbImpl!=null){
-					manager = (KnowledgeBaseManager)Class.forName(kbImpl).newInstance();
+				if(kbImplClassName!=null){
+					manager = (KnowledgeBaseManager)Class.forName(kbImplClassName).newInstance();
 					manager.setConfiguration(configurationManager);
+					manager.setKnowledgeBaseImpl(kb);
 					if(this.loadOnStartup){
 						manager.importKB(kbFile);
 					}

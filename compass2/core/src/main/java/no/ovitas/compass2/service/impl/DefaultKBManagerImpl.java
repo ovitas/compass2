@@ -4,12 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.context.ApplicationContext;
-
 import no.ovitas.compass2.Constants;
-import no.ovitas.compass2.config.KnowledgeBase;
+import no.ovitas.compass2.config.KnowledgeBaseImplementation;
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
@@ -20,6 +16,10 @@ import no.ovitas.compass2.service.KnowledgeBaseManager;
 import no.ovitas.compass2.util.CompassUtil;
 import no.ovitas.compass2.util.TopicUtil;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.context.ApplicationContext;
+
 /**
  * @author magyar
  * @version 1.0
@@ -29,7 +29,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	protected KBBuilderDao builderDao;
 	protected KnowledgeBaseHolder knowledgeBase;
 	protected double expansionThreshold;
-	protected KnowledgeBase knowledgeBaseParams;
+	protected KnowledgeBaseImplementation kbImpl;
 	
 
 	protected int maxTopicNumberToExpand;
@@ -241,8 +241,8 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	}
 
 	@Override
-	public void setKnowledgeBaseImpl(KnowledgeBase kb) {
-		knowledgeBaseParams = kb;
+	public void setKnowledgeBaseImpl(KnowledgeBaseImplementation kbImpl) {
+		kbImpl = kbImpl;
 		
 	}
 
