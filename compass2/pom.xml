@@ -413,9 +413,11 @@
                  <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
                  <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
                  <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <max.number.of.hits>100</max.number.of.hits>
                  <use.random.weight>true</use.random.weight>
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
+				 <expansion.threshold>0.7</expansion.threshold>
+				 <result.threshold>0.1</result.threshold>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
@@ -437,9 +439,11 @@
                  <knowledge.base.file><![CDATA[/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
                  <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
                  <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <max.number.of.hits>100</max.number.of.hits>
                  <use.random.weight>true</use.random.weight>
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
+				 <expansion.threshold>0.7</expansion.threshold>
+				 <result.threshold>0.1</result.threshold>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
@@ -461,7 +465,7 @@
                  <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
                  <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
                  <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <max.number.of.hits>100</max.number.of.hits>
                  <use.random.weight>true</use.random.weight>
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 				 <expansion.threshold>0.7</expansion.threshold>
@@ -488,9 +492,11 @@
                  <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
                  <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
                  <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <lucene.fts.max.hits.per.query>100</lucene.fts.max.hits.per.query>
+                 <max.number.of.hits>100</max.number.of.hits>
                  <use.random.weight>true</use.random.weight>
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
+				 <expansion.threshold>0.7</expansion.threshold>
+				 <result.threshold>0.1</result.threshold>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
