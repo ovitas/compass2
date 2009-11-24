@@ -65,7 +65,7 @@
 <!ELEMENT expansion (association-types? ) >
 <!ATTLIST expansion
           use-random-weight (yes | no) "no"
-          prefix-match (yes | no) "no"
+          
           expansion-threshold  CDATA #IMPLIED
           max-nr-of-topic-to-expand CDATA #IMPLIED
 >
@@ -85,6 +85,7 @@
 <!ELEMENT result EMPTY >
 <!ATTLIST result
           result-threshold  CDATA #IMPLIED
+          max-number-of-hits CDATA #IMPLIED
 >
 
 

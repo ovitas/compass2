@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE compass2-config SYSTEM "compass2-config.dtd" >
 <compass2-config>
-    <full-text-search prefix-match="no" fuzzy-match="no">
+    <full-text-search prefix-match="yes" fuzzy-match="no">
 		<full-text-search-implementation class="${no.ovitas.compass2.service.FTSImplementation}" >
 			<params>
 				<param name="indexdirectory-path" value="${lucene.spellchecker.index.dir}"/>
-				<param name="max-hits-per-query" value="${lucene.fts.max.hits.per.query}"/>
 				<param name="document-repository" value="${document.repository}"/>
 			</params>
 		</full-text-search-implementation>
@@ -32,7 +31,7 @@
 					<param name="load-on-startup" value="${knowladge.base.load.on.startup}"/>
 				</params>
 			</knowledge-base-implementation>
-			<expansion use-random-weight="no" prefix-match="no" expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}">
+			<expansion use-random-weight="no"  expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}">
 				<association-types>
 					<association-type id="#123456" name="TestAssocTypeName" weight-ahead="0.5" weight-aback="0.7" />
 				</association-types>
@@ -40,5 +39,5 @@
 		</knowledge-base>
 	</knowledge-bases>
 
-	<result result-threshold="${result.threshold}" />
+	<result result-threshold="${result.threshold}" max-number-of-hits="${max.number.of.hits}"/>
 </compass2-config>
