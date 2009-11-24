@@ -36,7 +36,8 @@
 
 
     <!-- Add new Managers here -->
-    <bean id="configurationManager" class="no.ovitas.compass2.service.impl.ConfigurationManagerImpl">
+    <bean id="configurationManager" class="no.ovitas.compass2.service.impl.XMLConfigurationManagerImpl">
+    <constructor-arg type="java.lang.String" index="1" value="${config.path}"/>
     </bean>
     <bean id="exportDomainModelManager" class="no.ovitas.compass2.service.impl.ExportDomainModel2PlainTextManagerImpl">
      <property name="configuration" ref="configurationManager"/>
