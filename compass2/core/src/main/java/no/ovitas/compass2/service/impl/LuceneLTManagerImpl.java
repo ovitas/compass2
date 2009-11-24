@@ -50,17 +50,17 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	}
 
 	public void initSpellchecker() throws ConfigParameterMissingException, ConfigurationException, IOException {
-		String spellCheckDir =configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_DIR);
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_INDEX_DIR);
-		String indexField = configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_FIELD);
+		String spellCheckDir = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY);
+		String indexDir = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY);
+		String indexField = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_FIELD);
 		if(spellCheckDir==null){
-			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECK_DIR+" is missing from config!");
+			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECKER_DIRECTORY+" is missing from config!");
 		}
 		if(indexDir==null){
-			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECK_INDEX_DIR+" is missing from config!");
+			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY+" is missing from config!");
 		}
 		if(indexField==null){
-			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECK_FIELD+" is missing from config!");
+			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECKER_FIELD+" is missing from config!");
 		}
 		java.io.File scd = new java.io.File(spellCheckDir);
 		if(!scd.isDirectory()){
@@ -83,9 +83,9 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	 * @param userSearch
 	 */
 	public String getSpellingSuggestion(String userSearch)throws ConfigParameterMissingException, ConfigurationException, IOException {
-		String spellCheckDir =configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_DIR);
+		String spellCheckDir = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY);
 		if(spellCheckDir==null){
-			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECK_DIR+" is missing from config!");
+			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECKER_DIRECTORY+" is missing from config!");
 		}
 		java.io.File scd = new java.io.File(spellCheckDir);
 		if(!scd.isDirectory()){
@@ -107,9 +107,9 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	 * @param userSearch
 	 */
 	public List<String> getSpellingSuggestions(String userSearch)throws ConfigParameterMissingException, ConfigurationException, IOException {
-		String spellCheckDir =configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_DIR);
+		String spellCheckDir = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY);
 		if(spellCheckDir==null){
-			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECK_DIR+" is missing from config!");
+			new ConfigParameterMissingException("Paremeter: "+Constants.LUCENE_SPELLCHECKER_DIRECTORY+" is missing from config!");
 		}
 		java.io.File scd = new java.io.File(spellCheckDir);
 		if(!scd.isDirectory()){
@@ -118,7 +118,7 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 		Directory dir = FSDirectory.getDirectory(scd, null);
 		SpellChecker spell = new SpellChecker(dir);
 		spell.setStringDistance(new LevensteinDistance());
-		String suggestionNum = configManager.getConfigParameter(Constants.LUCENE_SPELLCHECK_MAX_SUGGESTION_NUM);
+		String suggestionNum = getLTImplementationParamValue(Constants.LUCENE_SPELLCHECK_MAX_SUGGESTION_NUM);
 		int sn = 5;
 		if(suggestionNum!=null){
 			try{
@@ -143,7 +143,7 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	 * @param word
 	 */
 	public String getStem(String word){
-		String language =configManager.getConfigParameter(Constants.SNWOBALL_LANGUAGE);
+		String language = getLTImplementationParamValue(Constants.SNOWBALL_LANGUAGE);
 		Analyzer a = new SnowballAnalyzer(language);
 		try {
 		    QueryParser qp = new QueryParser("", a);
@@ -161,7 +161,7 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	 */
 	public List<String> getStems(List<String> tokens){
 		List<String> stems = new ArrayList<String>();
-		String language =configManager.getConfigParameter(Constants.SNWOBALL_LANGUAGE);
+		String language = getLTImplementationParamValue(Constants.SNOWBALL_LANGUAGE);
 		Analyzer a = new SnowballAnalyzer(language);
 		try {
 			for(String token: tokens)
@@ -174,10 +174,16 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 		} catch (ParseException pe) {
 			log.error(pe.getMessage());
 			return null;
-		}
-
-		
-		
+		}		
+	}
+	
+	/**
+	 * Get parameter value of specified paramName in LanguageToolImplementation
+	 * @param paramName
+	 * @return the value
+	 */
+	private String getLTImplementationParamValue(String paramName) {
+		return configManager.getLanguageToolsImplementation().getParams().getParam(paramName).getName();
 	}
 
 }

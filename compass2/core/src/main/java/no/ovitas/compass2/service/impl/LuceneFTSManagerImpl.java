@@ -80,7 +80,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @param uri
 	 */
 	public void addDocument(boolean reindex, int depth, String dir)throws ConfigurationException{
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
+		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
 		log.debug("indexDir: " + indexDir);
 		log.debug("dir: " + dir);
 		File f = new File(dir);
@@ -148,7 +148,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @param uri
 	 */
 	public void deleteDocument(String docId, String uri){
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
+		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
 		if(indexDir!=null){
 		 IndexWriter writer = getWriter(indexDir,false);
 		 if(writer!=null){
@@ -194,6 +194,16 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 
 	/**
+	 * Get parameter value of specified paramName in FullTextSearchImplementation
+	 * @param paramName
+	 * @return the value
+	 */
+	private String getFTSImplementationParamValue(String paramName) {
+		return configManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(paramName).getName();
+	}
+
+
+	/**
 	 * 
 	 * @param searchTopics
 	 */
@@ -220,7 +230,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @throws ParseException 
 	 */
 	public List<Hit> doSearch(String search, int pageNum){
-		String pageMaxHits = configManager.getConfigParameter(Constants.LUCENE_FTS_MAX_HITS_PER_QUERY);
+		String pageMaxHits = getFTSImplementationParamValue(Constants.MAX_HITS_PER_QUERY);
 		if(maxNumberOfHits==-1){
 			try{
 				maxNumberOfHits= Integer.parseInt(pageMaxHits);
@@ -229,7 +239,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			}
 			
 		}
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
+		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
 		
 		Query q = null;
 		IndexSearcher searcher = null;
@@ -310,7 +320,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 
 	public DocumentDetails getDocument(String id) {
-		String indexDir = configManager.getConfigParameter(Constants.LUCENE_FTS_INDEX_DIR);
+		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
 		Query q = new TermQuery(new Term("ID",id));
 		
 		IndexSearcher searcher = null;

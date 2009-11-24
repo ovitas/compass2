@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.config.KnowledgeBaseImplementation;
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
@@ -50,7 +49,8 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	public void setConfiguration(ConfigurationManager manager){
 		configManager = manager;
 		
-		String sMaxTopicNumberToExpand = configManager.getConfigParameter(Constants.MAX_TOPIC_NUMBER_TO_EXPAND);
+		String defaultkbName = configManager.getDefaultKBImplementationName();
+		String sMaxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
 		maxTopicNumberToExpand = 100;
 		if (sMaxTopicNumberToExpand != null){
 			try {
@@ -151,10 +151,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 					}
 				}
 			} else {
-				/*Topic topic = this.knowledgeBase.findTopic(toSearch);
-				if (topic != null){
-					topicSet.add(topic);
-				}*/
 				List<Topic> tp = this.knowledgeBase.findTopicCaseInSensitive(toSearch);
 				if(tp!=null && tp.size()>0){
 					for(Topic topic : tp){
@@ -243,7 +239,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	@Override
 	public void setKnowledgeBaseImpl(KnowledgeBaseImplementation kbImpl) {
 		kbImpl = kbImpl;
-		
 	}
 
 	
