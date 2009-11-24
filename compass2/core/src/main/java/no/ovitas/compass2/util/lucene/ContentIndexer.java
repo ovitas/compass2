@@ -19,5 +19,6 @@ public interface ContentIndexer {
 	public void setIndexDirectory(String indexDirectory);
 	public void init() throws ConfigurationException, IOException;
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl);
+	
 
 }

@@ -16,6 +16,7 @@ import org.apache.commons.codec.binary.Base64;
 
 
 
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.Topic;
@@ -114,5 +115,11 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 
 	protected void writeEnd(BufferedWriter fw)throws IOException{
 		fw.write("}");
+	}
+
+	@Override
+	public void init() throws ConfigurationException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -19,7 +19,7 @@ public interface FullTextSearchManager {
 	public void setResultThreshold(double resultThreshold);
 	public void setMaxNumberOfHits(int maxNumberOfHits);
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl);
-	
+	public void init() throws ConfigurationException;
 	/**
 	 * 
 	 * @param reindex

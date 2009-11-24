@@ -35,6 +35,7 @@ public class LTFactory {
 					manager = (LanguageToolsManager)Class.forName(ltImpl).newInstance();
 					manager.setConfiguration(configurationManager);
 					manager.setLanguageToolsImpl(lt);
+					manager.init();
 				}
 			}catch(Exception ex){
 				log.error("Error while creating LanguageToolsManager", ex);

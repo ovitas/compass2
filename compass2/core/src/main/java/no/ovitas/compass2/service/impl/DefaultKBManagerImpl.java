@@ -4,10 +4,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import no.ovitas.compass2.config.AssociationType;
+import no.ovitas.compass2.config.Expansion;
 import no.ovitas.compass2.config.KnowledgeBaseImplementation;
 import no.ovitas.compass2.dao.KBBuilderDao;
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
+import no.ovitas.compass2.model.RelationType;
 import no.ovitas.compass2.model.Topic;
 import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.ConfigurationManager;
@@ -29,6 +33,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	protected KnowledgeBaseHolder knowledgeBase;
 	protected double expansionThreshold;
 	protected KnowledgeBaseImplementation kbImpl;
+	protected Expansion expansion;
 	
 
 	protected int maxTopicNumberToExpand;
@@ -48,15 +53,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	
 	public void setConfiguration(ConfigurationManager manager){
 		configManager = manager;
-		
-		String defaultkbName = configManager.getDefaultKBImplementationName();
-		String sMaxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
-		maxTopicNumberToExpand = 100;
-		if (sMaxTopicNumberToExpand != null){
-			try {
-				maxTopicNumberToExpand = Integer.parseInt(sMaxTopicNumberToExpand);
-			} catch (Exception e) {}
-		}
 	}
 	
 	public void finalize() throws Throwable {
@@ -180,6 +176,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		return ret;
 	}
 
+	
 	/**
 	 * 
 	 * @param kb
@@ -187,6 +184,23 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	public void importKB(String kb){
 		knowledgeBase = null;
 		knowledgeBase = this.builderDao.buildKB(kb);
+		if(this.expansion!=null){
+			if(expansion.getAssociationTypes()!=null && expansion.getAssociationTypes().getElements()!=null && expansion.getAssociationTypes().getElements().size() > 0){
+				for(AssociationType at : expansion.getAssociationTypes().getElements()){
+					RelationType rt = knowledgeBase.getRelationTypes().get(at.getId());
+					if(rt!=null){
+						if(at.getWeightAback()!=0.0){
+							rt.setGeneralizationWeight(at.getWeightAback());
+						}
+						if(at.getWeightAhead()!=0.0){
+							rt.setWeight(at.getWeightAhead());
+						}
+					}
+					
+				}
+			}
+	
+		}
 	}
 
 	/**
@@ -236,9 +250,25 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
 	}
 
-	@Override
 	public void setKnowledgeBaseImpl(KnowledgeBaseImplementation kbImpl) {
-		kbImpl = kbImpl;
+		this.kbImpl = kbImpl;
+	}
+
+	public void init() throws ConfigurationException {
+		String defaultkbName = configManager.getDefaultKBImplementationName();
+		String sMaxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
+		maxTopicNumberToExpand = 100;
+		if (sMaxTopicNumberToExpand != null){
+			try {
+				maxTopicNumberToExpand = Integer.parseInt(sMaxTopicNumberToExpand);
+			} catch (Exception e) {}
+		}
+		
+		
+	}
+
+	public void setExpansion(Expansion expansion) {
+		this.expansion = expansion;
 	}
 
 	

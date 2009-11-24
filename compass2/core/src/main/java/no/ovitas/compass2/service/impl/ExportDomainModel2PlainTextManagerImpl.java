@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 
 
 
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
 import no.ovitas.compass2.model.Topic;
@@ -72,6 +73,12 @@ public class ExportDomainModel2PlainTextManagerImpl implements
 			}
 		}
 		
+		
+	}
+
+	@Override
+	public void init() throws ConfigurationException {
+		// TODO Auto-generated method stub
 		
 	}
 

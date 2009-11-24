@@ -3,7 +3,9 @@ package no.ovitas.compass2.service;
 import java.util.List;
 import java.util.Set;
 
+import no.ovitas.compass2.config.Expansion;
 import no.ovitas.compass2.config.KnowledgeBaseImplementation;
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.TopicTreeNode;
 
@@ -18,6 +20,9 @@ public interface KnowledgeBaseManager {
 	public void setExpansionThreshold(double expansionThreshold);
 	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand);
 	public void setKnowledgeBaseImpl(KnowledgeBaseImplementation kbImpl);
+	public void init() throws ConfigurationException;
+	public void setExpansion(Expansion expansion);
+	
 	/**
 	 * 
 	 * @param fuzzyMatch

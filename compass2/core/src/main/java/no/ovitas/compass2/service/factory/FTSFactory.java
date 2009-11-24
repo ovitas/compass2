@@ -35,6 +35,7 @@ public class FTSFactory {
 					manager = (FullTextSearchManager)Class.forName(ftsImplClassName).newInstance();
 					manager.setConfiguration(configurationManager);
 					manager.setFTSImpl(ftsImpl);
+					manager.init();
 					log.info("FTS manager initialized!");
 
 				}

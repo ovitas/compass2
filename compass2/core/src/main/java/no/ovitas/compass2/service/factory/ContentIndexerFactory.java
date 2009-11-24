@@ -39,6 +39,7 @@ public class ContentIndexerFactory {
 				if(indexerImplClassName!=null){
 					indexer = (ContentIndexer)Class.forName(indexerImplClassName).newInstance();
 					indexer.setFTSImpl(fts.getFullTextSearchImplementation());
+					indexer.init();
 					log.info("indexer loaded!");
 
 				}

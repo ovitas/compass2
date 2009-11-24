@@ -15,6 +15,8 @@ import no.ovitas.compass2.model.ResultObject;
  */
 public interface CompassManager {
 
+	
+	
 	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch);
 	public ResultObject search(String search, int hopCount, double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, int pageNum);
 	

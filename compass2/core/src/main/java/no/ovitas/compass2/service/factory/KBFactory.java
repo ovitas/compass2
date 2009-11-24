@@ -64,6 +64,8 @@ public class KBFactory {
 					manager = (KnowledgeBaseManager)Class.forName(kbImplClassName).newInstance();
 					manager.setConfiguration(configurationManager);
 					manager.setKnowledgeBaseImpl(kb.getKnowledgeBaseImplementation());
+					manager.setExpansion(configurationManager.getKnowledgeBase(defaultkbName).getExpansion());
+					manager.init();
 					if(this.loadOnStartup){
 						manager.importKB(kbFile);
 					}

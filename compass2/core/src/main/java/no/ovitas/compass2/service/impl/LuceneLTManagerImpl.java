@@ -186,4 +186,10 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 		return configManager.getLanguageToolsImplementation().getParams().getParam(paramName).getValue();
 	}
 
+	@Override
+	public void init() throws ConfigurationException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

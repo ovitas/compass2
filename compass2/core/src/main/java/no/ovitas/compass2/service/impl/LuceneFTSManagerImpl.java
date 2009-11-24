@@ -375,6 +375,13 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		this.maxNumberOfHits = maxNumberOfHits;
 	}
 
+
+	@Override
+	public void init() throws ConfigurationException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }
