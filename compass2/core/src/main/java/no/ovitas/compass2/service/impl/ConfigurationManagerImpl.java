@@ -26,6 +26,7 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
 
 	protected Properties properties;
 	private Log log = LogFactory.getLog(getClass());
+	protected String defaultKBImplementation;
 
 	public ConfigurationManagerImpl(){
 		properties = new Properties();
@@ -87,6 +88,17 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
 	public void initConfig() throws ConfigurationException {
 		throw new RuntimeException("deprecated for this kind of configuration!");
 		
+	}
+
+
+	public void setDefaultKBImplementationName(String name){
+		defaultKBImplementation = name;
+	}
+	
+	@Override
+	public String getDefaultKBImplementationName() {
+		// TODO Auto-generated method stub
+		return defaultKBImplementation;
 	}
 
 }

@@ -29,6 +29,7 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 	protected Compass2ConfigurationHandler  handler = null;
 	protected Compass2Configuration configuration = null;
 	protected String configPath;
+	protected String defaultKBImplementation;
 
 	public XMLConfigurationManagerImpl(String configPath) throws ConfigurationException{
 		super();
@@ -83,6 +84,16 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 
 	public void setConfigPath(String configPath) {
 		this.configPath = configPath;
+	}
+
+	public void setDefaultKBImplementationName(String name){
+		defaultKBImplementation = name;
+	}
+	
+	@Override
+	public String getDefaultKBImplementationName() {
+		// TODO Auto-generated method stub
+		return defaultKBImplementation;
 	}
 
 }

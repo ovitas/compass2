@@ -28,5 +28,7 @@ public interface ConfigurationManager {
 
 	public abstract void initConfig() throws ConfigurationException;
 	
+	public abstract String getDefaultKBImplementationName();
+	
 
 }
