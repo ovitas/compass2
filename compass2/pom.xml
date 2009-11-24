@@ -417,7 +417,8 @@
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
                  <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
-
+                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
+                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
             </properties>
         </profile>
         <profile>
@@ -439,7 +440,8 @@
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
                  <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
-
+                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
+                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
             </properties>
         </profile>
         <profile>
@@ -461,6 +463,8 @@
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
                  <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
+                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
+                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
 
             </properties>
         </profile>
@@ -482,6 +486,8 @@
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
+                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
+                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
             </properties>
         </profile>
      </profiles>
