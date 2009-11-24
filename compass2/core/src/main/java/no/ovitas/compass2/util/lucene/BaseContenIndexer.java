@@ -25,7 +25,7 @@ public abstract class BaseContenIndexer {
 	protected String indexDirectory;
 	protected FullTextSearchImplementation ftsImpl;
     
-	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl) {
+	public void setFTSImpl(FullTextSearchImplementation ftsImpl) {
 		this.ftsImpl = ftsImpl;
 		
 	}
