@@ -2,6 +2,8 @@ package no.ovitas.compass2.config;
 
 import java.util.ResourceBundle;
 
+import no.ovitas.compass2.exception.ConfigurationException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -27,13 +29,18 @@ public class Compass2ConfiguarationHandlerTest extends TestCase {
         configFile = rb.getString("config.file.location");
     }
 	@Test
-	public void testConfigLoad(){
-        log.info("Loading config file from " +configFile);
-        Compass2ConfigurationHandler handler = new Compass2ConfigurationHandler();
-		//handler.initialize(configFile);
-		Compass2Configuration config = handler.getConfig();
-		assertNotNull(config);
-		
+	public void testConfigLoad(){       
+        try {
+        	
+        	log.info("Loading config file from " +configFile);
+            Compass2ConfigurationHandler handler = Compass2ConfigurationHandler.getInstance();
+			handler.loadConfig(configFile);
+			Compass2Configuration config = handler.getConfig();
+			assertNotNull(config);
+			
+		} catch (ConfigurationException ce) {
+			log.error("Configuration exception occured!" + ce.getMessage());
+		}
 	}
 	
 }
