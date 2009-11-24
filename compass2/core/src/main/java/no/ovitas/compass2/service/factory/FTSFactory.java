@@ -1,13 +1,12 @@
 package no.ovitas.compass2.service.factory;
+import no.ovitas.compass2.config.FullTextSearch;
+import no.ovitas.compass2.service.ConfigurationManager;
+import no.ovitas.compass2.service.FullTextSearchManager;
+import no.ovitas.compass2.util.CompassUtil;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import no.ovitas.compass2.config.FullTextSearch;
-import no.ovitas.compass2.service.FullTextSearchManager;
-import no.ovitas.compass2.service.ConfigurationManager;
-import no.ovitas.compass2.util.CompassUtil;
 
 /**
  * @author magyar

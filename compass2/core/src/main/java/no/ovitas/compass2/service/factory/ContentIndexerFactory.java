@@ -3,9 +3,8 @@
  */
 package no.ovitas.compass2.service.factory;
 
-import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.ContentIndexerImplementation;
 import no.ovitas.compass2.service.ConfigurationManager;
-
 import no.ovitas.compass2.util.CompassUtil;
 import no.ovitas.compass2.util.lucene.ContentIndexer;
 
@@ -31,7 +30,8 @@ public class ContentIndexerFactory {
 
 	public ContentIndexer getIndexerImplementation(){
 		if(indexer==null){
-			String indexerImpl = configurationManager.getConfigParameter(Constants.LUCENE_CONTEXT_INDEXER);
+			ContentIndexerImplementation ci = configurationManager.getFullTextSearch().getContentIndexerImplementation();
+			String indexerImpl = ci.getClassName();
 			log.info("indexer configuration: "+indexerImpl);
 			try{
 				if(indexerImpl!=null){

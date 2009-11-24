@@ -1,11 +1,12 @@
 package no.ovitas.compass2.service.factory;
+import no.ovitas.compass2.config.LanguageToolsImplementation;
+import no.ovitas.compass2.service.ConfigurationManager;
+import no.ovitas.compass2.service.LanguageToolsManager;
+import no.ovitas.compass2.util.CompassUtil;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
-
-import no.ovitas.compass2.service.LanguageToolsManager;
-import no.ovitas.compass2.service.ConfigurationManager;
-import no.ovitas.compass2.util.CompassUtil;
 
 /**
  * @author magyar
@@ -26,7 +27,9 @@ public class LTFactory {
 
 	public LanguageToolsManager getLTImplementation(){
 		if(manager==null){
-			String ltImpl = configurationManager.getConfigParameter("no.ovitas.compass2.service.LTImplementation");
+			LanguageToolsImplementation lt = configurationManager.getLanguageToolsImplementation();
+			String ltImpl = lt.getClassName();
+			log.info("ltImpl configuration: "+ltImpl);
 			try{
 				if(ltImpl!=null){
 					manager = (LanguageToolsManager)Class.forName(ltImpl).newInstance();
