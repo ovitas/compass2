@@ -11,27 +11,35 @@ public class FullTextSearch {
 	// Attributes
 
 	private Logger logger = Logger.getLogger(this.getClass());
-	private String prefixMatch;
-	private String fuzzyMatch;
+	private boolean prefixMatch;
+	private boolean fuzzyMatch;
 	private FullTextSearchImplementation fullTextSearchImplementation;
 	private ContentIndexerImplementation contentIndexerImplementation;
 
 	// Getter / setter methods
 
-	public String getPrefixMatch() {
+	public boolean getPrefixMatch() {
 		return prefixMatch;
 	}
 
 	public void setPrefixMatch(String prefixMatch) {
-		this.prefixMatch = prefixMatch;
+		if(prefixMatch != null && prefixMatch.equals("yes")) {
+			this.prefixMatch = true;
+		} else {
+			this.prefixMatch = false;
+		}
 	}
 
-	public String getFuzzyMatch() {
+	public boolean getFuzzyMatch() {
 		return fuzzyMatch;
 	}
 
 	public void setFuzzyMatch(String fuzzyMatch) {
-		this.fuzzyMatch = fuzzyMatch;
+		if(fuzzyMatch != null && fuzzyMatch.equals("yes")) {
+			this.fuzzyMatch = true;
+		} else {
+			this.fuzzyMatch = false;
+		}
 	}
 
 	public FullTextSearchImplementation getFullTextSearchImplementation() {

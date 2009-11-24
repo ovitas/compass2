@@ -13,28 +13,36 @@ public class Expansion {
 	// Attributes
 
 	private Logger logger = Logger.getLogger(this.getClass());
-	private String useRandomWeight;
-	private String prefixMatch;
+	private boolean useRandomWeight;
+	private boolean prefixMatch;
 	private String exansionThreshold;
 	private String maxNumOfTopicToExpand;
 	private AssociationTypes associationTypes;
 
 	// Getter / setter methods
 
-	public String getUseRandomWeight() {
+	public boolean getUseRandomWeight() {
 		return useRandomWeight;
 	}
 
 	public void setUseRandomWeight(String useRandomWeight) {
-		this.useRandomWeight = useRandomWeight;
+		if(useRandomWeight != null && useRandomWeight.equals("yes")) {
+			this.useRandomWeight = true;
+		} else {
+			this.useRandomWeight = false;
+		}
 	}
 
-	public String getPrefixMatch() {
+	public boolean getPrefixMatch() {
 		return prefixMatch;
 	}
 
 	public void setPrefixMatch(String prefixMatch) {
-		this.prefixMatch = prefixMatch;
+		if(prefixMatch != null && prefixMatch.equals("yes")) {
+			this.prefixMatch = true;
+		} else {
+			this.prefixMatch = false;
+		}
 	}
 
 	public String getExansionThreshold() {
