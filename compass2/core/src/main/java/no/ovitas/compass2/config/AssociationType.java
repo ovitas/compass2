@@ -11,25 +11,41 @@ public class AssociationType extends BaseConfigItem {
 	// Attributes
 
 	private Logger logger = Logger.getLogger(this.getClass());
-	private String weightAhead;
-	private String weightAback;
+	private double weightAhead;
+	private double weightAback;
 
 	// Getter / setter methods
 
-	public String getWeightAhead() {
+	public double getWeightAhead() {
 		return weightAhead;
 	}
 
 	public void setWeightAhead(String weightAhead) {
-		this.weightAhead = weightAhead;
+		double doubleValue = 0.0;
+		if(weightAhead != null) {
+			try {
+				doubleValue = Double.parseDouble(weightAhead);
+			} catch (NumberFormatException nfe) {
+				logger.error("Invalid weight ahead: " + weightAhead + ", " + nfe.getMessage());
+			}
+		}
+		this.weightAhead = doubleValue;
 	}
 
-	public String getWeightAback() {
+	public double getWeightAback() {
 		return weightAback;
 	}
 
 	public void setWeightAback(String weightAback) {
-		this.weightAback = weightAback;
+		double doubleValue = 0.0;
+		if(weightAback != null) {
+			try {
+				doubleValue = Double.parseDouble(weightAback);
+			} catch (NumberFormatException nfe) {
+				logger.error("Invalid weight aback: " + weightAback + ", " + nfe.getMessage());
+			}
+		}
+		this.weightAback = doubleValue;
 	}
 
 	// Constructors
