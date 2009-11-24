@@ -205,21 +205,18 @@ public class SearchAction extends BaseAction implements Preparable {
 		this.firstTime=true;
 		this.treeEmpty=true;
 		String defaultkbName = configurationManager.getDefaultKBImplementationName();
-		this.maxTopicNumberToExpand = Integer.valueOf(configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand());
-		this.maxNumberOfHits = Integer.valueOf(configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.MAX_HITS_PER_QUERY).getValue());
-		
+		 this.maxTopicNumberToExpand = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
+		this.maxNumberOfHits = configurationManager.getResult().getMaxNumberOfHits();
+		this.expansionThreshold = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getExpansionThreshold();
+		this.resultThreshold = configurationManager.getResult().getResultThreshold();
+		this.prefixMatch = configurationManager.getFullTextSearch().getPrefixMatch();
+		this.fuzzyMatch = configurationManager.getFullTextSearch().getFuzzyMatch();
 		return SUCCESS;
 	}
 
 	public String search() {
 	    this.firstTime=false;
 	    String defaultkbName = configurationManager.getDefaultKBImplementationName();
-		log.info("showResults running...");
-		log.info("lucene.spellchecker.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY));
-		log.info("lucene.spellchecker.index.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY));
-		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.INDEXDIRECTORY_PATH).getValue());
-		log.info("knowledge.base.file: " + configurationManager.getKnowledgeBase(defaultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getValue());
-		//String search = getSearch(); 
 		if(search==null ||  search.equals("")){
 			return SUCCESS;
 		}
@@ -230,6 +227,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		ftsManager.setMaxNumberOfHits(maxNumberOfHits);
 		kbManager.setExpansionThreshold(expansionThreshold);
 		kbManager.setMaxTopicNumberToExpand(maxTopicNumberToExpand);
+		ftsManager.setResultThreshold(resultThreshold);
 		
 		int hc = hopCount!=null ? hopCount.intValue() : 0;
 		ResultObject resultObj = compassManager.search(
