@@ -15,8 +15,8 @@ public class Expansion {
 	private Logger logger = Logger.getLogger(this.getClass());
 	private boolean useRandomWeight;
 	private boolean prefixMatch;
-	private String expansionThreshold;
-	private String maxNumOfTopicToExpand;
+	private double expansionThreshold;
+	private int maxNumOfTopicToExpand;
 	private AssociationTypes associationTypes;
 
 	// Getter / setter methods
@@ -45,20 +45,28 @@ public class Expansion {
 		}
 	}
 
-	public String getExpansionThreshold() {
+	public double getExpansionThreshold() {
 		return expansionThreshold;
 	}
 
 	public void setExpansionThreshold(String exansionThreshold) {
-		this.expansionThreshold = exansionThreshold;
+		try{
+			this.expansionThreshold = Double.parseDouble(exansionThreshold);
+		}catch(NumberFormatException nfe){
+			logger.error("Wrong expansionThreshold value: "+exansionThreshold);
+		}
 	}
 
-	public String getMaxNumOfTopicToExpand() {
+	public int getMaxNumOfTopicToExpand() {
 		return maxNumOfTopicToExpand;
 	}
 
 	public void setMaxNumOfTopicToExpand(String maxNumOfTopicToExpand) {
-		this.maxNumOfTopicToExpand = maxNumOfTopicToExpand;
+		try{
+			this.maxNumOfTopicToExpand = Integer.parseInt(maxNumOfTopicToExpand);
+		}catch(NumberFormatException nfe){
+			logger.error("Wrong maxNumOfTopicToExpand value: "+maxNumOfTopicToExpand);
+		}
 	}
 	
 	public AssociationTypes getAssociationTypes() {

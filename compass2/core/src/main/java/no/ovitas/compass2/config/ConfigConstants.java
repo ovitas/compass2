@@ -36,6 +36,7 @@ public class ConfigConstants {
 	public static final String ATTR_WEIGHT_AHEAD = "weight-ahead";
 	public static final String ATTR_WEIGHT_ABACK = "weight-aback";
 	public static final String ATTR_RESULT_THRESHOLD = "result-threshold";
+	public static final String ATTR_MAX_NUM_OF_HITS = "max-number-of-hits";
 	public static final String ATTR_VALUE = "value";
 	
 	

@@ -50,10 +50,11 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	protected ConfigurationManager configManager;
     private Log log = LogFactory.getLog(getClass());
 	private Map<String, String> fields = new HashMap<String, String>();
-	private int hitThreshold;
+
 	private double resultThreshold;
 	private int maxNumberOfHits;
 	private FullTextSearchImplementation ftsImpl;
+	private String indexDirectory;
     
 	@Override
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl) {
@@ -67,7 +68,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 	
 	public LuceneFTSManagerImpl(){
-		maxNumberOfHits = -1;
+		maxNumberOfHits = 100;
 	}
 
 
@@ -80,14 +81,14 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @param uri
 	 */
 	public void addDocument(boolean reindex, int depth, String dir)throws ConfigurationException{
-		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
-		log.debug("indexDir: " + indexDir);
+		
+		log.debug("indexDir: " + indexDirectory);
 		log.debug("dir: " + dir);
 		File f = new File(dir);
 		if(f.isFile()){
 				try {
 					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
-					indexer.setIndexWriter(getWriter(indexDir,reindex));
+					indexer.setIndexWriter(getWriter(indexDirectory,reindex));
 					indexer.init();
 					indexer.index(f, fields);
 					indexer.close();
@@ -100,7 +101,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			if(f.isDirectory()){
 				try{
 					ContentIndexer indexer = ContentIndexerFactory.getInstance().getIndexerImplementation();
-					indexer.setIndexWriter(getWriter(indexDir,reindex));
+					indexer.setIndexWriter(getWriter(indexDirectory,reindex));
 					indexer.init();
 					this.uploadFiles(f, depth, indexer);
 					indexer.close();
@@ -230,21 +231,12 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @throws ParseException 
 	 */
 	public List<Hit> doSearch(String search, int pageNum){
-		String pageMaxHits = getFTSImplementationParamValue(Constants.MAX_HITS_PER_QUERY);
-		if(maxNumberOfHits==-1){
-			try{
-				maxNumberOfHits= Integer.parseInt(pageMaxHits);
-			}catch(Exception ex){
-				maxNumberOfHits=100;	
-			}
-			
-		}
-		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
+		
 		
 		Query q = null;
 		IndexSearcher searcher = null;
 		try {
-			searcher = new IndexSearcher(indexDir);
+			searcher = new IndexSearcher(this.indexDirectory);
 		} catch (Exception e) {
 			log.fatal("Fatal error occured: "+e.getMessage(),e);
 			return null;
@@ -263,7 +255,8 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				
 			}
 			try {
-				PagerHitCollector phc = new PagerHitCollector((pageNum-1)*this.maxNumberOfHits, pageNum*this.maxNumberOfHits);
+				PagerHitCollector phc = new PagerHitCollector(this.maxNumberOfHits);
+				phc.setResultThreshold(resultThreshold);
 				try{
 				 searcher.search(q,phc);
 				}catch(RuntimeException e){
@@ -320,12 +313,12 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 
 	public DocumentDetails getDocument(String id) {
-		String indexDir = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
+		
 		Query q = new TermQuery(new Term("ID",id));
 		
 		IndexSearcher searcher = null;
 		try {
-			searcher = new IndexSearcher(indexDir);
+			searcher = new IndexSearcher(this.indexDirectory);
 			Hits hits = searcher.search(q);
 			if(hits.length()>0){
 				Document d = hits.doc(0);
@@ -354,11 +347,6 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		return null;
 	}
 
-	@Override
-	public void setHitThreshold(int hitThreshold) {
-		this.hitThreshold = hitThreshold;
-		
-	}
 
 	@Override
 	public void setResultThreshold(double resultThreshold) {
@@ -376,10 +364,14 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 
 
-	@Override
 	public void init() throws ConfigurationException {
-		// TODO Auto-generated method stub
-		
+		this.resultThreshold = 0.0;
+		this.resultThreshold = configManager.getResult().getResultThreshold();
+		this.indexDirectory = getFTSImplementationParamValue(Constants.INDEXDIRECTORY_PATH);
+		if(configManager.getResult().getMaxNumberOfHits()>0){
+		 maxNumberOfHits= configManager.getResult().getMaxNumberOfHits();
+		}
+			
 	}
 
 	

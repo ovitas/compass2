@@ -256,15 +256,11 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 
 	public void init() throws ConfigurationException {
 		String defaultkbName = configManager.getDefaultKBImplementationName();
-		String sMaxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
 		maxTopicNumberToExpand = 100;
-		if (sMaxTopicNumberToExpand != null){
-			try {
-				maxTopicNumberToExpand = Integer.parseInt(sMaxTopicNumberToExpand);
-			} catch (Exception e) {}
+		if(configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand()>0){
+			maxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
+
 		}
-		
-		
 	}
 
 	public void setExpansion(Expansion expansion) {

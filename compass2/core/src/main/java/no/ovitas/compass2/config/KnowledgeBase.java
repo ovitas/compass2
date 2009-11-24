@@ -37,8 +37,6 @@ public class KnowledgeBase extends BaseConfigItem {
 
 	public KnowledgeBase() {
 		super();
-		knowledgeBaseImplementation = new KnowledgeBaseImplementation();
-		expansion = new Expansion();
 	}
 
 	// Methods

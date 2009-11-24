@@ -17,10 +17,10 @@ import org.apache.lucene.search.HitCollector;
 public class PagerHitCollector extends HitCollector {
 
 	protected List<Integer> docIds;
-	protected int from;
-	protected int to;
 	protected int hitCounter;
+	protected double resultThreshold;
 	protected Map<Integer, Float> scores;
+	protected int maxNumberOfHits;
 	
 	public float getScore(int docId){
 		Float f = scores.get(docId);
@@ -29,27 +29,34 @@ public class PagerHitCollector extends HitCollector {
 		
 	}
 	
-	public PagerHitCollector(int from, int to){
+	public PagerHitCollector(int maxNumberOfHits){
 		docIds = new ArrayList<Integer>();
 		scores = new HashMap<Integer,Float>();
-		this.from = from;
-		this.to = to;
 		hitCounter = 0;
+		this.maxNumberOfHits = maxNumberOfHits; 
 	}
 	
 	public void collect(int id, float score) {
       hitCounter++;
-      if(hitCounter>=from && hitCounter <=to){
+      if((hitCounter <=maxNumberOfHits) && resultThreshold <=score ){
     	  docIds.add(id);
     	  scores.put(id, score);
       }
-      if(hitCounter>to){
+      if(hitCounter>maxNumberOfHits){
     	  throw new RuntimeException("Pagination finished");
       }
 	}
 
 	public List<Integer> getDocIds() {
 		return docIds;
+	}
+
+	public double getResultThreshold() {
+		return resultThreshold;
+	}
+
+	public void setResultThreshold(double resultThreshold) {
+		this.resultThreshold = resultThreshold;
 	}
 
 }

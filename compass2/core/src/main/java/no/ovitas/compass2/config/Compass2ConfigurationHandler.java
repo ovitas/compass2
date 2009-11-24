@@ -78,8 +78,8 @@ public class Compass2ConfigurationHandler {
 		String knowledgeBaseTag					= knowledgeBasesTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE;
 		String knowledgeBaseImplementationTag	= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_KNOWLEDGE_BASE_IMPLEMENTATION;
 		String expansionTag						= knowledgeBaseTag		+ "/" + ConfigConstants.TAG_EXPANSION;
-		String associationTypesTag 				= expansionTag			+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPES;
-		String associationTypeTag				= associationTypesTag	+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPE;
+		String associationTypesTag 				= prefix +"/knowledge-bases/knowledge-base/expansion/"+ ConfigConstants.TAG_ASSOCIATION_TYPES;
+		String associationTypeTag				= prefix +"/knowledge-bases/knowledge-base/expansion/"+ ConfigConstants.TAG_ASSOCIATION_TYPES	+ "/" + ConfigConstants.TAG_ASSOCIATION_TYPE;
 		String paramTag							= ConfigConstants.TAG_PARAMS + "/"	+ ConfigConstants.TAG_PARAM;
 		
 		// Compass2Configuration
@@ -136,32 +136,35 @@ public class Compass2ConfigurationHandler {
 		digester.addSetNext		 (knowledgeBasesTag, "setKnowledgeBases");
 		
 		// KnowledgeBase
-		digester.addObjectCreate (knowledgeBaseTag, KnowledgeBase.class);
-		digester.addSetNext		 (knowledgeBaseTag, "addElement");
-		digester.addSetProperties(knowledgeBaseTag, ConfigConstants.ATTR_NAME, "name");
+		digester.addObjectCreate (prefix + "/knowledge-bases/knowledge-base", KnowledgeBase.class);
+		digester.addSetNext		 (prefix + "/knowledge-bases/knowledge-base", "addElement");
+		digester.addSetProperties(prefix + "/knowledge-bases/knowledge-base", "name", "name");
 		
 		// KnowledgeBaseImplementation
-		digester.addObjectCreate (knowledgeBaseImplementationTag, KnowledgeBaseImplementation.class);
-		digester.addSetNext		 (knowledgeBaseImplementationTag, "setKnowledgeBaseImplementation");
-		digester.addSetProperties(knowledgeBaseImplementationTag, ConfigConstants.ATTR_CLASS, "className");
-		
+		String prefixkbi=prefix + "/knowledge-bases/knowledge-base/knowledge-base-implementation";
+		digester.addObjectCreate (prefixkbi, KnowledgeBaseImplementation.class);
+		digester.addSetNext		 (prefixkbi, "setKnowledgeBaseImplementation");
+		digester.addSetProperties(prefixkbi, "class", "className");
+
+		// Expansion
+		String expansion =prefix + "/knowledge-bases/knowledge-base/expansion";
+		digester.addObjectCreate (expansion, Expansion.class);
+		digester.addSetNext		 (expansion, "setExpansion");
+		digester.addSetProperties(expansion, "use-random-weight", "useRandomWeight");
+		digester.addSetProperties(expansion, "expansion-threshold", "expansionThreshold");
+		digester.addSetProperties(expansion, "max-nr-of-topic-to-expand", "maxNumOfTopicToExpand");
+
 		// KnowledgeBaseImplementation Params
-		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
-		digester.addSetNext		 (knowledgeBaseImplementationTag + "/" + ConfigConstants.TAG_PARAMS, "setParams");
+		digester.addObjectCreate (prefixkbi + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
+		digester.addSetNext		 (prefixkbi + "/" + ConfigConstants.TAG_PARAMS, "setParams");
 
 		// KnowledgeBaseImplementation Param
-		digester.addObjectCreate (knowledgeBaseImplementationTag + "/" + paramTag, Param.class);
-		digester.addSetNext      (knowledgeBaseImplementationTag + "/" + paramTag, "addParam");
-		digester.addSetProperties(knowledgeBaseImplementationTag + "/" + paramTag, ConfigConstants.ATTR_NAME, "name");
-		digester.addSetProperties(knowledgeBaseImplementationTag + "/" + paramTag, ConfigConstants.ATTR_VALUE, "value");
+		String prefixkbiparams = prefixkbi+"/params/param";
+		digester.addObjectCreate (prefixkbiparams, Param.class);
+		digester.addSetNext      (prefixkbiparams, "addParam");
+		digester.addSetProperties(prefixkbiparams, ConfigConstants.ATTR_NAME, "name");
+		digester.addSetProperties(prefixkbiparams, ConfigConstants.ATTR_VALUE, "value");
 		
-		// Expansion
-		digester.addObjectCreate (expansionTag, Expansion.class);
-		digester.addSetNext		 (expansionTag, "setExpansion");
-		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_USE_RANDOM_WEIGHT, "useRandomWeight");
-		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_PREFIX_MATCH, "prefixMatch");
-		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_EXPANSION_THRESHOLD, "expansionThreshold");
-		digester.addSetProperties(expansionTag, ConfigConstants.ATTR_MAX_NUM_OF_TOPIC_TO_EXPAND, "maxNumOfTopicToExpand");
 		
 		// AssociationTypes
 		digester.addObjectCreate (associationTypesTag, AssociationTypes.class);	
@@ -176,9 +179,11 @@ public class Compass2ConfigurationHandler {
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_ABACK, "weigthAback");
 		
 		// Result
-		digester.addObjectCreate (resultTag, Result.class);
-		digester.addSetNext		 (resultTag, "setResult");
-		digester.addSetProperties(resultTag, ConfigConstants.ATTR_RESULT_THRESHOLD, "resultThreshold");
+		String resultPrefix = prefix+"/result";
+		digester.addObjectCreate (resultPrefix, Result.class);
+		digester.addSetNext		 (resultPrefix, "setResult");
+		digester.addSetProperties(resultPrefix, ConfigConstants.ATTR_RESULT_THRESHOLD, "resultThreshold");
+		digester.addSetProperties(resultPrefix, ConfigConstants.ATTR_MAX_NUM_OF_HITS, "maxNumberOfHits");
 		
 	}
 

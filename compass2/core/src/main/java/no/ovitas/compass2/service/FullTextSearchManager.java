@@ -15,7 +15,6 @@ import no.ovitas.compass2.model.Hit;
 public interface FullTextSearchManager {
 
 	public void setConfiguration(ConfigurationManager manager);	
-	public void setHitThreshold(int hitThreshold);
 	public void setResultThreshold(double resultThreshold);
 	public void setMaxNumberOfHits(int maxNumberOfHits);
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl);

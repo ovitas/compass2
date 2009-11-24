@@ -27,7 +27,7 @@ public class LanguageTools {
 	// Constructors
 
 	public LanguageTools() {
-		languageToolsImplementation = new LanguageToolsImplementation();
+		
 	}
 
 	// Methods
