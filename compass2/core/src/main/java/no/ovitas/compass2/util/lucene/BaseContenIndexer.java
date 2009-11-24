@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -22,6 +23,12 @@ public abstract class BaseContenIndexer {
 
 	protected IndexWriter indexWriter;
 	protected String indexDirectory;
+	protected FullTextSearchImplementation ftsImpl;
+    
+	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl) {
+		this.ftsImpl = ftsImpl;
+		
+	}
 	
 	
     public void init() throws ConfigurationException, IOException{

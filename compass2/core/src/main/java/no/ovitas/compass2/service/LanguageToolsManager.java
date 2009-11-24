@@ -3,6 +3,7 @@ package no.ovitas.compass2.service;
 import java.io.IOException;
 import java.util.List;
 
+import no.ovitas.compass2.config.LanguageToolsImplementation;
 import no.ovitas.compass2.exception.ConfigParameterMissingException;
 import no.ovitas.compass2.exception.ConfigurationException;
 
@@ -13,7 +14,8 @@ import no.ovitas.compass2.exception.ConfigurationException;
 public interface LanguageToolsManager {
 
 	
-	public void initSpellchecker() throws ConfigParameterMissingException, ConfigurationException, IOException;	
+	public void initSpellchecker() throws ConfigParameterMissingException, ConfigurationException, IOException;
+	public void setLanguageToolsImpl(LanguageToolsImplementation lti);
 	
 	public void setConfiguration(ConfigurationManager manager);
 	/**

@@ -4,6 +4,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import no.ovitas.compass2.config.FullTextSearch;
 import no.ovitas.compass2.service.FullTextSearchManager;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.util.CompassUtil;
@@ -26,12 +27,14 @@ public class FTSFactory {
 
 	public FullTextSearchManager getFTSImplementation(){
 		if(manager==null){
-			String ftsImpl = configurationManager.getConfigParameter("no.ovitas.compass2.service.FTSImplementation");
+			FullTextSearch fts = configurationManager.getFullTextSearch();
+			String ftsImpl = fts.getFullTextSearchImplementation().getClassName();
 			log.info("ftsImpl configuration: "+ftsImpl);
 			try{
 				if(ftsImpl!=null){
 					manager = (FullTextSearchManager)Class.forName(ftsImpl).newInstance();
 					manager.setConfiguration(configurationManager);
+					manager.setFTSImplConfig(fts.getFullTextSearchImplementation());
 					log.info("FTS manager initialized!");
 
 				}

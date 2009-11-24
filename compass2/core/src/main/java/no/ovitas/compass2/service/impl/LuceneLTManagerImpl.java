@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.LanguageToolsImplementation;
 import no.ovitas.compass2.exception.ConfigParameterMissingException;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.service.ConfigurationManager;
@@ -169,6 +170,11 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 		}
 
 		
+		
+	}
+	@Override
+	public void setLanguageToolsImpl(LanguageToolsImplementation lti) {
+		// TODO Auto-generated method stub
 		
 	}
 

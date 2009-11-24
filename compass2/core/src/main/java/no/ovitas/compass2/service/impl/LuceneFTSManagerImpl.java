@@ -27,6 +27,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.LockObtainFailedException;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
@@ -52,7 +53,14 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	private int hitThreshold;
 	private double resultThreshold;
 	private int maxNumberOfHits;
+	private FullTextSearchImplementation ftsImpl;
     
+	@Override
+	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl) {
+		this.ftsImpl = ftsImpl;
+		
+	}
+	
     
 	public void setConfiguration(ConfigurationManager manager){
 		configManager = manager;
@@ -356,6 +364,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	public void setMaxNumberOfHits(int maxNumberOfHits) {
 		this.maxNumberOfHits = maxNumberOfHits;
 	}
+
 	
 
 }

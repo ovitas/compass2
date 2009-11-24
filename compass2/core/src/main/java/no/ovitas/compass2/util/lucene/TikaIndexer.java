@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.util.XmlUtil;
 
@@ -35,6 +36,7 @@ import org.xml.sax.ContentHandler;
  */
 public class TikaIndexer extends BaseContenIndexer implements ContentIndexer {
 
+	
 	
 	public TikaIndexer(String indexDir) throws IOException {
 		indexDirectory = indexDir;
@@ -105,5 +107,6 @@ public class TikaIndexer extends BaseContenIndexer implements ContentIndexer {
 			indexWriter.addDocument(doc); 
 		}
 	}
+
 
 }

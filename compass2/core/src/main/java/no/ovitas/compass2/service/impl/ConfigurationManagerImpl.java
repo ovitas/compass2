@@ -1,5 +1,10 @@
 package no.ovitas.compass2.service.impl;
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.FullTextSearch;
+import no.ovitas.compass2.config.KnowledgeBase;
+import no.ovitas.compass2.config.LanguageToolsImplementation;
+import no.ovitas.compass2.config.Result;
+import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.service.ConfigurationManager;
 
 import java.io.File;
@@ -51,6 +56,37 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
 			return properties.getProperty(parameterName);
 		}
 		return null;
+	}
+
+
+	@Override
+	public FullTextSearch getFullTextSearch() {
+		throw new RuntimeException("deprecated for this kind of configuration!");
+	}
+
+
+	@Override
+	public KnowledgeBase getKnowledgeBase(String name) {
+		throw new RuntimeException("deprecated for this kind of configuration!");
+	}
+
+
+	@Override
+	public LanguageToolsImplementation getLanguageToolsImplementation() {
+		throw new RuntimeException("deprecated for this kind of configuration!");
+	}
+
+
+	@Override
+	public Result getResult() {
+		throw new RuntimeException("deprecated for this kind of configuration!");
+	}
+
+
+	@Override
+	public void initConfig() throws ConfigurationException {
+		throw new RuntimeException("deprecated for this kind of configuration!");
+		
 	}
 
 }

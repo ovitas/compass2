@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.KnowledgeBase;
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.Relation;
@@ -28,6 +29,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	protected KBBuilderDao builderDao;
 	protected KnowledgeBaseHolder knowledgeBase;
 	protected double expansionThreshold;
+	protected KnowledgeBase knowledgeBaseParams;
 	
 
 	protected int maxTopicNumberToExpand;
@@ -236,6 +238,12 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 
 	public void setMaxTopicNumberToExpand(int maxTopicNumberToExpand) {
 		this.maxTopicNumberToExpand = maxTopicNumberToExpand;
+	}
+
+	@Override
+	public void setKnowledgeBaseImpl(KnowledgeBase kb) {
+		knowledgeBaseParams = kb;
+		
 	}
 
 	

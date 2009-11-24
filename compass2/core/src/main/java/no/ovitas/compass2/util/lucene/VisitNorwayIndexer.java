@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import no.ovitas.compass2.Constants;
+import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.util.CompassDOMParser;
 import no.ovitas.compass2.util.XmlUtil;
 
@@ -93,5 +94,6 @@ public class VisitNorwayIndexer extends BaseContenIndexer implements ContentInde
 		// TODO Auto-generated method stub
 		return f.getName().endsWith(".html") || f.getName().endsWith(".htm");
 	}
+
 
 }

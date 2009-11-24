@@ -1,6 +1,9 @@
 package no.ovitas.compass2.config;
 
 import java.io.File;
+
+import no.ovitas.compass2.exception.ConfigurationException;
+
 import org.apache.commons.digester.Digester;
 import org.apache.log4j.Logger;
 
@@ -15,32 +18,31 @@ public class Compass2ConfigurationHandler {
 	private static Logger logger = Logger.getLogger(Compass2ConfigurationHandler.class);
 	protected Compass2Configuration config = null;
 	private static Compass2ConfigurationHandler instance = null;
+
 	
+	public static Compass2ConfigurationHandler getInstance(){
+		if(instance==null){
+			instance = new Compass2ConfigurationHandler();
+		}
+		return instance;
+	}
 	// Getter / setter methods
 	
 	public Compass2Configuration getConfig() {
 		return config;
 	}
 
-	public void setConfig(Compass2Configuration config) {
-		this.config = config;
-	}
 	
 	// Constructor
 	public Compass2ConfigurationHandler() {
-		instance = this;	
 	}
 
 	// Methods
 	
-    public void initialize(String configPath){
-    	loadConfig(configPath);
-    }
-	
 	/**
 	 * Actual content loading.
 	 */
-	private void loadConfig(String configPath){
+	public void loadConfig(String configPath) throws ConfigurationException{
 	
 		Digester digester = new Digester();
 		setupDigester(digester);
@@ -52,7 +54,8 @@ public class Compass2ConfigurationHandler {
 			try {
 				config = (Compass2Configuration)digester.parse(cfile);
 			} catch (Exception e) {
-				logger.fatal("Exception occured while loading and processing the configuration: " + e.getMessage(),e);
+				logger.fatal("Exception occured while loading and processing the configuration: " + e.getMessage());
+				throw new ConfigurationException("Exception occured while loading and processing the configuration: " + e.getMessage(),e);
 			}
 		}
 	}

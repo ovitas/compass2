@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+import no.ovitas.compass2.config.FullTextSearchImplementation;
+
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
@@ -24,7 +26,6 @@ import org.apache.lucene.store.FSDirectory;
  */
 public class TxtIndexer extends BaseContenIndexer implements ContentIndexer{
 
-	
 	
 	
 	

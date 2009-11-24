@@ -19,5 +19,11 @@ public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 		
 	}
 
+	public KnowledgeBase getKnowladgeBase(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	// Methods
 }
