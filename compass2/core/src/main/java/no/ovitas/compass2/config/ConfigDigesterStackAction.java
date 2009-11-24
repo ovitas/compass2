@@ -22,6 +22,9 @@ public class ConfigDigesterStackAction implements StackAction {
 		if(o instanceof  BaseConfigContainer){
 			((BaseConfigContainer)o).postProcess();
 			logger.debug(o.getClass()+" was processed.");
+		} else if(o instanceof  ParamContainer){
+			((ParamContainer)o).postProcess();
+			logger.debug(o.getClass()+" was processed.");
 		}
 		return o;
 

@@ -165,6 +165,7 @@ public class Compass2ConfigurationHandler {
 		
 		// AssociationTypes
 		digester.addObjectCreate (associationTypesTag, AssociationTypes.class);	
+		digester.addSetNext		 (associationTypesTag, "setAssociationTypes");
 		
 		// AssociationType
 		digester.addObjectCreate (associationTypeTag, AssociationType.class);

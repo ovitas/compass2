@@ -15,7 +15,7 @@ public class Expansion {
 	private Logger logger = Logger.getLogger(this.getClass());
 	private boolean useRandomWeight;
 	private boolean prefixMatch;
-	private String exansionThreshold;
+	private String expansionThreshold;
 	private String maxNumOfTopicToExpand;
 	private AssociationTypes associationTypes;
 
@@ -45,12 +45,12 @@ public class Expansion {
 		}
 	}
 
-	public String getExansionThreshold() {
-		return exansionThreshold;
+	public String getExpansionThreshold() {
+		return expansionThreshold;
 	}
 
-	public void setExansionThreshold(String exansionThreshold) {
-		this.exansionThreshold = exansionThreshold;
+	public void setExpansionThreshold(String exansionThreshold) {
+		this.expansionThreshold = exansionThreshold;
 	}
 
 	public String getMaxNumOfTopicToExpand() {
