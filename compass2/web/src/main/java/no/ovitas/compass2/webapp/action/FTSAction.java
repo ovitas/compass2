@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 
 import com.opensymphony.xwork2.Preparable;
 
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.FullTextSearchManager;
@@ -36,7 +37,7 @@ public class FTSAction extends BaseAction implements Preparable{
 	public String execute(){
 		FTSFactory ff = FTSFactory.getInstance();
 		FullTextSearchManager fts = ff.getFTSImplementation();
-		String docRoot = configurationManager.getConfigParameter(no.ovitas.compass2.Constants.DOCUMENT_REPOSITORY_PROPERTY);
+		String docRoot = configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.DOCUMENT_REPOSITORY).getName();
 		try {
 			writeResponse("Processing documents in: "+docRoot+"\n");
 			fts.addDocument(true, 100, docRoot);

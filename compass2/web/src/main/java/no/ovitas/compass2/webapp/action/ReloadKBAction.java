@@ -44,7 +44,8 @@ public class ReloadKBAction extends BaseAction implements Preparable {
 	}
 	
 	public String execute(){
-		String kbfile = configurationManager.getConfigParameter(Constants.KNOWLEDGE_BASE_FILE);
+		String deafultkbName = configurationManager.getDefaultKBImplementationName();
+		String kbfile = configurationManager.getKnowledgeBase(deafultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getName();
 		try {
 			writeResponse("KB loading started...");
 			KBFactory.getInstance().getKBImplementation().importKB(kbfile);

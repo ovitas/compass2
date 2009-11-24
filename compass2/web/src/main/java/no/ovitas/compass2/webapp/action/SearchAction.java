@@ -11,6 +11,7 @@ import java.util.Set;
 
 import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.config.ConfigConstants;
+import no.ovitas.compass2.config.LanguageToolsImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
@@ -203,19 +204,21 @@ public class SearchAction extends BaseAction implements Preparable {
 		log.info("searchAction.execute()");	
 		this.firstTime=true;
 		this.treeEmpty=true;
-		this.maxTopicNumberToExpand = Integer.valueOf(configurationManager.getConfigParameter(Constants.MAX_TOPIC_NUMBER_TO_EXPAND));
-		this.maxNumberOfHits = Integer.valueOf(configurationManager.getConfigParameter(Constants.LUCENE_FTS_MAX_HITS_PER_QUERY));
+		String defaultkbName = configurationManager.getDefaultKBImplementationName();
+		this.maxTopicNumberToExpand = Integer.valueOf(configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand());
+		this.maxNumberOfHits = Integer.valueOf(configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.MAX_HITS_PER_QUERY).getName());
 		
 		return SUCCESS;
 	}
 
 	public String search() {
 	    this.firstTime=false;
+	    String defaultkbName = configurationManager.getDefaultKBImplementationName();
 		log.info("showResults running...");
-		log.info("lucene.spellchecker.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.dir"));
-		log.info("lucene.spellchecker.index.dir: "+configurationManager.getConfigParameter("lucene.spellchecker.index.dir"));
-		log.info("lucene.fts.index.dir: "+configurationManager.getConfigParameter("lucene.fts.index.dir"));
-		log.info("knowledge.base.file: "+configurationManager.getConfigParameter("knowledge.base.file"));
+		log.info("lucene.spellchecker.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY));
+		log.info("lucene.spellchecker.index.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY));
+		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY).getName());
+		log.info("knowledge.base.file: " + configurationManager.getKnowledgeBase(defaultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getName());
 		//String search = getSearch(); 
 		if(search==null ||  search.equals("")){
 			return SUCCESS;
@@ -243,7 +246,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		
 		
 		if(hits != null && hits.size() > 0){
-			String docRoot = configurationManager.getConfigParameter(no.ovitas.compass2.Constants.DOCUMENT_REPOSITORY_PROPERTY);
+			String docRoot = configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.DOCUMENT_REPOSITORY).getName();
 			List<Hit> filteredHits = new ArrayList<Hit>();
 			for(Hit h: hits){
 				String uri = h.getURI();
@@ -286,8 +289,15 @@ public class SearchAction extends BaseAction implements Preparable {
 		
 		return "showResults";
 	}
-
 	
+	/**
+	 * Get LanguageToolsImplementation value of the name
+	 * @param name
+	 * @return the value
+	 */
+	private String getLTImplementationParamValue(String name) { 
+		return configurationManager.getLanguageToolsImplementation().getParams().getParam(name).getName();
+	}
 	
 	//ACTIONS END	
 
