@@ -30,7 +30,7 @@ public class Compass2ConfiguarationHandlerTest extends TestCase {
 	public void testConfigLoad(){
         log.info("Loading config file from " +configFile);
         Compass2ConfigurationHandler handler = new Compass2ConfigurationHandler();
-		handler.initialize(configFile);
+		//handler.initialize(configFile);
 		Compass2Configuration config = handler.getConfig();
 		assertNotNull(config);
 		
