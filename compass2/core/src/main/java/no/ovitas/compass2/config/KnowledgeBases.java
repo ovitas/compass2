@@ -19,11 +19,14 @@ public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 		
 	}
 
-	public KnowledgeBase getKnowladgeBase(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	// Methods
+	
+	public KnowledgeBase getKnowledgeBase(String name) {
+		if (name != null && !name.isEmpty()) {
+			return elements.get(name);
+		} else {
+			return null;
+		}
+	}
+	
 }

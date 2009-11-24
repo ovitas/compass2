@@ -49,7 +49,7 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 	}
 
 	public KnowledgeBase getKnowledgeBase(String name){
-		return configuration.getKnowledgeBases().getKnowladgeBase(name);
+		return configuration.getKnowledgeBases().getKnowledgeBase(name);
 	}
 	
 	public LanguageToolsImplementation getLanguageToolsImplementation(){
