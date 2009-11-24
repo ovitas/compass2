@@ -217,7 +217,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		log.info("showResults running...");
 		log.info("lucene.spellchecker.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY));
 		log.info("lucene.spellchecker.index.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY));
-		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY).getValue());
+		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.INDEXDIRECTORY_PATH).getValue());
 		log.info("knowledge.base.file: " + configurationManager.getKnowledgeBase(defaultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getValue());
 		//String search = getSearch(); 
 		if(search==null ||  search.equals("")){
