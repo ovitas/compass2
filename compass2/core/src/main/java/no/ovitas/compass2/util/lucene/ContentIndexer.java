@@ -18,6 +18,6 @@ public interface ContentIndexer {
 	public void setIndexWriter(IndexWriter indexWriter);
 	public void setIndexDirectory(String indexDirectory);
 	public void init() throws ConfigurationException, IOException;
-	public void setFTSImplConfig(FullTextSearchImplementation ftsImpl);
+	public void setFTSImpl(FullTextSearchImplementation ftsImpl);
 
 }
