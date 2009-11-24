@@ -89,7 +89,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		ConfigurationManager configManager = (ConfigurationManager) context.getBean("configurationManager");
 		
 		String defaultkbName = configManager.getDefaultKBImplementationName();
-		boolean sUseRandomWeight = configManager.getKnowledgeBase(defaultkbName).getExpansion().getUseRandomWeight();
+		boolean useRandomWeight = configManager.getKnowledgeBase(defaultkbName).getExpansion().getUseRandomWeight();
 
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
 		
