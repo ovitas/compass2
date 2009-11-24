@@ -206,7 +206,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		this.treeEmpty=true;
 		String defaultkbName = configurationManager.getDefaultKBImplementationName();
 		this.maxTopicNumberToExpand = Integer.valueOf(configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand());
-		this.maxNumberOfHits = Integer.valueOf(configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.MAX_HITS_PER_QUERY).getName());
+		this.maxNumberOfHits = Integer.valueOf(configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.MAX_HITS_PER_QUERY).getValue());
 		
 		return SUCCESS;
 	}
@@ -217,8 +217,8 @@ public class SearchAction extends BaseAction implements Preparable {
 		log.info("showResults running...");
 		log.info("lucene.spellchecker.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_DIRECTORY));
 		log.info("lucene.spellchecker.index.dir: " + getLTImplementationParamValue(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY));
-		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY).getName());
-		log.info("knowledge.base.file: " + configurationManager.getKnowledgeBase(defaultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getName());
+		log.info("lucene.fts.index.dir: " + configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.LUCENE_SPELLCHECKER_INDEX_DIRECTORY).getValue());
+		log.info("knowledge.base.file: " + configurationManager.getKnowledgeBase(defaultkbName).getKnowledgeBaseImplementation().getParams().getParam(Constants.FILE_PATH).getValue());
 		//String search = getSearch(); 
 		if(search==null ||  search.equals("")){
 			return SUCCESS;

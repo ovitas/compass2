@@ -199,7 +199,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 * @return the value
 	 */
 	private String getFTSImplementationParamValue(String paramName) {
-		return configManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(paramName).getName();
+		return configManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(paramName).getValue();
 	}
 
 

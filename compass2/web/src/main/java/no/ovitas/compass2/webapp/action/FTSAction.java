@@ -37,7 +37,7 @@ public class FTSAction extends BaseAction implements Preparable{
 	public String execute(){
 		FTSFactory ff = FTSFactory.getInstance();
 		FullTextSearchManager fts = ff.getFTSImplementation();
-		String docRoot = configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.DOCUMENT_REPOSITORY).getName();
+		String docRoot = configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.DOCUMENT_REPOSITORY).getValue();
 		try {
 			writeResponse("Processing documents in: "+docRoot+"\n");
 			fts.addDocument(true, 100, docRoot);

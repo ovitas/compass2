@@ -50,7 +50,7 @@ public class KBFactory {
 	 */
 	private String getKbImplementationParamValue(String kbName,
 			String name) {
-		return configurationManager.getKnowledgeBase(kbName).getKnowledgeBaseImplementation().getParams().getParam(name).getName();
+		return configurationManager.getKnowledgeBase(kbName).getKnowledgeBaseImplementation().getParams().getParam(name).getValue();
 	}
 
 	public KnowledgeBaseManager getKBImplementation(){

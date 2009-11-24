@@ -183,7 +183,7 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 	 * @return the value
 	 */
 	private String getLTImplementationParamValue(String paramName) {
-		return configManager.getLanguageToolsImplementation().getParams().getParam(paramName).getName();
+		return configManager.getLanguageToolsImplementation().getParams().getParam(paramName).getValue();
 	}
 
 }
