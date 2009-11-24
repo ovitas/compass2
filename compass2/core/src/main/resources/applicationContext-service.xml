@@ -37,11 +37,11 @@
 
     <!-- Add new Managers here -->
     <bean id="configurationManager" class="no.ovitas.compass2.service.impl.XMLConfigurationManagerImpl">
-    <constructor-arg type="java.lang.String" index="1" value="${config.path}"/>
-     <property name="defaultKBImplementationName" value="${defaultKBImplementationName}"/>
-    </bean>
-    <bean id="exportDomainModelManager" class="no.ovitas.compass2.service.impl.ExportDomainModel2PlainTextManagerImpl">
-     <property name="configuration" ref="configurationManager"/>
-    </bean>
+		<constructor-arg type="java.lang.String" index="0" value="${config.path}"/>
+		<property name="defaultKBImplementationName" value="${defaultKBImplementationName}"/>
+	</bean>
+	<bean id="exportDomainModelManager" class="no.ovitas.compass2.service.impl.ExportDomainModel2PlainTextManagerImpl">
+		<property name="configuration" ref="configurationManager"/>
+	</bean>
     
 </beans>
