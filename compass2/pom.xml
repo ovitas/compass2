@@ -210,6 +210,12 @@
       <artifactId>resolver</artifactId>
       <version>20050927</version>
     </dependency>
+      <dependency>
+          <groupId>commons-digester</groupId>
+          <artifactId>commons-digester</artifactId>
+          <version>2.0</version>
+      </dependency>
+    
        <dependency>
            <groupId>javax.persistence</groupId>
            <artifactId>persistence-api</artifactId>
@@ -416,7 +422,8 @@
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
+                 <config.path><![CDATA[c:/app/compass/compass2-config.xml]]></config.path>
+                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
                  <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
                  <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
             </properties>
@@ -439,9 +446,10 @@
                  <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
                  <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
                  <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
                  <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
                  <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
+                 <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
+                 <config.target.directory><![CDATA[/app/compass]]></config.target.directory>
             </properties>
         </profile>
         <profile>
@@ -467,6 +475,7 @@
                  <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
                  <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
                  <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
+                 <config.path><![CDATA[c:/home/compass2]]></config.path>
 
             </properties>
         </profile>

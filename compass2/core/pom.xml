@@ -59,12 +59,22 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
+            <resource>
+                <directory>src/main/config</directory>
+                <filtering>true</filtering>
+                <targetPath>${config.target.directory}</targetPath>
+            </resource>
         </resources>
         
         <testResources>
-            <testResource>
-                <directory>src/main/resources</directory>
+	        <testResource>
+                <directory>src/test/resources</directory>
                 <filtering>true</filtering>
+	        </testResource>
+            <testResource>
+                <directory>src/main/config</directory>
+                <filtering>true</filtering>
+                <targetPath>${config.target.directory}</targetPath>
             </testResource>
         </testResources>
     </build>
