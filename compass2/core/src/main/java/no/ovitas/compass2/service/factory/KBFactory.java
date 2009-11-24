@@ -43,7 +43,8 @@ public class KBFactory {
 
 	public KnowledgeBaseManager getKBImplementation(){
 		if(manager==null){
-			KnowledgeBase kb = configurationManager.getKnowledgeBase("");
+			String defaultkbName = configurationManager.getDefaultKBImplementationName();
+			KnowledgeBase kb = configurationManager.getKnowledgeBase(defaultkbName);
 			String kbImplClassName = kb.getKnowledgeBaseImplementation().getClassName();
 			log.info("kbImpl configuration: "+kbImplClassName);
 			try{
