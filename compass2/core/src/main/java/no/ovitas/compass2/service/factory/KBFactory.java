@@ -27,7 +27,8 @@ public class KBFactory {
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		configurationManager = (ConfigurationManager)context.getBean("configurationManager");
 		if(configurationManager!=null){
-			String los = configurationManager.getConfigParameter(Constants.KNOWLEDGE_BASE_LOAD_ON_STARTUP);
+			String defaultkbName = configurationManager.getDefaultKBImplementationName();
+			String los = getKbImplementationParamValue(defaultkbName, Constants.LOAD_ON_STARTUP);
 			if(los==null){
 				this.loadOnStartup = false;
 			}else{
@@ -37,8 +38,19 @@ public class KBFactory {
 					this.loadOnStartup = false;
 				}
 			}
-			kbFile = configurationManager.getConfigParameter(Constants.KNOWLEDGE_BASE_FILE);
+			kbFile = getKbImplementationParamValue(defaultkbName, Constants.FILE_PATH);
 		}
+	}
+
+	/**
+	 * Return the value of name parameter of the KnowledgeBaseImplementation
+	 * @param kbName the knowledge base name
+	 * @param name
+	 * @return the value
+	 */
+	private String getKbImplementationParamValue(String kbName,
+			String name) {
+		return configurationManager.getKnowledgeBase(kbName).getKnowledgeBaseImplementation().getParams().getParam(name).getName();
 	}
 
 	public KnowledgeBaseManager getKBImplementation(){

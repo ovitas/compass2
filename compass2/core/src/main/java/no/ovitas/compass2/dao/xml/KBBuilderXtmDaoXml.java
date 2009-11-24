@@ -87,13 +87,9 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 		log.info("KBBuilderXtmDaoXml.buildKB");
 		ApplicationContext context = CompassUtil.getApplicationContext();
 		ConfigurationManager configManager = (ConfigurationManager) context.getBean("configurationManager");
-		String sUseRandomWeight = configManager.getConfigParameter(Constants.USE_RANDOM_WEIGHT);
-		boolean useRandomWeight = false;
-		if (sUseRandomWeight != null) {
-			if (sUseRandomWeight.trim().equals("true")) {
-				useRandomWeight = true;
-			}
-		}
+		
+		String defaultkbName = configManager.getDefaultKBImplementationName();
+		boolean sUseRandomWeight = configManager.getKnowledgeBase(defaultkbName).getExpansion().getUseRandomWeight();
 
 		KnowledgeBaseHolder kbh = new KnowledgeBaseHolder();
 		
