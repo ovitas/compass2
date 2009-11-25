@@ -20,6 +20,14 @@ public class Result {
 		return resultThreshold;
 	}
 
+	public void setResultThreshold(double resultThreshold) {
+		this.resultThreshold = resultThreshold;
+	}
+
+	public void setMaxNumberOfHits(int maxNumberOfHits) {
+		this.maxNumberOfHits = maxNumberOfHits;
+	}
+
 	public void setResultThreshold(String value) {
 		try{
 		this.resultThreshold = Double.parseDouble(value);

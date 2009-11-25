@@ -22,6 +22,14 @@ public class FullTextSearch {
 		return prefixMatch;
 	}
 
+	public void setFuzzyMatch(boolean fuzzyMatch) {
+		this.fuzzyMatch = fuzzyMatch;
+	}
+
+	public void setPrefixMatch(boolean prefixMatch) {
+		this.prefixMatch = prefixMatch;
+	}
+
 	public void setPrefixMatch(String prefixMatch) {
 		if(prefixMatch != null && prefixMatch.equals("yes")) {
 			this.prefixMatch = true;

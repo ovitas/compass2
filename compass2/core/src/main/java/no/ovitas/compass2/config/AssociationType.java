@@ -20,6 +20,14 @@ public class AssociationType extends BaseConfigItem {
 		return weightAhead;
 	}
 
+	public void setWeightAhead(double weightAhead) {
+		this.weightAhead = weightAhead;
+	}
+
+	public void setWeightAback(double weightAback) {
+		this.weightAback = weightAback;
+	}
+
 	public void setWeightAhead(String weightAhead) {
 		double doubleValue = 0.0;
 		if(weightAhead != null) {

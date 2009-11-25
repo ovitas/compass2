@@ -32,6 +32,18 @@ public class Expansion {
 		}
 	}
 
+	public void setUseRandomWeight(boolean useRandomWeight) {
+		this.useRandomWeight = useRandomWeight;
+	}
+
+	public void setExpansionThreshold(double expansionThreshold) {
+		this.expansionThreshold = expansionThreshold;
+	}
+
+	public void setMaxNumOfTopicToExpand(int maxNumOfTopicToExpand) {
+		this.maxNumOfTopicToExpand = maxNumOfTopicToExpand;
+	}
+
 	public double getExpansionThreshold() {
 		return expansionThreshold;
 	}
