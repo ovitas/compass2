@@ -33,7 +33,37 @@
 			</knowledge-base-implementation>
 			<expansion use-random-weight="no"  expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}">
 				<association-types>
-					<association-type id="#123456" name="TestAssocTypeName" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-11372557" name="TestAssocTypeName1" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-11372561" name="TestAssocTypeName2" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282034" name="TestAssocTypeName3" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282040" name="TestAssocTypeName4" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282046" name="TestAssocTypeName5" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282238" name="TestAssocTypeName6" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282244" name="TestAssocTypeName7" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1282403" name="TestAssocTypeName8" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1746221" name="TestAssocTypeName9" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-3446294" name="TestAssocTypeName10" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281990" name="TestAssocTypeName11" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-2836564" name="TestAssocTypeName12" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1920472" name="TestAssocTypeName13" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1576847" name="TestAssocTypeName14" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1634400" name="TestAssocTypeName15" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1634404" name="TestAssocTypeName16" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1634406" name="TestAssocTypeName17" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1634408" name="TestAssocTypeName18" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281994" name="TestAssocTypeName19" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-11372542" name="TestAssocTypeName20" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-11372544" name="TestAssocTypeName21" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-2289089" name="TestAssocTypeName22" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1691635" name="TestAssocTypeName23" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281982" name="TestAssocTypeName24" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281984" name="TestAssocTypeName25" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1920474" name="TestAssocTypeName26" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-3453352" name="TestAssocTypeName27" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-2289087" name="TestAssocTypeName28" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281988" name="TestAssocTypeName29" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281992" name="TestAssocTypeName30" weight-ahead="0.5" weight-aback="0.7" />
+					<association-type id="#t-1281980" name="TestAssocTypeName31" weight-ahead="0.5" weight-aback="0.7" />				
 				</association-types>
 			</expansion>
 		</knowledge-base>
