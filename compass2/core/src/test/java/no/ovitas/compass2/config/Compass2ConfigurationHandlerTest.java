@@ -36,6 +36,7 @@ public class Compass2ConfigurationHandlerTest extends TestCase {
             Compass2ConfigurationHandler handler = Compass2ConfigurationHandler.getInstance();
 			handler.loadConfig(configFile);
 			Compass2Configuration config = handler.getConfig();
+			log.info(config.dumpOut(""));
 			assertNotNull(config);
 			
 		} catch (ConfigurationException ce) {
