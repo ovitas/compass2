@@ -153,7 +153,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			}
 			
 			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
-			Set<TopicTreeNode> subTopicTreeNodeSet = new HashSet<TopicTreeNode>();
 			for (Topic topic : topicSet) {
 				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
 					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
@@ -169,7 +168,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				}
 			}
 			
-			subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
+			Set<TopicTreeNode> subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
 			
 			ret.add(subTopicTreeNodeSet);
 			
