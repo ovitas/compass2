@@ -124,7 +124,7 @@ public class LuceneLTManagerImpl implements LanguageToolsManager {
 			try{
 			 sn = Integer.parseInt(suggestionNum);	
 			}catch(Exception ex){
-				
+				log.error("Invalid integer value: " + suggestionNum);
 			}
 		}
 		String[] suggestions = spell.suggestSimilar(userSearch,sn);
