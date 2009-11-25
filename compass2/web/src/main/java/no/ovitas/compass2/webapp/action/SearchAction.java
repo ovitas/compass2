@@ -45,7 +45,6 @@ public class SearchAction extends BaseAction implements Preparable {
 	private Integer maxTopicNumberToExpand;
 
 	private List<Hit> result;
-	private List<Hit> filteredResult;
 
 	private int resultSize;
 	private int filteredResultSize;
@@ -133,14 +132,6 @@ public class SearchAction extends BaseAction implements Preparable {
 
 	public void setResult(List<Hit> result) {
 		this.result = result;
-	}
-	
-	public List<Hit> getFilteredResult() {
-		return filteredResult;
-	}
-
-	public void setFilteredResult(List<Hit> filteredResult) {
-		this.filteredResult = filteredResult;
 	}
 	
 	public int getResultSize() {
@@ -231,21 +222,17 @@ public class SearchAction extends BaseAction implements Preparable {
 		
 		if(hits != null && hits.size() > 0){
 			String docRoot = configurationManager.getFullTextSearch().getFullTextSearchImplementation().getParams().getParam(Constants.DOCUMENT_REPOSITORY).getName();
-			List<Hit> filteredHits = new ArrayList<Hit>();
 			for(Hit h: hits){
 				String uri = h.getURI();
 				if(uri.indexOf(docRoot)>-1){
 					uri = uri.replace(docRoot, "http://");
 					//uri= uri.replaceAll("\", "/");
 					h.setURI(uri);
-				}
-				// Add hit from hit list if it's score greater than resultThreshold
-					
+				}				
 			}
 			setResult(hits);
 			this.resultSize = resultObj.getAllHitNumber();
 			this.filteredResultSize = hits.size();
-			//setFilteredResult(filteredHits);
 		}
 		String cj = createJson(expansions);
 		if(log.isDebugEnabled()){
