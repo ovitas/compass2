@@ -78,9 +78,7 @@ public class Expansion {
 	
 	// Constructors
 
-	public Expansion() {
-		associationTypes = new AssociationTypes();
-	}
+	public Expansion() {}
 
 	// Methods
 	
