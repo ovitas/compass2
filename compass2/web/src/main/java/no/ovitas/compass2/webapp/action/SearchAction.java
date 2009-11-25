@@ -1,8 +1,5 @@
 package no.ovitas.compass2.webapp.action;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,9 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import no.ovitas.compass2.Constants;
-import no.ovitas.compass2.config.ConfigConstants;
-import no.ovitas.compass2.config.LanguageToolsImplementation;
-import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.Hit;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
 import no.ovitas.compass2.model.RelationType;
@@ -22,11 +16,9 @@ import no.ovitas.compass2.service.CompassManager;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.FullTextSearchManager;
 import no.ovitas.compass2.service.KnowledgeBaseManager;
-import no.ovitas.compass2.service.LanguageToolsManager;
 import no.ovitas.compass2.service.factory.CompassManagerFactory;
 import no.ovitas.compass2.service.factory.FTSFactory;
 import no.ovitas.compass2.service.factory.KBFactory;
-import no.ovitas.compass2.service.factory.LTFactory;
 
 import com.opensymphony.xwork2.Preparable;
 
@@ -287,16 +279,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		
 		return "showResults";
 	}
-	
-	/**
-	 * Get LanguageToolsImplementation value of the name
-	 * @param name
-	 * @return the value
-	 */
-	private String getLTImplementationParamValue(String name) { 
-		return configurationManager.getLanguageToolsImplementation().getParams().getParam(name).getName();
-	}
-	
+		
 	//ACTIONS END	
 
 	private String createJson(List<Set<TopicTreeNode>> expansions) {
