@@ -19,6 +19,8 @@ public interface FullTextSearchManager {
 	public void setMaxNumberOfHits(int maxNumberOfHits);
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl);
 	public void init() throws ConfigurationException;
+	public int getAllHitNumber();
+	public void setFuzzySearch(boolean fuzzySearch);
 	/**
 	 * 
 	 * @param reindex

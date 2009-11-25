@@ -50,22 +50,15 @@ public class CompassManagerImpl implements CompassManager {
 	
 
 
-	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch) {
-		return search(search, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, null);
-	}
-
-
-	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch,
-			int pageNum) {
-		return search(search, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, pageNum, null);
-	}
 	
 	public ResultObject search(String search, int hopCount,
 			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, 
-			Integer maxTopicNumberToExpand) {
-		
+			Integer maxTopicNumberToExpand, double resultThreshold, int	maxNumberOfHits) {
+		ftsManager.setFuzzySearch(fuzzyMatch);
+		ftsManager.setMaxNumberOfHits(maxNumberOfHits);
+		ftsManager.setResultThreshold(resultThreshold);
+		kbManager.setExpansionThreshold(thresholdWeight);
+		kbManager.setMaxTopicNumberToExpand(maxTopicNumberToExpand);
 		List<Hit> hits = null;
 		if(search!=null && !search.isEmpty()){
 		 	if(search.trim().startsWith("lucene:")){
@@ -78,20 +71,7 @@ public class CompassManagerImpl implements CompassManager {
 	}
 
 
-	public ResultObject search(String search, int hopCount,
-			double thresholdWeight, boolean prefixMatch, boolean fuzzyMatch, 
-			int pageNum, Integer maxTopicNumberToExpand) {
-		
-		List<Hit> hits = null;
-		if(search!=null && !search.isEmpty()){
-		 	if(search.trim().startsWith("lucene:")){
-		 		return this.directLuceneSearch(search, pageNum);
-		 	}else{
-		 		return indirectSearch(search, pageNum, hopCount, thresholdWeight, prefixMatch, fuzzyMatch, pageNum, maxTopicNumberToExpand);
-		 	}
-		}
-		return null;
-	}
+
 
 	public CompassManagerImpl() {
 	}
@@ -175,7 +155,9 @@ public class CompassManagerImpl implements CompassManager {
 	protected ResultObject directLuceneSearch(String search, int pageNum){
  		String tmpSearch = search.replaceFirst("lucene:", "");
  		List<Hit> hits = ftsManager.doSearch(tmpSearch, pageNum);
- 		return new ResultObject(null,hits);
+ 		ResultObject ro = new ResultObject(null,hits);
+ 		ro.setAllHitNumber(ftsManager.getAllHitNumber());
+ 		return ro;
 
 	}
 	
@@ -239,8 +221,10 @@ public class CompassManagerImpl implements CompassManager {
 				}
 			}
 		}
+ 		ResultObject ro = new ResultObject(topics, retList);
+ 		ro.setAllHitNumber(ftsManager.getAllHitNumber());
 		
-		return new ResultObject(topics, retList);
+		return ro;
 	}
 
 

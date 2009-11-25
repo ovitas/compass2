@@ -17,6 +17,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -40,6 +41,7 @@ import no.ovitas.compass2.util.lucene.ContentIndexer;
 import no.ovitas.compass2.util.lucene.PagerHitCollector;
 
 
+
 /**
  * @author magyar
  * @version 1.0
@@ -47,6 +49,7 @@ import no.ovitas.compass2.util.lucene.PagerHitCollector;
  */
 public class LuceneFTSManagerImpl implements FullTextSearchManager {
 
+	protected int allHitNumber;
 	protected ConfigurationManager configManager;
     private Log log = LogFactory.getLog(getClass());
 	private Map<String, String> fields = new HashMap<String, String>();
@@ -55,7 +58,12 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	private int maxNumberOfHits;
 	private FullTextSearchImplementation ftsImpl;
 	private String indexDirectory;
+	private boolean fuzzySearch;
     
+	
+	public void setFuzzySearch(boolean fuzzySearch){
+		this.fuzzySearch = fuzzySearch;
+	}
 	@Override
 	public void setFTSImpl(FullTextSearchImplementation ftsImpl) {
 		this.ftsImpl = ftsImpl;
@@ -69,6 +77,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	
 	public LuceneFTSManagerImpl(){
 		maxNumberOfHits = 100;
+		fuzzySearch = false;
 	}
 
 
@@ -218,7 +227,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			for (String item : itemSet) {
 				if (firstItem) firstItem = false;
 				else queryString.append(" OR ");
-				queryString.append("\"" + item + "\"");
+				queryString.append("\"" + item + "\""+(fuzzySearch ? "~" : "" ));
 			}
 			if (itemSet.size() > 0) queryString.append(")");
 		}
@@ -242,11 +251,19 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			return null;
 		}
 		if(search!=null && !search.isEmpty()){
-			if(search.trim().startsWith("*")){
+			if(search.trim().contains("*")){
 			 q =new WildcardQuery(new Term(Constants.CONTENT_INDEX,search));	
 			}else{
+
+				if(this.fuzzySearch && !search.contains("~")){
+					search +="~";
+				}
+				if(search.contains("~")){
+					 q =new FuzzyQuery(new Term(Constants.CONTENT_INDEX,search));	
+				}
 				QueryParser qp = new QueryParser(Constants.CONTENT_INDEX,new SimpleAnalyzer());
 				try {
+						
 					q = qp.parse(search);
 				} catch (ParseException e) {
 					log.fatal("Fatal error occured: "+e.getMessage(),e);
@@ -259,8 +276,9 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				phc.setResultThreshold(resultThreshold);
 				try{
 				 searcher.search(q,phc);
+				 this.allHitNumber = phc.getHitCounter();
 				}catch(RuntimeException e){
-					//
+					log.error("Error occured: ",e);
 				}
 				if(!phc.getDocIds().isEmpty()){
 					List<Hit> hits = new ArrayList<Hit>();
@@ -372,6 +390,11 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		 maxNumberOfHits= configManager.getResult().getMaxNumberOfHits();
 		}
 			
+	}
+
+
+	public int getAllHitNumber() {
+		return allHitNumber;
 	}
 
 	

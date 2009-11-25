@@ -16,6 +16,7 @@ public class ResultObject implements Serializable {
 	
 	protected List<Hit> hits;
 	protected List<Set<TopicTreeNode>> expansions;
+	protected int allHitNumber;
 	
 	public List<Hit> getHits() {
 		return hits;
@@ -53,5 +54,13 @@ public class ResultObject implements Serializable {
 	public ResultObject() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getAllHitNumber() {
+		return allHitNumber;
+	}
+
+	public void setAllHitNumber(int allHitNumber) {
+		this.allHitNumber = allHitNumber;
 	}
 }

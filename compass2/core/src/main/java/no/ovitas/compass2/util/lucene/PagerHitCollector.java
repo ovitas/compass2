@@ -34,17 +34,19 @@ public class PagerHitCollector extends HitCollector {
 		scores = new HashMap<Integer,Float>();
 		hitCounter = 0;
 		this.maxNumberOfHits = maxNumberOfHits; 
+		resultThreshold = 0.0;
 	}
 	
 	public void collect(int id, float score) {
       hitCounter++;
-      if((hitCounter <=maxNumberOfHits) && resultThreshold <=score ){
+      if((docIds.size() <=maxNumberOfHits) && resultThreshold <=score ){
     	  docIds.add(id);
     	  scores.put(id, score);
       }
-      if(hitCounter>maxNumberOfHits){
+      /*
+      if(docIds.size()>maxNumberOfHits ){
     	  throw new RuntimeException("Pagination finished");
-      }
+      }*/
 	}
 
 	public List<Integer> getDocIds() {
@@ -57,6 +59,10 @@ public class PagerHitCollector extends HitCollector {
 
 	public void setResultThreshold(double resultThreshold) {
 		this.resultThreshold = resultThreshold;
+	}
+
+	public int getHitCounter() {
+		return hitCounter;
 	}
 
 }
