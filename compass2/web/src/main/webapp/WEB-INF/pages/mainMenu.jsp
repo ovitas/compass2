@@ -60,7 +60,9 @@
 	<s:set name="firstTime" value="firstTime" scope="request"/> 
 	<s:set name="treeEmpty" value="treeEmpty" scope="request"/> 
 	
-		<s:set name="result"  value="filteredResult" scope="request"/>
+		<s:set name="result"  value="result" scope="request"/>
+		<s:set name="resultSize"  value="resultSize" scope="request"/>
+		<s:set name="filteredResultSize"  value="filteredResultSize" scope="request"/>
 		<c:if test="${not firstTime }">
 		    <c:if test="${not treeEmpty }">
 			  <h1><fmt:message key="topic.expansion"/></h1>
