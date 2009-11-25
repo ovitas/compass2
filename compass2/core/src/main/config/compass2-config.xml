@@ -4,7 +4,7 @@
     <full-text-search prefix-match="yes" fuzzy-match="no">
 		<full-text-search-implementation class="${no.ovitas.compass2.service.FTSImplementation}" >
 			<params>
-				<param name="indexdirectory-path" value="${lucene.spellchecker.index.dir}"/>
+				<param name="indexdirectory-path" value="${lucene.fts.index.dir}"/>
 				<param name="document-repository" value="${document.repository}"/>
 			</params>
 		</full-text-search-implementation>
