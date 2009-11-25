@@ -111,7 +111,11 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				topicTreeNodeSet.add(node1);
 			}
 		}
-		return topicTreeNodeSet;
+				
+		Set<TopicTreeNode> subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
+		
+		return subTopicTreeNodeSet;
+		//return topicTreeNodeSet;
 	}
 
 	/**
