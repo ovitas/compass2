@@ -18,7 +18,7 @@ public class FullTextSearch {
 
 	// Getter / setter methods
 
-	public boolean getPrefixMatch() {
+	public boolean prefixMatch() {
 		return prefixMatch;
 	}
 
@@ -28,6 +28,10 @@ public class FullTextSearch {
 		} else {
 			this.prefixMatch = false;
 		}
+	}
+	
+	public boolean getPrefixMatch() {
+		return prefixMatch;
 	}
 
 	public boolean getFuzzyMatch() {
@@ -67,4 +71,10 @@ public class FullTextSearch {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "FullTextSearch: prefixMatch: " + prefixMatch + ", fuzzyMatch: " + fuzzyMatch);
+		fullTextSearchImplementation.dumpOut(" ");
+		contentIndexerImplementation.dumpOut(" ");
+	}
 }
