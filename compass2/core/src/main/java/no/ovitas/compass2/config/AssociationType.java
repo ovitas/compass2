@@ -16,6 +16,14 @@ public class AssociationType extends BaseConfigItem {
 
 	// Getter / setter methods
 
+	public void setWeightAhead(String weightAhead) {
+		try{
+			this.weightAhead = Double.parseDouble(weightAhead);
+		}catch(NumberFormatException nfe){
+			logger.error("Wrong weightAhead value: "+weightAhead);
+		}
+	}
+
 	public double getWeightAhead() {
 		return weightAhead;
 	}
@@ -24,36 +32,20 @@ public class AssociationType extends BaseConfigItem {
 		this.weightAhead = weightAhead;
 	}
 
-	public void setWeightAback(double weightAback) {
-		this.weightAback = weightAback;
-	}
-
-	public void setWeightAhead(String weightAhead) {
-		double doubleValue = 0.0;
-		if(weightAhead != null) {
-			try {
-				doubleValue = Double.parseDouble(weightAhead);
-			} catch (NumberFormatException nfe) {
-				logger.error("Invalid weight ahead: " + weightAhead + ", " + nfe.getMessage());
-			}
-		}
-		this.weightAhead = doubleValue;
-	}
-
 	public double getWeightAback() {
 		return weightAback;
 	}
 
+	public void setWeightAback(double weightAback) {
+		this.weightAback = weightAback;
+	}
+
 	public void setWeightAback(String weightAback) {
-		double doubleValue = 0.0;
-		if(weightAback != null) {
-			try {
-				doubleValue = Double.parseDouble(weightAback);
-			} catch (NumberFormatException nfe) {
-				logger.error("Invalid weight aback: " + weightAback + ", " + nfe.getMessage());
-			}
+		try{
+			this.weightAback = Double.parseDouble(weightAback);
+		}catch(NumberFormatException nfe){
+			logger.error("Wrong weightAback value: "+weightAback);
 		}
-		this.weightAback = doubleValue;
 	}
 
 	// Constructors

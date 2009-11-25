@@ -176,7 +176,7 @@ public class Compass2ConfigurationHandler {
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_ID, "id");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_NAME, "name");
 		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_AHEAD, "weightAhead");
-		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_ABACK, "weigthAback");
+		digester.addSetProperties(associationTypeTag, ConfigConstants.ATTR_WEIGHT_ABACK, "weightAback");
 		
 		// Result
 		String resultPrefix = prefix+"/result";
