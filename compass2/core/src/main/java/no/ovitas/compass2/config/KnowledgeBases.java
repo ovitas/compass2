@@ -22,9 +22,10 @@ public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 	// Methods
 	
 	public KnowledgeBase getKnowledgeBase(String name) {
-		if (name != null && !name.isEmpty()) {
+		if (name != null && elements.containsKey(name)) {
 			return elements.get(name);
 		} else {
+			logger.error("The " + name + " KnowledgeBase is not exists!");
 			return null;
 		}
 	}
