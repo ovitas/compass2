@@ -222,25 +222,38 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 		for (Set<String> itemSet : searchItems) {
 			if (queryString.length() > 0) queryString.append(" ");
 			
-			if (itemSet.size() > 0) queryString.append("(");
 			boolean firstItem = true;
 			for (String item : itemSet) {
 				if (firstItem) firstItem = false;
 				else queryString.append(" OR ");
 				queryString.append("\"" + item + "\""+(fuzzySearch ? "~" : "" ));
 			}
-			if (itemSet.size() > 0) queryString.append(")");
 		}
 		return doSearch(queryString.toString(), pageNum);
 	}
 
+	private String normalizeSearchString(String search){
+		String r = "";
+		r = search.replace(":", "");
+		r = r.replace("+", "");
+		r = r.replace("-", "");
+		r = r.replace("?", "");
+		r = r.replace("\\", "");
+		r = r.replace("!", "");
+		r = r.replace("&&", "");
+		r = r.replace("||", "");
+		r = r.replace("^", "");
+		return r;
+	}
+	
 	/**
 	 * 
 	 * @param search
 	 * @throws ParseException 
 	 */
-	public List<Hit> doSearch(String search, int pageNum){
+	public List<Hit> doSearch(String s, int pageNum){
 		
+		String search = normalizeSearchString(s);
 		
 		Query q = null;
 		IndexSearcher searcher = null;
@@ -273,7 +286,9 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 			}
 			try {
 				PagerHitCollector phc = new PagerHitCollector(this.maxNumberOfHits);
-				phc.setResultThreshold(resultThreshold);
+				if(resultThreshold>0.0){
+				 phc.setResultThreshold(resultThreshold);
+				}
 				try{
 				 searcher.search(q,phc);
 				 this.allHitNumber = phc.getHitCounter();
