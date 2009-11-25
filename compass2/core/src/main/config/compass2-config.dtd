@@ -71,7 +71,7 @@
 >
 
 <!-- Association types -->
-<!ELEMENT association-types ( association-type* ) >
+<!ELEMENT association-types ( association-type+ ) >
 
 <!ELEMENT association-type EMPTY >
 <!ATTLIST association-type
