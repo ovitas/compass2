@@ -144,11 +144,11 @@ public class SearchAction extends BaseAction implements Preparable {
 	}
 	
 	public int getResultSize() {
-		return this.result.size();
+		return this.resultSize;
 	}
 
 	public int getFilteredResultSize() {
-		return this.filteredResult.size();
+		return this.filteredResultSize;
 	}
 	
 	public ArrayList<RelationType> getRelationTypes() {
@@ -212,14 +212,6 @@ public class SearchAction extends BaseAction implements Preparable {
 		if(search==null ||  search.equals("")){
 			return SUCCESS;
 		}
-		FullTextSearchManager ftsManager;
-		KnowledgeBaseManager kbManager;
-		ftsManager = FTSFactory.getInstance().getFTSImplementation();
-		kbManager = KBFactory.getInstance().getKBImplementation();
-		ftsManager.setMaxNumberOfHits(maxNumberOfHits);
-		kbManager.setExpansionThreshold(expansionThreshold);
-		kbManager.setMaxTopicNumberToExpand(maxTopicNumberToExpand);
-		ftsManager.setResultThreshold(resultThreshold);
 		
 		int hc = hopCount!=null ? hopCount.intValue() : 0;
 		ResultObject resultObj = compassManager.search(
@@ -228,7 +220,9 @@ public class SearchAction extends BaseAction implements Preparable {
 			expansionThreshold, 
 			prefixMatch, 
 			fuzzyMatch,
-			this.maxTopicNumberToExpand
+			this.maxTopicNumberToExpand,
+			resultThreshold,
+			maxNumberOfHits
 		);
 		
 		List<Hit> hits = resultObj.getHits();
@@ -246,12 +240,12 @@ public class SearchAction extends BaseAction implements Preparable {
 					h.setURI(uri);
 				}
 				// Add hit from hit list if it's score greater than resultThreshold
-				double score = h.getScore();
-				if(score > resultThreshold)
-					filteredHits.add(h);
+					
 			}
 			setResult(hits);
-			setFilteredResult(filteredHits);
+			this.resultSize = resultObj.getAllHitNumber();
+			this.filteredResultSize = hits.size();
+			//setFilteredResult(filteredHits);
 		}
 		String cj = createJson(expansions);
 		if(log.isDebugEnabled()){
