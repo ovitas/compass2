@@ -14,7 +14,6 @@ public class Expansion {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 	private boolean useRandomWeight;
-	private boolean prefixMatch;
 	private double expansionThreshold;
 	private int maxNumOfTopicToExpand;
 	private AssociationTypes associationTypes;
@@ -30,18 +29,6 @@ public class Expansion {
 			this.useRandomWeight = true;
 		} else {
 			this.useRandomWeight = false;
-		}
-	}
-
-	public boolean getPrefixMatch() {
-		return prefixMatch;
-	}
-
-	public void setPrefixMatch(String prefixMatch) {
-		if(prefixMatch != null && prefixMatch.equals("yes")) {
-			this.prefixMatch = true;
-		} else {
-			this.prefixMatch = false;
 		}
 	}
 
@@ -87,7 +74,7 @@ public class Expansion {
 	
 	public String dumpOut(String indent) {
 		String ind = indent + " ";
-		String toDumpOut = ind + "Expansion: useRandomWeight: " + useRandomWeight + ", prefixMatch: " + prefixMatch + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand + "\n";
+		String toDumpOut = ind + "Expansion: useRandomWeight: " + useRandomWeight + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand + "\n";
 		toDumpOut += ind + associationTypes.dumpOut(ind);
 		return toDumpOut;
 	}
