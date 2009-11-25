@@ -25,7 +25,7 @@ public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 		if (name != null && elements.containsKey(name)) {
 			return elements.get(name);
 		} else {
-			logger.error("The " + name + " KnowledgeBase is not exists!");
+			logger.error("The " + name + " KnowledgeBase is not exist!");
 			return null;
 		}
 	}
