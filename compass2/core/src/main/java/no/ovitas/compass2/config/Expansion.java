@@ -84,4 +84,9 @@ public class Expansion {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "Expansion: useRandomWeight: " + useRandomWeight + ", prefixMatch: " + prefixMatch + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand);
+		associationTypes.dumpOut(" ");
+	}
 }

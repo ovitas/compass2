@@ -40,4 +40,9 @@ public class ContentIndexerImplementation {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "ContentIndexerImplementation: className: " + className);
+		params.dumpOut(" ");
+	}
 }

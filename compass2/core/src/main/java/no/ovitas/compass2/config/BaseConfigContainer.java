@@ -60,4 +60,14 @@ public class BaseConfigContainer<T extends BaseConfigItem> {
 		}
 		logger.debug("Dumping elements finished ");		
 	}
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "Container");
+		
+		for(String e : elements.keySet()){
+			logger.debug("key: "+e+", value: ");
+			T element = elements.get(e);
+			element.dumpOut();
+		}
+	}
 }

@@ -39,4 +39,9 @@ public class LanguageToolsImplementation {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "FullTextSearch: className: " + className);
+		params.dumpOut(" ");
+	}
 }

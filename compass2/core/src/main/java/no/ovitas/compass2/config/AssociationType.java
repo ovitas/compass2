@@ -55,4 +55,8 @@ public class AssociationType extends BaseConfigItem {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "AssociationType: id: " + id + ", name: " + name + ", weightAhead: " + weightAhead + ", weightAback: " + weightAback);
+	}
 }

@@ -13,8 +13,6 @@ public class Result {
 	private Logger logger = Logger.getLogger(this.getClass());
 	protected double resultThreshold;
 	protected int maxNumberOfHits;
-
-	
 	
 	// Getter / setter methods
 
@@ -47,4 +45,8 @@ public class Result {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "Result: resultThreshold: " + resultThreshold + ", maxNumberOfHits: " + maxNumberOfHits);
+	}
 }

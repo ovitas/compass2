@@ -66,5 +66,19 @@ public class ParamContainer {
 		logger.debug(toDumpOut); 
 	}
 	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "ParamContainer");
+		
+		String toDumpOut = "";
+		if(params != null && params.size() > 0){
+			for(Param p : params.values()){
+				toDumpOut += indent + "name: " + p.name+"\n";
+				toDumpOut += indent + "value: " + p.value+"\n";
+			}
+			
+		}
+		logger.debug(toDumpOut); 
+	}
+	
 
 }

@@ -40,4 +40,10 @@ public class KnowledgeBase extends BaseConfigItem {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "KnowledgeBase");
+		knowledgeBaseImplementation.dumpOut(" ");
+		expansion.dumpOut(" ");
+	}
 }

@@ -59,4 +59,12 @@ public class Compass2Configuration {
 	}
 	
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "Compass2Configuration");
+		fullTextSearch.dumpOut(" ");
+		languageTools.dumpOut(" ");
+		knowledgeBases.dumpOut(" ");
+		result.dumpOut(" ");
+	}
 }

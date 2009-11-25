@@ -31,4 +31,9 @@ public class LanguageTools {
 	}
 
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "LangageTools");
+		languageToolsImplementation.dumpOut(" ");
+	}
 }

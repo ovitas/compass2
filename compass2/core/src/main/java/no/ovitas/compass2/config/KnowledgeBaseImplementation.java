@@ -39,4 +39,9 @@ public class KnowledgeBaseImplementation {
 	}
 	
 	// Methods
+	
+	public void dumpOut(String indent) {
+		logger.debug(indent + "KnowledgeBaseImplementation: className: " + className);
+		params.dumpOut(" ");
+	}
 }
