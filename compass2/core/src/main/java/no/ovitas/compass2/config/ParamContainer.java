@@ -28,7 +28,12 @@ public class ParamContainer {
 	// Getter / setter methods
 	
 	public Param getParam(String name){
-		return params.get(name);
+		if (name != null && params.containsKey(name)){
+			return params.get(name);
+		} else {
+			logger.error("Parameter: " + name + " is not exist!");
+			return null;
+		}
 	}
 	
 	public Collection<Param> getParams(){
