@@ -1,5 +1,6 @@
 package no.ovitas.compass2.service.impl;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -87,10 +88,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				}
 			}
 		} else {
-			/*Topic topic = this.knowledgeBase.findTopic(toSearch);
-			if (topic != null){
-				topicSet.add(topic);
-			}*/
 			List<Topic> tp = this.knowledgeBase.findTopicCaseInSensitive(toSearch);
 			if(tp!=null && tp.size()>0){
 				for(Topic topic : tp){
@@ -156,6 +153,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			}
 			
 			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
+			Set<TopicTreeNode> subTopicTreeNodeSet = new HashSet<TopicTreeNode>();
 			for (Topic topic : topicSet) {
 				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
 					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
@@ -164,19 +162,62 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				if (node1 == null) {
 					node1 = node2;
 				} else if (node2 != null) {
-					node1.intersect(node2);					
+					node1.intersect(node2);
 				}
 				if (node1 != null) {
 					topicTreeNodeSet.add(node1);
 				}
 			}
-			ret.add(topicTreeNodeSet);
+			
+			subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
+			
+			ret.add(subTopicTreeNodeSet);
+			
+			//ret.add(topicTreeNodeSet);
 		}
 		
 		return ret;
 	}
 
 	
+	private Set<TopicTreeNode> filterTopicNodeSet(Set<TopicTreeNode> topicTreeNodeSet, int aMaxTopicNumberToExpand) {
+		Set<TopicTreeNode> subTopicTreeNodeSet = new HashSet<TopicTreeNode>();
+		int limit = aMaxTopicNumberToExpand;
+		for(TopicTreeNode node1 : topicTreeNodeSet){
+			if (limit != 0) {
+				
+				// Leaf
+				if (node1.getChildren().size() == 0 && limit > 0) {
+					subTopicTreeNodeSet.add(node1);
+					limit--;
+				// Has children and has space for them
+				} else if (node1.getChildren().size() > 0 && node1.getChildren().size()+1 <= limit) {
+					subTopicTreeNodeSet.add(node1);
+					limit -= node1.getChildren().size()+1;
+				// Has children and has not enought space for them
+				} else if (node1.getChildren().size() > 0 && node1.getChildren().size()+1 > limit){
+					//boolean parentAdded = false;
+					
+					for (TopicTreeNode node : node1.getChildren()) {
+						// Add the parent only first
+						/*if (!parentAdded) {
+							subTopicTreeNodeSet.add(node.getParent());
+							limit--;
+							parentAdded = true;
+						}*/
+						// Add child while has space for that
+						if (limit > 0){
+							subTopicTreeNodeSet.add(node);
+							limit--;
+						}
+					}
+				}
+				
+			} else break;
+		}
+		return subTopicTreeNodeSet;
+	}
+
 	/**
 	 * 
 	 * @param kb
