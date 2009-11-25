@@ -43,7 +43,7 @@ public class KnowledgeBase extends BaseConfigItem {
 	
 	public String dumpOut(String indent) {
 		String ind = indent + " ";
-		String toDumpOut = ind + "KnowledgeBase\n";
+		String toDumpOut = ind + "KnowledgeBase name: " + name + "\n";
 		toDumpOut += ind + knowledgeBaseImplementation.dumpOut(" ") + "\n";
 		toDumpOut += ind + expansion.dumpOut(ind) + "\n";
 		
