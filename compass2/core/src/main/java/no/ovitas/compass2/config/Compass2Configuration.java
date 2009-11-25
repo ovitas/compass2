@@ -60,11 +60,14 @@ public class Compass2Configuration {
 	
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "Compass2Configuration");
-		fullTextSearch.dumpOut(" ");
-		languageTools.dumpOut(" ");
-		knowledgeBases.dumpOut(" ");
-		result.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "Compass2Configuration\n";
+		toDumpOut += ind + fullTextSearch.dumpOut(ind) + "\n";
+		toDumpOut += ind + languageTools.dumpOut(ind) + "\n";
+		toDumpOut += ind + knowledgeBases.dumpOut(ind) + "\n";
+		toDumpOut += ind + result.dumpOut(ind) + "\n";
+		
+		return toDumpOut;
 	}
 }

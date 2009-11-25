@@ -41,9 +41,12 @@ public class KnowledgeBase extends BaseConfigItem {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "KnowledgeBase");
-		knowledgeBaseImplementation.dumpOut(" ");
-		expansion.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "KnowledgeBase\n";
+		toDumpOut += ind + knowledgeBaseImplementation.dumpOut(" ") + "\n";
+		toDumpOut += ind + expansion.dumpOut(ind) + "\n";
+		
+		return toDumpOut;
 	}
 }

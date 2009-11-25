@@ -85,8 +85,10 @@ public class Expansion {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "Expansion: useRandomWeight: " + useRandomWeight + ", prefixMatch: " + prefixMatch + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand);
-		associationTypes.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "Expansion: useRandomWeight: " + useRandomWeight + ", prefixMatch: " + prefixMatch + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand + "\n";
+		toDumpOut += ind + associationTypes.dumpOut(ind);
+		return toDumpOut;
 	}
 }

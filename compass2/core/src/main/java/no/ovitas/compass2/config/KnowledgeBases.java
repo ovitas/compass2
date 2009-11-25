@@ -29,4 +29,12 @@ public class KnowledgeBases extends BaseConfigContainer<KnowledgeBase> {
 		}
 	}
 	
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "KnowledgeBases\n";
+		toDumpOut += super.dumpOut(ind);
+		
+		return toDumpOut;
+	}
+	
 }

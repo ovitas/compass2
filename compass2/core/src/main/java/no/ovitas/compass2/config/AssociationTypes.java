@@ -20,4 +20,12 @@ public class AssociationTypes extends BaseConfigContainer<AssociationType> {
 
 	// Methods
 
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "AssociationTypes\n";
+		toDumpOut += super.dumpOut(ind);
+		
+		return toDumpOut;
+	}
+	
 }

@@ -44,7 +44,11 @@ public class BaseConfigItem {
 		String toDumpOut = ".[name].="+name+"\n";
 		toDumpOut +=".[id].="+id+"\n";
 		logger.debug(toDumpOut); 
-		
+	}
+	
+	public String dumpOut(String indent){
+		String ind = indent + " ";
+		return  ind + "id: " +id + ", name: " + name + "\n"; 
 	}
 
 }

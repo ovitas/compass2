@@ -61,13 +61,16 @@ public class BaseConfigContainer<T extends BaseConfigItem> {
 		logger.debug("Dumping elements finished ");		
 	}
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "Container");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = "";
 		
 		for(String e : elements.keySet()){
-			logger.debug("key: "+e+", value: ");
+			//toDumpOut += ind + " key: " + e + ", value:\n";
 			T element = elements.get(e);
-			element.dumpOut();
+			toDumpOut += ind + element.dumpOut(ind);
 		}
+		
+		return toDumpOut;
 	}
 }

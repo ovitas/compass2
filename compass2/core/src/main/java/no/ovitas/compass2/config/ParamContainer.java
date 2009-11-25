@@ -66,17 +66,17 @@ public class ParamContainer {
 		logger.debug(toDumpOut); 
 	}
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "ParamContainer");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "ParamContainer\n";
 		
-		String toDumpOut = "";
 		if(params != null && params.size() > 0){
 			for(Param p : params.values()){
-				toDumpOut += indent + "name: " + p.name + ", value: " + p.value+"\n";
+				toDumpOut += ind + p.dumpOut(ind);//"name: " + p.name + " value: " + p.value+"\n";
 			}
 			
 		}
-		logger.debug(toDumpOut); 
+		return toDumpOut; 
 	}
 	
 

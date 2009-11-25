@@ -40,8 +40,11 @@ public class LanguageToolsImplementation {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "FullTextSearch: className: " + className);
-		params.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "LanguageToolsImplementation: className: " + className + "\n";
+		toDumpOut += ind + params.dumpOut(" ") + "\n";
+		
+		return toDumpOut;
 	}
 }

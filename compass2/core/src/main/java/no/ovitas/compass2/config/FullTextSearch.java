@@ -72,9 +72,12 @@ public class FullTextSearch {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "FullTextSearch: prefixMatch: " + prefixMatch + ", fuzzyMatch: " + fuzzyMatch);
-		fullTextSearchImplementation.dumpOut(" ");
-		contentIndexerImplementation.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		String toDumpOut = ind + "FullTextSearch: prefixMatch: " + prefixMatch + ", fuzzyMatch: " + fuzzyMatch + "\n";
+		toDumpOut += ind + fullTextSearchImplementation.dumpOut(ind) + "\n";
+		toDumpOut += ind + contentIndexerImplementation.dumpOut(ind) + "\n";
+		
+		return toDumpOut;
 	}
 }

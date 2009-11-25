@@ -46,7 +46,8 @@ public class Result {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "Result: resultThreshold: " + resultThreshold + ", maxNumberOfHits: " + maxNumberOfHits);
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		return ind + "Result: resultThreshold: " + resultThreshold + ", maxNumberOfHits: " + maxNumberOfHits + "\n";
 	}
 }

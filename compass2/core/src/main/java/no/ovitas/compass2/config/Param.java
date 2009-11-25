@@ -27,4 +27,9 @@ public class Param extends BaseConfigItem {
 	}
 
 	// Methods
+	
+	public String dumpOut(String indent) {
+		String ind = indent + " ";
+		return ind + "Param: name: " + name + " value: " + value + "\n";
+	}
 }
