@@ -12,7 +12,6 @@ public class ContentIndexerImplementation {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 	protected String className;
-	protected ParamContainer params;
 
 	// Getter / setter methods
 	
@@ -24,14 +23,6 @@ public class ContentIndexerImplementation {
 		this.className = className;
 	}
 
-	public ParamContainer getParams() {
-		return params;
-	}
-
-	public void setParams(ParamContainer params) {
-		this.params = params;
-	}
-
 
 	// Constructors
 
@@ -41,8 +32,10 @@ public class ContentIndexerImplementation {
 
 	// Methods
 	
-	public void dumpOut(String indent) {
-		logger.debug(indent + "ContentIndexerImplementation: className: " + className);
-		params.dumpOut(" ");
+	public String dumpOut(String indent) {
+		String toDumpOut = "\n" + indent;
+		toDumpOut += "ContentIndexerImplementation: className: " + className;
+		
+		return toDumpOut;
 	}
 }
