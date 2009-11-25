@@ -72,8 +72,7 @@ public class ParamContainer {
 		String toDumpOut = "";
 		if(params != null && params.size() > 0){
 			for(Param p : params.values()){
-				toDumpOut += indent + "name: " + p.name+"\n";
-				toDumpOut += indent + "value: " + p.value+"\n";
+				toDumpOut += indent + "name: " + p.name + ", value: " + p.value+"\n";
 			}
 			
 		}
