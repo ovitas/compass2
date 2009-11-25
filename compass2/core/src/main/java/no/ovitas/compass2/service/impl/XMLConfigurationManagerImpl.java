@@ -76,6 +76,10 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 		handler = Compass2ConfigurationHandler.getInstance();
 		handler.loadConfig(configPath);
 		configuration = handler.getConfig();
+		
+		if(log.isDebugEnabled()){
+			log.debug(configuration.dumpOut(""));
+		}
 	}
 	
 	public String getConfigPath() {
