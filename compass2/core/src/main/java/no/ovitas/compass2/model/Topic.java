@@ -71,15 +71,15 @@ public class Topic implements Serializable, Comparable {
 
 	public int compareTo(Object o) {
 		if (o instanceof Topic){
-			return name.compareTo(((Topic)o).getName());
+			return id.compareTo(((Topic)o).getId());
 		}else{
-			return name.compareTo(o.toString());
+			return id.compareTo(o.toString());
 		}
 	}
 	
 	public boolean equals(Object o){
 		if (o instanceof Topic){
-			if(((Topic)o).getName().equals(name)){
+			if(((Topic)o).getId().equals(id)){
 				return true;
 			}
 		}
