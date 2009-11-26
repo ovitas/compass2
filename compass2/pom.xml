@@ -479,7 +479,6 @@
                  <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
                  <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
                  <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-                 <config.path><![CDATA[c:/home/compass2]]></config.path>
 
             </properties>
         </profile>
