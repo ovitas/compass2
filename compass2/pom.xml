@@ -453,7 +453,7 @@
                  <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
                  <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
                  <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[/app/compass]]></config.target.directory>
+                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
             </properties>
         </profile>
         <profile>
