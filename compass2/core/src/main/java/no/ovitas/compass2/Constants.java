@@ -1,5 +1,7 @@
 package no.ovitas.compass2;
 
+import no.ovitas.compass2.model.Topic;
+
 
 
 /**
@@ -120,6 +122,9 @@ public class Constants {
     public static final String LUCENE_SPELLCHECKER_MAX_SUGGESTION_NUM	= "lucene-spellchecker-max-suggestion-num";
     public static final String FILE_PATH								= "file-path";
     public static final String LOAD_ON_STARTUP							= "load-on-startup";
+
+	public static final double BOOST_PREFIX_VALUE = 0.5;
+	public static final double BOOST_SAME_VALUE = 1;
     
     
     
