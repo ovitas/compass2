@@ -14,12 +14,14 @@ public class KnowledgeBaseHolder implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected Map<String, RelationType> relationTypes;
-	protected Map<String, Topic> topics;
+	protected Map<String, List<Topic>> topics;
+	protected List<Topic> topicsList;
 	protected List<Relation> relations;
 	
 	public KnowledgeBaseHolder(){
 		relationTypes = new TreeMap<String,RelationType>();
-		topics = new TreeMap<String,Topic>();
+		topics = new TreeMap<String,List<Topic>>();
+		topicsList = new ArrayList<Topic>();
 		relations = new ArrayList<Relation>();
 	}
 
@@ -27,7 +29,7 @@ public class KnowledgeBaseHolder implements Serializable {
 		return relationTypes;
 	}
 
-	public Map<String, Topic> getTopics() {
+	public Map<String, List<Topic>> getTopics() {
 		return topics;
 	}
 	
@@ -50,7 +52,10 @@ public class KnowledgeBaseHolder implements Serializable {
 				// Get topic name prefix
 				
 				if(name.toLowerCase().startsWith(pref) ||  name.toLowerCase().equals(pref)) {
-					matches.add(topics.get(name));
+					List<Topic> tm = topics.get(name);
+					for(Topic topic : tm){
+					 matches.add(topic);
+					}
 				}
 			}
 		}
@@ -58,15 +63,23 @@ public class KnowledgeBaseHolder implements Serializable {
 		
 	}
 	
-	public Topic findTopic(String name){
+	public List<Topic> findTopic(String name){
 		return topics.get(name);
 	}
 	
+	public Topic findFirstTopic(String name){
+		List<Topic> tl = topics.get(name);
+		return (tl == null ? null : tl.get(0));
+	}
+
 	public List<Topic> findTopicCaseInSensitive(String topicName){
 		List<Topic> matches = new ArrayList<Topic>();
 		for(String name : topics.keySet()){
 			if(name.trim().equalsIgnoreCase(topicName.trim())) {
-				matches.add(topics.get(name));
+				List<Topic> tm = topics.get(name);
+				for(Topic topic : tm){
+				 matches.add(topic);
+				}
 			}
 		}
 		return matches;
@@ -85,10 +98,20 @@ public class KnowledgeBaseHolder implements Serializable {
 	}
 	
 	public void addTopic(Topic t){
-		topics.put(t.getName(), t);
+		List<Topic> actList = topics.get(t.getName());
+		if(actList==null){
+			actList = new ArrayList<Topic>();
+			topics.put(t.getName(), actList);
+		}
+		actList.add(t);
+		this.topicsList.add(t);
 	}
 	
 	public void addRelationType(RelationType rt){
 		relationTypes.put(rt.getId(), rt);
+	}
+
+	public List<Topic> getTopicsList() {
+		return topicsList;
 	}
 }

@@ -82,8 +82,8 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 		return String.valueOf(label.hashCode());
 	}
 	protected void writeNodes(BufferedWriter fw)throws IOException{
-	 Map<String, Topic> topics = kbHolder.getTopics();
-	 for(Topic t : topics.values()){
+		List<Topic> topics = kbHolder.getTopicsList();
+		 for(Topic t : topics){
 		 //Base64 b64 = new Base64(true);
 		 String label = byte2String(t.getName());
 		 fw.write("\""+label+"\"");
@@ -93,8 +93,8 @@ public class ExportDomainModel2GraphVizManagerImpl implements
 	}
 	
 	protected void writeEdges(BufferedWriter fw)throws IOException{
-		 Map<String, Topic> topics = kbHolder.getTopics();
-		 for(Topic t : topics.values()){
+		 List<Topic> topics = kbHolder.getTopicsList();
+		 for(Topic t : topics){
 			 List<Relation> relations = t.getRelations();
 			 for(Relation r: relations){
 				 if(r.getSource().getName().equals(t.getName())){

@@ -92,7 +92,7 @@ public class KBBuilderDaoXml implements KBBuilderDao {
     				   Characters c = event.asCharacters();
 	    			   String tname = c.getData();
 	    			   if (actTopic == null){
-	    				   actTopic = kbh.findTopic(tname);
+	    				   actTopic = kbh.findFirstTopic(tname);
 	    				   if (actTopic == null){
 	    					   actTopic = new Topic();
 	    					   actTopic.setName(tname);

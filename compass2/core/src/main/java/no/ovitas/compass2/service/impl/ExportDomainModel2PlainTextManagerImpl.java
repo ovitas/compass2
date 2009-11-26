@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.List;
 
 
 
@@ -45,9 +46,9 @@ public class ExportDomainModel2PlainTextManagerImpl implements
 			tempFile = File.createTempFile("Compass2", ".txt");
 			BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFile),"UTF-8"));
 			if(kbHolder!=null){
-				
-			 for(Topic src : kbHolder.getTopics().values()){
-				 dumpTopic(fw,src);
+				List<Topic> topics = kbHolder.getTopicsList();
+				 for(Topic t : topics){
+					 dumpTopic(fw,t);
 			 }
 			}
 			fw.close();
@@ -61,15 +62,15 @@ public class ExportDomainModel2PlainTextManagerImpl implements
 	}
 	
 	protected void dumpTopic(BufferedWriter fw, Topic topic) throws IOException{
-		fw.write("#"+topic.getName()+"\n");
+		fw.write("#"+topic.getName()+(topic.getId()==null ? "" : ":"+topic.getId() )+"\n");
 		for(Relation rel : topic.getRelations()){
 			if(rel.getSource().getName().equals(topic.getName())){
 				fw.write(" --> ");
-				fw.write(rel.getRelationType().getRelationName()+":["+rel.getTarget().getName()+"]\n");
+				fw.write(rel.getRelationType().getRelationName()+":["+rel.getTarget().getName()+(topic.getId()==null ? "" : ":"+topic.getId() )+"]\n");
 			}
 			if(rel.getTarget().getName().equals(topic.getName())){
 				fw.write(" <-- ");
-				fw.write(rel.getRelationType().getRelationName()+":["+rel.getSource().getName()+"]\n");
+				fw.write(rel.getRelationType().getRelationName()+":["+rel.getSource().getName()+(topic.getId()==null ? "" : ":"+topic.getId() )+"]\n");
 			}
 		}
 		
