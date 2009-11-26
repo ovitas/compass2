@@ -7,6 +7,7 @@ public class TopicTreeNode extends Topic {
 	private static final long serialVersionUID = 1L;
 	
 	private TopicTreeNode parent;
+	private Float boost;
 	private HashMap<Topic, TopicTreeNode> children = new HashMap<Topic, TopicTreeNode>(0);
 	
 	public TopicTreeNode(Topic src) {
@@ -38,6 +39,14 @@ public class TopicTreeNode extends Topic {
 	
 	public Collection<TopicTreeNode> getChildren() {
 		return children.values();
+	}
+
+	public Float getBoost() {
+		return boost;
+	}
+
+	public void setBoost(Float boost) {
+		this.boost = boost;
 	}
 
 }
