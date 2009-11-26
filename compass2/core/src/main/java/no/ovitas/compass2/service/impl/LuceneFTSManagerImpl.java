@@ -1,6 +1,7 @@
 package no.ovitas.compass2.service.impl;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -215,7 +216,8 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 
 
 	private String formatDouble(Double d){
-		return "";
+		DecimalFormat nf = new DecimalFormat("0.###");  
+		return nf.format(d);
 	}
 	/**
 	 * 
