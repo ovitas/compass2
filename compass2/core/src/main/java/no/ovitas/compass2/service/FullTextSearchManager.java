@@ -7,6 +7,7 @@ import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.DocumentDetails;
 import no.ovitas.compass2.model.Hit;
+import no.ovitas.compass2.util.XPair;
 
 /**
  * @author magyar
@@ -48,7 +49,7 @@ public interface FullTextSearchManager {
 	 * 
 	 * @param searchTopics
 	 */
-	public List<Hit> doSearch(List<Set<String>> searchTopics, int pageNum);
+	public List<Hit> doSearch(List<List<XPair<String, Double>>> searchTopics, int pageNum);
 
 	/**
 	 * 

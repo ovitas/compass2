@@ -10,6 +10,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.exception.ConfigParameterMissingException;
 import no.ovitas.compass2.exception.ConfigurationException;
 import no.ovitas.compass2.model.DocumentDetails;
@@ -25,6 +26,7 @@ import no.ovitas.compass2.service.LanguageToolsManager;
 import no.ovitas.compass2.service.factory.FTSFactory;
 import no.ovitas.compass2.service.factory.KBFactory;
 import no.ovitas.compass2.service.factory.LTFactory;
+import no.ovitas.compass2.util.XPair;
 
 /**
  * The Class CompassManagerImpl.
@@ -172,17 +174,25 @@ public class CompassManagerImpl implements CompassManager {
 	}
 	
 	private List<Hit> ftSearch(List<Set<TopicTreeNode>> topicSetList, List<String> words, int pageNum) {
-		List<Set<String>> stringSetList = new ArrayList<Set<String>>();
-		Iterator<String> wordIterator = words.iterator();
+		List<List<XPair<String, Double>>> stringSetList = new ArrayList<List<XPair<String, Double>>>();
+		List<XPair<String, Double>> firstSet = new ArrayList<XPair<String, Double>>();
+		
+		for(String word : words) {
+			firstSet.add(new XPair<String, Double>(word, Constants.BOOST_SAME_VALUE));
+		}
+		stringSetList.add(firstSet);
+		
 		for (Set<TopicTreeNode> topicTreeNodeSet : topicSetList) {
-			Set<String> stringSet = new HashSet<String>();
-			if (wordIterator.hasNext()) 
-				stringSet.add(wordIterator.next());
-			for (TopicTreeNode topicTreeNode : topicTreeNodeSet) {				
-				collectNames(topicTreeNode, stringSet);
+			List<XPair<String, Double>> stringSet = new ArrayList<XPair<String, Double>>();
+			
+			for (TopicTreeNode topicTreeNode : topicTreeNodeSet) {
+				// TODO
+				//collectNames(topicTreeNode, stringSet);
 			}
+			
 			stringSetList.add(stringSet);
 		}
+		
 		return ftsManager.doSearch(stringSetList, pageNum);		
 	}
 	

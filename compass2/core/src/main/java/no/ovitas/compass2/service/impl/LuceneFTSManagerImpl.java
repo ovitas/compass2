@@ -37,6 +37,7 @@ import no.ovitas.compass2.model.LuceneHit;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.FullTextSearchManager;
 import no.ovitas.compass2.service.factory.ContentIndexerFactory;
+import no.ovitas.compass2.util.XPair;
 import no.ovitas.compass2.util.lucene.ContentIndexer;
 import no.ovitas.compass2.util.lucene.PagerHitCollector;
 
@@ -213,21 +214,29 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	}
 
 
+	private String formatDouble(Double d){
+		return "";
+	}
 	/**
 	 * 
 	 * @param searchTopics
 	 */
-	public List<Hit> doSearch(List<Set<String>> searchItems, int pageNum){
+	public List<Hit> doSearch(List<List<XPair<String, Double>>> searchItems, int pageNum){
 		StringBuffer queryString = new StringBuffer();
-		for (Set<String> itemSet : searchItems) {
+		for (List<XPair<String,Double>> itemSet : searchItems) {
 			if (queryString.length() > 0) queryString.append(" ");
 			
 			boolean firstItem = true;
-			for (String item : itemSet) {
+			for (XPair<String,Double> item : itemSet) {
 				if (firstItem) firstItem = false;
 				else queryString.append(" OR ");
-				queryString.append("\"" + item + "\""+(fuzzySearch ? "~" : "" ));
+				String itemString = this.normalizeSearchString(item.getKey());
+				String boostString = formatDouble(item.getValue());
+				queryString.append("\"" + itemString + "\"^"+boostString+(fuzzySearch ? "~" : "" ));
 			}
+		}
+		if(log.isDebugEnabled()){
+			log.debug("Search query string is: "+queryString);
 		}
 		return doSearch(queryString.toString(), pageNum);
 	}
