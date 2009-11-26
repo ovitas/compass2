@@ -4,6 +4,7 @@
 package no.ovitas.compass2.dao.xml;
 
 import java.io.FileInputStream;
+import java.util.UUID;
 
 import no.ovitas.compass2.dao.KBBuilderDao;
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
@@ -95,6 +96,7 @@ public class KBBuilderDaoXml implements KBBuilderDao {
 	    				   actTopic = kbh.findFirstTopic(tname);
 	    				   if (actTopic == null){
 	    					   actTopic = new Topic();
+	    					   actTopic.setId(UUID.randomUUID().toString());
 	    					   actTopic.setName(tname);
 	    					   kbh.addTopic(actTopic);
 	    				   }
