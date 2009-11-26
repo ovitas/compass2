@@ -3,6 +3,7 @@
  */
 package no.ovitas.compass2.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import no.ovitas.compass2.model.KnowledgeBaseHolder;
@@ -23,13 +24,15 @@ public class KBLoaderDaoTestCase extends BaseManagerTestCase {
 	
 	public void testBuildKB(){
 		KnowledgeBaseHolder kbh = kbBuilderDao.buildKB("src\\test\\resources\\compass-basetest.xml");
-		Map<String, Topic> topics = kbh.getTopics();
+		Map<String, List<Topic>> topics = kbh.getTopics();
 		for(String topicName : topics.keySet()){
-			Topic t = topics.get(topicName);
-			logger.debug("Topic: .[name].="+t.getName());
-			logger.debug(" Alternative names: " );
-			for(String altn : t.getAlternativeNames()){
-				logger.debug("  an: "+altn);
+			List<Topic> t = topics.get(topicName);
+			for(Topic topic : t){
+				logger.debug("Topic: .[name].="+topic.getName());
+				logger.debug(" Alternative names: " );
+				for(String altn : topic.getAlternativeNames()){
+					logger.debug("  an: "+altn);
+				}
 			}
 					
 			

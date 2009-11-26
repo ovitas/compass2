@@ -19,10 +19,13 @@ public class CompassManagerTestCase extends BaseManagerTestCase {
 
 	
 	public void testSimpleLuceneSearch() throws Exception {
-		CompassManager compassManager = CompassManagerFactory.getInstance().getCompassManager();		
+		CompassManager compassManager = CompassManagerFactory.getInstance().getCompassManager();
+		Integer maxTopicNumberToExpand = 50;
+		double resultThreshold = 0.0;
+		int	maxNumberOfHits = 100;
 		String searchTerm="lucene:egy";
 		log.info("searchTerm: "+searchTerm);
-		ResultObject result = compassManager.search(searchTerm,1, 1, false, false);
+		ResultObject result = compassManager.search(searchTerm,1, 1, false, false, maxTopicNumberToExpand, resultThreshold, maxNumberOfHits);
 		List<Hit> hits =result.getHits();
 		assertNotNull(hits);
 		assertTrue(hits.size()>0);

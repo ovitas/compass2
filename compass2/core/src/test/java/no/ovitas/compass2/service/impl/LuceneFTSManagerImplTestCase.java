@@ -43,7 +43,7 @@ public class LuceneFTSManagerImplTestCase extends BaseManagerTestCase {
 		FTSFactory ff = FTSFactory.getInstance();
 		FullTextSearchManager fts = ff.getFTSImplementation();
 		log.info("docs: "+documentRepo);
-		fts.addDocument(true, 2, documentRepo);
+		fts.addDocument(true, 100, documentRepo);
 		
 	}
 }
