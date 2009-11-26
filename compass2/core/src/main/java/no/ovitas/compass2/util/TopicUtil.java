@@ -97,7 +97,7 @@ public class TopicUtil {
 		queue.add(rootTopicNode);
 		
 		int idx = 0;
-		while (queue.size() > 0 && idx++ < maxTopicNumberToExpand) {
+		while (queue.size() > 0/* && idx++ < maxTopicNumberToExpand*/) {
 			TopicNode topicNode = queue.poll();
 			
 			// Get source -> target nodes
@@ -131,9 +131,17 @@ public class TopicUtil {
 		}
 		
 		Map<Topic, TopicTreeNode> ret = new HashMap<Topic, TopicTreeNode>();
-		for (TopicNode topicNode: finalTopicNodes) {
-			if (topicNode.distance <= limit)
-				ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic));
+		for (TopicNode topicNode: finalTopicNodes) {		
+			if (topicNode.distance <= limit){
+				
+				// If not root topic the boost is from dijkstra
+				if (!topicNode.topic.equals(rootTopic)) {
+					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, topicNode.distance));
+				// If root topic the boost is from topic
+				} else {
+					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, topicNode.topic.getDefaultBoost()));
+				}
+			}
 		}
 		
 		for (TopicNode topicNode: finalTopicNodes) {
