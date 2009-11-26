@@ -74,6 +74,9 @@ public class PagerHitCollector extends HitCollector {
 		return hitCounter;
 	}
 	
+	/**
+	 * Sort all of the docId-s by score value
+	 */
 	public void runSorting(){
 		
 		int limit = maxNumberOfHits;
