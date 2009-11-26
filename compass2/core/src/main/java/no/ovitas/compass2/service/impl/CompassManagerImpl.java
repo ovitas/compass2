@@ -163,10 +163,11 @@ public class CompassManagerImpl implements CompassManager {
 
 	}
 	
-	private void collectNames(TopicTreeNode node, Set<String> res) {
-		res.add(node.getName());
+	private void collectNames(TopicTreeNode node, List<XPair<String, Double>> res) {
+		res.add(new XPair<String, Double>(node.getName(), node.getBoost()));
 		if (node.getAlternativeNames() != null) {
-			res.addAll(node.getAlternativeNames());
+			// TODO if alternatenames exists
+			//res.addAll(node.getAlternativeNames());
 		}
 		for (TopicTreeNode topicTreeNode : node.getChildren()) {
 			collectNames(topicTreeNode, res);
@@ -186,8 +187,7 @@ public class CompassManagerImpl implements CompassManager {
 			List<XPair<String, Double>> stringSet = new ArrayList<XPair<String, Double>>();
 			
 			for (TopicTreeNode topicTreeNode : topicTreeNodeSet) {
-				// TODO
-				//collectNames(topicTreeNode, stringSet);
+				collectNames(topicTreeNode, stringSet);
 			}
 			
 			stringSetList.add(stringSet);
