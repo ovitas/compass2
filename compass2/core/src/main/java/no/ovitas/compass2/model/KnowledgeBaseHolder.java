@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import no.ovitas.compass2.Constants;
+
 public class KnowledgeBaseHolder implements Serializable {
 
 	/**
@@ -17,7 +19,6 @@ public class KnowledgeBaseHolder implements Serializable {
 	protected Map<String, List<Topic>> topics;
 	protected List<Topic> topicsList;
 	protected List<Relation> relations;
-	protected Double defaultPrefixBoost = new Double(0.5);
 	
 	public KnowledgeBaseHolder(){
 		relationTypes = new TreeMap<String,RelationType>();
@@ -54,14 +55,14 @@ public class KnowledgeBaseHolder implements Serializable {
 				if(name.toLowerCase().startsWith(pref) &&  !name.toLowerCase().equals(pref)) {
 					List<Topic> tm = topics.get(name);
 					for(Topic topic : tm){
-						topic.setDefaultBoost(this.defaultPrefixBoost);
+						topic.setDefaultBoost(Constants.BOOST_PREFIX_VALUE);
 					 matches.add(topic);
 					}
 				}
 				if(name.toLowerCase().startsWith(pref) &&  name.toLowerCase().equals(pref)) {
 					List<Topic> tm = topics.get(name);
 					for(Topic topic : tm){
-						topic.setDefaultBoost(new Double(1));
+						topic.setDefaultBoost(Constants.BOOST_SAME_VALUE);
 					 matches.add(topic);
 					}
 				}
