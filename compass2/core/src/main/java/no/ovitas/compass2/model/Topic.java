@@ -29,6 +29,7 @@ public class Topic implements Serializable, Comparable {
 		name = src.name;
 		alternativeNames = src.alternativeNames;
 		relations = src.relations;
+		id = src.getId();
 	}
 	
 	public String getName() {
@@ -79,8 +80,12 @@ public class Topic implements Serializable, Comparable {
 	
 	public boolean equals(Object o){
 		if (o instanceof Topic){
-			if(((Topic)o).getId().equals(id)){
-				return true;
+			if (((Topic)o).getId() != null) {
+				if(((Topic)o).getId().equals(id)){
+					return true;
+				}
+			} else {
+				return false;
 			}
 		}
 		return false;
