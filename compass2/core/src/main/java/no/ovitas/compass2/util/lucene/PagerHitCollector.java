@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.ovitas.compass2.util.XPair;
+
 import org.apache.lucene.search.HitCollector;
 
 /**
@@ -21,6 +23,7 @@ public class PagerHitCollector extends HitCollector {
 	protected double resultThreshold;
 	protected Map<Integer, Float> scores;
 	protected int maxNumberOfHits;
+	protected List<XPair<Float,Integer>> scoreList;
 	
 	public float getScore(int docId){
 		Float f = scores.get(docId);
@@ -35,14 +38,18 @@ public class PagerHitCollector extends HitCollector {
 		hitCounter = 0;
 		this.maxNumberOfHits = maxNumberOfHits; 
 		resultThreshold = 0.0;
+		scoreList = new ArrayList<XPair<Float,Integer>>();
 	}
 	
 	public void collect(int id, float score) {
       hitCounter++;
-      if((docIds.size() <=maxNumberOfHits) && resultThreshold <=score ){
+      if(resultThreshold <=score){
+    	  scoreList.add(new XPair<Float,Integer>(new Float(score), new Integer(id)));
+      }
+     /* if((docIds.size() <=maxNumberOfHits) && resultThreshold <=score ){
     	  docIds.add(id);
     	  scores.put(id, score);
-      }
+      }*/
       /*
       if(docIds.size()>maxNumberOfHits ){
     	  throw new RuntimeException("Pagination finished");
@@ -63,6 +70,10 @@ public class PagerHitCollector extends HitCollector {
 
 	public int getHitCounter() {
 		return hitCounter;
+	}
+	
+	public void runSorting(){
+		//TODO
 	}
 
 }
