@@ -20,6 +20,7 @@ public class Topic implements Serializable, Comparable {
 	private String id;
 	private List<String> alternativeNames = new ArrayList<String>();
 	private List<Relation> relations = new ArrayList<Relation>();
+	private Double defaultBoost;
 
 	public Topic() {
 	}
@@ -95,5 +96,13 @@ public class Topic implements Serializable, Comparable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Double getDefaultBoost() {
+		return defaultBoost;
+	}
+
+	public void setDefaultBoost(Double defaultBoost) {
+		this.defaultBoost = defaultBoost;
 	}
 }
