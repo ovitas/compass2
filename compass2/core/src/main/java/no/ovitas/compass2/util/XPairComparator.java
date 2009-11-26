@@ -20,8 +20,9 @@ public class XPairComparator implements Comparator<XPair<Float,Integer>> {
 
 	@Override
 	public int compare(XPair<Float,Integer> o1, XPair<Float,Integer> o2) {
-		// TODO Auto-generated method stub
-		return 0;
+		Float o1Value = o1.getKey();
+		Float o2Value = o2.getKey();
+		return o1Value.compareTo(o2Value);
 	}
 
 }

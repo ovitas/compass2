@@ -295,6 +295,9 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				}catch(RuntimeException e){
 					log.error("Error occured: ",e);
 				}
+				// Choose best max number of hits
+				phc.runSorting();
+				
 				if(!phc.getDocIds().isEmpty()){
 					List<Hit> hits = new ArrayList<Hit>();
 					for(Integer docId : phc.getDocIds()){
