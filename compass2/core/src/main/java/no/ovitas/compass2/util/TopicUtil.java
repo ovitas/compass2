@@ -136,7 +136,7 @@ public class TopicUtil {
 				
 				// If not root topic the boost is from dijkstra
 				if (!topicNode.topic.equals(rootTopic)) {
-					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, topicNode.distance));
+					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, Math.abs(topicNode.distance)));
 				// If root topic the boost is from topic
 				} else {
 					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, topicNode.topic.getDefaultBoost()));
