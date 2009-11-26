@@ -291,12 +291,13 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				}
 				try{
 				 searcher.search(q,phc);
+				 phc.runSorting();
 				 this.allHitNumber = phc.getHitCounter();
 				}catch(RuntimeException e){
 					log.error("Error occured: ",e);
 				}
 				// Choose best max number of hits
-				phc.runSorting();
+				
 				
 				if(!phc.getDocIds().isEmpty()){
 					List<Hit> hits = new ArrayList<Hit>();
