@@ -46,7 +46,7 @@ public class TopicUtil {
 				for (Relation relation : relations) {
 					Topic otherTopic = relation.getSource();
 					if (otherTopic == topic) otherTopic = relation.getTarget();
-					ret.add(new TopicLinkNode(otherTopic, getDistance(relation)));
+					ret.add(new TopicLinkNode(otherTopic, getDistance(relation, true)));
 				}
 			}
 			return ret;
@@ -59,24 +59,27 @@ public class TopicUtil {
 				for (Relation relation : relations) {
 					Topic otherTopic = relation.getTarget();
 					if (otherTopic == topic) otherTopic = relation.getSource();
-					ret.add(new TopicLinkNode(otherTopic, getDistance(relation)));
+					ret.add(new TopicLinkNode(otherTopic, getDistance(relation, false)));
 				}
 			}
 			return ret;
 		}
 		
-		protected abstract double getDistance(Relation relation);
+		protected abstract double getDistance(Relation relation, boolean ahead);
 	}
 	
 	private static class TopicExpanderForMinHopCount extends TopicExpander {
-		protected double getDistance(Relation relation) {
+		protected double getDistance(Relation relation, boolean ahead) {
 			return 1;
 		}
 	}
 	
 	private static class TopicExpanderForMaxWeight extends TopicExpander {
-		protected double getDistance(Relation relation) {
-			return -Math.log(relation.getRelationType().getWeight());
+		protected double getDistance(Relation relation, boolean ahead) {
+			if (ahead)
+				return -Math.log(relation.getRelationType().getWeight());
+			else
+				return -Math.log(relation.getRelationType().getGeneralizationWeight());
 		}
 	}
 	
