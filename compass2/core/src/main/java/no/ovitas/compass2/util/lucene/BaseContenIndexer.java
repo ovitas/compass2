@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.config.FullTextSearchImplementation;
 import no.ovitas.compass2.exception.ConfigurationException;
 
@@ -30,9 +31,9 @@ public abstract class BaseContenIndexer {
 		
 	}
 	
-	
     public void init() throws ConfigurationException, IOException{
     	if(indexWriter == null){
+    		indexDirectory = ftsImpl.getParams().getParam(Constants.INDEXDIRECTORY_PATH).getValue();
     		if(indexDirectory!=null && !indexDirectory.isEmpty()){
     			 Directory dir = FSDirectory.getDirectory(new File(indexDirectory), null);
     			 indexWriter = new IndexWriter(dir, 
