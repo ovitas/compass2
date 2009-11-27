@@ -42,8 +42,11 @@ public class TopicUtil {
 			if (relations != null) {
 				for (Relation relation : relations) {
 					Topic otherTopic = relation.getSource();
-					if (otherTopic == topic) otherTopic = relation.getTarget();
-					ret.add(new TopicLinkNode(otherTopic, getDistance(relation, true)));
+					if (otherTopic.equals(topic)) {
+						otherTopic = relation.getTarget();
+						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, true)));
+					}
+					
 				}
 			}
 			return ret;
@@ -55,8 +58,10 @@ public class TopicUtil {
 			if (relations != null) {
 				for (Relation relation : relations) {
 					Topic otherTopic = relation.getTarget();
-					if (otherTopic == topic) otherTopic = relation.getSource();
-					ret.add(new TopicLinkNode(otherTopic, getDistance(relation, false)));
+					if (otherTopic.equals(topic)) {
+						otherTopic = relation.getSource();
+						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, false)));
+					}
 				}
 			}
 			return ret;
