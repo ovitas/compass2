@@ -226,7 +226,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	public List<Hit> doSearch(List<List<XPair<String, Double>>> searchItems, int pageNum){
 		StringBuffer queryString = new StringBuffer();
 		for (List<XPair<String,Double>> itemSet : searchItems) {
-			if (queryString.length() > 0) queryString.append(" ");
+			if (queryString.length() > 0) queryString.append(" OR ");
 			
 			boolean firstItem = true;
 			for (XPair<String,Double> item : itemSet) {
@@ -264,7 +264,7 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 */
 	public List<Hit> doSearch(String s, int pageNum){
 		
-		String search = normalizeSearchString(s);
+		String search = s;
 		
 		Query q = null;
 		IndexSearcher searcher = null;
