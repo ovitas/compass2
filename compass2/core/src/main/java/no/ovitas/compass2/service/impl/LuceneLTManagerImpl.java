@@ -28,7 +28,7 @@ import org.apache.lucene.store.FSDirectory;
 /**
  * @author magyar
  * @version 1.0
- * @created 24-márc.-2009 9:35:40
+ * @created 24-marc.-2009 9:35:40
  */
 public class LuceneLTManagerImpl implements LanguageToolsManager {
 
