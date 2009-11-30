@@ -102,7 +102,7 @@ public class TopicUtil {
 		queue.add(rootTopicNode);
 		
 		int idx = 0;
-		while (queue.size() > 0/* && idx++ < maxTopicNumberToExpand*/) {
+		while (queue.size() > 0 && idx++ < maxTopicNumberToExpand) {
 			TopicNode topicNode = queue.poll();
 			
 			// Get source -> target nodes
