@@ -9,7 +9,28 @@
     <version>2.0-SNAPSHOT</version>
     <name>Ovitas Compass2 Application</name>
     <url>http://www.ovitas.no</url>
-
+    <scm>
+      <connection>scm:svn:http://svn.ovitas.no/svn/ovitas/compass2/trunk</connection>
+      <developerConnection>scm:svn:svn+ssh://svn.ovitas.no/home/svn/ovitas/compass2/trunk</developerConnection>
+      <url>http://svn.ovitas.no/svn/ovitas/compass2/trunk</url>
+    </scm>
+    <distributionManagement>
+      <site>
+	<id>ovitas-site</id>
+	<name>Ovitas Project sites</name>
+	<url>scp://docs.ovitas.no/home7docs/fk/ecls</url>
+      </site>
+      <repository>
+	<id>ovitas.nexus</id>
+	<name>Ovitas Nexus server</name>
+	<url>http://nexus.ovitas.no:8081/content/repositories/releases</url>
+      </repository>
+      <snapshotRepository>
+	<id>ovitas.nexus.snapshots</id>
+	<name>Ovitas Nexus snapshots</name>
+	<url>http://nexus.ovitas.no:8081/content/repositories/releases</url>
+      </snapshotRepository>
+    </distributionManagement>
     <prerequisites>
         <maven>2.0.6</maven>
     </prerequisites>
@@ -21,12 +42,9 @@
         </license>
     </licenses>
 
-    <scm>
-    </scm>
-
     <issueManagement>
-        <system>Trac</system>
-        <url></url>
+        <system>Redmine</system>
+        <url>http://redmine.ovitas.no</url>
     </issueManagement>
 
     <developers>
@@ -34,13 +52,13 @@
             <id>magyar</id>
             <name>Ferenc Magyar</name>
             <email>magyar@mail.thot-soft.com</email>
-            <timezone></timezone>
+            <timezone>+1</timezone>
         </developer>
         <developer>
             <id>csanyi</id>
             <name>Attila Csanyi</name>
             <email>csanyi@mail.thot-soft.com</email>
-            <timezone></timezone>
+            <timezone>+1</timezone>
         </developer>
     </developers>
     <organization>
