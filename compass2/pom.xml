@@ -458,6 +458,34 @@
                  <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
             </properties>
         </profile>
+	<profile>
+            <id>chriswk</id>
+            <properties>
+                 <lucene.spellchecker.dir><![CDATA[/app/compass/lucene/spellindex]]></lucene.spellchecker.dir>
+                 <lucene.spellchecker.index.dir><![CDATA[/app/compass/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
+                 <lucene.fts.index.dir><![CDATA[/app/compass/lucene/ftsindex]]></lucene.fts.index.dir>
+                 <knowledge.base.file><![CDATA[/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
+                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
+                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
+                 <max.number.of.hits>100</max.number.of.hits>
+                 <use.random.weight>true</use.random.weight>
+                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
+				 <expansion.threshold>0.7</expansion.threshold>
+				 <result.threshold>0.1</result.threshold>
+				 <hop.count>1</hop.count>
+
+                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
+                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
+                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+                 <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
+                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
+                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
+                 <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
+                 <config.target.directory><![CDATA[/app/compass]]></config.target.directory>
+            </properties>
+        </profile>
+        
         <profile>
             <id>csanyi-test</id>
             <properties>
