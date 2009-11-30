@@ -210,7 +210,7 @@ public class CompassManagerImpl implements CompassManager {
 					hopCount, thresholdWeight, words, maxTopicNumberToExpand);
 			retList = ftSearch(topics, words, pageNum);
 			
-			if (retList == null || retList.size() < hitThreshold) {
+			/*if (retList == null || retList.size() < hitThreshold) {
 				try {
 					List<String> spellingSuggestedWords = new ArrayList<String>(words.size());
 					for (String word : words) {
@@ -229,7 +229,7 @@ public class CompassManagerImpl implements CompassManager {
 				} catch (IOException ex) {
 					log.fatal("FATAL Exception occured: "+ex.getMessage(),ex);
 				}
-			}
+			}*/
 		}
  		ResultObject ro = new ResultObject(topics, retList);
  		ro.setAllHitNumber(ftsManager.getAllHitNumber());
