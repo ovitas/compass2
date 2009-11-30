@@ -1,5 +1,8 @@
 package no.ovitas.compass2.webapp.action;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,10 +17,7 @@ import no.ovitas.compass2.model.ResultObject;
 import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.CompassManager;
 import no.ovitas.compass2.service.ConfigurationManager;
-import no.ovitas.compass2.service.FullTextSearchManager;
-import no.ovitas.compass2.service.KnowledgeBaseManager;
 import no.ovitas.compass2.service.factory.CompassManagerFactory;
-import no.ovitas.compass2.service.factory.FTSFactory;
 import no.ovitas.compass2.service.factory.KBFactory;
 
 import com.opensymphony.xwork2.Preparable;
@@ -237,7 +237,7 @@ public class SearchAction extends BaseAction implements Preparable {
 		}
 		String cj = createJson(expansions);
 		if(log.isDebugEnabled()){
-			/*log.debug("JSON string: "+cj);
+			/*log.debug("JSON string: "+cj);*/
 			try {
 				File f = File.createTempFile("json-compass2", "txt");
 				FileWriter fw = new FileWriter(f);
@@ -249,7 +249,7 @@ public class SearchAction extends BaseAction implements Preparable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			*/
+			
 			
 		}
 		setTreeJson(cj);
