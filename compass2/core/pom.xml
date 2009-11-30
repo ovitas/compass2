@@ -260,7 +260,7 @@
         </dependency>
         <dependency>
         	<groupId>org.apache.lucene</groupId>
-        	<artifactId>highlighter</artifactId>
+        	<artifactId>lucene-highlighter</artifactId>
         	<version>${highlighter.version}</version>
         </dependency>
         <dependency>
