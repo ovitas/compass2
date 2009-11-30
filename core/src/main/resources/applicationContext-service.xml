@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+       default-lazy-init="true">
+
+    <!-- =================================================================== -->
+    <!-- AOP: Configuration and Aspects                                      -->
+    <!-- =================================================================== -->
+    
+    
+    <!-- Enable @AspectJ support -->
+    <aop:aspectj-autoproxy/>
+
+    <!-- Enable @Configured support -->
+    <aop:spring-configured/>
+    
+
+
+
+    <!-- Configure Velocity for sending e-mail -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <props>
+                <prop key="resource.loader">class</prop>
+                <prop key="class.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                </prop>
+                <prop key="velocimacro.library"></prop>
+            </props>
+        </property>
+    </bean>
+
+
+
+    <!-- Add new Managers here -->
+    <bean id="configurationManager" class="no.ovitas.compass2.service.impl.XMLConfigurationManagerImpl">
+		<constructor-arg type="java.lang.String" index="0" value="${config.path}"/>
+		<property name="defaultKBImplementationName" value="${defaultKBImplementationName}"/>
+	</bean>
+	<bean id="exportDomainModelManager" class="no.ovitas.compass2.service.impl.ExportDomainModel2PlainTextManagerImpl">
+		<property name="configuration" ref="configurationManager"/>
+	</bean>
+    
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+      "-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+      "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+      
+<validators>
+
+  <field name="maxTopicNumberToExpand">
+    <field-validator type="int">
+      <param name="min">1</param>
+      <message key="errors.integer"/>
+    </field-validator>
+  </field>
+  <field name="hopCount">
+    <field-validator type="int">
+      <param name="min">0</param>
+      <message key="errors.integer"/>
+    </field-validator>
+  </field>
+
+</validators>
