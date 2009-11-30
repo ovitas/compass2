@@ -16,6 +16,7 @@ public class Expansion {
 	private boolean useRandomWeight;
 	private double expansionThreshold;
 	private int maxNumOfTopicToExpand;
+	private int hopCount;
 	private AssociationTypes associationTypes;
 
 	// Getter / setter methods
@@ -76,6 +77,22 @@ public class Expansion {
 		this.associationTypes = associationTypes;
 	}
 	
+	public int getHopCount() {
+		return hopCount;
+	}
+
+	public void setHopCount(int hopCount) {
+		this.hopCount = hopCount;
+	}
+	
+	public void setHopCount(String hopCount) {
+		try{
+			this.hopCount = Integer.parseInt(hopCount);
+		}catch(NumberFormatException nfe){
+			logger.error("Wrong hopCount value: "+hopCount);
+		}
+	}
+	
 	// Constructors
 
 	public Expansion() {}
@@ -84,7 +101,7 @@ public class Expansion {
 	
 	public String dumpOut(String indent) {
 		String ind = indent + " ";
-		String toDumpOut = ind + "Expansion: useRandomWeight: " + useRandomWeight + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand + "\n";
+		String toDumpOut = ind + "Expansion: useRandomWeight: " + useRandomWeight + ", expansionThreshold: " + expansionThreshold + ", maxNumOfTopicToExpand: " + maxNumOfTopicToExpand + ", hopCount: " + hopCount + "\n";
 		toDumpOut += ind + associationTypes.dumpOut(ind);
 		return toDumpOut;
 	}

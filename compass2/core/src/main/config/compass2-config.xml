@@ -31,7 +31,7 @@
 					<param name="load-on-startup" value="${knowladge.base.load.on.startup}"/>
 				</params>
 			</knowledge-base-implementation>
-			<expansion use-random-weight="no"  expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}">
+			<expansion use-random-weight="no"  expansion-threshold="${expansion.threshold}" max-nr-of-topic-to-expand="${max.topic.number.to.expand}" hop-count="${hop.count}">
 				<association-types>
 					<association-type id="#t-11372557" name="TestAssocTypeName1" weight-ahead="0.5" weight-aback="0.7" />
 					<association-type id="#t-11372561" name="TestAssocTypeName2" weight-ahead="0.5" weight-aback="0.7" />

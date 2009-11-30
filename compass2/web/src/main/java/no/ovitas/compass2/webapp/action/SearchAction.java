@@ -188,7 +188,8 @@ public class SearchAction extends BaseAction implements Preparable {
 		this.firstTime=true;
 		this.treeEmpty=true;
 		String defaultkbName = configurationManager.getDefaultKBImplementationName();
-		 this.maxTopicNumberToExpand = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
+		this.maxTopicNumberToExpand = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
+		this.hopCount = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getHopCount();
 		this.maxNumberOfHits = configurationManager.getResult().getMaxNumberOfHits();
 		this.expansionThreshold = configurationManager.getKnowledgeBase(defaultkbName).getExpansion().getExpansionThreshold();
 		this.resultThreshold = configurationManager.getResult().getResultThreshold();

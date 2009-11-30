@@ -65,9 +65,9 @@
 <!ELEMENT expansion (association-types? ) >
 <!ATTLIST expansion
           use-random-weight (yes | no) "no"
-          
           expansion-threshold  CDATA #IMPLIED
           max-nr-of-topic-to-expand CDATA #IMPLIED
+          hop-count CDATA #IMPLIED
 >
 
 <!-- Association types -->

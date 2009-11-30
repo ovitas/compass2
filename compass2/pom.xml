@@ -418,6 +418,7 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 				 <expansion.threshold>0.7</expansion.threshold>
 				 <result.threshold>0.1</result.threshold>
+				 <hop.count>1</hop.count>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
@@ -444,6 +445,7 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 				 <expansion.threshold>0.7</expansion.threshold>
 				 <result.threshold>0.1</result.threshold>
+				 <hop.count>1</hop.count>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
@@ -470,6 +472,7 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 				 <expansion.threshold>0.7</expansion.threshold>
 				 <result.threshold>0.1</result.threshold>
+				 <hop.count>1</hop.count>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
@@ -496,6 +499,7 @@
                  <max.topic.number.to.expand>50</max.topic.number.to.expand>
 				 <expansion.threshold>0.7</expansion.threshold>
 				 <result.threshold>0.1</result.threshold>
+				 <hop.count>1</hop.count>
 
                  <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
                  <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>

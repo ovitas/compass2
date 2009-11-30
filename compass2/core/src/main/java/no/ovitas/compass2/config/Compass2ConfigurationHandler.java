@@ -153,6 +153,7 @@ public class Compass2ConfigurationHandler {
 		digester.addSetProperties(expansion, "use-random-weight", "useRandomWeight");
 		digester.addSetProperties(expansion, "expansion-threshold", "expansionThreshold");
 		digester.addSetProperties(expansion, "max-nr-of-topic-to-expand", "maxNumOfTopicToExpand");
+		digester.addSetProperties(expansion, "hop-count", "hopCount");
 
 		// KnowledgeBaseImplementation Params
 		digester.addObjectCreate (prefixkbi + "/" + ConfigConstants.TAG_PARAMS, ParamContainer.class);
