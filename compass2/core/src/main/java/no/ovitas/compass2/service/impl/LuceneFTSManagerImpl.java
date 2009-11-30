@@ -225,9 +225,11 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 	 */
 	public List<Hit> doSearch(List<List<XPair<String, Double>>> searchItems, int pageNum){
 		StringBuffer queryString = new StringBuffer();
+		int index = 0;
 		for (List<XPair<String,Double>> itemSet : searchItems) {
-			if (queryString.length() > 0) queryString.append(" OR ");
 			
+			if (queryString.length() > 0) queryString.append(" ");
+
 			boolean firstItem = true;
 			for (XPair<String,Double> item : itemSet) {
 				if (firstItem) firstItem = false;
@@ -236,6 +238,12 @@ public class LuceneFTSManagerImpl implements FullTextSearchManager {
 				String boostString = formatDouble(item.getValue());
 				queryString.append("\"" + itemString + "\"^"+boostString+(fuzzySearch ? "~" : "" ));
 			}
+			
+			// If has next in searchItems and that is not empty
+			if (index+1 < searchItems.size() && searchItems.get(index+1).size() != 0){
+				queryString.append(" OR");
+			}
+			index++;
 		}
 		if(log.isDebugEnabled()){
 			log.debug("Search query string is: "+queryString);
