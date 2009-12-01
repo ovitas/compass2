@@ -5,25 +5,39 @@ package no.ovitas.compass2.config;
  */
 public class ConfigConstants {
 	
-	// Tag constants of compass2-config xml file 
+	// TAG CONSTANTS OF COMPASS2-CONFIG XML FILE
 
-	public static final String TAG_COPMASS2_CONFIG = "compass2-config";
-	public static final String TAG_FULL_TEXT_SEARCH = "full-text-search";
-	public static final String TAG_FULL_TEXT_SEARCH_IMPLEMENTATION = "full-text-search-implementation";
-	public static final String TAG_CONTENT_INDEXER_IMPLEMENTATION = "content-indexer-implementation";
-	public static final String TAG_LANGUAGE_TOOLS = "language-tools";
-	public static final String TAG_LANGUAGE_TOOLS_IMPLEMENTATION = "language-tools-implementation";
-	public static final String TAG_KNOWLEDGE_BASES = "knowledge-bases";
-	public static final String TAG_KNOWLEDGE_BASE = "knowledge-base";
-	public static final String TAG_KNOWLEDGE_BASE_IMPLEMENTATION = "knowledge-base-implementation";
-	public static final String TAG_EXPANSION = "expansion";
-	public static final String TAG_ASSOCIATION_TYPES = "association-types";
-	public static final String TAG_ASSOCIATION_TYPE = "association-type";
-	public static final String TAG_RESULT = "result";
-	public static final String TAG_PARAMS = "params";
-	public static final String TAG_PARAM = "param";
+	// ROOT TAG
+	public static final String TAG_ROOT = "compass2-config";
 	
-	// Attribute constants of compass2-config xml file
+	// FULLTEXT SEARCH TAG
+	public static final String TAG_FULL_TEXT_SEARCH = TAG_ROOT + "/" + "full-text-search";
+	public static final String TAG_FULL_TEXT_SEARCH_IMPLEMENTATION = TAG_FULL_TEXT_SEARCH + "/" + "full-text-search-implementation";
+	public static final String TAG_PARAMS_FULL_TEXT_SEARCH_IMPLEMENTATION = TAG_FULL_TEXT_SEARCH_IMPLEMENTATION + "/" + "params";
+	public static final String TAG_PARAM_FULL_TEXT_SEARCH_IMPLEMENTATION = TAG_PARAMS_FULL_TEXT_SEARCH_IMPLEMENTATION + "/" + "param";
+	public static final String TAG_CONTENT_INDEXER_IMPLEMENTATION =  TAG_FULL_TEXT_SEARCH + "/" + "content-indexer-implementation";
+	
+	// LANGUAGE TOOLS TAG
+	public static final String TAG_LANGUAGE_TOOLS = TAG_ROOT + "/" + "language-tools";
+	public static final String TAG_LANGUAGE_TOOLS_IMPLEMENTATION = TAG_LANGUAGE_TOOLS + "/" + "language-tools-implementation";
+	public static final String TAG_PARAMS_LANGUAGE_TOOLS_IMPLEMENTATION = TAG_LANGUAGE_TOOLS_IMPLEMENTATION + "/" + "params";
+	public static final String TAG_PARAM_LANGUAGE_TOOLS_IMPLEMENTATION = TAG_PARAMS_LANGUAGE_TOOLS_IMPLEMENTATION + "/" + "param";
+	
+	// KNOWLEDGE BASES TAG
+	public static final String TAG_KNOWLEDGE_BASES = TAG_ROOT + "/" + "knowledge-bases";
+	public static final String TAG_KNOWLEDGE_BASE = TAG_KNOWLEDGE_BASES + "/" + "knowledge-base";
+	public static final String TAG_KNOWLEDGE_BASE_IMPLEMENTATION = TAG_KNOWLEDGE_BASE + "/" + "knowledge-base-implementation";
+	public static final String TAG_PARAMS_KNOWLEDGE_BASE_IMPLEMENTATION = TAG_KNOWLEDGE_BASE_IMPLEMENTATION + "/" + "params";
+	public static final String TAG_PARAM_KNOWLEDGE_BASE_IMPLEMENTATION = TAG_PARAMS_KNOWLEDGE_BASE_IMPLEMENTATION + "/" + "param";
+	public static final String TAG_EXPANSION = TAG_KNOWLEDGE_BASE + "/" + "expansion";
+	public static final String TAG_ASSOCIATION_TYPES = TAG_EXPANSION + "/" + "association-types";
+	public static final String TAG_ASSOCIATION_TYPE = TAG_ASSOCIATION_TYPES + "/" + "association-type";
+	
+	// RESULT TAG
+	public static final String TAG_RESULT = TAG_ROOT + "/" + "result";
+
+	
+	// ATTRIBUTE CONSTANTS OF COMPASS2-CONFIG XML FILE
 	
 	public static final String ATTR_PREFIX_MATCH = "prefix-match";
 	public static final String ATTR_FUZZY_MATCH = "fuzzy-match";
