@@ -111,7 +111,7 @@ public class Constants {
     
     /**
      * The compass2-config.xml configuration file
-     */
+     */    
     public static final String INDEXDIRECTORY_PATH						= "indexdirectory-path";
     public static final String MAX_HITS_PER_QUERY						= "max-hits-per-query";
     public static final String DOCUMENT_REPOSITORY						= "document-repository";
@@ -125,6 +125,11 @@ public class Constants {
 
 	public static final double BOOST_PREFIX_VALUE = 0.5;
 	public static final double BOOST_SAME_VALUE = 1;
+	
+	/**
+	 * System property names
+	 */
+	public static final String CONFIG_PATH								= "config.path";
     
     
     
