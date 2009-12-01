@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import no.ovitas.compass2.Constants;
 import no.ovitas.compass2.config.Compass2Configuration;
 import no.ovitas.compass2.config.Compass2ConfigurationHandler;
 import no.ovitas.compass2.config.Expansion;
@@ -34,6 +35,10 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 	public XMLConfigurationManagerImpl(String configPath) throws ConfigurationException{
 		super();
 		this.configPath = configPath;
+		// Check if config.path is define in system property
+		if (System.getProperty(Constants.CONFIG_PATH) != null){
+			this.configPath = System.getProperty(Constants.CONFIG_PATH);
+		}
 		if(log.isDebugEnabled()){
 			log.debug("Config path is: "+configPath);
 			log.debug("Calling initConfig()");
