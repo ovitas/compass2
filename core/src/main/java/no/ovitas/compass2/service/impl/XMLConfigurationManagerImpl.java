@@ -3,8 +3,11 @@
  */
 package no.ovitas.compass2.service.impl;
 
+import java.io.File;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,12 +38,21 @@ public class XMLConfigurationManagerImpl implements ConfigurationManager {
 	public XMLConfigurationManagerImpl(String configPath) throws ConfigurationException{
 		super();
 		this.configPath = configPath;
+		
 		// Check if config.path is define in system property
-		if (System.getProperty(Constants.CONFIG_PATH) != null){
+		String configProperty = System.getProperty(Constants.CONFIG_PATH);
+		if (configProperty != null && !configProperty.isEmpty()){
 			this.configPath = System.getProperty(Constants.CONFIG_PATH);
+			if(log.isDebugEnabled()){
+				log.debug("Config path from system property is: "+this.configPath);
+			}
+		} else {
+			if(log.isDebugEnabled()){
+				log.debug("Config path from pom is: "+this.configPath);
+			}
 		}
+		
 		if(log.isDebugEnabled()){
-			log.debug("Config path is: "+configPath);
 			log.debug("Calling initConfig()");
 		}
 		initConfig();
