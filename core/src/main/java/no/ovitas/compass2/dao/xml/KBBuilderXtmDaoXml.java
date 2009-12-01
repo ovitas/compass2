@@ -182,7 +182,8 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 							relationType.setId(href);
 							relationType.setWeight(.5 + (useRandomWeight ? (Math.random() - .5) * .2 : 0));
 							relationType.setGeneralizationWeight(.1 + (useRandomWeight ? (Math.random() - .1) * .2 : 0));
-
+							relationType.setOccurence(0);
+							
 							if (baseNameStringNode != null)
 								relationType.setRelationName(baseNameStringNode);
 							else
@@ -246,13 +247,14 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 									Relation actRelation = new Relation();
 									actRelation.setSource(goodNodes.get(source));
 									actRelation.setTarget(goodNodes.get(target));
+									relationType.setOccurence(relationType.getOccurence() + 1);
 									actRelation.setRelationType(relationType);
 									
 									// Add Relation to topics 
 									actRelation.getSource().addRelation(actRelation);
 									actRelation.getTarget().addRelation(actRelation);
 									kbh.addRelation(actRelation);
-
+									
 									warningMsg = "";
 									
 								// Both source and target not exist
@@ -271,7 +273,7 @@ public class KBBuilderXtmDaoXml implements KBBuilderDao {
 						}
 					}
 				}
-			} //eddig
+			}
 
 		} catch (DocumentException e) {
 			log.error("Error parsing document: " + kbAccessString + " - " + e.getMessage());

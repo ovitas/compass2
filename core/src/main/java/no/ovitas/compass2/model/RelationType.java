@@ -17,6 +17,7 @@ public class RelationType implements Serializable {
 	private String relationName;
 	private double weight;
 	private double generalizationWeight;
+	private int occurence;
 	
 	public String getRelationName() {
 		return relationName;
@@ -44,7 +45,13 @@ public class RelationType implements Serializable {
 	public void setGeneralizationWeight(double generalizationWeight) {
 		this.generalizationWeight = generalizationWeight;
 	}
-	
+
+	public int getOccurence() {
+		return occurence;
+	}
+	public void setOccurence(int occurence) {
+		this.occurence = occurence;
+	}
 	/**
 	 * Round double
 	 * @param number
