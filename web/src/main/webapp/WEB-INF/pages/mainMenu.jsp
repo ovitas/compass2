@@ -32,9 +32,10 @@
 		<s:set name="relationTypes"  value="relationTypes" scope="request"/>
 		<c:if test="${not empty relationTypes}">
 			<h1><fmt:message key="relationTypes.result"/></h1>
-			<display:table class="table" name="relationTypes" defaultsort="2" defaultorder="ascending" export="false" id="relationType" requestURI="mainMenu.do">
+			<display:table class="table" name="relationTypes" defaultsort="3" defaultorder="descending" export="false" id="relationType" requestURI="mainMenu.do">
 				<display:column property="id" title="Id" style="width:90px;"/>
 				<display:column property="relationName" title="Relation name"/>
+				<display:column property="occurence" title="Ref."/>
 				<display:column title="Weight ahead">
 					<input type="text" id="${relationType.id}_weight" value="${relationType.weight}" onkeyup="updateRecord(this.id)" class="editable" />
 				</display:column>
