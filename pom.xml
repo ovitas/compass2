@@ -28,7 +28,7 @@
       <snapshotRepository>
 	<id>ovitas.nexus.snapshots</id>
 	<name>Ovitas Nexus snapshots</name>
-	<url>http://nexus.ovitas.no:8081/content/repositories/releases</url>
+	<url>http://nexus.ovitas.no:8081/content/repositories/snapshots</url>
       </snapshotRepository>
     </distributionManagement>
     <prerequisites>
