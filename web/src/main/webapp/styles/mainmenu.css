@@ -5,13 +5,13 @@ div.wwlbl {
 }
 
 #mainDiv {
-	width: 900px;
+	width: 950px;
 	margin: 0 auto;
 }
 
 #leftSideDiv {
 	float: left;
-	width: 500px;
+	width: 550px;
 	text-align: left;
 }
 
