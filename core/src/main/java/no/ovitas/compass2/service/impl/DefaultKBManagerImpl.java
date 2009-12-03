@@ -191,7 +191,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 			// Flag children
 			for (TopicTreeNode child : node.getChildren()){
 				nodeCount += countNodes(child, flagged, true);
-				flagged-=nodeCount;
+				flagged--;
 			}
 			
 			return nodeCount;
