@@ -31,7 +31,7 @@ public interface KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, String search, Integer maxTopicNumberToExpand);
+	//public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, double thresholdWeight, String search, Integer maxTopicNumberToExpand);
 
 	/**
 	 * 
