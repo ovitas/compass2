@@ -1,9 +1,9 @@
 package no.ovitas.compass2.service.impl;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import no.ovitas.compass2.config.AssociationType;
 import no.ovitas.compass2.config.Expansion;
@@ -18,6 +18,7 @@ import no.ovitas.compass2.model.TopicTreeNode;
 import no.ovitas.compass2.service.ConfigurationManager;
 import no.ovitas.compass2.service.KnowledgeBaseManager;
 import no.ovitas.compass2.util.CompassUtil;
+import no.ovitas.compass2.util.TopicTreeNodeComparator;
 import no.ovitas.compass2.util.TopicUtil;
 
 import org.apache.commons.logging.Log;
@@ -35,7 +36,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	protected double expansionThreshold;
 	protected KnowledgeBaseImplementation kbImpl;
 	protected Expansion expansion;
-	
 
 	protected int maxTopicNumberToExpand;
 	
@@ -68,64 +68,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 	 * @param thresholdWeight
 	 * @param search
 	 */
-	public Set<TopicTreeNode> getExpansion(boolean fuzzyMatch, boolean prefixMatching, int hopCount, 
-			double thresholdWeight, String search, Integer maxTopicNumberToExpand){
-		
-		int aMaxTopicNumberToExpand = this.maxTopicNumberToExpand;
-		if (maxTopicNumberToExpand != null) aMaxTopicNumberToExpand = maxTopicNumberToExpand.intValue();
-		
-		Set<Topic> topicSet = new HashSet<Topic>();
-		String s = search;
-		String toSearch = s;
-		if (prefixMatching){
-			if(s.endsWith("%")){
-				toSearch = s.replaceAll("%", "");
-			}
-			List<Topic> tp = this.knowledgeBase.findTopicByPrefixMatchCaseInSensitive(toSearch);
-			if(tp!=null && tp.size()>0){
-				for(Topic topic : tp){
-					topicSet.add(topic);
-				}
-			}
-		} else {
-			List<Topic> tp = this.knowledgeBase.findTopicCaseInSensitive(toSearch);
-			if(tp!=null && tp.size()>0){
-				for(Topic topic : tp){
-					topicSet.add(topic);
-				}
-			}
-		}
-		
-		Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
-		for (Topic topic : topicSet) {
-			TopicTreeNode node1 = thresholdWeight < 0 ? null : 
-				TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
-			TopicTreeNode node2 = hopCount < 0 ? null : 
-				TopicUtil.expandTopicsForMinHopCount(topic, hopCount, aMaxTopicNumberToExpand);
-			if (node1 == null) {
-				node1 = node2;
-			} else if (node2 != null) {
-				node1.intersect(node2);					
-			}
-			if (node1 != null) {
-				topicTreeNodeSet.add(node1);
-			}
-		}
-				
-		Set<TopicTreeNode> subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
-		
-		return subTopicTreeNodeSet;
-		//return topicTreeNodeSet;
-	}
-
-	/**
-	 * 
-	 * @param fuzzyMatch
-	 * @param prefixMatching
-	 * @param hopCount
-	 * @param thresholdWeight
-	 * @param search
-	 */
 	public List<Set<TopicTreeNode>> getExpansion(boolean fuzzyMatch, boolean prefixMatching, 
 			int hopCount, double thresholdWeight, List<String> search, Integer maxTopicNumberToExpand){
 		
@@ -133,6 +75,7 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		if (maxTopicNumberToExpand != null) aMaxTopicNumberToExpand = maxTopicNumberToExpand.intValue();
 		
 		List<Set<TopicTreeNode>> ret = new ArrayList<Set<TopicTreeNode>>();
+		int limit = aMaxTopicNumberToExpand;
 		for (String s : search){
 			Set<Topic> topicSet = new HashSet<Topic>();
 			
@@ -156,7 +99,8 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				}
 			}
 			
-			Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
+			//Set<TopicTreeNode> topicTreeNodeSet = new HashSet<TopicTreeNode>();
+			Set<TopicTreeNode> topicTreeNodeSet = new TreeSet<TopicTreeNode>(new TopicTreeNodeComparator(s, hopCount));
 			for (Topic topic : topicSet) {
 				TopicTreeNode node1 = thresholdWeight < 0 ? null : 
 					TopicUtil.expandTopicsForMaxWeight(topic, thresholdWeight, aMaxTopicNumberToExpand);
@@ -172,55 +116,88 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 				}
 			}
 			
-			Set<TopicTreeNode> subTopicTreeNodeSet = filterTopicNodeSet(topicTreeNodeSet, aMaxTopicNumberToExpand);
+			// Create new tree node set, add nodes to it if has space for them
+			Set<TopicTreeNode> subTopicTreeNodeSet = new HashSet<TopicTreeNode>();
+			
+			// Iterate over all of the topic tree nodes from dijkstra
+			for(TopicTreeNode node : topicTreeNodeSet){
+				
+				// Count how many node has the node tree
+				int nodeCount = countNodes(node, 0, false);
+				
+				// If tree node has fewer nodes than limit then add it
+				if (nodeCount <= limit) {
+					subTopicTreeNodeSet.add(node);
+					limit -= nodeCount;
+					
+				// If tree node has more nodes than limit then truncate it
+				} else {
+					if (limit != 0) {
+						log.debug("Add subtree. Rootnode is: " + node.getName());
+						log.debug("This tree has " + nodeCount + " element, but limit is " + limit);
+						log.debug("Add " + limit + " treenode, and remove the last " + (nodeCount-limit) + " nodes");
+						
+						// Set flag of the first limit node 
+						nodeCount = countNodes(node, limit, true);
+												
+						// Add truncated node1
+						if (nodeCount <= limit) {
+							
+							// Remove not flagged nodes in node
+							node.truncate();
+							subTopicTreeNodeSet.add(node);
+							limit -= nodeCount;
+						}
+						
+						// After all limit should be null
+						log.debug("After truncate the limit should be 0: " + limit);
+					}
+					break;
+				}
+			}
 			
 			ret.add(subTopicTreeNodeSet);
-			
-			//ret.add(topicTreeNodeSet);
 		}
 		
 		return ret;
 	}
 
-	
-	private Set<TopicTreeNode> filterTopicNodeSet(Set<TopicTreeNode> topicTreeNodeSet, int aMaxTopicNumberToExpand) {
-		Set<TopicTreeNode> subTopicTreeNodeSet = new HashSet<TopicTreeNode>();
-		int limit = aMaxTopicNumberToExpand;
-		for(TopicTreeNode node1 : topicTreeNodeSet){
-			if (limit != 0) {
-				
-				// Leaf
-				if (node1.getChildren().size() == 0 && limit > 0) {
-					subTopicTreeNodeSet.add(node1);
-					limit--;
-				// Has children and has space for them
-				} else if (node1.getChildren().size() > 0 && node1.getChildren().size()+1 <= limit) {
-					subTopicTreeNodeSet.add(node1);
-					limit -= node1.getChildren().size()+1;
-				// Has children and has not enought space for them
-				} else if (node1.getChildren().size() > 0 && node1.getChildren().size()+1 > limit){
-					//boolean parentAdded = false;
-					
-					for (TopicTreeNode node : node1.getChildren()) {
-						// Add the parent only first
-						/*if (!parentAdded) {
-							subTopicTreeNodeSet.add(node.getParent());
-							limit--;
-							parentAdded = true;
-						}*/
-						// Add child while has space for that
-						if (limit > 0){
-							subTopicTreeNodeSet.add(node);
-							limit--;
-						}
-					}
+	private int countNodes(TopicTreeNode node, int flagged, boolean setFlag) {
+		int nodeCount = 0;
+		if (!setFlag) {
+			// Leaf
+			if (node.getChildren().size() == 0) {
+				return 1;
+			} else{
+				// Iterate over Children
+				for(TopicTreeNode child: node.getChildren()){
+					nodeCount += countNodes(child,flagged,  false);
 				}
-				
-			} else break;
-		}
-		return subTopicTreeNodeSet;
+				// Parent node
+				nodeCount += 1;
+				return nodeCount;
+			}
+		} else {
+			
+			// Flag the root node if flagged not reached
+			if (flagged > 0) {
+				node.setFlag(true);
+				flagged--;
+				nodeCount = 1;
+			} else {
+				return nodeCount;
+			}
+			
+			// Flag children
+			for (TopicTreeNode child : node.getChildren()){
+				nodeCount += countNodes(child, flagged, true);
+				flagged-=nodeCount;
+			}
+			
+			return nodeCount;
+		}	
 	}
-
+	
 	/**
 	 * 
 	 * @param kb
@@ -303,7 +280,6 @@ public class DefaultKBManagerImpl implements KnowledgeBaseManager {
 		maxTopicNumberToExpand = 100;
 		if(configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand()>0){
 			maxTopicNumberToExpand = configManager.getKnowledgeBase(defaultkbName).getExpansion().getMaxNumOfTopicToExpand();
-
 		}
 	}
 
