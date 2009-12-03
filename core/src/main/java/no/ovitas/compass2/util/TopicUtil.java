@@ -28,10 +28,17 @@ public class TopicUtil {
 	private static class TopicLinkNode {
 		Topic topic;
 		double cost;
+		double boost;
 		
-		public TopicLinkNode(Topic topic, double distance) {
+		public TopicLinkNode(Topic topic, double distance, double boost) {
 			this.topic = topic;
 			this.cost  = distance;
+			this.boost = boost;
+		}
+		
+		public TopicLinkNode(Topic topic, double boost) {
+			this.topic = topic;
+			this.boost = boost;
 		}
 	}
 	
@@ -44,9 +51,8 @@ public class TopicUtil {
 					Topic otherTopic = relation.getSource();
 					if (otherTopic.equals(topic)) {
 						otherTopic = relation.getTarget();
-						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, true)));
+						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, true), getBoost(relation, true)));
 					}
-					
 				}
 			}
 			return ret;
@@ -60,7 +66,7 @@ public class TopicUtil {
 					Topic otherTopic = relation.getTarget();
 					if (otherTopic.equals(topic)) {
 						otherTopic = relation.getSource();
-						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, false)));
+						ret.add(new TopicLinkNode(otherTopic, getDistance(relation, false), getBoost(relation, false)));
 					}
 				}
 			}
@@ -68,11 +74,18 @@ public class TopicUtil {
 		}
 		
 		protected abstract double getDistance(Relation relation, boolean ahead);
+		protected abstract double getBoost(Relation relation, boolean ahead);
 	}
 	
 	private static class TopicExpanderForMinHopCount extends TopicExpander {
 		protected double getDistance(Relation relation, boolean ahead) {
 			return 1;
+		}
+		protected double getBoost(Relation relation, boolean ahead) {
+			if (ahead)
+				return relation.getRelationType().getWeight();
+			else
+				return relation.getRelationType().getGeneralizationWeight();
 		}
 	}
 	
@@ -82,6 +95,12 @@ public class TopicUtil {
 				return -Math.log(relation.getRelationType().getWeight());
 			else
 				return -Math.log(relation.getRelationType().getGeneralizationWeight());
+		}
+		protected double getBoost(Relation relation, boolean ahead) {
+			if (ahead)
+				return relation.getRelationType().getWeight();
+			else
+				return relation.getRelationType().getGeneralizationWeight();
 		}
 	}
 	
@@ -96,6 +115,7 @@ public class TopicUtil {
 		PriorityQueue<TopicNode> queue = new PriorityQueue<TopicNode>(10, comparator);
 		HashMap<Topic, TopicNode> topicNodes = new HashMap<Topic, TopicNode>();
 		List<TopicNode> finalTopicNodes = new LinkedList<TopicNode>();
+		HashMap<TopicNode, TopicLinkNode> reachedTopicLinkNodes = new HashMap<TopicNode, TopicLinkNode>();
 		
 		TopicNode rootTopicNode = new TopicNode(rootTopic, null, 0);
 		topicNodes.put(rootTopicNode.topic, rootTopicNode);
@@ -115,21 +135,45 @@ public class TopicUtil {
 					topicLinkNodes.add(node);
 				}
 			}
-			
+			double boost = 1.0;
 			for (TopicLinkNode topicLinkNode : topicLinkNodes) {
 				Topic aTopic = topicLinkNode.topic;
 				TopicNode aTopicNode = topicNodes.get(aTopic);
 				double dist = topicNode.distance + topicLinkNode.cost;
+				
+				if (reachedTopicLinkNodes.containsKey(topicNode)){
+					boost = reachedTopicLinkNodes.get(topicNode).boost * topicLinkNode.boost;
+				} else {
+					boost = 1.0 * topicLinkNode.boost;
+					reachedTopicLinkNodes.put(topicNode, new TopicLinkNode(topicNode.topic, boost));
+				}
+				
 				if (dist > limit) continue;
 				if (aTopicNode == null) {
 					aTopicNode = new TopicNode(aTopic, topicNode.topic, dist);
 					topicNodes.put(aTopic, aTopicNode);
 					queue.add(aTopicNode);
+					
+					// Add new reached nodes
+					if (!reachedTopicLinkNodes.containsKey(aTopic)){
+						reachedTopicLinkNodes.put(aTopicNode, new TopicLinkNode(aTopicNode.topic, boost));
+					}
+					
 				} else if (queue.contains(aTopicNode) && aTopicNode.distance > dist) {
 					queue.remove(aTopicNode);
 					aTopicNode.parent = topicNode.topic;
 					aTopicNode.distance = dist;
 					queue.add(aTopicNode);
+					
+					// Add better reached nodes
+					if (reachedTopicLinkNodes.containsKey(aTopicNode) ){
+						double actBoost  = reachedTopicLinkNodes.get(aTopicNode).boost;
+						if (boost > actBoost) {
+							reachedTopicLinkNodes.remove(aTopic);
+							reachedTopicLinkNodes.put(aTopicNode, new TopicLinkNode(aTopicNode.topic, boost));
+						}
+					}
+					
 				}
 			}
 			finalTopicNodes.add(topicNode);
@@ -141,12 +185,13 @@ public class TopicUtil {
 				
 				// If not root topic the boost is from dijkstra
 				if (!topicNode.topic.equals(rootTopic)) {
-					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, Math.abs(topicNode.distance)));
+					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, reachedTopicLinkNodes.get(topicNode).boost));
 				// If root topic the boost is from topic
 				} else {
 					ret.put(topicNode.topic, new TopicTreeNode(topicNode.topic, topicNode.topic.getDefaultBoost()));
 				}
 			}
+
 		}
 		
 		for (TopicNode topicNode: finalTopicNodes) {
