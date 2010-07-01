@@ -30,7 +30,7 @@ Root element-->
 <!ATTLIST relation
                type  IDREF    #REQUIRED  >
 
-<!ELEMENT name  (CDATA) >
+<!ELEMENT name  (#PCDATA) >
 
 ]>
 <search>
