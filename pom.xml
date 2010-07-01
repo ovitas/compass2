@@ -60,6 +60,12 @@
             <email>csanyi@mail.thot-soft.com</email>
             <timezone>+1</timezone>
         </developer>
+        <developer>
+            <id>daniel</id>
+            <name>Csaba Daniel</name>
+            <email>csaba.daniel@db-soft.hu</email>
+            <timezone>+1</timezone>
+        </developer>
     </developers>
     <organization>
     	<name>Ovitas AS</name>
