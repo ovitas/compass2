@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<compass2-rdf>
+	<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+	<namespace prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+	<name-generator-element>rdfs:label</name-generator-element>
+	<name-generator-element>skos:prefLabel</name-generator-element>
+	<relation-generator-element label="broader">skos:broader</relation-generator-element>
+	<relation-generator-element label="subject">skos:subject</relation-generator-element>
+</compass2-rdf>

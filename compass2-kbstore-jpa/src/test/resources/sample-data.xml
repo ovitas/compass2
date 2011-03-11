@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<table name="knowledge_base">
+		<column>id</column>
+		<column>display_name</column>
+		<column>description</column>
+		<row>
+			<value description="id">1</value>
+			<value description="display_name">default</value>
+			<value description="description"><![CDATA[Ez egy teszt!]]></value>
+		</row>
+	</table>
+	<table name="scope">
+        <column>id</column>
+        <column>display_name</column>
+        <column>external_id</column>
+        <row>
+            <value description="id">1</value>
+            <value description="display_name">proba</value>
+            <value description="external_id">proba1</value>
+        </row>
+    </table>
+	<table name="topic">
+		<column>id</column>
+		<column>external_id</column>
+		<column>uri</column>
+		<column>knowledge_base_id</column>
+		<row>
+			<value description="id">1</value>
+			<value description="external_id">1</value>
+			<value description="uri">Test</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="external_id">2</value>
+			<value description="uri">Norway</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">3</value>
+			<value description="external_id">3</value>
+			<value description="uri">Oslo</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">4</value>
+			<value description="external_id">4</value>
+			<value description="uri">Budapest</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">5</value>
+			<value description="external_id">5</value>
+			<value description="uri">Hungary</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">6</value>
+			<value description="external_id">6</value>
+			<value description="uri">Hotel</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">7</value>
+			<value description="external_id">7</value>
+			<value description="uri">Palace Hotel</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">8</value>
+			<value description="external_id">8</value>
+			<value description="uri">Royal Hotel</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">9</value>
+			<value description="external_id">9</value>
+			<value description="uri">Restaurant</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">10</value>
+			<value description="external_id">10</value>
+			<value description="uri">Royal Hotel Restaurant</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">11</value>
+			<value description="external_id">11</value>
+			<value description="uri">Bugac Csarda</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+	</table>
+	<table name="topic_name">
+		<column>id</column>
+		<column>display_name</column>
+		<column>base</column>
+		<column>topic_id</column>
+		<column>scope_id</column>
+		<row>
+			<value description="id">1</value>
+			<value description="display_name">Test</value>
+			<value description="base">true</value>
+			<value description="topic_id">1</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="display_name">Test2</value>
+			<value description="base">false</value>
+			<value description="topic_id">1</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">3</value>
+			<value description="display_name">Norway</value>
+			<value description="base">true</value>
+			<value description="topic_id">2</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">4</value>
+			<value description="display_name">Oslo</value>
+			<value description="base">false</value>
+			<value description="topic_id">3</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">5</value>
+			<value description="display_name">Budapest</value>
+			<value description="base">true</value>
+			<value description="topic_id">4</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">6</value>
+			<value description="display_name">Vilag ura</value>
+			<value description="base">false</value>
+			<value description="topic_id">4</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">7</value>
+			<value description="display_name">Hungary</value>
+			<value description="base">true</value>
+			<value description="topic_id">5</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">8</value>
+			<value description="display_name">Hotel</value>
+			<value description="base">true</value>
+			<value description="topic_id">6</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">9</value>
+			<value description="display_name">Palace Hotel</value>
+			<value description="base">true</value>
+			<value description="topic_id">7</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">10</value>
+			<value description="display_name">Royal Hotel</value>
+			<value description="base">true</value>
+			<value description="topic_id">8</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">11</value>
+			<value description="display_name">Restaurant</value>
+			<value description="base">true</value>
+			<value description="topic_id">9</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">12</value>
+			<value description="display_name">Royal Hotel Restaurant</value>
+			<value description="base">true</value>
+			<value description="topic_id">10</value>
+			<value description="scope_id">1</value>
+		</row>
+		<row>
+			<value description="id">13</value>
+			<value description="display_name">Bugac Csarda</value>
+			<value description="base">true</value>
+			<value description="topic_id">11</value>
+			<value description="scope_id">1</value>
+		</row>
+	</table>
+	<table name="direct_relation_type">
+		<column>id</column>
+		<column>external_id</column>
+		<column>display_name</column>
+		<column>weight</column>
+		<column>generalization_weight</column>
+		<column>occurrence</column>
+		<column>active</column>
+		<column>knowledge_base_id</column>
+		<row>
+			<value description="id">1</value>
+			<value description="external_id">id1</value>
+			<value description="display_name">capital</value>
+			<value description="weight">1</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+			<value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="external_id">id2</value>
+			<value description="display_name">hasHotel</value>
+			<value description="weight">0.5</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">3</value>
+			<value description="external_id">id3</value>
+			<value description="display_name">operate</value>
+			<value description="weight">0.8</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">4</value>
+			<value description="external_id">id4</value>
+			<value description="display_name">in the city</value>
+			<value description="weight">0.75</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">5</value>
+			<value description="external_id">id5</value>
+			<value description="display_name">can book form</value>
+			<value description="weight">0.5</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">6</value>
+			<value description="external_id">id6</value>
+			<value description="display_name">is hotel</value>
+			<value description="weight">1</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">7</value>
+			<value description="external_id">id7</value>
+			<value description="display_name">has restaurant</value>
+			<value description="weight">0.7</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">8</value>
+			<value description="external_id">id8</value>
+			<value description="display_name">own restaurant</value>
+			<value description="weight">0.9</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+		<row>
+			<value description="id">9</value>
+			<value description="external_id">id9</value>
+			<value description="display_name">restaurant</value>
+			<value description="weight">1</value>
+			<value description="generalizationWeight">1</value>
+			<value description="occurrence">1</value>
+            <value description="active">true</value>
+			<value description="knowledge_base_id">1</value>
+		</row>
+	</table>
+	<table name="direct_relation">
+		<column>id</column>
+		<column>start_topic_id</column>
+		<column>end_topic_id</column>
+		<column>direct_relation_type_id</column>
+		<row>
+			<value description="id">1</value>
+			<value description="start_topic_id">2</value>
+			<value description="end_topic_id">3</value>
+			<value description="direct_relation_type_id">1</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="start_topic_id">5</value>
+			<value description="end_topic_id">4</value>
+			<value description="direct_relation_type_id">1</value>
+		</row>
+		<row>
+			<value description="id">3</value>
+			<value description="start_topic_id">2</value>
+			<value description="end_topic_id">6</value>
+			<value description="direct_relation_type_id">2</value>
+		</row>
+		<row>
+			<value description="id">5</value>
+			<value description="start_topic_id">3</value>
+			<value description="end_topic_id">6</value>
+			<value description="direct_relation_type_id">3</value>
+		</row>
+		<row>
+			<value description="id">7</value>
+			<value description="start_topic_id">5</value>
+			<value description="end_topic_id">6</value>
+			<value description="direct_relation_type_id">3</value>
+		</row>
+		<row>
+			<value description="id">8</value>
+			<value description="start_topic_id">4</value>
+			<value description="end_topic_id">6</value>
+			<value description="direct_relation_type_id">2</value>
+		</row>
+		<row>
+			<value description="id">10</value>
+			<value description="start_topic_id">2</value>
+			<value description="end_topic_id">7</value>
+			<value description="direct_relation_type_id">5</value>
+		</row>
+		<row>
+			<value description="id">11</value>
+			<value description="start_topic_id">4</value>
+			<value description="end_topic_id">7</value>
+			<value description="direct_relation_type_id">5</value>
+		</row>
+		<row>
+			<value description="id">12</value>
+			<value description="start_topic_id">3</value>
+			<value description="end_topic_id">8</value>
+			<value description="direct_relation_type_id">4</value>
+		</row>
+		<row>
+			<value description="id">14</value>
+			<value description="start_topic_id">6</value>
+			<value description="end_topic_id">9</value>
+			<value description="direct_relation_type_id">7</value>
+		</row>
+		<row>
+			<value description="id">15</value>
+			<value description="start_topic_id">2</value>
+			<value description="end_topic_id">9</value>
+			<value description="direct_relation_type_id">7</value>
+		</row>
+		<row>
+			<value description="id">16</value>
+			<value description="start_topic_id">3</value>
+			<value description="end_topic_id">9</value>
+			<value description="direct_relation_type_id">7</value>
+		</row>
+		<row>
+			<value description="id">17</value>
+			<value description="start_topic_id">4</value>
+			<value description="end_topic_id">9</value>
+			<value description="direct_relation_type_id">7</value>
+		</row>
+		<row>
+			<value description="id">18</value>
+			<value description="start_topic_id">5</value>
+			<value description="end_topic_id">9</value>
+			<value description="direct_relation_type_id">7</value>
+		</row>
+		<row>
+			<value description="id">19</value>
+			<value description="start_topic_id">6</value>
+			<value description="end_topic_id">7</value>
+			<value description="direct_relation_type_id">6</value>
+		</row>
+		<row>
+			<value description="id">20</value>
+			<value description="start_topic_id">6</value>
+			<value description="end_topic_id">8</value>
+			<value description="direct_relation_type_id">6</value>
+		</row>
+		<row>
+			<value description="id">21</value>
+			<value description="start_topic_id">9</value>
+			<value description="end_topic_id">10</value>
+			<value description="direct_relation_type_id">9</value>
+		</row>
+		<row>
+			<value description="id">22</value>
+			<value description="start_topic_id">9</value>
+			<value description="end_topic_id">11</value>
+			<value description="direct_relation_type_id">9</value>
+		</row>
+		<row>
+			<value description="id">23</value>
+			<value description="start_topic_id">8</value>
+			<value description="end_topic_id">10</value>
+			<value description="direct_relation_type_id">8</value>
+		</row>
+	</table>
+<!--	<table name="relation">-->
+<!--		<column>id</column>-->
+<!--		<column>weight</column>-->
+<!--		<column>hop_count</column>-->
+<!--		<column>start_topic_id</column>-->
+<!--		<column>end_topic_id</column>-->
+<!--		<row>-->
+<!--			<value description="id">1</value>-->
+<!--			<value description="weight">1</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">2</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">6</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">3</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">7</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">4</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">8</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">5</value>-->
+<!--			<value description="weight">0.56</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">9</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">6</value>-->
+<!--			<value description="weight">0.5</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">7</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">7</value>-->
+<!--			<value description="weight">0.5</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">6</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">8</value>-->
+<!--			<value description="weight">0.5</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">7</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">9</value>-->
+<!--			<value description="weight">0.5</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">8</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">10</value>-->
+<!--			<value description="weight">0.5</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">11</value>-->
+<!--			<value description="weight">0.35</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">9</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">12</value>-->
+<!--			<value description="weight">0.35</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">13</value>-->
+<!--			<value description="weight">0.35</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">11</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">14</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">9</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">15</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">16</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">2</value>-->
+<!--			<value description="end_topic_id">11</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">17</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">6</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">18</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">7</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">19</value>-->
+<!--			<value description="weight">0.8</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">8</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">20</value>-->
+<!--			<value description="weight">0.72</value>-->
+<!--			<value description="hop_count">3</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">21</value>-->
+<!--			<value description="weight">0.75</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">8</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">22</value>-->
+<!--			<value description="weight">0.675</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">23</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">1</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">9</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">24</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">25</value>-->
+<!--			<value description="weight">0.7</value>-->
+<!--			<value description="hop_count">2</value>-->
+<!--			<value description="start_topic_id">3</value>-->
+<!--			<value description="end_topic_id">11</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--            <value description="id">26</value>-->
+<!--            <value description="weight">0.8</value>-->
+<!--            <value description="hop_count">1</value>-->
+<!--            <value description="start_topic_id">5</value>-->
+<!--            <value description="end_topic_id">6</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">27</value>-->
+<!--            <value description="weight">0.8</value>-->
+<!--            <value description="hop_count">2</value>-->
+<!--            <value description="start_topic_id">5</value>-->
+<!--            <value description="end_topic_id">7</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">28</value>-->
+<!--            <value description="weight">0.8</value>-->
+<!--            <value description="hop_count">2</value>-->
+<!--            <value description="start_topic_id">5</value>-->
+<!--            <value description="end_topic_id">8</value>-->
+<!--        </row>-->
+<!--         <row>-->
+<!--            <value description="id">29</value>-->
+<!--            <value description="weight">0.72</value>-->
+<!--            <value description="hop_count">3</value>-->
+<!--            <value description="start_topic_id">5</value>-->
+<!--            <value description="end_topic_id">10</value>-->
+<!--        </row>-->
+<!--	</table>-->
+<!--	<table name="relation_path_element">-->
+<!--		<column>id</column>-->
+<!--		<column>position</column>-->
+<!--		<column>relation_id</column>-->
+<!--		<column>direct_relation_id</column>-->
+<!--		<row>-->
+<!--			<value description="id">1</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">1</value>-->
+<!--			<value description="direct_realation_id">1</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">2</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">2</value>-->
+<!--			<value description="direct_realation_id">1</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">3</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">2</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">4</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">3</value>-->
+<!--			<value description="direct_realation_id">1</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">5</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">3</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">6</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">3</value>-->
+<!--			<value description="direct_realation_id">19</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">7</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">4</value>-->
+<!--			<value description="direct_realation_id">1</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">8</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">4</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">9</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">4</value>-->
+<!--			<value description="direct_realation_id">20</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">10</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">5</value>-->
+<!--			<value description="direct_realation_id">1</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">11</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">5</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">12</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">5</value>-->
+<!--			<value description="direct_realation_id">14</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">13</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">6</value>-->
+<!--			<value description="direct_realation_id">10</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">14</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">7</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">15</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">8</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">16</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">8</value>-->
+<!--			<value description="direct_realation_id">19</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">17</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">9</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">18</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">9</value>-->
+<!--			<value description="direct_realation_id">20</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">19</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">10</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">20</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">10</value>-->
+<!--			<value description="direct_realation_id">20</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">21</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">10</value>-->
+<!--			<value description="direct_realation_id">23</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">22</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">11</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">23</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">11</value>-->
+<!--			<value description="direct_realation_id">14</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">24</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">12</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">25</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">12</value>-->
+<!--			<value description="direct_realation_id">14</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">26</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">12</value>-->
+<!--			<value description="direct_realation_id">21</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">27</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">13</value>-->
+<!--			<value description="direct_realation_id">3</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">28</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">13</value>-->
+<!--			<value description="direct_realation_id">14</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">29</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">13</value>-->
+<!--			<value description="direct_realation_id">22</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">30</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">14</value>-->
+<!--			<value description="direct_realation_id">15</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">31</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">15</value>-->
+<!--			<value description="direct_realation_id">15</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">32</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">15</value>-->
+<!--			<value description="direct_realation_id">21</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">33</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">16</value>-->
+<!--			<value description="direct_realation_id">15</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">34</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">16</value>-->
+<!--			<value description="direct_realation_id">22</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">35</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">17</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">36</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">18</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">37</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">18</value>-->
+<!--			<value description="direct_realation_id">19</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">38</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">19</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">39</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">19</value>-->
+<!--			<value description="direct_realation_id">20</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">40</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">20</value>-->
+<!--			<value description="direct_realation_id">5</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">41</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">20</value>-->
+<!--			<value description="direct_realation_id">20</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">42</value>-->
+<!--			<value description="position">3</value>-->
+<!--			<value description="relation_id">20</value>-->
+<!--			<value description="direct_realation_id">23</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">43</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">21</value>-->
+<!--			<value description="direct_realation_id">12</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">44</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">22</value>-->
+<!--			<value description="direct_realation_id">12</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">45</value>-->
+<!--			<value description="position">2</value>-->
+<!--			<value description="relation_id">22</value>-->
+<!--			<value description="direct_realation_id">23</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">46</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">23</value>-->
+<!--			<value description="direct_realation_id">16</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">47</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">24</value>-->
+<!--			<value description="direct_realation_id">16</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">48</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">24</value>-->
+<!--			<value description="direct_realation_id">21</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">49</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">25</value>-->
+<!--			<value description="direct_realation_id">16</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--			<value description="id">50</value>-->
+<!--			<value description="position">1</value>-->
+<!--			<value description="relation_id">25</value>-->
+<!--			<value description="direct_realation_id">22</value>-->
+<!--		</row>-->
+<!--		<row>-->
+<!--            <value description="id">51</value>-->
+<!--            <value description="position">1</value>-->
+<!--            <value description="relation_id">26</value>-->
+<!--            <value description="direct_realation_id">7</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">52</value>-->
+<!--            <value description="position">1</value>-->
+<!--            <value description="relation_id">27</value>-->
+<!--            <value description="direct_realation_id">7</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">53</value>-->
+<!--            <value description="position">2</value>-->
+<!--            <value description="relation_id">27</value>-->
+<!--            <value description="direct_realation_id">19</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">54</value>-->
+<!--            <value description="position">1</value>-->
+<!--            <value description="relation_id">28</value>-->
+<!--            <value description="direct_realation_id">7</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">55</value>-->
+<!--            <value description="position">2</value>-->
+<!--            <value description="relation_id">28</value>-->
+<!--            <value description="direct_realation_id">20</value>-->
+<!--        </row>-->
+<!--         <row>-->
+<!--            <value description="id">56</value>-->
+<!--            <value description="position">1</value>-->
+<!--            <value description="relation_id">29</value>-->
+<!--            <value description="direct_realation_id">7</value>-->
+<!--        </row>-->
+<!--        <row>-->
+<!--            <value description="id">57</value>-->
+<!--            <value description="position">2</value>-->
+<!--            <value description="relation_id">29</value>-->
+<!--            <value description="direct_realation_id">20</value>-->
+<!--        </row>-->
+<!--         <row>-->
+<!--            <value description="id">58</value>-->
+<!--            <value description="position">3</value>-->
+<!--            <value description="relation_id">29</value>-->
+<!--            <value description="direct_realation_id">23</value>-->
+<!--        </row>-->
+<!--	</table>-->
+</dataset>

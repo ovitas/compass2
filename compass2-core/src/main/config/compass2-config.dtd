@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Compass2 config configuration DTD
+
+  $Date: 2009-11-17$
+  $Author: csanyi $
+  $Version: 1.0$
+
+  Barnabas Davoti - Ovitas AS
+  Ferenc Magyar - ThotSoft KFT
+  Attila Csanyi - ThotSoft KFT
+
+-->
+
+<!-- Compass2 config -->
+<!ELEMENT compass2-config ( full-text-search-plugin?, language-tool-plugin?, knowledge-base-plugin, import-plugin, suggestion-provider-plugin?, referral-plugin?, search-fields, search-options ) >
+
+<!-- Fulltext search -->
+<!ELEMENT full-text-search-plugin ( full-text-search, indexer, content-handler-plugin, query-builder ) >
+<!ATTLIST full-text-search-plugin
+          
+>
+
+<!ELEMENT full-text-search ( implementation, params? ) >
+
+<!ELEMENT implementation ( implementation-spring | implementation-reflection) >
+
+
+<!ELEMENT implementation-spring ( context-files? ) >
+<!ATTLIST implementation-spring
+		  beanName CDATA #REQUIRED
+>
+
+<!ELEMENT implementation-reflection EMPTY >
+<!ATTLIST implementation-reflection
+			className CDATA #REQUIRED>
+
+<!ELEMENT params ( param+ ) >
+
+<!ELEMENT param EMPTY >
+<!ATTLIST param
+          name CDATA #REQUIRED
+          value CDATA #REQUIRED
+>
+
+<!ELEMENT document-fields (field*) >
+
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+          name CDATA #REQUIRED
+		  indexed (no|analyzed|not_analyzed|not_analyzed_no_norms|analyzed_no_norms) "analyzed"
+		  stored (yes|no|compress) "yes"
+		  type (string|number|date) "string"
+>
+
+<!ELEMENT indexer ( implementation, params? ) >
+
+<!ELEMENT query-builder ( implementation, params? ) >
+
+<!ELEMENT content-handler-plugin (content-handler+) >
+
+<!ELEMENT content-handler (implementation, params?, document-fields?) >
+<!ATTLIST content-handler
+          type CDATA #REQUIRED
+>
+
+<!-- Language tools -->
+<!ELEMENT language-tool-plugin (language-tool) >
+
+<!ELEMENT language-tool ( implementation, params? ) >
+
+<!-- Knowledge base -->
+<!ELEMENT knowledge-base-plugin ( knowledge-base+ ) >
+<!ATTLIST knowledge-base-plugin
+		   default IDREF #REQUIRED
+>
+
+<!ELEMENT knowledge-base ( implementation, params?, topic-name-indexer, search-settings? ) >
+<!ATTLIST knowledge-base
+		   id ID #REQUIRED
+>
+
+<!ELEMENT topic-name-indexer ( implementation, params? ) >
+
+<!ELEMENT search-settings ( knowledge-base-setting+ ) >
+
+<!ELEMENT knowledge-base-setting ( options , scope* ) >
+<!ATTLIST knowledge-base-setting
+            name CDATA #REQUIRED
+>
+
+<!ELEMENT options EMPTY >
+<!ATTLIST options
+            tree (ahead | back | two_way) "ahead"
+>
+            
+<!ELEMENT scope EMPTY >
+<!ATTLIST scope
+            name CDATA #REQUIRED
+>            
+
+<!ELEMENT context-files ( context-file* ) >
+
+<!ELEMENT context-file EMPTY >
+<!ATTLIST context-file
+          file CDATA #REQUIRED
+>
+
+<!-- Search fields -->
+<!ELEMENT search-fields ( search-field-string*, search-field-dateinterval*, search-field-numeric* ) >
+
+<!ELEMENT search-field-string EMPTY >
+<!ATTLIST search-field-string
+		  index-field CDATA #REQUIRED
+		  search-field CDATA #REQUIRED
+		  type (string) "string"
+		  default (true | false) "false"
+		  weight CDATA #REQUIRED
+		  match (match_all | match_any) "match_any"
+		  fit (prefix | whole_word) "whole_word"
+>
+
+<!ELEMENT search-field-dateinterval EMPTY >
+<!ATTLIST search-field-dateinterval
+		  index-field CDATA #REQUIRED
+		  search-field CDATA #REQUIRED
+		  type (dateinterval) "dateinterval"
+		  default (false) "false"
+>
+
+<!ELEMENT search-field-numeric EMPTY >
+<!ATTLIST search-field-numeric
+		  index-field CDATA #REQUIRED
+		  search-field CDATA #REQUIRED
+		  type (integer | float) "integer"
+		  default (false) "false"
+>
+
+
+
+<!-- Result -->
+<!ELEMENT search-options EMPTY >
+<!ATTLIST search-options
+          result-threshold  CDATA #REQUIRED
+          max-number-of-hits CDATA #REQUIRED
+		  hop-count CDATA #REQUIRED
+		  prefix-match (true | false) "false"
+		  fuzzy-match (true |false) "false"
+		  tree-search (true |false) "false"
+		  tree (ahead | back | two_way) "ahead"
+		  max-nr-of-topic-to-expand CDATA #REQUIRED
+		  expansion-threshold CDATA #REQUIRED
+>
+
+<!-- Import -->
+<!ELEMENT import-plugin ( import* ) >
+
+
+<!ELEMENT import ( implementation, params? ) >
+<!ATTLIST import
+		  type CDATA #REQUIRED
+>
+
+<!-- Suggestion Provider Plugin -->
+<!ELEMENT suggestion-provider-plugin ( suggestion-provider ) >
+
+<!ELEMENT suggestion-provider ( implementation, params? ) >
+
+<!ELEMENT referral-plugin (referral) >
+<!ELEMENT refferal ( implementation, params? ) >
+

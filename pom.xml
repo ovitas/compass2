@@ -1,177 +1,393 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>no.ovitas</groupId>
+	<artifactId>compass2-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>Compass2 Parent Project</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>This is the parent project of all Compass2
+    subprojects.</description>
+	<url>http://www.ovitas.no</url>
+	<issueManagement>
+		<system>Redmine</system>
+		<url>http://redmine.ovitas.no</url>
+	</issueManagement>
+	<developers>
+		<developer>
+			<id>magyar</id>
+			<name>Ferenc Magyar</name>
+			<email>magyar@mail.thot-soft.com</email>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>gyalai</id>
+			<name>Imre Milan Gyalai</name>
+			<email>gyalai@mail.thot-soft.com</email>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>daniel</id>
+			<name>Csaba Daniel</name>
+			<email>csaba.daniel@db-soft.hu</email>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+	<modules>
+		<module>compass2-core</module>
+		<module>compass2-kbimport-xtm</module>
+		<module>compass2-kbimport-rdf</module>
+		<module>compass2-kbstore-jpa</module>
+		<module>compass2-fts-lucene</module>
+		<module>compass2-suggestion-provider</module>
+		<module>compass2-lt-snowball</module>
+		<module>compass2-web</module>
+		<module>compass2-client</module>
+	</modules>
+	<scm>
+	  <connection>scm:git:git://github.com/ovitas/compass2.git</connection>
+	  <developerConnection>scm:git:git@github.com:ovitas/compass2.git</developerConnection>
+	  <url>http://github.com/ovitas/compass2</url>
+	</scm>
+	<organization>
+		<name>Ovitas AS</name>
+		<url>http://www.ovitas.no</url>
+	</organization>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<argLine>-Xmx512M</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+	  <profile>
+	    <id>chriswk</id>
+	    
+	    <properties>
+	      <config.path>/home/chriswk/compass2/compass2-config.xml</config.path>
+	      <config.target.directory>/home/chriswk/compass2</config.target.directory>
+	      
+	      <!-- FullTextSearch config -->
+	      <lucene.fts.index.dir>/home/chriswk/compass2/lucene/ftsindex</lucene.fts.index.dir>
+	      <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+	      <no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+	      <no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+	      <no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+	      <no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+	      
+	      <!-- KnowledgeBase Config -->
+	      <no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+	      <knowledge.base.name>visitnorway</knowledge.base.name>
+	      <defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+	      <knowledgeBaseImportDir>/home/chriswk/compass2/kb</knowledgeBaseImportDir>
+	      <!-- Transitive path generation method. Should be "specGen" (default) or "twoWay". -->
+	      <knowledgeBaseTPMethod>twoWay</knowledgeBaseTPMethod>
+	      <no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+	      <topic.name.index.dir>/home/chriswk/compass2/kbindex</topic.name.index.dir>
+	      
+	      <!-- Lucene Config -->
+	      <lucene.spellchecker.dir>/home/chriswk/compass2/lucene/wordnetindex/</lucene.spellchecker.dir>
+	      <lucene.spellchecker.index.dir>/home/chriswk/compass2/lucene/spellindex/</lucene.spellchecker.index.dir>
+	      <lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+	      <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+	      
+	      <!-- Import configuration -->
+	      <import.dir>/home/chriswk/compass2/import</import.dir>
+	      <import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+	      <import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+	      <import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+	      
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>/home/chriswk/compass2/lucene/suggestionindex/</suggestion.index.dir>
+		
+		<!-- Searching config -->
+		<max.topic.number.to.expand>50</max.topic.number.to.expand>
+		<hop.count>1</hop.count>
+		<max.number.of.hits>100</max.number.of.hits>
+		<result.threshold>0.001</result.threshold>
+		<prefix.match>false</prefix.match>
+		<fuzzy.match>false</fuzzy.match>
+		<expansion.threshold>0.5</expansion.threshold>
+		<tree.search>false</tree.search>
+	    </properties>
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>no.ovitas.compass2</groupId>
-    <artifactId>compass2</artifactId>
-    <packaging>pom</packaging>
-    <version>2.0-SNAPSHOT</version>
-    <name>Ovitas Compass2 Application</name>
-    <url>http://www.ovitas.no</url>
-    <scm>
-      <connection>scm:svn:http://svn.ovitas.no/svn/ovitas/compass2/trunk</connection>
-      <developerConnection>scm:svn:svn+ssh://svn.ovitas.no/home/svn/ovitas/compass2/trunk</developerConnection>
-      <url>http://svn.ovitas.no/svn/ovitas/compass2/trunk</url>
-    </scm>
-    <distributionManagement>
-      <site>
-	<id>ovitas-site</id>
-	<name>Ovitas Project sites</name>
-	<url>scp://docs.ovitas.no/home7docs/fk/ecls</url>
-      </site>
-      <repository>
-	<id>ovitas.nexus</id>
-	<name>Ovitas Nexus server</name>
-	<url>http://nexus.ovitas.no:8081/content/repositories/releases</url>
-      </repository>
-      <snapshotRepository>
-	<id>ovitas.nexus.snapshots</id>
-	<name>Ovitas Nexus snapshots</name>
-	<url>http://nexus.ovitas.no:8081/content/repositories/snapshots</url>
-      </snapshotRepository>
-    </distributionManagement>
-    <prerequisites>
-        <maven>2.0.6</maven>
-    </prerequisites>
+	  </profile>
+<profile>
+	  	    <id>barna</id>
+	    <properties>
+	      <config.path>/home/barna/compass2/compass2-config.xml</config.path>
+	      <config.target.directory>/home/barna/compass2</config.target.directory>
+	      
+	      <!-- FullTextSearch config -->
+	      <lucene.fts.index.dir>/home/barna/compass2/lucene/ftsindex</lucene.fts.index.dir>
+	      <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+	      <no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+	      <no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+	      <no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+	      <no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+	      
+	      <!-- KnowledgeBase Config -->
+	      <no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+	      <knowledge.base.name>visitnorway</knowledge.base.name>
+	      <defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+	      <knowledgeBaseImportDir>/home/barna/compass2/kb</knowledgeBaseImportDir>
+	      <!-- Transitive path generation method. Should be "specGen" (default) or "twoWay". -->
+	      <knowledgeBaseTPMethod>twoWay</knowledgeBaseTPMethod>
+	      <no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+	      <topic.name.index.dir>/home/barna/compass2/kbindex</topic.name.index.dir>
+	      
+	      <!-- Lucene Config -->
+	      <lucene.spellchecker.dir>/home/barna/compass2/lucene/wordnetindex/</lucene.spellchecker.dir>
+	      <lucene.spellchecker.index.dir>/home/barna/compass2/lucene/spellindex/</lucene.spellchecker.index.dir>
+	      <lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+	      <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+	      
+	      <!-- Import configuration -->
+	      <import.dir>/home/barna/compass2/import</import.dir>
+	      <import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+	      <import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+	      <import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+	      
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>/home/barna/compass2/lucene/suggestionindex/</suggestion.index.dir>
+		
+		<!-- Searching config -->
+		<max.topic.number.to.expand>50</max.topic.number.to.expand>
+		<hop.count>1</hop.count>
+		<max.number.of.hits>100</max.number.of.hits>
+		<result.threshold>0.001</result.threshold>
+		<prefix.match>false</prefix.match>
+		<fuzzy.match>false</fuzzy.match>
+		<expansion.threshold>0.5</expansion.threshold>
+		<tree.search>false</tree.search>
+	    </properties>
 
-    <licenses>
-        <license>
-            <name></name>
-            <url></url>
-        </license>
-    </licenses>
+	  </profile>
 
-    <issueManagement>
-        <system>Redmine</system>
-        <url>http://redmine.ovitas.no</url>
-    </issueManagement>
+		<!-- ================= Production Settings Profile ================= -->
+		<!-- Use "-P default" when you want to use the settings in this profile -->
+		<!-- =============================================================== -->
+		<profile>
+			<id>default</id>
 
-    <developers>
-        <developer>
-            <id>magyar</id>
-            <name>Ferenc Magyar</name>
-            <email>magyar@mail.thot-soft.com</email>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>csanyi</id>
-            <name>Attila Csanyi</name>
-            <email>csanyi@mail.thot-soft.com</email>
-            <timezone>+1</timezone>
-        </developer>
-        <developer>
-            <id>daniel</id>
-            <name>Csaba Daniel</name>
-            <email>csaba.daniel@db-soft.hu</email>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
-    <organization>
-    	<name>Ovitas AS</name>
-    	<url>http://www.ovitas.no</url>
-    </organization>
-    
-    <build>
-        <defaultGoal>install</defaultGoal>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <debug>true</debug>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    </additionalProjectnatures>
-                    <additionalBuildcommands>
-                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                    <wtpversion>1.5</wtpversion>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-idea-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                    <dependenciesAsLibraries>true</dependenciesAsLibraries>
-                    <useFullNames>false</useFullNames>
-                </configuration>
-            </plugin>
-            
-        </plugins>
-    </build>
+			<properties>
+				<!-- Global config -->
+				<config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
+				<config.target.directory><![CDATA[c:/home/compass2]]></config.target.directory>
 
-    <repositories>
-      <repository>
-	      <id>struts2.1.2-staging</id>
-	      <name>Struts 2.1.2 staging repository</name>
-	      <layout>default</layout>
-	      <url>http://people.apache.org/builds/struts/2.1.2/m2-staging-repository/</url>
-	      <snapshots>
-	        <enabled>false</enabled>
-	      </snapshots>
-    </repository>        
-       <repository>
-            <id>apache-snapshots</id>
-            <name>Apache Snapshot repository</name>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>    
-        <repository>
-            <id>repository.jboss.org</id>
-            <url>http://repository.jboss.org/maven2</url>
-        </repository>
-         
-        <repository>
-            <id>central</id>
-            <url>http://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
-            <id>appfuse</id>
-            <url>http://static.appfuse.org/repository</url>
-        </repository>
-        <repository>
+				<!-- FullTextSearch config -->
+				<lucene.fts.index.dir><![CDATA[c:/home/lucene/ftsindex]]></lucene.fts.index.dir>
+				<no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+				<no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+				<no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+
+				<!-- KnowledgeBase Config -->
+				<no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+				<knowledge.base.name>visitnorway</knowledge.base.name>
+				<defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+				<knowledgeBaseImportDir>c:/home/kb</knowledgeBaseImportDir>
+				<!-- Transitive path generation method. Should be "specGen" (default) or "twoWay". -->
+				<knowledgeBaseTPMethod>twoWay</knowledgeBaseTPMethod>
+				<no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+                <topic.name.index.dir>c:/home/kbindex/</topic.name.index.dir>
+
+				<!-- Lucene Config -->
+				<lucene.spellchecker.dir><![CDATA[c:/home/lucene/wordnetindex/]]></lucene.spellchecker.dir>
+				<lucene.spellchecker.index.dir><![CDATA[c:/home/lucene/spellindex/]]></lucene.spellchecker.index.dir>
+				<lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+				<no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+				<!-- Import configuration -->
+				<import.dir><![CDATA[c:/home/compass2/import]]></import.dir>
+				<import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+				<import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+				<import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>c:/home/suggestionindex/</suggestion.index.dir>
+
+				<!-- Searching config -->
+				<max.topic.number.to.expand>50</max.topic.number.to.expand>
+				<hop.count>1</hop.count>
+				<max.number.of.hits>100</max.number.of.hits>
+				<result.threshold>0.001</result.threshold>
+				<prefix.match>false</prefix.match>
+				<fuzzy.match>false</fuzzy.match>
+				<expansion.threshold>0.5</expansion.threshold>
+				<tree.search>false</tree.search>
+			</properties>
+		</profile>
+		<profile>
+			<id>mtdevel</id>
+			<properties>
+				<!-- Global config -->
+				<config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
+				<config.target.directory><![CDATA[/media/work/product/compass/mtdevel/]]></config.target.directory>
+
+				<!-- FullTextSearch config -->
+				<lucene.fts.index.dir><![CDATA[/app/compass/lucene/ftsnewkeywordindex]]></lucene.fts.index.dir>
+				<no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+				<no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+				<no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+
+				<!-- KnowledgeBase Config -->
+				<no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+				<knowledge.base.name>visitnorway</knowledge.base.name>
+				<defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+
+				<knowledgeBaseImportDir>/app/compass/kb</knowledgeBaseImportDir>
+				<no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+                <topic.name.index.dir>/app/compass/kbindex/</topic.name.index.dir>
+
+				<!-- Lucene Config -->
+				<lucene.spellchecker.dir><![CDATA[/app/compass/lucene/wordnetindex/]]></lucene.spellchecker.dir>
+				<lucene.spellchecker.index.dir><![CDATA[/app/compass/lucene/spellindex/]]></lucene.spellchecker.index.dir>
+				<lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+				<no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+				<!-- Import configuration -->
+				<import.dir><![CDATA[/app/compass/import]]></import.dir>
+				<import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+				<import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+				<import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>/app/compass/suggestionindex/</suggestion.index.dir>
+
+				<!-- Searching config -->
+				<max.topic.number.to.expand>50</max.topic.number.to.expand>
+				<hop.count>1</hop.count>
+				<max.number.of.hits>100</max.number.of.hits>
+				<result.threshold>0.001</result.threshold>
+				<prefix.match>false</prefix.match>
+				<fuzzy.match>false</fuzzy.match>
+				<expansion.threshold>0.5</expansion.threshold>
+				<tree.search>false</tree.search>
+
+			</properties>
+		</profile>
+		<profile>
+			<id>virgo</id>
+			<properties>
+				<!-- Global config -->
+				<config.path><![CDATA[/app/compass/config/compass2-config.xml]]></config.path>
+				<config.target.directory><![CDATA[/media/work/product/compass/virgo/]]></config.target.directory>
+
+				<!-- FullTextSearch config -->
+				<lucene.fts.index.dir><![CDATA[/app/compass/data/ftsnewkeywordindex]]></lucene.fts.index.dir>
+				<no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+				<no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+				<no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+
+				<!-- KnowledgeBase Config -->
+				<no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+				<knowledge.base.name>visitnorway</knowledge.base.name>
+				<defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+
+				<knowledgeBaseImportDir>/app/compass/data/kb</knowledgeBaseImportDir>
+                <no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+                <topic.name.index.dir>/app/compass/data/kbindex/</topic.name.index.dir>
+
+				<!-- Lucene Config -->
+				<lucene.spellchecker.dir><![CDATA[/app/compass/data/wordnetindex/]]></lucene.spellchecker.dir>
+				<lucene.spellchecker.index.dir><![CDATA[/app/compass/data/spellindex/]]></lucene.spellchecker.index.dir>
+				<lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+				<no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+				<!-- Import configuration -->
+				<import.dir><![CDATA[/app/compass/data/import]]></import.dir>
+				<import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+				<import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+				<import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+ 
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>/app/compass/data/suggestionindex/</suggestion.index.dir>
+
+				<!-- Searching config -->
+				<max.topic.number.to.expand>50</max.topic.number.to.expand>
+				<hop.count>1</hop.count>
+				<max.number.of.hits>100</max.number.of.hits>
+				<result.threshold>0.001</result.threshold>
+				<prefix.match>false</prefix.match>
+				<fuzzy.match>false</fuzzy.match>
+				<expansion.threshold>0.5</expansion.threshold>
+				<tree.search>false</tree.search>
+			</properties>
+		</profile>
+
+	</profiles>
+	<repositories>
+		<repository>
+			<id>struts2.1.2-staging</id>
+			<name>Struts 2.1.2 staging repository</name>
+			<url>http://people.apache.org/builds/struts/2.1.2/m2-staging-repository/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>apache-snapshots</id>
+			<name>Apache Snapshot repository</name>
+			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>repository.jboss.org</id>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>appfuse</id>
+			<url>http://static.appfuse.org/repository</url>
+		</repository>
+		<repository>
 			<id>mirrors.ibiblio</id>
 			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
-        </repository>
-		<repository>
-		  <id>maven2-repository.dev.java.net</id>
-		  <name>Java.net Repository for Maven</name>
-		  <url>http://download.java.net/maven/2/</url>
-		  <layout>default</layout>
 		</repository>
 		<repository>
-		  <id>maven1-repository.dev.java.net</id>
-		  <name>Java.net Repository for Maven</name>
-		  <url>http://download.java.net/maven/1/</url>
-		  <layout>legacy</layout>
-		  
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
 		</repository>
-
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>appfuse</id>
-            <url>http://static.appfuse.org/repository</url>
-        </pluginRepository>
+		<repository>
+			<id>maven1-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/1/</url>
+			<layout>legacy</layout>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>appfuse</id>
+			<url>http://static.appfuse.org/repository</url>
+		</pluginRepository>
 		<pluginRepository>
 			<id>mirrors.ibiblio</id>
 			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
@@ -180,520 +396,63 @@
 			<id>maven2-repository.dev.java.net</id>
 			<url>http://download.java.net/maven/2</url>
 		</pluginRepository>
-    </pluginRepositories>
-
-    <dependencyManagement>
-        <dependencies>
-	    <dependency>
-    	  <groupId>com.sun.xml.ws</groupId>
-      		<artifactId>jaxws-rt</artifactId>
-      		<version>${jaxws.version}</version>
-    	</dependency>
-	    <dependency>
-    	  <groupId>com.sun.xml.stream.buffer</groupId>
-      		<artifactId>streambuffer</artifactId>
-      		<version>0.7</version>
-    	</dependency>
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-xjc</artifactId>
-      <version>${jaxb.version}</version>
-    </dependency> 
-    <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>${jaxb.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.xml.ws</groupId>
-      <artifactId>jaxws-api</artifactId>
-      <version>2.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.messaging.saaj</groupId>
-      <artifactId>saaj-impl</artifactId>
-      <version>1.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.stream.buffer</groupId>
-      <artifactId>streambuffer</artifactId>
-      <version>0.7</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.xml.stream</groupId>
-      <artifactId>sjsxp</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jvnet.staxex</groupId>
-      <artifactId>stax-ex</artifactId>
-      <version>1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.sun.org.apache.xml.internal</groupId>
-      <artifactId>resolver</artifactId>
-      <version>20050927</version>
-    </dependency>
-      <dependency>
-          <groupId>commons-digester</groupId>
-          <artifactId>commons-digester</artifactId>
-          <version>2.0</version>
-      </dependency>
-    
-       <dependency>
-           <groupId>javax.persistence</groupId>
-           <artifactId>persistence-api</artifactId>
-           <version>${jpa.version}</version>
-       </dependency>
-       <dependency>
-       	<groupId>org.apache.lucene</groupId>
-       	<artifactId>lucene-core</artifactId>
-       	<version>${lucene.version}</version>
-       </dependency>
-       <dependency>
-       	<groupId>org.apache.lucene</groupId>
-       	<artifactId>lucene-highlighter</artifactId>
-       	<version>${highlighter.version}</version>
-       </dependency>
-       <dependency>
-       	<groupId>org.apache.lucene</groupId>
-       	<artifactId>lucene-snowball</artifactId>
-       	<version>${lucene-snowball.version}</version>
-       </dependency>
-       <dependency>
-       	<groupId>org.tm4j.tmapi</groupId>
-       	<artifactId>tm4j-tmapi</artifactId>
-       	<version>${tm4j-tmapi.version}</version>
-       </dependency>
-    
-    <dependency>
-      <groupId>org.jvnet</groupId>
-      <artifactId>mimepull</artifactId>
-      <version>1.1</version>
-    </dependency>             
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aspects</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
-                <version>${commons.beanutils.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <!-- Dependencies calculated by AppFuse when running full-source plugin -->
-    <dependencies>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons.lang.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jmock</groupId>
-            <artifactId>jmock</artifactId>
-            <version>${jmock.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.jmock</groupId>
-            <artifactId>jmock-junit4</artifactId>
-            <version>${jmock.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core-tiger</artifactId>
-            <version>${spring.security.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-codec</artifactId>
-                    <groupId>commons-codec</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-support</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.subethamail</groupId>
-            <artifactId>subethasmtp-wiser</artifactId>
-            <version>${wiser.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    
-    <modules>
-        <module>core</module>
-        <module>web</module>
-    </modules>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <artifactId>maven-changes-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jxr-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <configuration>
-                    <linkXref>true</linkXref>
-                    <targetJdk>1.5</targetJdk>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </reporting>
-
-    <profiles>
-        <!-- ================= Production Settings Profile ================= -->
-        <!-- Use "-P prod" when you want to use the settings in this profile -->
-        <!-- =============================================================== -->
-        <profile>
-            <id>mf-test</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[C:/home/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[C:/home/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <config.path><![CDATA[c:/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-            </properties>
-        </profile>
-        <profile>
-            <id>mtdevel</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[/app/compass/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[/app/compass/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[/app/compass/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-                 <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
-            </properties>
-        </profile>
-	<profile>
-            <id>chriswk</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[/app/compass/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[/app/compass/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[/app/compass/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-                 <config.path><![CDATA[/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[/app/compass]]></config.target.directory>
-            </properties>
-        </profile>
-        <profile>
-            <id>hudson</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[/usr/local/hudson/app/compass/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[/usr/local/hudson/app/compass/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[/usr/local/hudson/app/compass/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[/usr/local/hudson/app/compass/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[/usr/local/hudson/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-                 <config.path><![CDATA[/usr/local/hudson/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[/usr/local/hudson/app/compass]]></config.target.directory>
-            </properties>
-        </profile>
-        
-        <profile>
-            <id>csanyi-test</id>
-            <properties>
-				 <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[C:/home/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[C:/home/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <config.path><![CDATA[c:/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-            </properties>
-        </profile>
-        <profile>
-            <id>ovitas-test</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[C:/home/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[C:/home/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-				 <expansion.threshold>0.7</expansion.threshold>
-				 <result.threshold>0.1</result.threshold>
-				 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.TikaIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <config.path><![CDATA[c:/home/compass2/compass2-config.xml]]></config.path>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-            </properties>
-        </profile>
-        <profile>
-            <id>daniel</id>
-            <properties>
-                 <lucene.spellchecker.dir><![CDATA[C:/home/lucene/spellindex]]></lucene.spellchecker.dir>
-                 <lucene.spellchecker.index.dir><![CDATA[C:/home/lucene/wordnetindex]]></lucene.spellchecker.index.dir>
-                 <lucene.fts.index.dir><![CDATA[C:/home/lucene/ftsindex]]></lucene.fts.index.dir>
-                 <knowledge.base.file><![CDATA[c:/home/kb/visitnorway.xtm]]></knowledge.base.file>
-                 <knowladge.base.load.on.startup>true</knowladge.base.load.on.startup>
-                 <lucene.spellchecker.max.suggestion.num>5</lucene.spellchecker.max.suggestion.num>
-                 <max.number.of.hits>100</max.number.of.hits>
-                 <use.random.weight>true</use.random.weight>
-                 <max.topic.number.to.expand>50</max.topic.number.to.expand>
-                 <expansion.threshold>0.7</expansion.threshold>
-                 <result.threshold>0.1</result.threshold>
-                 <hop.count>1</hop.count>
-
-                 <no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.service.impl.LuceneFTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
-                 <no.ovitas.compass2.service.fts.ContentIndexerImplementation>no.ovitas.compass2.util.lucene.VisitNorwayIndexer</no.ovitas.compass2.service.fts.ContentIndexerImplementation>
-                 <no.ovitas.compass2.service.KBImplementation>no.ovitas.compass2.service.impl.XTM2Compass2KBManagerImpl</no.ovitas.compass2.service.KBImplementation>
-                 <no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.service.impl.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
-                 <document.repository><![CDATA[c:/app/compass/data/www.visitnorway.com/en]]></document.repository>
-                 <config.path><![CDATA[c:/app/compass/compass2-config.xml]]></config.path>
-                 <config.target.directory><![CDATA[c:/app/compass]]></config.target.directory>
-                 <knowledge.base.name>defaultKBImplementation</knowledge.base.name>
-                 <defaultKBImplementationName>${knowledge.base.name}</defaultKBImplementationName>
-            </properties>
-        </profile>
-     </profiles>
-    <properties>
-        <!-- Application settings -->
-        <copyright.year>2009</copyright.year>
-        <dao.framework>jpa</dao.framework>
-        <web.framework>struts</web.framework>
-        <amp.genericCore>false</amp.genericCore>
-        <amp.fullSource>true</amp.fullSource>
-        
-        <!-- Framework dependency versions -->
-        <appfuse.version>2.0.2</appfuse.version>
-        <spring.version>2.5.6</spring.version>
-
-        <!-- Testing dependency versions -->
-        <jmock.version>2.4.0</jmock.version>
-        <jsp.version>2.0</jsp.version>
-        <junit.version>4.4</junit.version>
-        <servlet.version>2.4</servlet.version>
-        <wiser.version>1.2</wiser.version>
-
-        <!-- WebTest dependency versions  -->
-        <webtest.version>R_1702</webtest.version>
-
-        <!-- Cargo settings -->
-        <cargo.container>tomcat5x</cargo.container>
-        <cargo.container.home>${env.CATALINA_HOME}</cargo.container.home>
-        <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.14/bin/apache-tomcat-6.0.14.zip</cargo.container.url>
-        <cargo.host>localhost</cargo.host>
-        <cargo.port>8081</cargo.port>
-        <cargo.wait>true</cargo.wait>
-        <!-- java.io.tmpdir>WEB-INF/data</java.io.tmpdir -->        
-        <!-- Database settings -->
-        <struts.version>2.1.8</struts.version>
-        <commons.beanutils.version>1.7.0</commons.beanutils.version>
-        <commons.collections.version>3.2</commons.collections.version>
-        <commons.dbcp.version>1.2.2</commons.dbcp.version>
-        <commons.fileupload.version>1.1.1</commons.fileupload.version>
-        <commons.io.version>1.3.2</commons.io.version>
-        <commons.lang.version>2.3</commons.lang.version>
-        <velocity.version>1.4</velocity.version>
-        <xfire.version>1.2.6</xfire.version>
-        <aspectj.version>1.6.0</aspectj.version>
-        <clickstream.version>1.0.2</clickstream.version>
-        <displaytag.version>1.1.1</displaytag.version>
-        <dwr.version>2.0.1</dwr.version>
-        <ehcache.version>1.4.1</ehcache.version>
-        <javamail.version>1.4</javamail.version>
-        <jpa.version>1.0</jpa.version>
-        <jstl.version>1.1.2</jstl.version>
-        <commons-digester.version>2.0</commons-digester.version>
-        <dom4j.version>1.1</dom4j.version>
-        <log4j.version>1.2.13</log4j.version>
-        <oscache.version>2.3</oscache.version>
-        <sitemesh.version>2.3</sitemesh.version>
-        <spring.security.version>2.0.5.RELEASE</spring.security.version>
-        <struts.menu.version>2.4.3</struts.menu.version>
-        <urlrewrite.version>3.0.4</urlrewrite.version>
-        <xwork.version>2.1.1</xwork.version>
-        <ognl.version>2.6.11</ognl.version>
-        <freemarker.version>2.3.12</freemarker.version>
-        <dojo-plugin.version>2.1.2</dojo-plugin.version>
-        <jaxws.version>2.1.3</jaxws.version>
-        <jaxws-tool.version>2.1.3</jaxws-tool.version>
-        <jaxb.version>2.1.6</jaxb.version>
-        <xerces.version>2.9.1</xerces.version>
-        <org.apache.servicemix.bundles.version>1.4.2_1</org.apache.servicemix.bundles.version>
-        <!--   jsonplugin.version>0.34</jsonplugin.version  deprecated -->
-		<commons.codec.version>1.4</commons.codec.version>
-		<!-- Lucene settings -->
-		<lucene.version>2.4.1</lucene.version>
-		<highlighter.version>2.4.1</highlighter.version>
-		<lucene-snowball.version>2.4.1</lucene-snowball.version>
-		<lucene-spellchecker.version>2.4.1</lucene-spellchecker.version>
-		
-		<!-- TMAPI settings -->
-		<tm4j-tmapi.version>0.9.8</tm4j-tmapi.version>
+	</pluginRepositories>
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-changes-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<linkXref>true</linkXref>
+					<targetJdk>1.5</targetJdk>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+	<distributionManagement>
+		<repository>
+			<id>ovitas.nexus</id>
+			<name>Ovitas Nexus server</name>
+			<url>http://nexus.ovitas.no:8081/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>ovitas.nexus.snapshots</id>
+			<name>Ovitas Nexus snapshots</name>
+			<url>http://nexus.ovitas.no:8081/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>ovitas-site</id>
+			<name>Ovitas Project sites</name>
+			<url>scp://docs.ovitas.no/home7docs/fk/ecls</url>
+		</site>
+	</distributionManagement>
+	<properties>
+		<!-- Application settings -->
+		<copyright.year>2010</copyright.year>
+		<appfuse.version>2.1.0-M1</appfuse.version>
+		<spring.version>3.0.4.RELEASE</spring.version>
+		<!-- Testing dependency versions -->
+		<jmock.version>2.5.1</jmock.version>
+		<junit.version>4.8.1</junit.version>
+		<!-- WebTest dependency versions -->
 		<log4j.version>1.2.13</log4j.version>
-		<commons.logging.version>1.1</commons.logging.version>
-        
-    </properties>
+		<ehcache.version>1.4.1</ehcache.version>
+		<spring.security.version>2.0.5.RELEASE</spring.security.version>
+        <displaytag.version>1.1.1</displaytag.version>
+	</properties>
+
 </project>

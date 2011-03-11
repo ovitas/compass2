@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+		  PUBLIC
+		  "-//W3C//DTD XHTML 1.0 Strict//EN"
+		  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  lang="en"
+	  xml:lang="en">
+	<head>
+		<title>Compass2 REST Web Service Endpoint</title>
+		<script type="text/javascript"
+				src="index.js">
+		</script>
+		<meta http-equiv="content-type"
+			  content="text/html; charset=utf-8"/>
+	</head>
+	<body onload="">
+		<h1>Compass2 REST Web Service Endpoint - Samples</h1>
+		<form action="#">
+			<p>
+				Sample:
+				<select onchange="javascript:showDiv(this.value)">
+					<option value="SpellingDiv">Spelling</option>
+					<option value="StemDiv">Stem</option>
+					<option value="KnowledgeBaseDiv">List Knowledge Bases</option>
+					<option value="RelationTypeDiv">Get Relation Types</option>
+					<option value="ScopeDiv">Get Scopes</option>
+					<option value="SearchDiv">Search</option>
+					<option value="ConfSearchDiv">Configured Search</option>
+				</select>
+			</p>
+		</form>
+		<div id="SpellingDiv">
+			<h2>Spelling</h2>
+			<form id="SpellingForm"
+				  action="#">
+				<table>
+					<tr>
+						<td>Type:</td>
+						<td>
+							<select id="Spelling_Type"
+									name="type"
+									onchange="javascript:updateLink('Spelling', 'compass2/{Type}/{Term}')">
+								<option> </option>
+								<option value="spelling">Single Result</option>
+								<option value="spellings">Result List</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Term:</td>
+						<td>
+							<input id="Spelling_Term"
+								   name="term"
+								   onkeyup="javascript:updateLink('Spelling', 'compass2/{Type}/{Term}')"/>
+						</td>
+					</tr>
+				</table>
+				<p>
+					<a id="SpellingA"
+					   href="#">
+						compass2/{Type}/{Term}
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="StemDiv" style="display: none;">
+			<h2>Stem</h2>
+			<form id="StemForm"
+				  action="#">
+				<p>
+					Term:
+					<input id="Stem_Term"
+						   name="term"
+						   onkeyup="javascript:updateLink('Stem', 'compass2/stem/{Term}')"/>
+					<br/>
+					<a id="StemA"
+					   href="#">
+						compass2/stem/{Term}
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="KnowledgeBaseDiv" style="display: none;">
+			<h2>List Knowledge Base</h2>
+			<h3>List All</h3>
+			<p>
+				<a href="compass2/kbs">compass2/kbs</a>
+			</p>
+			<h3>List One</h3>
+			<form id="KnowledgeBaseForm"
+				  action="#">
+				<p>
+					Knowledge Base Id:
+					<input id="KnowledgeBase_KnowledgeBaseId"
+						   name="id"
+						   onkeyup="javascript:updateLink('KnowledgeBase', 'compass2/kbs/{KnowledgeBaseId}')"/>
+					<br/>
+					<a id="KnowledgeBaseA"
+					   href="#">
+						compass2/kbs/{KnowledgeBaseId}
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="RelationTypeDiv" style="display: none;">
+			<h2>Get Relation Types</h2>
+			<form id="RelationTypeForm"
+				  action="#">
+				<p>
+					Knowledge Base Id:
+					<input id="RelationType_KnowledgeBaseId"
+						   name="id"
+						   onkeyup="javascript:updateLink('RelationType', 'compass2/kbs/{KnowledgeBaseId}/relationTypes')"/>
+					<br/>
+					<a id="RelationTypeA"
+					   href="#">
+						compass2/kbs/{KnowledgeBaseId}/relationTypes
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="ScopeDiv" style="display: none;">
+			<h2>Get Scopes</h2>
+			<form id="ScopeForm"
+				  action="#">
+				<p>
+					Knowledge Base Id:
+					<input id="Scope_KnowledgeBaseId"
+						   name="id"
+						   onkeyup="javascript:updateLink('Scope', 'compass2/kbs/{KnowledgeBaseId}/scopes')"/>
+					<br/>
+					<a id="ScopeA"
+					   href="#">
+						compass2/kbs/{KnowledgeBaseId}/scopes
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="SearchDiv" style="display: none;">
+			<h2>Search</h2>
+			<form id="SearchForm"
+				  action="#">
+				<table>
+					<tr>
+						<td>Knowledge Base Id:</td>
+						<td>
+							<input id="Search_KnowledgeBaseId"
+								   name="id"
+								   onkeyup="javascript:updateLink('Search', 'compass2/kbs/{KnowledgeBaseId}/{Type}/{Term}')"/>
+						</td>
+					</tr>
+					<tr>
+						<td>Type:</td>
+						<td>
+							<select id="Search_Type"
+									name="type"
+									onchange="javascript:updateLink('Search', 'compass2/kbs/{KnowledgeBaseId}/{Type}/{Term}')">
+								<option> </option>
+								<option value="topicList">Topic List</option>
+								<option value="topicTree">Topic Tree</option>
+								<option value="search">Complex Search</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Term:</td>
+						<td>
+							<input id="Search_Term"
+								   name="term"
+								   onkeyup="javascript:updateLink('Search', 'compass2/kbs/{KnowledgeBaseId}/{Type}/{Term}')"/>
+						</td>
+					</tr>
+				</table>
+				<p>
+					<a id="SearchA"
+					   href="#">
+						compass2/kbs/{KnowledgeBaseId}/{Type}/{Term}
+					</a>
+				</p>
+			</form>
+		</div>
+		<div id="ConfSearchDiv" style="display: none;">
+			<h2>Configured Search</h2>
+			<form id="ConfSearchForm"
+				  action="#">
+				<table>
+					<tr>
+						<td>
+							Type:
+						</td>
+						<td>
+							<select id="ConfSearch_Type"
+									onchange="javascript:updateConfSearchType(this.value);">
+								<option value="#"> </option>
+								<option value="compass2/topicList">Topic List</option>
+								<option value="compass2/topicTree">Topic Tree</option>
+								<option value="compass2/search">Search</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr id="ConfSearch_TopicQuery" style="display: none">
+						<td>
+							Topic Query:
+						</td>
+						<td>
+							<textarea name="topicQuery" rows="10" cols="80">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;topic-query
+    hop-count=&quot;2&quot;
+    max-topic-number-to-expand=&quot;10&quot;
+    prefix-match=&quot;true&quot;
+    threshold-weight=&quot;0.3&quot;
+    xmlns=&quot;http://www.ovitas.no/compass2/compass-request&quot;&gt;
+  &lt;term&gt;oslo&lt;/term&gt;
+  &lt;topic-criteria
+      knowledge-base-id=&quot;3&quot;
+      relation-direction=&quot;SPEC&quot;&gt;
+    &lt;scopes&gt;
+      &lt;scope id=&quot;3&quot;/&gt;
+    &lt;/scopes&gt;
+  &lt;/topic-criteria&gt;
+&lt;/topic-query&gt;
+							</textarea>
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr id="ConfSearch_FullTextQuery" style="display: none">
+						<td>
+							Full Text Query:
+						</td>
+						<td>
+							<textarea name="fullTextQuery" rows="10" cols="80">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;full-text-query
+    fuzzy-search=&quot;false&quot;
+    max-number-of-hits=&quot;10&quot;
+    result-threshold=&quot;0.01&quot;
+    xmlns=&quot;http://www.ovitas.no/compass2/compass-request&quot;&gt;
+  &lt;full-text-field-criteria
+    field-name=&quot;title&quot;
+    boost=&quot;1&quot;
+    connection-type=&quot;AND&quot;
+    fitting-type=&quot;PREFIX&quot;
+    fuzzy-search=&quot;false&quot;
+    matching-type=&quot;MATCH_ANY&quot;&gt;
+    &lt;term&gt;oslo&lt;/term&gt;
+  &lt;/full-text-field-criteria&gt;
+&lt;/full-text-query&gt;
+							</textarea>
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+						</td>
+						<td>
+							<input type="submit" value="Submit"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

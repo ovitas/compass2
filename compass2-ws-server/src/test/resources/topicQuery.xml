@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topic-query hop-count="2"
+			 max-topic-number-to-expand="10"
+			 prefix-match="true"
+			 threshold-weight="0.3"
+			 xmlns="http://www.ovitas.no/compass2/compass-request"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.ovitas.no/compass2/compass-request
+								 compass-request.xsd">
+	<term>oslo</term>
+	<topic-criteria knowledge-base-id="3"
+					relation-direction="SPEC">
+		<scopes>
+			<scope id="3"/>
+		</scopes>
+	</topic-criteria>
+</topic-query>

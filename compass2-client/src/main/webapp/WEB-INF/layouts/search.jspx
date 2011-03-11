@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+    xmlns:form="http://www.springframework.org/tags/form"
+    xmlns:spring="http://www.springframework.org/tags"
+    xmlns:display="http://displaytag.sf.net">
+
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
+
+    <div class="search_field">
+        <c:if test="${not empty configs}">
+            <div class="default_options">
+                <table class="options">
+                	<tr>
+                		<th colspan="2" style="text-align:center;"><fmt:message key="lbl.defaults" /></th>
+                	</tr>
+                    <tr>
+                        <th><fmt:message key="lbl.option" /></th>
+                        <th><fmt:message key="lbl.value" /></th>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.maxNumberOfHits" /></td>
+                        <td>${configs.searchOptions.resultThreshold}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.maxNumberOfHits" /></td>
+                        <td>${configs.searchOptions.maxNumberOfHits}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.hopCount" /></td>
+                        <td>${configs.searchOptions.hopCount}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.prefix" /></td>
+                        <td>${configs.searchOptions.prefixMatch}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.fuzzy" /></td>
+                        <td>${configs.searchOptions.fuzzyMatch}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.maxTopicNumToExpand" /></td>
+                        <td>${configs.searchOptions.maxTopicNumToExpand}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.expansionThreshold" /></td>
+                        <td>${configs.searchOptions.expansionThreshold}</td>
+                    </tr>
+                    <tr>
+                        <td><fmt:message key="lbl.fields" /></td>
+                        <td>
+                            <c:forEach var="element" items="${configs.searchFields}">
+                             ${element.searchField};
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </c:if>
+        <spring:url value="/search" var="searchUrl" /> 
+        <form:form method="POST" action="${searchUrl}" id="searchForm" commandName="formSearch">
+            <b><fmt:message key="lbl.knowledgeBases" /></b>
+            <form:checkboxes items="${knowledgeBases}" itemValue="id" itemLabel="displayName" path="selected" /><br /><br />   
+            <div class="ui-widget">
+               <form:input path="searchValue" id="autocomplete"/>
+               &amp;nbsp;<button type="button" class="searchButton" onclick="doSubmit()">
+                   <em><fmt:message key="lbl.sok" /></em>
+               </button>
+            </div>
+         </form:form>
+        <br />
+        <c:choose>
+        <c:when test="${not empty result}">
+            <div class="result">
+                <display:table name="result" class="result" id="resultObject"
+                        export="false" pagesize="${configs.searchOptions.maxNumberOfHits}" requestURI="">
+                        <display:column titleKey="lbl.name">
+                            <a href="${resultObject.URI}" target="_blank">${resultObject.title}</a>
+                        </display:column>
+                        <display:column titleKey="lbl.score" style="width:100px;">
+                            <fmt:formatNumber value="${resultObject.score}" maxFractionDigits="3"/>
+                        </display:column>
+                </display:table>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <c:choose>
+                <c:when test="${isSearch}">
+                    <div class="result">
+                        <fmt:message key="lbl.noResult" />
+                    </div>
+                </c:when>
+            </c:choose>
+        </c:otherwise>
+        </c:choose>
+
+    </div>
+
+</jsp:root>

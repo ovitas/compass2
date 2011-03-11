@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topicMap id="xtm1.0-psi-country"
+		  xmlns="http://www.topicmaps.org/xtm/1.0/"
+		  xmlns:xlink="http://www.w3.org/1999/xlink"
+		  xml:base="http://www.ovitas.no/compass2/xtm1.0/test">
+	<!-- This topic will be imported with 2 names -->
+	<topic id="t001">
+		<baseName>
+			<scope>
+				<topicRef xlink:href="#t003"/>
+			</scope>
+			<baseNameString>Norway</baseNameString>
+		</baseName>
+		<baseName>
+			<scope>
+				<topicRef xlink:href="#t004"/>
+			</scope>
+			<baseNameString>Norge</baseNameString>
+		</baseName>
+	</topic>
+	<!-- This topic will be imported with 1 name -->
+	<topic id="t002">
+		<baseName>
+			<baseNameString>Oslo</baseNameString>
+		</baseName>
+	</topic>
+	<!-- This topic will be imported and serve as scope -->
+	<topic id="t003">
+		<baseName>
+			<baseNameString>English</baseNameString>
+		</baseName>
+	</topic>
+	<!-- This topic will be imported and serve as scope -->
+	<topic id="t004">
+		<baseName>
+			<baseNameString>Norwegian</baseNameString>
+		</baseName>
+	</topic>
+	<!-- This topic will be imported and serve as relation type -->
+	<topic id="t005">
+		<baseName>
+			<baseNameString>is the capital of</baseNameString>
+		</baseName>
+	</topic>
+	<!-- This topic will be skipped and raise a warning of having no names -->
+	<topic id="t006"/>
+	<!-- This relation will be imported -->
+	<association id="a001">
+		<instanceOf>
+			<topicRef xlink:href="#t005"/>
+		</instanceOf>
+		<member>
+			<topicRef xlink:href="#t001"/>
+		</member>
+		<member>
+			<topicRef xlink:href="#t002"/>
+		</member>
+	</association>
+	<!-- This relation will be skipped and raise a warning of missing source
+	reference -->
+	<association id="a002">
+		<member>
+			<resourceRef xlink:href="http://en.wikipedia.org/wiki/Northern_Europe"/>
+		</member>
+		<member>
+			<topicRef xlink:href="#t001"/>
+		</member>
+	</association>
+	<!-- This relation will be skipped and raise a warning of missing target
+	reference -->
+	<association id="a003">
+		<member>
+			<topicRef xlink:href="#t001"/>
+		</member>
+		<member>
+			<subjectIndicatorRef xlink:href="http://dbpedia.org/resource/North_Sea"/>
+		</member>
+	</association>
+	<!-- This relation will be skipped and raise a warning of pointing to
+	invalid source topic -->
+	<association id="a004">
+		<member>
+			<topicRef xlink:href="#t001"/>
+		</member>
+		<member>
+			<topicRef xlink:href="#tXXX"/>
+		</member>
+	</association>
+	<!-- This relation will be skipped and raise a warning of pointing to
+	invalid target topic -->
+	<association id="a005">
+		<member>
+			<topicRef xlink:href="#tYYY"/>
+		</member>
+		<member>
+			<topicRef xlink:href="#t001"/>
+		</member>
+	</association>
+</topicMap>

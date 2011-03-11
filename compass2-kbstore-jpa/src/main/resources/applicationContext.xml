@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-lazy-init="true">
+
+	<!-- Activates scanning of @Autowired -->
+	<context:annotation-config />
+
+	<!-- Activates scanning of @Repository and @Service -->
+	<context:component-scan base-package="no.ovitas.compass2.kb.store" />
+
+	<bean id="cpmsDS"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="pool" class="org.apache.commons.pool.impl.GenericObjectPool">
+		<property name="minEvictableIdleTimeMillis">
+			<value>300000</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis">
+			<value>60000</value>
+		</property>
+	</bean>
+
+	<bean id="dsConnectionFactory" class="org.apache.commons.dbcp.DataSourceConnectionFactory">
+		<constructor-arg>
+			<ref bean="cpmsDS" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="poolableConnectionFactory" class="org.apache.commons.dbcp.PoolableConnectionFactory">
+		<constructor-arg index="0">
+			<ref bean="dsConnectionFactory" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="pool" />
+		</constructor-arg>
+		<constructor-arg index="2">
+			<null />
+		</constructor-arg>
+		<constructor-arg index="3">
+			<null />
+		</constructor-arg>
+		<constructor-arg index="4">
+			<value>false</value>
+		</constructor-arg>
+		<constructor-arg index="5">
+			<value>true</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="localDataSource" class="org.apache.commons.dbcp.PoolingDataSource"
+		depends-on="poolableConnectionFactory">
+		<constructor-arg>
+			<ref bean="pool" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="webDataSource"
+		  class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName"
+				  value="java:comp/env/jdbc/compass2WebDS"/>
+	</bean>
+
+	<!-- Add new DAOs here -->
+
+	<bean id="knowledgeBaseDao" class="no.ovitas.compass2.kb.store.dao.jpa.KnowledgeBaseDaoJpa">
+	</bean>
+
+	<bean id="topicDao" class="no.ovitas.compass2.kb.store.dao.jpa.TopicDaoJpa">
+	</bean>
+
+	<bean id="directRelationDao"
+		class="no.ovitas.compass2.kb.store.dao.jpa.DirectRelationDaoJpa"></bean>
+
+	<bean id="directRelationTypeDao"
+		class="no.ovitas.compass2.kb.store.dao.jpa.DirectRelationTypeDaoJpa"></bean>
+
+	<bean id="topicNameDao" class="no.ovitas.compass2.kb.store.dao.jpa.TopicNameDaoJpa"></bean>
+
+	<bean id="scopeDao" class="no.ovitas.compass2.kb.store.dao.jpa.ScopeDaoJpa"></bean>
+
+
+	<!-- Add new Managers here -->
+
+	<bean id="topicExpansionManagerJPA"
+		class="no.ovitas.compass2.kb.store.service.impl.TopicExpansionManagerJPA"
+		scope="prototype">
+		<property name="directRelationDao" ref="directRelationDao" />
+	</bean>
+
+	<bean id="directRelationManager"
+		class="no.ovitas.compass2.kb.store.service.impl.DirectRelationManagerImpl">
+		<constructor-arg ref="directRelationDao" />
+	</bean>
+
+	<bean id="directRelationTypeManager"
+		class="no.ovitas.compass2.kb.store.service.impl.DirectRelationTypeManagerImpl">
+		<constructor-arg ref="directRelationTypeDao" />
+	</bean>
+
+	<bean id="knowledgeBaseDaoManager"
+		class="no.ovitas.compass2.kb.store.service.impl.KnowledgeBaseDaoManagerImpl">
+		<constructor-arg ref="knowledgeBaseDao" />
+		<property name="topicNameDao" ref="topicNameDao" />
+		<property name="directRelationDao" ref="directRelationDao" />
+		<property name="topicDao" ref="topicDao" />
+		<property name="scopeDao" ref="scopeDao" />
+		<property name="directRelationTypeDao" ref="directRelationTypeDao" />
+	</bean>
+
+	<bean id="scopeManager"
+		class="no.ovitas.compass2.kb.store.service.impl.ScopeManagerImpl">
+		<constructor-arg ref="scopeDao" />
+		<property name="knowledgeBaseDao" ref="knowledgeBaseDao" />
+	</bean>
+
+	<bean id="topicManager"
+		class="no.ovitas.compass2.kb.store.service.impl.TopicManagerImpl">
+		<constructor-arg ref="topicDao" />
+		<property name="topicNameDao" ref="topicNameDao"></property>
+		<property name="scopeDao" ref="scopeDao"></property>
+	</bean>
+
+	<bean id="topicNameManager"
+		class="no.ovitas.compass2.kb.store.service.impl.TopicNameManagerImpl">
+		<constructor-arg ref="topicNameDao" />
+	</bean>
+
+	<bean id="kbBean" class="no.ovitas.compass2.kb.store.KBManagerImpl">
+		<property name="directRelationManager" ref="directRelationManager" />
+		<property name="directRelationTypeManager" ref="directRelationTypeManager" />
+		<property name="knowledgeBaseDaoManager" ref="knowledgeBaseDaoManager" />
+		<property name="topicManager" ref="topicManager" />
+		<property name="topicNameManager" ref="topicNameManager" />
+		<property name="scopeManager" ref="scopeManager" />
+	</bean>
+</beans>

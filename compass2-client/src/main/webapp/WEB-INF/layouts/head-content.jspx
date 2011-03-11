@@ -1,0 +1,22 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns="http://www.w3.org/1999/xhtml" xmlns:spring="http://www.springframework.org/tags">
+
+
+    <title>Compass2</title>
+
+    <spring:url value="/resources/javascript/jquery/jquery-1.4.2.min.js" var="jQueryUrl"/>
+    <spring:url value="/resources/javascript/jquery/ui/jquery-ui-1.8.4.custom.min.js" var="jQueryUiUrl"/>
+    <spring:url value="/resources/css/jqueryui/cupertino/jquery-ui-1.8.4.custom.css" var="jQueryUiCss"/>
+ 
+    <spring:url value="/resources/javascript/compass2/autocomplete.js" var="autocomplete"/>
+    <spring:url value="/resources/css/compass.css" var="compass2"/>
+    
+    <link rel="stylesheet" type="text/css" href="${jQueryUiCss}"/>
+    <link rel="stylesheet" type="text/css" href="${compass2}"/>
+
+
+    <spring:url value="/searcher/searchJson" var="jsonUrl" />
+    <script src="${jQueryUrl}" type="text/javascript"><!-- Required by FF --></script>
+    <script src="${jQueryUiUrl}" type="text/javascript"><!-- Required by Firefox --> </script>
+    <script src="${autocomplete}" type="text/javascript" ><!--Required by Firefox --> </script>
+
+</jsp:root>

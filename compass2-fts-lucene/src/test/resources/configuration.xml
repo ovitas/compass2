@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE indexer-config SYSTEM "configuration.dtd" >
+
+<indexer-config base-dir="/mnt/storage/exchange/milan/source" depth="5" re-index="false">
+    <replace-in-url>
+    <replace scope="delete" value="www.visitnorway2.com" with="www.visitnorway.com"/>
+    </replace-in-url>
+    <update>
+        <document url="/" />
+    </update>
+    <delete>
+        <document url="/www.visitnorway2.com/en/Product/index.html?pid=46470"/>
+    </delete>
+</indexer-config>

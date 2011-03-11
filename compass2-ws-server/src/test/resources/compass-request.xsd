@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.ovitas.no/compass2/compass-request"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns="http://www.ovitas.no/compass2/compass-request">
+	<xs:element name="topic-query">
+		<xs:annotation>
+			<xs:documentation>The query to be performed against the topics in
+			the knowledge bases. If the optional attributes are omitted, the
+			corresponding parameters will be set according to the current
+			Compass2 configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="term"
+							maxOccurs="unbounded"/>
+				<xs:element ref="topic-criteria"
+							maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="prefix-match"
+						  type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Specify if the query matches only
+					prefixes or at any location within the topic
+					names.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="threshold-weight"
+						  type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Specify the minimum threshold weigh, no
+					topics will be included in the results whose weight is less
+					than this value.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max-topic-number-to-expand"
+						  type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Specify the maximum number of topics to
+					expand.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="hop-count"
+						  type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Specify the maximum hop count to perform
+					the expansion to.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="term" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>A term to be sought for.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="topic-criteria">
+		<xs:annotation>
+			<xs:documentation>A criterium for the topic
+			search.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="scopes"/>
+			</xs:sequence>
+			<xs:attribute name="knowledge-base-id"
+						  type="xs:long"
+						  use="required">
+				<xs:annotation>
+					<xs:documentation>The unique identifier of the knowledge
+					base this criterium applies for.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="relation-direction">
+				<xs:annotation>
+					<xs:documentation>The direction of the relations to be used
+					for the topic expansion. If omitted, both directions will be
+					used also in combination.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SPEC">
+							<xs:annotation>
+								<xs:documentation>Specialization
+								direction.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="GEN">
+							<xs:annotation>
+								<xs:documentation>Generalization
+								direction.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scopes">
+		<xs:annotation>
+			<xs:documentation>Base element (parent) of the scope
+			definitions.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="scope"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scope">
+		<xs:annotation>
+			<xs:documentation>Specify a scope to filter the topic names in the
+			search result. Only names under the specified scopes will be
+			returned.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id"
+						  type="xs:long"
+						  use="required">
+				<xs:annotation>
+					<xs:documentation>The unique identifier of the
+					scope.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="full-text-query">
+		<xs:annotation>
+			<xs:documentation>The full text query to be performed against the
+			full text indices handled by Compass2. If the optional attributes
+			are omitted, the corresponding parameters will be set according to
+			the current	Compass2 configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="full-text-field-criteria"/>
+			</xs:sequence>
+			<xs:attribute name="fuzzy-search"
+						  type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Specify if the fuzzy option should be used
+					during the full text search.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max-number-of-hits"
+						  type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Specify the maximum number of hits to be
+					returned.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="result-threshold"
+						  type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Specify the result threshold for the
+					search, no hits will be returned with score less than
+					this value.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="full-text-field-criteria">
+		<xs:annotation>
+			<xs:documentation>A field criterium for the full text search. If the
+			optional attributes are omitted, the corresponding parameters will
+			be set according to	the current	Compass2
+			configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="term"/>
+			</xs:sequence>
+			<xs:attribute name="field-name"
+						  type="xs:string"
+						  use="required">
+				<xs:annotation>
+					<xs:documentation>The name of the search field this
+					criterium applies for.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="connection-type">
+				<xs:annotation>
+					<xs:documentation>The type of connection between this
+					criterium and the previous one.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="AND">
+							<xs:annotation>
+								<xs:documentation>&quot;And&quot; type
+								connection.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="OR">
+							<xs:annotation>
+								<xs:documentation>&quot;Or&quot; type
+								connection.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="NOT">
+							<xs:annotation>
+								<xs:documentation>Negation of matching this
+								criterium.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FIRST">
+							<xs:annotation>
+								<xs:documentation>First
+								match.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fitting-type">
+				<xs:annotation>
+					<xs:documentation>The fitting type of this
+					criterium.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="WHOLE_WORD">
+							<xs:annotation>
+								<xs:documentation>Matches whole words
+								only.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="PREFIX">
+							<xs:annotation>
+								<xs:documentation>Matches
+								prefixes.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="matching-type">
+				<xs:annotation>
+					<xs:documentation>The matching type of this
+					criterium.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="MATCH_ALL">
+							<xs:annotation>
+								<xs:documentation>Match
+								all.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MATCH_ANY">
+							<xs:annotation>
+								<xs:documentation>Match
+								any.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fuzzy-search"
+						  type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Specify if the fuzzy option should be used
+					during the full text search.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="boost"
+						  type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Specify the boost for this criterium
+					within the full text search.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

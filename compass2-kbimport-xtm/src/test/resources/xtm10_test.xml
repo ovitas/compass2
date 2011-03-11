@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topicMap id="xtm1.0-psi-country"
+		  xmlns="http://www.topicmaps.org/xtm/1.0/"
+		  xmlns:xlink="http://www.w3.org/1999/xlink"
+		  xml:base="http://www.ovitas.no/compass2/xtm1.0/test">
+	<!-- This topic will be imported with 2 names -->
+	<topic id="t001"/>
+</topicMap>

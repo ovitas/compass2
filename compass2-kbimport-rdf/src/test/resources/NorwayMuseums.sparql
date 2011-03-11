@@ -1,0 +1,15 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX yago:<http://dbpedia.org/class/yago/>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+construct { ?m rdfs:label ?mn . 
+            ?m skos:subject ?c .
+            ?c skos:prefLabel ?cn .
+            ?mc skos:broader ?c . 
+            ?mc skos:prefLabel ?mcn . }
+where { ?m rdf:type yago:MuseumsInNorway . 
+        ?m rdfs:label ?mn . 
+        ?m skos:subject ?c .
+        ?c skos:prefLabel ?cn .
+        ?mc skos:broader ?c .
+        ?mc skos:prefLabel ?mcn . }

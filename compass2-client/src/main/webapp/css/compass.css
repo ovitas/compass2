@@ -1,0 +1,37 @@
+html {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana,
+    sans-serif;
+  font-size: 10pt;
+}
+
+h1 {
+	font-size:1.4em;
+}
+
+table.options {
+    width:600px;
+    margin-bottom:20px;
+}
+
+table.options th, table.result th {
+	background-color:lightgrey;
+	font-weight:bold;
+	padding:4px 7px;
+}
+
+table.options td {
+    border:2px solid lightgrey;
+    padding:4px 7px;
+}
+
+table.result {
+	width:90%;
+}
+
+table.result th {
+	text-align:left;
+}
+
+table.result td {
+	padding-left:5px;
+}

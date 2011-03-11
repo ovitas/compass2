@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE compass2-config SYSTEM "compass2-config.dtd" >
+<compass2-config>
+	<full-text-search-plugin>
+		<full-text-search>
+			<implementation>
+				<implementation-reflection
+					className="${no.ovitas.compass2.service.FTSImplementation}" />
+
+			</implementation>
+		</full-text-search>
+		<indexer>
+			<implementation>
+				<implementation-reflection className="${no.ovitas.compass2.fts.IndexerImpl}" />
+
+			</implementation>
+			<params>
+				<param name="indexdirectory-path" value="${lucene.fts.index.dir}" />
+			</params>
+		</indexer>
+		<content-handler-plugin>
+			<content-handler type="tika">
+				<implementation>
+					<implementation-reflection
+						className="${no.ovitas.compass2.fts.ContentHandlerTikaImplementation}" />
+
+				</implementation>
+				<document-fields>
+					<field name="URI" indexed="analyzed" stored="yes" type="string" />
+					<field name="content" indexed="analyzed" stored="yes" type="string" />
+					<field name="title" indexed="analyzed" stored="yes" type="string" />
+					<field name="fileType" indexed="no" stored="yes" type="string" />
+					<field name="lastModified" indexed="no" stored="yes" type="date" />
+				</document-fields>
+			</content-handler>
+			<content-handler type="vsnorway">
+				<implementation>
+					<implementation-reflection
+						className="${no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation}" />
+				</implementation>
+				<document-fields>
+					<field name="URI" indexed="not_analyzed_no_norms" stored="yes" type="string" />
+					<field name="content" indexed="analyzed" stored="yes" type="string" />
+					<field name="keyword" indexed="analyzed" stored="yes" type="string" />
+					<field name="title" indexed="analyzed" stored="yes" type="string" />
+					<field name="fileType" indexed="no" stored="yes" type="string" />
+					<field name="lastModified" indexed="no" stored="yes" type="date" />
+				</document-fields>
+			</content-handler>
+		</content-handler-plugin>
+		<query-builder>
+			<implementation>
+				<implementation-reflection className="${no.ovitas.compass2.fts.QueryBuilder}" />
+			</implementation>
+		</query-builder>
+	</full-text-search-plugin>
+
+	<language-tool-plugin>
+		<language-tool>
+			<implementation>
+				<implementation-reflection
+					className="${no.ovitas.compass2.service.LTImplementation}" />
+
+			</implementation>
+			<params>
+				<param name="snowball-language" value="English" />
+				<param name="lucene-spellchecker-directory" value="${lucene.spellchecker.dir}" />
+				<param name="lucene-spellchecker-index-directory" value="${lucene.spellchecker.index.dir}" />
+				<param name="lucene-spellchecker-field" value="word" />
+				<param name="lucene-spellchecker-max-suggestion-num" value="${lucene.spellchecker.max.suggestion.num}" />
+			</params>
+		</language-tool>
+	</language-tool-plugin>
+
+	<knowledge-base-plugin default="default">
+		<knowledge-base id="default">
+			<implementation>
+				<implementation-spring
+					beanName="${no.ovitas.compass2.service.KBImplementation.bean}">
+					<context-files>
+						<context-file file="classpath*:/applicationContext.xml" />
+						<context-file file="classpath*:/applicationContext-dao.xml" />
+						<context-file file="classpath*:/applicationContext-service.xml" />
+					</context-files>
+				</implementation-spring>
+			</implementation>
+			<params>
+				<param name="importDir" value="${knowledgeBaseImportDir}" />
+				<param name="tpMethod" value="${knowledgeBaseTPMethod}" />
+			</params>
+			<topic-name-indexer>
+				<implementation>
+					<implementation-reflection
+						className="${no.ovitas.compass2.service.TopicNameIndexerImplementation}" />
+				</implementation>
+				<params>
+					<param name="indexdirectory-path" value="${topic.name.index.dir}" />
+				</params>
+			</topic-name-indexer>
+            <search-settings>
+                <knowledge-base-setting name="vs old">
+                    <options tree="ahead"/>
+                    <scope name="EN;EN" />
+                </knowledge-base-setting>
+            </search-settings>
+		</knowledge-base>
+	</knowledge-base-plugin>
+
+	<import-plugin>
+		<import type="XTM10">
+			<implementation>
+				<implementation-reflection className="${import.xtm.xtm10importer}" />
+			</implementation>
+		</import>
+		<import type="RDF">
+			<implementation>
+				<implementation-reflection className="${import.rdf.rdfimporter}" />
+			</implementation>
+		</import>
+	</import-plugin>
+	
+	<suggestion-provider-plugin>
+	   <suggestion-provider>
+	       <implementation>
+	           <implementation-reflection className="no.ovitas.compass2.suggestion.SuggestionProviderManagerImpl"/>
+	       </implementation>
+	       <params>
+	           <param name="indexdirectory-path" value="${suggestion.index.dir}" />
+	       </params>
+	   </suggestion-provider>
+	</suggestion-provider-plugin>
+
+	<search-fields>
+		<search-field-string index-field="keyword"
+			search-field="Keyword" type="string" default="true" weight="5"
+			match="match_any" fit="whole_word" />
+		<search-field-string index-field="title"
+			search-field="Title" type="string" default="true" weight="2" match="match_any"
+			fit="whole_word" />
+		<search-field-string index-field="content"
+			search-field="Content" type="string" default="true" weight="1"
+			match="match_all" fit="prefix" />
+	</search-fields>
+
+	<search-options result-threshold="${result.threshold}"
+		max-number-of-hits="${max.number.of.hits}" hop-count="${hop.count}"
+		prefix-match="${prefix.match}" fuzzy-match="${fuzzy.match}"
+		tree-search="${tree.search}" tree="two_way" max-nr-of-topic-to-expand="${max.topic.number.to.expand}"
+		expansion-threshold="${expansion.threshold}" />
+
+</compass2-config>

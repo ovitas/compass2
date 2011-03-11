@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<knowledge-base>
+	<!-- Scopes -->
+	<scope external-id="scope1"
+		   display-name="scope1"/>
+	<scope external-id="scope2"
+		   display-name="scope2"/>
+	<scope external-id="scope3"
+		   display-name="scope3"/>
+	<!-- Relation types -->
+	<relation-type external-id="relationType1"
+				   display-name="relationType1"
+				   weight="0.9"
+				   generalization-weight="0.7"/>
+	<relation-type external-id="relationType2"
+				   display-name="relationType2"
+				   weight="0.9"
+				   generalization-weight="0.7"/>
+	<relation-type external-id="relationType3"
+				   display-name="relationType3"
+				   weight="0.9"
+				   generalization-weight="0.7"/>
+	<!-- Topics -->
+	<topic external-id="topic1">
+		<topic-name display-name="topic1"
+					scope-ref="scope1"/>
+	</topic>
+	<topic external-id="topic2">
+		<topic-name display-name="topic2"
+					scope-ref="scope1"/>
+		<topic-name display-name="Topic2"
+					scope-ref="scope2"/>
+	</topic>
+	<topic external-id="topic3">
+		<topic-name display-name="topic3"
+					scope-ref="scope1"/>
+		<topic-name display-name="Topic3"
+					scope-ref="scope2"/>
+	</topic>
+	<topic external-id="topic4">
+		<topic-name display-name="topic4"
+					scope-ref="scope1"/>
+		<topic-name display-name="Topic4"
+					scope-ref="scope2"/>
+		<topic-name display-name="Topic IV"
+					scope-ref="scope3"/>
+	</topic>
+	<topic external-id="topic5">
+		<topic-name display-name="topic5"
+					scope-ref="scope1"/>
+	</topic>
+	<topic external-id="topic6">
+		<topic-name display-name="Topic VI"
+					scope-ref="scope3"/>
+	</topic>
+	<topic external-id="topic7">
+		<topic-name display-name="topic7"
+					scope-ref="scope1"/>
+		<topic-name display-name="Topic7"
+					scope-ref="scope2"/>
+		<topic-name display-name="Topic VII"
+					scope-ref="scope3"/>
+	</topic>
+	<!-- Relations -->
+	<relation relation-type-ref="relationType1"
+			  source-topic-ref="topic1"
+			  target-topic-ref="topic2"/>
+	<relation relation-type-ref="relationType1"
+			  source-topic-ref="topic3"
+			  target-topic-ref="topic2"/>
+	<relation relation-type-ref="relationType2"
+			  source-topic-ref="topic2"
+			  target-topic-ref="topic4"/>
+	<relation relation-type-ref="relationType3"
+			  source-topic-ref="topic5"
+			  target-topic-ref="topic2"/>
+	<relation relation-type-ref="relationType1"
+			  source-topic-ref="topic1"
+			  target-topic-ref="topic6"/>
+	<relation relation-type-ref="relationType3"
+			  source-topic-ref="topic7"
+			  target-topic-ref="topic3"/>
+</knowledge-base>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<compass2-rdf>
+	<namespace prefix="rdfs" uri="http://www.w3.org/2000/01/rdf-schema#"/>
+	<namespace prefix="c2" uri="http://www.ovitas.no/compass2/"/>
+	<name-generator-element>rdfs:label</name-generator-element>
+	<relation-generator-element label="Member of">c2:member-of</relation-generator-element>
+</compass2-rdf>

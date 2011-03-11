@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<full-text-query fuzzy-search="false"
+				 max-number-of-hits="10"
+				 result-threshold="0.01"
+				 xmlns="http://www.ovitas.no/compass2/compass-request"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://www.ovitas.no/compass2/compass-request
+									 compass-request.xsd">
+	<full-text-field-criteria field-name="title"
+							  boost="1"
+							  connection-type="AND"
+							  fitting-type="PREFIX"
+							  fuzzy-search="false"
+							  matching-type="MATCH_ANY">
+		<term>oslo</term>
+	</full-text-field-criteria>
+</full-text-query>

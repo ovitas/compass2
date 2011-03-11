@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+	<Resource name="jdbc/compass2WebDS"
+			  type="javax.sql.DataSource"
+			  driverClassName="${jdbc.driverClassName}"
+			  url="${jdbc.url}"
+			  username="${jdbc.username}"
+			  password="${jdbc.password}"    
+			  maxActive="4"
+			  maxIdle="2"
+			  maxWait="5000"
+			  validationQuery="select 1"/>        
+</Context>

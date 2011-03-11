@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:c2="http://www.ovitas.no/compass2/">
+<rdf:Description rdf:about="http://dbpedia.org/resource/Norway">
+  <rdfs:label>Norway</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Akershus">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Akershus">
+  <rdfs:label>Akershus</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ski">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Akershus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ski">
+  <rdfs:label>Ski</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bærum">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Akershus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bærum">
+  <rdfs:label>Bærum</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandvika">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Bærum"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandvika">
+  <rdfs:label>Sandvika</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skedsmo">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Akershus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skedsmo">
+  <rdfs:label>Skedsmo</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillestrøm">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Skedsmo"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillestrøm">
+  <rdfs:label>Lillestrøm</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Frogn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Akershus"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Frogn">
+  <rdfs:label>Frogn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Drøbak">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Frogn"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Drøbak">
+  <rdfs:label>Drøbak</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sør-Trøndelag">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sør-Trøndelag">
+  <rdfs:label>Sør-Trøndelag</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ørland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sør-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ørland">
+  <rdfs:label>Ørland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brekstad">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Ørland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brekstad">
+  <rdfs:label>Brekstad</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Trondheim">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sør-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Trondheim">
+  <rdfs:label>Trondheim</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Oslo">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Oslo">
+  <rdfs:label>Oslo</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Telemark">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Telemark">
+  <rdfs:label>Telemark</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tinn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tinn">
+  <rdfs:label>Tinn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rjukan">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Tinn"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rjukan">
+  <rdfs:label>Rjukan</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bamble">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bamble">
+  <rdfs:label>Bamble</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stathelle">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Bamble"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stathelle">
+  <rdfs:label>Stathelle</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Langesund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Bamble"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Langesund">
+  <rdfs:label>Langesund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kragerø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kragerø">
+  <rdfs:label>Kragerø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skien">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skien">
+  <rdfs:label>Skien</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Porsgrunn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Porsgrunn">
+  <rdfs:label>Porsgrunn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brevik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Porsgrunn"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brevik">
+  <rdfs:label>Brevik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Notodden">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Telemark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Notodden">
+  <rdfs:label>Notodden</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nord-Trøndelag">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nord-Trøndelag">
+  <rdfs:label>Nord-Trøndelag</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Verdal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Verdal">
+  <rdfs:label>Verdal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Verdalsøra">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Verdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Verdalsøra">
+  <rdfs:label>Verdalsøra</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Levanger">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Levanger">
+  <rdfs:label>Levanger</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nærøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nærøy">
+  <rdfs:label>Nærøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kolvereid">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nærøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kolvereid">
+  <rdfs:label>Kolvereid</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Steinkjer">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Steinkjer">
+  <rdfs:label>Steinkjer</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Namsos">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Trøndelag"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Namsos">
+  <rdfs:label>Namsos</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Møre og Romsdal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Møre og Romsdal">
+  <rdfs:label>Møre og Romsdal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rauma">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rauma">
+  <rdfs:label>Rauma</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Åndalsnes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rauma"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Åndalsnes">
+  <rdfs:label>Åndalsnes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ulstein">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ulstein">
+  <rdfs:label>Ulstein</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ulsteinvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Ulstein"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ulsteinvik">
+  <rdfs:label>Ulsteinvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Herøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Herøy">
+  <rdfs:label>Herøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fosnavåg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Herøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fosnavåg">
+  <rdfs:label>Fosnavåg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ålesund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ålesund">
+  <rdfs:label>Ålesund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Molde">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Molde">
+  <rdfs:label>Molde</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kristiansund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Møre og Romsdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kristiansund">
+  <rdfs:label>Kristiansund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vestfold">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vestfold">
+  <rdfs:label>Vestfold</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tønsberg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tønsberg">
+  <rdfs:label>Tønsberg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandefjord">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandefjord">
+  <rdfs:label>Sandefjord</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Larvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Larvik">
+  <rdfs:label>Larvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stavern">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Larvik"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stavern">
+  <rdfs:label>Stavern</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Horten">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Horten">
+  <rdfs:label>Horten</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Holmestrand">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Holmestrand">
+  <rdfs:label>Holmestrand</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Troms">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Troms">
+  <rdfs:label>Troms</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lenvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Troms"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lenvik">
+  <rdfs:label>Lenvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Finnsnes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Lenvik"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Finnsnes">
+  <rdfs:label>Finnsnes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tromsø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Troms"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tromsø">
+  <rdfs:label>Tromsø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Harstad">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Troms"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Harstad">
+  <rdfs:label>Harstad</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Finnmark">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Finnmark">
+  <rdfs:label>Finnmark</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sør-Varanger">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sør-Varanger">
+  <rdfs:label>Sør-Varanger</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kirkenes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sør-Varanger"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kirkenes">
+  <rdfs:label>Kirkenes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nordkapp">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nordkapp">
+  <rdfs:label>Nordkapp</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Honningsvåg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordkapp"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Honningsvåg">
+  <rdfs:label>Honningsvåg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Alta">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Alta">
+  <rdfs:label>Alta</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vardø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vardø">
+  <rdfs:label>Vardø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vadsø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vadsø">
+  <rdfs:label>Vadsø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hammerfest">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Finnmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hammerfest">
+  <rdfs:label>Hammerfest</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hedmark">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hedmark">
+  <rdfs:label>Hedmark</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Elverum">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hedmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Elverum">
+  <rdfs:label>Elverum</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ringsaker">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hedmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ringsaker">
+  <rdfs:label>Ringsaker</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brumunddal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Ringsaker"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brumunddal">
+  <rdfs:label>Brumunddal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kongsvinger">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hedmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kongsvinger">
+  <rdfs:label>Kongsvinger</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hamar">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hedmark"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hamar">
+  <rdfs:label>Hamar</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Oppland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Oppland">
+  <rdfs:label>Oppland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sel">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Oppland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sel">
+  <rdfs:label>Sel</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Otta">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sel"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Otta">
+  <rdfs:label>Otta</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nord-Aurdal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Oppland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nord-Aurdal">
+  <rdfs:label>Nord-Aurdal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fagernes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nord-Aurdal"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fagernes">
+  <rdfs:label>Fagernes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillehammer">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Oppland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillehammer">
+  <rdfs:label>Lillehammer</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Gjøvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Oppland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Gjøvik">
+  <rdfs:label>Gjøvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Østfold">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Østfold">
+  <rdfs:label>Østfold</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Eidsberg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Eidsberg">
+  <rdfs:label>Eidsberg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mysen">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Eidsberg"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mysen">
+  <rdfs:label>Mysen</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Askim">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Askim">
+  <rdfs:label>Askim</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sarpsborg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sarpsborg">
+  <rdfs:label>Sarpsborg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Moss">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Moss">
+  <rdfs:label>Moss</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Halden">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Halden">
+  <rdfs:label>Halden</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fredrikstad">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Østfold"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fredrikstad">
+  <rdfs:label>Fredrikstad</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sogn og Fjordane">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sogn og Fjordane">
+  <rdfs:label>Sogn og Fjordane</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vågsøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sogn og Fjordane"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vågsøy">
+  <rdfs:label>Vågsøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Måløy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vågsøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Måløy">
+  <rdfs:label>Måløy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Førde">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sogn og Fjordane"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Førde">
+  <rdfs:label>Førde</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Flora">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sogn og Fjordane"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Flora">
+  <rdfs:label>Flora</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Florø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Flora"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Florø">
+  <rdfs:label>Florø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vest-Agder">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vest-Agder">
+  <rdfs:label>Vest-Agder</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lyngdal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vest-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lyngdal">
+  <rdfs:label>Lyngdal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mandal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vest-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mandal">
+  <rdfs:label>Mandal</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kristiansand">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vest-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kristiansand">
+  <rdfs:label>Kristiansand</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Flekkefjord">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vest-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Flekkefjord">
+  <rdfs:label>Flekkefjord</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Farsund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vest-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Farsund">
+  <rdfs:label>Farsund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rogaland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rogaland">
+  <rdfs:label>Rogaland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sola">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sola">
+  <rdfs:label>Sola</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tananger">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Sola"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Tananger">
+  <rdfs:label>Tananger</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sauda">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sauda">
+  <rdfs:label>Sauda</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Karmøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Karmøy">
+  <rdfs:label>Karmøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Åkrehamn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Karmøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Åkrehamn">
+  <rdfs:label>Åkrehamn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skudeneshavn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Karmøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Skudeneshavn">
+  <rdfs:label>Skudeneshavn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kopervik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Karmøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kopervik">
+  <rdfs:label>Kopervik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Strand">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Strand">
+  <rdfs:label>Strand</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Jørpeland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Strand"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Jørpeland">
+  <rdfs:label>Jørpeland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Time">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Time">
+  <rdfs:label>Time</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bryne">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Time"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bryne">
+  <rdfs:label>Bryne</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stavanger">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stavanger">
+  <rdfs:label>Stavanger</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandnes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandnes">
+  <rdfs:label>Sandnes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Haugesund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Haugesund">
+  <rdfs:label>Haugesund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Eigersund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rogaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Eigersund">
+  <rdfs:label>Eigersund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Egersund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Eigersund"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Egersund">
+  <rdfs:label>Egersund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Buskerud">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Buskerud">
+  <rdfs:label>Buskerud</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Øvre Eiker">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Buskerud"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Øvre Eiker">
+  <rdfs:label>Øvre Eiker</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hokksund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Øvre Eiker"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hokksund">
+  <rdfs:label>Hokksund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kongsberg">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Buskerud"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Kongsberg">
+  <rdfs:label>Kongsberg</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ringerike">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Buskerud"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Ringerike">
+  <rdfs:label>Ringerike</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hønefoss">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Ringerike"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hønefoss">
+  <rdfs:label>Hønefoss</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Drammen">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Buskerud"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Drammen">
+  <rdfs:label>Drammen</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nordland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Nordland">
+  <rdfs:label>Nordland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sortland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sortland">
+  <rdfs:label>Sortland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Alstahaug">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Alstahaug">
+  <rdfs:label>Alstahaug</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandnessjøen">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Alstahaug"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Sandnessjøen">
+  <rdfs:label>Sandnessjøen</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vefsn">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vefsn">
+  <rdfs:label>Vefsn</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mosjøen">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vefsn"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mosjøen">
+  <rdfs:label>Mosjøen</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rana">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Rana">
+  <rdfs:label>Rana</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mo i Rana">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Rana"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Mo i Rana">
+  <rdfs:label>Mo i Rana</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vestvågøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Vestvågøy">
+  <rdfs:label>Vestvågøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leknes">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Vestvågøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leknes">
+  <rdfs:label>Leknes</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fauske">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Fauske">
+  <rdfs:label>Fauske</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brønnøy">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brønnøy">
+  <rdfs:label>Brønnøy</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brønnøysund">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Brønnøy"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Brønnøysund">
+  <rdfs:label>Brønnøysund</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Narvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Narvik">
+  <rdfs:label>Narvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bodø">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Nordland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bodø">
+  <rdfs:label>Bodø</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hordaland">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Hordaland">
+  <rdfs:label>Hordaland</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Odda">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hordaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Odda">
+  <rdfs:label>Odda</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stord">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hordaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Stord">
+  <rdfs:label>Stord</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leirvik">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Stord"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Leirvik">
+  <rdfs:label>Leirvik</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bergen">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Hordaland"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Bergen">
+  <rdfs:label>Bergen</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Aust-Agder">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Norway"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Aust-Agder">
+  <rdfs:label>Aust-Agder</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillesand">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Aust-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Lillesand">
+  <rdfs:label>Lillesand</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Risør">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Aust-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Risør">
+  <rdfs:label>Risør</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Grimstad">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Aust-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Grimstad">
+  <rdfs:label>Grimstad</rdfs:label>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Arendal">
+  <c2:member-of rdf:resource="http://dbpedia.org/resource/Aust-Agder"/>
+</rdf:Description>
+<rdf:Description rdf:about="http://dbpedia.org/resource/Arendal">
+  <rdfs:label>Arendal</rdfs:label>
+</rdf:Description>
+</rdf:RDF>

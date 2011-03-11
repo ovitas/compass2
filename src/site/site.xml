@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="compass2">
+<?xml version="1.0" encoding="utf-8"?>
+<project name="compass2"
+         xmlns="http://maven.apache.org/DECORATION/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
     <bannerLeft>
         <name>compass2</name>
         <src>https://appfuse.dev.java.net/images/appfuse-title.gif</src>
@@ -13,7 +16,5 @@
     </skin>
     <body>
         <menu ref="modules"/>
-        ${reports}
     </body>
 </project>
-

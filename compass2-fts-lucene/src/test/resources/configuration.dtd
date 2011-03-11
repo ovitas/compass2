@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT indexer-config ( replace-in-url?, add?, update?, delete? ) >
+<!ATTLIST indexer-config
+          base-dir CDATA #REQUIRED
+          depth CDATA #REQUIRED
+          re-index ( true | false ) "false"
+>
+
+<!ELEMENT replace-in-url ( replace+ ) >
+
+<!ELEMENT replace EMPTY >
+<!ATTLIST replace
+          scope ( add | document | delete ) "add"
+          value CDATA #REQUIRED
+          with CDATA #REQUIRED
+>
+
+<!ELEMENT add ( document+ ) >
+
+<!ELEMENT document EMPTY >
+<!ATTLIST document
+          url CDATA #REQUIRED
+>
+
+<!ELEMENT update ( document+ ) >
+
+<!ELEMENT delete ( document+ ) >
