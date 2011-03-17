@@ -1,0 +1,11 @@
+no.ovitas.compass2.config
+no.ovitas.compass2.fts
+no.ovitas.compass2.kb.store
+no.ovitas.compass2.kb.store.dao
+no.ovitas.compass2.kb.store.service
+no.ovitas.compass2.kb.store.service.impl
+no.ovitas.compass2.kb.store.util
+no.ovitas.compass2.kbimport.rdf
+no.ovitas.compass2.kbimport.xtm
+no.ovitas.compass2.lt
+no.ovitas.compass2.web.server

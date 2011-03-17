@@ -1,0 +1,1054 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>compass2 - Reactor Dependency Convergence</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="http://appfuse.org" id="bannerLeft">
+    
+                                    <img src="https://appfuse.dev.java.net/images/appfuse-title.gif" alt="" />
+    
+            </a>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 17 Mar 2011
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>Modules</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="compass2-core/index.html">Compass2 Core</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.mycompany.com/index.html" class="externalLink">Compass2 KnowledgeBase Plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-kbimport-xtm/index.html">Compass2 XTM Import Plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-kbimport-rdf/index.html">Compass2 RDF Import Plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-fts-lucene/index.html">Compass2 Lucene</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-suggestion-provider/index.html">Compass2 Suggestion Provider Plugin</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-lt-snowball/index.html">Compass2 Snowball</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-web/index.html">Compass2 NG Web Application</a>
+          </li>
+              
+    <li class="none">
+                    <a href="compass2-client/index.html">Compass2 Client Application</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Reactor Dependency Convergence</h2>
+<table class="bodyTable"><caption><b>Legend:</b></caption>
+<tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td>All projects share one version of the dependency.</td>
+</tr>
+<tr class="b"><td><img alt="error" src="images/icon_error_sml.gif" /></td>
+<td>At least one project has a differing version of the dependency.</td>
+</tr>
+</table>
+<br />
+<table class="bodyTable"><caption><b>Statistics:</b></caption>
+<tr class="a"><th>Number of sub-projects:</th>
+<td>10</td>
+</tr>
+<tr class="b"><th>Number of dependencies (NOD):</th>
+<td>66</td>
+</tr>
+<tr class="a"><th>Number of unique artifacts (NOA):</th>
+<td>67</td>
+</tr>
+<tr class="b"><th>Number of SNAPSHOT artifacts (NOS):</th>
+<td>0</td>
+</tr>
+<tr class="a"><th>Convergence (NOD/NOA):</th>
+<td><img alt="error" src="images/icon_error_sml.gif" />&#160;<b>98%</b></td>
+</tr>
+<tr class="b"><th>Ready for Release (100% Convergence and no SNAPSHOTS):</th>
+<td><img alt="error" src="images/icon_error_sml.gif" />&#160;<b>Error</b><br />
+You do not have 100% convergence.</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3>Dependencies used in sub-projects</h3>
+<div class="section"><h4>com.extjs:gxt</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.0</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.google.gwt:gwt-servlet</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.0.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>com.google.gwt:gwt-user</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.0.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-beanutils:commons-beanutils</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.8.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-dbcp:commons-dbcp</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-digester:commons-digester</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.0</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-fileupload:commons-fileupload</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-io:commons-io</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>commons-lang:commons-lang</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.3</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>displaytag:displaytag</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.1.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax.persistence:persistence-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.0</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax.servlet:jstl</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>javax:javaee-web-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">6.0</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>junit:junit</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">4.8.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>log4j:log4j</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.2.13</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>mysql:mysql-connector-java</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">5.1.10</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>net.sf.ehcache:ehcache</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.4.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>net.sf.ehcache:ehcache-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.7.0</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-fts-lucene</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-kbimport-rdf</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-kbimport-xtm</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-kbstore-jpa</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-lt-snowball</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>no.ovitas:compass2-suggestion-provider</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.0.1-SNAPSHOT</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.cxf:cxf-common-utilities</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.cxf:cxf-rt-frontend-jaxrs</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.cxf:cxf-rt-frontend-jaxws</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.cxf:cxf-rt-transports-http</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.lucene:lucene-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.lucene:lucene-highlighter</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.lucene:lucene-snowball</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.lucene:lucene-spellchecker</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">3.0.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-lt-snowball">no.ovitas:compass2-lt-snowball</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-suggestion-provider">no.ovitas:compass2-suggestion-provider</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tika:tika-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.7</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tika:tika-parsers</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">0.7</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-fts-lucene">no.ovitas:compass2-fts-lucene</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tiles:tiles-api</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tiles:tiles-core</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tiles:tiles-jsp</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.apache.tiles:tiles-servlet</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">2.2.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.aspectj:aspectjrt</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.6.6</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.aspectj:aspectjweaver</h4>
+<table class="bodyTable"><tr class="a"><td><img alt="error" src="images/icon_error_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="b"><td width="25%">1.6.6</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+<tr class="a"><td width="25%">1.6.9</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.codehaus.jackson:jackson-jaxrs</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">1.2.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.codehaus.woodstox:woodstox-core-asl</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">4.0.3</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.compass-project:compass</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.1.3</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.hibernate:hibernate-core</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.3.1.GA</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.hibernate:hibernate-ehcache</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.3.1.GA</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.hibernate:hibernate-entitymanager</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.4.0.GA</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.jmock:jmock</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.5.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.jmock:jmock-junit4</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.5.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-rdf">no.ovitas:compass2-kbimport-rdf</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-kbimport-xtm">no.ovitas:compass2-kbimport-xtm</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.slf4j:slf4j-log4j12</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">1.5.2</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework.security:spring-security-core-tiger</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.0.5.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework.webflow:spring-js-resources</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.2.0.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-aop</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-aspects</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-beans</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-context</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-context-support</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-core</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-jdbc</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-orm</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-test</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-tx</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-core">no.ovitas:compass2-core</a></li>
+<li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-web</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>org.springframework:spring-webmvc</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">3.0.4.RELEASE</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.ovitas.no/compass2-client">no.ovitas:compass2-client</a></li>
+<li><a class="externalLink" href="http://www.ovitas.no/compass2-web">no.ovitas:compass2-web</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>velocity:velocity</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">1.4</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="section"><h4>xerces:xercesImpl</h4>
+<table class="bodyTable"><tr class="b"><td><img alt="success" src="images/icon_success_sml.gif" /></td>
+<td><table class="bodyTable"><tr class="a"><td width="25%">2.8.1</td>
+<td><ol type="a"><li><a class="externalLink" href="http://www.mycompany.com">no.ovitas:compass2-kbstore-jpa</a></li>
+</ol>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2011
+    
+          Ovitas AS
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
