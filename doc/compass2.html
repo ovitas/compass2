@@ -1,0 +1,132 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title>Compass2 Installing</title></head>
+    <body>
+        <h1>Compass2 installing steps</h1>
+        <ol>
+            <li>
+                <h2>Installing knowledge base</h2>
+                <ol>
+                    <li id="a1.1" >Create database</li>
+                    <li id="a1.2" >
+                        Create tables
+                        <blockquote>Use mysql_install.sql</blockquote>
+                    </li>
+                    <li id="a1.3" >
+                        Add prepared data to database
+                        <blockquote>Use mysql_data.sql</blockquote>
+                    </li>
+                    <li id="a1.4" >
+                        Create preindexed data location
+                        <blockquote>Copy topicnameindex folder to the server or create an empty folder if
+                            the <a href="#a1.3">prepared data</a> isn't be used. It is contained the index. Set
+                            the folder path in the <a href="#a4" >pom.xml</a> (See it the Set up <a href="#a4" >pom.xml</a> part).  The
+                            <a href="#a1.3">prepared data</a> isn't usable if index missing!!</blockquote>
+                    </li>
+                    <li id="a1.5" >
+                        Create knowledgebase import dir
+                        <blockquote>he import process read knowledge bases only from this directory. Set
+                            the folder path in the <a href=" #a4" >pom.xml</a>. This step
+                            can be skipped if the import process won't be used.</blockquote>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <h2>Installing full text index</h2>
+                <ol>
+                    <li id="a2.1" >Copy ftsnewkeywordindex to the server. Set the folder path in the <a href="#a4" >pom.xml</a>.</li>
+                </ol>                
+            </li>
+            <li>
+                <h2>Install spellindex, suggestionindex, wordnetindex</h2>
+                <ol>
+                    <li id="a3.1" >Copy them to the server and set the folder in the <a href="#a4" >pom.xml</a>.</li>
+                </ol>                
+            </li>
+            <li id="a4" >
+                <h2>Setup pom.xml</h2>
+                <ol>
+                    <li>
+                        Create an own profile or modify one.
+                        <blockquote>If you build the src on the server the providence profile is suggested
+                            to use otherwise use the mtdevel profile.</blockquote>
+                    </li>
+                    <li id="a4.1">
+                        config.path
+                        <blockquote>The system will search the configuration file in this
+                            location. Before first run check the folder. The configuration file and
+                            the dtd must be here.</blockquote>
+                    </li>
+                    <li id="a4.2">
+                        config.target.directory
+                        <blockquote>The build process create the
+                            configuration file here.</blockquote>
+                    </li>
+                    <li id="a4.3">
+                        lucene.fts.index.dir
+                        <blockquote>This is the  <a href="#a2.1">fulltextindex</a> location.</blockquote>
+                    </li>
+                    <li id="a4.4">
+                        knowledgeBaseImportDir
+                        <blockquote>This is the <a href="#a1.5">knowledge base import</a> dir
+                            location.</blockquote>
+                    </li>
+                    <li id="a4.5">
+                        topic.name.index.dir
+                        <blockquote>This is the <a href="#a1.4">topic name index</a> folder
+                            location.</blockquote>
+                    </li>
+                    <li id="a4.6">
+                        lucene.spellchecker.dir
+                        <blockquote>This is the <a href="#a3.1">wordnetindex</a> folder path.</blockquote>
+                    </li>
+                    <li id="a4.7">
+                        lucene.spellchecker.index.dir
+                        <blockquote>This is the <a href="#a3.1">spellindex</a> folder path.</blockquote>
+                    </li>
+                    <li id="a4.8">
+                        import.dir
+                        <blockquote>This is the same dir as <a href="#a4.4">knowledgeBaseImportDir</a>.</blockquote>
+                    </li>
+                    <li id="a4.9">
+                        suggestion.index.dir
+                        <blockquote>This is the <a href="#a3.1">suggestionindex</a> folder path.</blockquote>
+                    </li>
+                </ol>
+                
+            </li>
+            <li>
+                <h2>Setup compass2-kbstore-jpa pom.xml</h2>
+                <blockquote>In this pom the database connection has to be set up.</blockquote>
+                <ol>
+                    <li>
+                        jdbc.host
+                        <blockquote>Mysql server location</blockquote>
+                    </li>
+                    <li>
+                        jdbc.url
+                        <blockquote>JDBC connection string</blockquote>
+                    </li>
+                    <li>
+                        jdbc.username
+                        <blockquote>Username for database connection</blockquote>
+                    </li>
+                    <li>
+                        jdbc.password
+                        <blockquote>Password for jdbc connection</blockquote>
+                    </li>
+                </ol>
+                
+            </li>
+            <li>
+                <h2>Build src with the profile</h2> 
+                <blockquote>mvn clean package -Dmaven.test.skip -Pdev,{your profile}</blockquote>                
+            </li>
+            <li>
+                <h2>Build compass2-ws-server</h2> 
+                <blockquote>mvn clean package -Dmaven.test.skip</blockquote>                
+            </li>
+        </ol>
+        
+    </body>
+</html>
