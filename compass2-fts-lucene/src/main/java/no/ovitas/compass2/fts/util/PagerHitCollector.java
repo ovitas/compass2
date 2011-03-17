@@ -93,7 +93,6 @@ public class PagerHitCollector extends Collector {
 	@Override
 	public void collect(int doc) throws IOException {
 		hitCounter++;
-		System.out.println("Collect: " + doc);
 	      double score = scorer.score();
 		if(resultThreshold <=score ){
 	    	  scoreList.add(new XPair<Float,Integer>(new Float(score), new Integer(doc + docBase)));

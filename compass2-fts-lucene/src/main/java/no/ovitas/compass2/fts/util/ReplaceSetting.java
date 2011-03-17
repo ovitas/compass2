@@ -30,14 +30,8 @@ public class ReplaceSetting {
 	}
 	
 	public Scope getScopeEnum() {
-		System.out.println(scope + " , " + value + " , " + with);
 		return Scope.valueOf(scope.toUpperCase());
 	}
-//	
-//	public void setScope(String scope) {
-//		System.out.println(scope);
-//		this.scope = scope;
-//	}
 	
 	public String getScope() {
 		return scope;

@@ -576,8 +576,8 @@
 		<jdbc.host>localhost</jdbc.host>
 		<jdbc.url>jdbc:mysql://${jdbc.host}/${db.name}?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;connectionCollation=utf8_general_ci&amp;amp;characterSetResults=utf8&amp;amp;autoReconnect=true
 		</jdbc.url>
-		<jdbc.username>root</jdbc.username>
-		<jdbc.password>admin</jdbc.password>
+		<jdbc.username>compass2</jdbc.username>
+		<jdbc.password>xcsdwe23</jdbc.password>
 		<dataSource>localDataSource</dataSource>
 
 		<!-- Framework dependency versions -->

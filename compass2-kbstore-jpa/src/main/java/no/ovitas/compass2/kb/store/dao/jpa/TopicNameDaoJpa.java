@@ -66,7 +66,6 @@ public class TopicNameDaoJpa extends GenericDaoJpa<TopicNameEntity, Long>
 		int executeUpdate = entityManager
 				.createNamedQuery("TopicNameEntity.deleteAllInKnowledgeBase")
 				.setParameter("kb_id", kbId).executeUpdate();
-		System.out.println(executeUpdate);
 	}
 
 }

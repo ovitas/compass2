@@ -296,7 +296,6 @@ public class TopicBooleanScorer extends Scorer {
 
 	@Override
 	public int docID() {
-		System.out.println("[TQ]: " + this + " Doc: " + current.doc);
 		return doc;
 	}
 
@@ -311,8 +310,6 @@ public class TopicBooleanScorer extends Scorer {
 
 				// check prohibited & required, and minNrShouldMatch
 				if (current.coord >= 0) {
-					System.out.println("[TQ]: " + this + " Next: "
-							+ current.doc);
 					return doc = current.doc;
 				}
 			}

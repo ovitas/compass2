@@ -272,7 +272,58 @@
 				<import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
 
                 <!-- Suggestion Provider -->
-                <suggestion.index.dir>/app/compass/suggestionindex/</suggestion.index.dir>
+                <suggestion.index.dir>/app/compass/lucene/suggestionindex</suggestion.index.dir>
+
+				<!-- Searching config -->
+				<max.topic.number.to.expand>50</max.topic.number.to.expand>
+				<hop.count>1</hop.count>
+				<max.number.of.hits>100</max.number.of.hits>
+				<result.threshold>0.001</result.threshold>
+				<prefix.match>false</prefix.match>
+				<fuzzy.match>false</fuzzy.match>
+				<expansion.threshold>0.5</expansion.threshold>
+				<tree.search>false</tree.search>
+
+			</properties>
+		</profile>
+		<profile>
+			<id>providence</id>
+			<properties>
+				<!-- Global config -->
+				<config.path><![CDATA[/usr/local/tomcat8082/compass2-ng/config/compass2-config.xml]]></config.path>
+				<config.target.directory><![CDATA[/usr/local/tomcat8082/compass2-ng/config/]]></config.target.directory>
+
+				<!-- FullTextSearch config -->
+				<lucene.fts.index.dir><![CDATA[/usr/local/tomcat8082/compass2-ng/lucene/ftsnewkeywordindex]]></lucene.fts.index.dir>
+				<no.ovitas.compass2.service.FTSImplementation>no.ovitas.compass2.fts.FTSManagerImpl</no.ovitas.compass2.service.FTSImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerTikaImplementation>no.ovitas.compass2.fts.TikaFTSContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerTikaImplementation>
+				<no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>no.ovitas.compass2.fts.VisitNorwayContentHandlerImpl</no.ovitas.compass2.fts.ContentHandlerVisitNorwayImplementation>
+				<no.ovitas.compass2.fts.IndexerImpl>no.ovitas.compass2.fts.LuceneIndexerImpl</no.ovitas.compass2.fts.IndexerImpl>
+				<no.ovitas.compass2.fts.QueryBuilder>no.ovitas.compass2.fts.TopicQueryBuilder</no.ovitas.compass2.fts.QueryBuilder>
+
+				<!-- KnowledgeBase Config -->
+				<no.ovitas.compass2.service.KBImplementation.bean>kbBean</no.ovitas.compass2.service.KBImplementation.bean>
+				<knowledge.base.name>visitnorway</knowledge.base.name>
+				<defaultKBImplementationName>visitnorway</defaultKBImplementationName>
+
+				<knowledgeBaseImportDir>/usr/local/tomcat8082/compass2-ng/kb</knowledgeBaseImportDir>
+				<no.ovitas.compass2.service.TopicNameIndexerImplementation>no.ovitas.compass2.kb.store.indexer.impl.TopicNameIndexerImpl</no.ovitas.compass2.service.TopicNameIndexerImplementation>
+                		<topic.name.index.dir>/usr/local/tomcat8082/compass2-ng/lucene/topicnameindex</topic.name.index.dir>
+
+				<!-- Lucene Config -->
+				<lucene.spellchecker.dir><![CDATA[/usr/local/tomcat8082/compass2-ng/lucene/wordnetindex/]]></lucene.spellchecker.dir>
+				<lucene.spellchecker.index.dir><![CDATA[/usr/local/tomcat8082/compass2-ng/lucene/spellindex/]]></lucene.spellchecker.index.dir>
+				<lucene.spellchecker.max.suggestion.num>4</lucene.spellchecker.max.suggestion.num>
+				<no.ovitas.compass2.service.LTImplementation>no.ovitas.compass2.lt.LuceneLTManagerImpl</no.ovitas.compass2.service.LTImplementation>
+
+				<!-- Import configuration -->
+				<import.dir><![CDATA[/usr/local/tomcat8082/compass2-ng/kb]]></import.dir>
+				<import.xtm.xtm10importer>no.ovitas.compass2.kbimport.xtm.XTM10ImportManagerPlugin</import.xtm.xtm10importer>
+				<import.xtm.xtm20importer.bean>xtm20ImportBean</import.xtm.xtm20importer.bean>
+				<import.rdf.rdfimporter>no.ovitas.compass2.kbimport.rdf.RDFImportManagerPlugin</import.rdf.rdfimporter>
+
+                <!-- Suggestion Provider -->
+                <suggestion.index.dir>/usr/local/tomcat8082/compass2-ng/lucene/suggestionindex/</suggestion.index.dir>
 
 				<!-- Searching config -->
 				<max.topic.number.to.expand>50</max.topic.number.to.expand>
